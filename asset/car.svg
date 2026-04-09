@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40" fill="none" stroke="#C22F24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <style>
+        .speed-line {
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+            animation: dash 1s linear infinite;
+        }
+        .speed-line:nth-child(2) { animation-delay: 0.2s; }
+        .speed-line:nth-child(3) { animation-delay: 0.5s; }
+        .speed-line:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes dash {
+            0% { stroke-dashoffset: 40; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -40; }
+        }
+    </style>
+    <!-- Speed Lines -->
+    <path class="speed-line" d="M10,25 L40,25" />
+    <path class="speed-line" d="M5,15 L30,15" />
+    <path class="speed-line" d="M15,35 L45,35" />
+    
+    <!-- Car Body -->
+    <path class="car-body" d="M45,25 L55,25 L60,15 L80,15 L85,25 L105,25 C110,25 110,35 105,35 L45,35 C40,35 40,25 45,25 Z" />
+    
+    <!-- Wheels -->
+    <circle class="wheel" cx="60" cy="35" r="4" fill="#C22F24" />
+    <circle class="wheel" cx="90" cy="35" r="4" fill="#C22F24" />
+    
+    <!-- Headlight -->
+    <path class="headlight" d="M105,28 L108,28" />
+    
+    <!-- Exhaust / Extra Details -->
+    <path class="detail" d="M48,25 L48,28" />
+    <path class="detail" d="M82,15 L82,25" />
+    <path class="detail" d="M62,15 L62,25" />
+</svg>

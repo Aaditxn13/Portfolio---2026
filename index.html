@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS | Designer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Premium Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <!-- Preload grain image -->
+    <link rel="preload" href="https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png"
+        as="image">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lottie Web Player (Commented out)
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    -->
+</head>
+
+<body>
+
+    <!-- ===== Sunlit Light System (sunlit.place style) ===== -->
+    <!--
+    <div class="sunlit-container" id="sunlit-container">
+        <div class="shutters" id="shutters">
+        </div>
+    </div>
+
+    <div class="vertical-shutter"></div>
+
+    <div class="progressive-blur">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="blur-overlay"></div>
+
+    <div class="night-overlay" id="night-overlay"></div>
+
+    <div class="grain"></div>
+    -->
+    <!-- ===== End Sunlit Light System ===== -->
+
+
+    <div data-site-header data-page="home"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text-container">
+                        <div class="greeting-bar">
+                            <span class="greeting-marquee-wrapper">
+                                <span class="greeting-marquee">
+                                    <span class="greeting-hindi">नमस्ते</span>
+                                    <span class="greeting-hindi">নমস্কার</span>
+                                    <span class="greeting-hindi">Ciao</span>
+                                    <span class="greeting-hindi">Hola</span>
+                                    <!-- Duplicate to seamlessly loop -->
+                                    <span class="greeting-hindi">नमस्ते</span>
+                                </span>
+                            </span>
+                            <span class="greeting-english">/ Namaste</span>
+                        </div>
+                        <h1 class="hero-title">
+                            crafting <span class="serif-italic">experience</span> <img src="asset/lemon.png" alt="Lemon"
+                                class="title-emoji"> for humans,<br>
+                            with a touch <span class="serif-italic">of</span> imagination <img src="asset/stars.png"
+                                alt="Stars" class="title-emoji title-stars">
+                        </h1>
+                        <p class="hero-subtitle">currently crafting at Zeta</p>
+
+                        <!-- Stamp Element -->
+                        <div class="hero-stamp">
+                            <img src="asset/stamp.png" alt="Stamp">
+                        </div>
+
+                        <!-- Camera Element -->
+                        <div class="hero-camera" id="hero-camera">
+                            <img src="asset/camera.png" alt="Camera" class="camera-img">
+                            <img src="asset/light.png" alt="Camera Flash" class="camera-light" id="camera-light">
+                        </div>
+
+                        <!-- Headphones Element -->
+                        <div class="hero-headphones" id="hero-headphones">
+                            <img src="asset/headphones.png" alt="Headphones">
+                            <!-- Lofi music source -->
+                            <audio id="hero-audio" loop>
+                                <source
+                                    src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3"
+                                    type="audio/mpeg">
+                            </audio>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Layout Controls -->
+                    <!--
+                    <div class="layout-controls" id="work">
+                        <button class="control-btn active" id="btn-wall" title="Wall View">
+                            <img src="asset/scatter.svg" alt="Scatter View">
+                        </button>
+                        <button class="control-btn" id="btn-grid" title="Grid View">
+                            <img src="asset/organised.svg" alt="Organised View">
+                        </button>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="container" id="work">
+                <div class="projects-wrapper">
+                    <!-- Mascot overlay dangling off edge (Commented out)
+                    <lottie-player src="asset/Lottiemon%20Animation%20Data.json" background="transparent" speed="1"
+                        class="wrapper-mascot" loop autoplay></lottie-player>
+                    -->
+
+                    <div class="projects-header">
+                        <h2 class="projects-title">tiny fraction of my work</h2>
+                    </div>
+                    <!-- Work Wall Display (Bento Grid) -->
+                    <div class="work-container bento-grid" id="work-wall">
+                        <div class="work-card card-1" data-parallax="0.05" data-title="Zapp Account"
+                            data-desc="Seamless financial management and secure payments interface."
+                            data-link="/project-1.html">
+                            <div class="card-content" style="background-image: url('asset/grassland.png');">
+                            </div>
+                        </div>
+                        <div class="work-card card-2" data-parallax="-0.08" data-title="Blue Daisies"
+                            data-desc="Soft floral illustrations with a calming blue aesthetic."
+                            data-link="/project-2.html">
+                            <div class="card-content" style="background-image: url('asset/water.png');">
+                            </div>
+                        </div>
+                        <div class="work-card card-3" data-parallax="0.1" data-title="Butterfly Meadow"
+                            data-desc="Whimsical landscape with fluttering butterflies in a sun-drenched field."
+                            data-link="/project-3.html">
+                            <div class="card-content" style="background-image: url('asset/flower valey.png');">
+                            </div>
+                        </div>
+                        <div class="work-card card-4" data-parallax="-0.03" data-title="Minimalist View"
+                            data-desc="A clean, structured approach to modern layout design."
+                            data-link="/project-4.html">
+                            <div class="card-content" style="background-image: url('asset/sunset.png');">
+                            </div>
+                        </div>
+                    </div> <!-- End of bento-grid -->
+                </div> <!-- End of projects-wrapper -->
+            </div>
+        </section>
+
+        <!-- Beyond the Pixels Section -->
+        <section class="projects-section" id="beyond">
+            <div class="container">
+                <div class="beyond-header">
+                    <h2 class="projects-title">beyond the pixels</h2>
+                    <p class="beyond-subtitle">
+                        the world has so much to offer, go out and<br>explore them often
+                    </p>
+                </div>
+                <div class="beyond-pixels-stage">
+                    <div class="museum-stage">
+                        <div class="wrapper-3d" id="stage-wrapper">
+                            <div class="fold fold-top">
+                                <div class="fold-align">
+                                    <div class="fold-content" id="content-top"></div>
+                                </div>
+                            </div>
+                            <div class="fold fold-center" id="center-fold">
+                                <div class="fold-align">
+                                    <div class="fold-content" id="content-center"></div>
+                                </div>
+                            </div>
+                            <div class="fold fold-bottom">
+                                <div class="fold-align">
+                                    <div class="fold-content" id="content-bottom"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-card">
+                    <!-- Top Info Section -->
+                    <div class="footer-info">
+                        <div class="footer-col">
+                            <span class="footer-pill">open to work</span>
+                            <h3 class="footer-col-title">product & visual<br>designer</h3>
+                            <p class="footer-col-detail">crafting thoughtful digital experiences</p>
+                        </div>
+                        <div class="footer-col">
+                            <span class="footer-pill">location</span>
+                            <h3 class="footer-col-title">india</h3>
+                            <p class="footer-col-detail">available for remote work worldwide</p>
+                        </div>
+                        <div class="footer-col">
+                            <span class="footer-pill">get in touch</span>
+                            <h3 class="footer-col-title">hello@aditya.design</h3>
+                            <p class="footer-col-detail">let's create something beautiful</p>
+                            <div class="footer-socials">
+                                <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="footer-social-icon" aria-label="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="footer-social-icon" aria-label="Dribbble">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308a10.174 10.174 0 004.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4a10.143 10.143 0 006.29 2.166c1.42 0 2.77-.29 4.006-.816zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248a65.473 65.473 0 00-3.8-5.928A10.177 10.177 0 001.964 9.915zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702A10.15 10.15 0 0012 1.822c-.83 0-1.634.1-2.4.23zm10.335 3.483c-.218.29-1.89 2.478-5.65 4.01.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33a10.138 10.138 0 00-2.39-6.356z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="footer-social-icon" aria-label="Behance">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.63.16-1.3.25-2.01.25H0V4.51h6.938v-.007zM6.545 10.66c.6 0 1.1-.16 1.46-.49.37-.33.55-.79.55-1.38 0-.32-.06-.58-.174-.79a1.47 1.47 0 00-.48-.52 1.93 1.93 0 00-.7-.28 3.76 3.76 0 00-.84-.09H3.38v3.56h3.164zm.19 5.64c.31 0 .6-.03.9-.1.28-.06.53-.17.74-.32.21-.15.38-.36.5-.62.13-.26.19-.6.19-1.01 0-.79-.22-1.35-.66-1.7-.44-.35-1.01-.53-1.73-.53H3.38v4.28h3.354zM15.4 4.147h5.657v1.547H15.4V4.147zm5.9 5.267c.04-.5-.06-1-.28-1.44-.23-.44-.54-.8-.92-1.07-.38-.27-.82-.46-1.32-.57a6.82 6.82 0 00-1.58-.18c-.58 0-1.12.07-1.63.2-.5.14-.94.35-1.32.64-.39.28-.7.65-.93 1.1-.24.45-.37 1-.4 1.63h2.78c.02-.47.19-.84.51-1.1.32-.26.73-.39 1.22-.39.37 0 .72.08 1.03.24.31.16.48.47.5.94h-2.85c-.5 0-.98.04-1.43.13-.46.1-.87.27-1.23.52-.36.26-.65.6-.87 1.03-.22.44-.33.98-.33 1.64 0 .56.1 1.05.32 1.46.21.42.5.76.85 1.03.36.28.78.48 1.26.6.47.14.97.2 1.49.2.5 0 1.02-.1 1.55-.28.52-.18.96-.51 1.32-.97h.03c0 .27.02.53.07.78.04.26.1.47.19.64h2.85c-.15-.3-.23-.72-.28-1.27-.04-.56-.06-1.08-.06-1.57V9.414zm-2.7 3.82c-.04.42-.16.78-.36 1.08-.2.3-.47.55-.79.73-.33.18-.72.27-1.18.27-.23 0-.46-.03-.69-.1a1.72 1.72 0 01-.59-.29 1.42 1.42 0 01-.42-.47c-.1-.19-.16-.42-.16-.7 0-.56.19-.96.56-1.22.37-.25.88-.38 1.52-.38h2.1v1.08z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bottom Brand Section -->
+                    <div class="footer-brand">
+                        <span class="footer-brand-text">aditya.</span>
+                        <span class="footer-credits">© 2026 — designed with love</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+
+    <!-- Project Modal Overlay -->
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Agentation: Visual feedback for AI agents (connects to http://localhost:4747) -->
+    <script>
+        (function () {
+            const ENDPOINT = 'http://localhost:4747';
+            const SESSION_KEY = 'agentation_session_id';
+            let sessionId = localStorage.getItem(SESSION_KEY);
+            let active = false;
+            let annotations = [];
+            let pendingEl = null;
+
+            // ── Create toolbar ──────────────────────────────────────────────
+            const toolbar = document.createElement('div');
+            toolbar.id = 'agentation-toolbar';
+            toolbar.style.cssText = `
+        position:fixed; bottom:20px; right:20px; z-index:99999;
+        display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+        font-family:system-ui,sans-serif;
+      `;
+
+            const toggleBtn = document.createElement('button');
+            toggleBtn.title = 'Toggle Agentation';
+            toggleBtn.style.cssText = `
+        width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
+        background:#1a1a2e; color:#fff; font-size:18px; box-shadow:0 4px 20px rgba(0,0,0,.35);
+        display:flex; align-items:center; justify-content:center;
+        transition:transform .2s,background .2s;
+      `;
+            toggleBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`;
+
+            const badge = document.createElement('span');
+            badge.style.cssText = `
+        position:absolute; top:-4px; right:-4px; background:#e74c3c; color:#fff;
+        font-size:10px; min-width:16px; height:16px; border-radius:8px;
+        display:none; align-items:center; justify-content:center; padding:0 3px;
+        font-weight:700;
+      `;
+            toggleBtn.style.position = 'relative';
+            toggleBtn.appendChild(badge);
+            toolbar.appendChild(toggleBtn);
+
+            document.body.appendChild(toolbar);
+
+            // ── Session init ─────────────────────────────────────────────────
+            async function initSession() {
+                try {
+                    const res = await fetch(`${ENDPOINT}/api/sessions`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url: location.href, existingSessionId: sessionId })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        sessionId = data.sessionId || data.id || sessionId;
+                        if (sessionId) {
+                            localStorage.setItem(SESSION_KEY, sessionId);
+                            console.log('[Agentation] Session started:', sessionId);
+                        }
+                    }
+                } catch (e) {
+                    // Server may not expose session endpoint — still functional locally
+                    sessionId = sessionId || ('local-' + Date.now());
+                    localStorage.setItem(SESSION_KEY, sessionId);
+                    console.log('[Agentation] Local session:', sessionId);
+                }
+            }
+
+            // ── Highlight hovered elements ───────────────────────────────────
+            let hovered = null;
+            const highlight = document.createElement('div');
+            highlight.style.cssText = `
+        position:fixed; pointer-events:none; z-index:99998;
+        border:2px solid #6c63ff; border-radius:4px; background:rgba(108,99,255,.08);
+        transition:all .1s ease; display:none;
+      `;
+            document.body.appendChild(highlight);
+
+            function showHighlight(el) {
+                const r = el.getBoundingClientRect();
+                highlight.style.display = 'block';
+                highlight.style.top = r.top + 'px';
+                highlight.style.left = r.left + 'px';
+                highlight.style.width = r.width + 'px';
+                highlight.style.height = r.height + 'px';
+            }
+
+            // ── Annotation popup ─────────────────────────────────────────────
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+        position:fixed; z-index:999999; background:#fff; border-radius:12px;
+        box-shadow:0 8px 40px rgba(0,0,0,.22); padding:16px; width:280px;
+        display:none; flex-direction:column; gap:10px;
+        font-family:system-ui,sans-serif; font-size:13px; color:#111;
+      `;
+            popup.innerHTML = `
+        <div style="font-weight:600;font-size:14px;color:#1a1a2e">Add Annotation</div>
+        <textarea id="agentation-note" placeholder="Describe the issue or feedback…"
+          style="resize:vertical;min-height:80px;border:1.5px solid #e0e0e0;border-radius:8px;
+          padding:8px;font-size:13px;font-family:inherit;outline:none;"></textarea>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button id="agentation-cancel" style="padding:6px 14px;border:1.5px solid #ddd;
+            border-radius:8px;background:#fff;cursor:pointer;font-size:12px;">Cancel</button>
+          <button id="agentation-add" style="padding:6px 14px;border:none;border-radius:8px;
+            background:#6c63ff;color:#fff;cursor:pointer;font-size:12px;font-weight:600;">Add</button>
+        </div>
+      `;
+            document.body.appendChild(popup);
+
+            function getCSSPath(el) {
+                const parts = [];
+                while (el && el !== document.body) {
+                    let selector = el.tagName.toLowerCase();
+                    if (el.id) { selector += '#' + el.id; parts.unshift(selector); break; }
+                    const siblings = Array.from(el.parentNode?.children || []).filter(c => c.tagName === el.tagName);
+                    if (siblings.length > 1) selector += ':nth-child(' + (Array.from(el.parentNode.children).indexOf(el) + 1) + ')';
+                    parts.unshift(selector);
+                    el = el.parentNode;
+                }
+                return parts.join(' > ');
+            }
+
+            function openPopup(el, x, y) {
+                pendingEl = el;
+                popup.style.display = 'flex';
+                const pw = 280, ph = 180;
+                const left = Math.min(x + 10, window.innerWidth - pw - 10);
+                const top = Math.min(y + 10, window.innerHeight - ph - 10);
+                popup.style.left = left + 'px';
+                popup.style.top = top + 'px';
+                popup.querySelector('#agentation-note').value = '';
+                setTimeout(() => popup.querySelector('#agentation-note').focus(), 50);
+            }
+
+            popup.querySelector('#agentation-cancel').onclick = () => {
+                popup.style.display = 'none'; pendingEl = null;
+            };
+
+            popup.querySelector('#agentation-add').onclick = async () => {
+                const note = popup.querySelector('#agentation-note').value.trim();
+                if (!note) return;
+                const r = pendingEl.getBoundingClientRect();
+                const annotation = {
+                    id: 'a-' + Date.now(),
+                    comment: note,
+                    elementPath: getCSSPath(pendingEl),
+                    element: pendingEl.tagName.toLowerCase(),
+                    timestamp: Date.now(),
+                    x: ((r.left + r.width / 2) / window.innerWidth) * 100,
+                    y: r.top + window.scrollY,
+                    boundingBox: { x: r.left, y: r.top, width: r.width, height: r.height },
+                    url: location.href,
+                    sessionId
+                };
+                annotations.push(annotation);
+                updateBadge();
+                popup.style.display = 'none';
+                // Push to MCP server
+                try {
+                    await fetch(`${ENDPOINT}/api/annotations`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ sessionId, annotation })
+                    });
+                } catch (e) { }
+                showPin(annotation);
+            };
+
+            // ── Annotation pins ──────────────────────────────────────────────
+            function showPin(ann) {
+                const pin = document.createElement('div');
+                pin.style.cssText = `
+          position:absolute; left:${ann.x}%; top:${ann.y}px; width:20px; height:20px;
+          background:#6c63ff; border-radius:50%; border:2px solid #fff;
+          box-shadow:0 2px 8px rgba(0,0,0,.25); cursor:pointer; z-index:99990;
+          display:flex; align-items:center; justify-content:center;
+          color:#fff; font-size:10px; font-weight:700;
+        `;
+                pin.title = ann.comment;
+                pin.textContent = annotations.indexOf(ann) + 1;
+                document.body.appendChild(pin);
+            }
+
+            function updateBadge() {
+                badge.textContent = annotations.length;
+                badge.style.display = annotations.length > 0 ? 'flex' : 'none';
+            }
+
+            // ── Toggle active mode ───────────────────────────────────────────
+            toggleBtn.onclick = () => {
+                active = !active;
+                toggleBtn.style.background = active ? '#6c63ff' : '#1a1a2e';
+                document.body.style.cursor = active ? 'crosshair' : '';
+                if (!active) { highlight.style.display = 'none'; popup.style.display = 'none'; }
+            };
+
+            document.addEventListener('mousemove', e => {
+                if (!active) return;
+                const el = document.elementFromPoint(e.clientX, e.clientY);
+                if (el && el !== hovered && !toolbar.contains(el) && !popup.contains(el) && el !== highlight) {
+                    hovered = el; showHighlight(el);
+                }
+            });
+
+            document.addEventListener('click', e => {
+                if (!active) return;
+                const el = document.elementFromPoint(e.clientX, e.clientY);
+                if (!el || toolbar.contains(el) || popup.contains(el) || el === highlight) return;
+                e.preventDefault(); e.stopPropagation();
+                openPopup(el, e.clientX, e.clientY);
+            }, true);
+
+            // ── Boot ─────────────────────────────────────────────────────────
+            initSession();
+        })();
+    </script>
+
+</body>
+
+</html>
