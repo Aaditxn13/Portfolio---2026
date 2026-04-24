@@ -43,198 +43,227 @@
             <img src="asset/grassland.png" alt="Zapp Account hero screens">
         </div>
 
-        <!-- 3. Intro + Overview + Metadata -->
-        <section class="pajelly-cs-grid">
-            <div class="pajelly-grid-left">
-                <h4 class="pajelly-label">OVERVIEW</h4>
-                <p class="pajelly-desc">We were given a rare brief — take a product that millions of people use, throw
-                    out everything, and start over. New name, new code, new design. No legacy constraints.</p>
-                <p class="pajelly-desc">PayZapp was HDFC Bank's digital wallet — one of the earliest in India. But years
-                    of incremental additions had left it feeling patchy: inconsistent UI, friction-heavy flows, and an
-                    onboarding that dropped users before they ever made a transaction. The decision was made to not patch
-                    it, but to rebuild it entirely — new brand identity, a ground-up design system, and a full rewrite in
-                    Flutter. This is Zapp Account.</p>
-            </div>
-            <div class="pajelly-grid-right">
-                <div class="pajelly-meta-block">
-                    <h4 class="pajelly-label">TIMELINE</h4>
-                    <p class="pajelly-val">2023–24</p>
-                </div>
-                <div class="pajelly-meta-block">
-                    <h4 class="pajelly-label">COMPANY</h4>
-                    <p class="pajelly-val">Zeta × HDFC</p>
-                </div>
-                <div class="pajelly-meta-block">
-                    <h4 class="pajelly-label">PLATFORM</h4>
-                    <p class="pajelly-val">Flutter</p>
-                </div>
-                <div class="pajelly-meta-block">
-                    <h4 class="pajelly-label">ROLE</h4>
-                    <p class="pajelly-val">Product Designer</p>
-                </div>
-            </div>
-        </section>
+        <!-- Post-hero: 2-column layout — sidebar index + content -->
+        <div class="cs-body-layout">
 
-        <!-- 4. What we inherited — PayZapp old (3-col) -->
-        <section class="pajelly-feature">
-            <h3 class="feature-title">What we inherited.</h3>
-            <div class="feature-image-wrapper">
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/10; background: linear-gradient(to bottom right, #f2faeb, #d1e8c5); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #7cb342; font-size: 1.2rem;">
-                    [ PayZapp Old — Home · Payments · Profile ]
-                </div>
-            </div>
-            <p class="feature-caption">What we inherited.</p>
-        </section>
+            <!-- Sticky sidebar index -->
+            <nav class="cs-index" aria-label="Case study sections">
+                <a href="#cs-overview" class="cs-index__link is-active">Overview</a>
+                <a href="#cs-challenge" class="cs-index__link">Challenge</a>
+                <a href="#cs-rebuild" class="cs-index__link">The Rebuild</a>
+                <a href="#cs-design" class="cs-index__link">Design Direction</a>
+                <a href="#cs-kyc" class="cs-index__link">Video KYC</a>
+                <a href="#cs-evolution" class="cs-index__link">Evolution</a>
+                <a href="#cs-reflections" class="cs-index__link">Reflections</a>
+            </nav>
 
-        <!-- 5. Aside — inherited -->
-        <section class="pajelly-cs-reviews">
-            <div class="review-box">
-                <div class="review-right" style="width: 100%;">
-                    <p class="review-quote">"No visual hierarchy. Actions buried. Every screen felt like it was designed in
-                        isolation — because it was, over years of feature additions with no system underneath."</p>
-                </div>
-            </div>
-        </section>
+            <!-- Narrower content column -->
+            <div class="cs-content">
 
-        <!-- 6. Problem context -->
-        <section class="pajelly-feature">
-            <p class="feature-body">The core problems weren't just visual. The wallet lacked a clear information
-                hierarchy — users couldn't tell at a glance what their balance was, what they could do, or how to get
-                started. Onboarding was long and confusing, leading to high drop-off before first transaction. And the
-                product had no consistent interaction language — every feature felt bolted on.</p>
-        </section>
+                <!-- Overview -->
+                <section class="pajelly-cs-grid cs-section" id="cs-overview">
+                    <div class="pajelly-grid-left">
+                        <h4 class="pajelly-label">OVERVIEW</h4>
+                        <p class="pajelly-desc">We were given a rare brief — take a product that millions of people use,
+                            throw out everything, and start over. New name, new code, new design. No legacy
+                            constraints.</p>
+                        <p class="pajelly-desc">PayZapp was HDFC Bank's digital wallet — one of the earliest in India.
+                            But years of incremental additions had left it feeling patchy: inconsistent UI, friction-heavy
+                            flows, and an onboarding that dropped users before they ever made a transaction. The decision
+                            was made to not patch it, but to rebuild it entirely — new brand identity, a ground-up design
+                            system, and a full rewrite in Flutter. This is Zapp Account.</p>
+                    </div>
+                    <div class="pajelly-grid-right">
+                        <div class="pajelly-meta-block">
+                            <h4 class="pajelly-label">TIMELINE</h4>
+                            <p class="pajelly-val">2023–24</p>
+                        </div>
+                        <div class="pajelly-meta-block">
+                            <h4 class="pajelly-label">COMPANY</h4>
+                            <p class="pajelly-val">Zeta × HDFC</p>
+                        </div>
+                        <div class="pajelly-meta-block">
+                            <h4 class="pajelly-label">PLATFORM</h4>
+                            <p class="pajelly-val">Flutter</p>
+                        </div>
+                        <div class="pajelly-meta-block">
+                            <h4 class="pajelly-label">ROLE</h4>
+                            <p class="pajelly-val">Product Designer</p>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- 7. Rebrand statement -->
-        <section class="pajelly-feature">
-            <p class="feature-body">The answer wasn't a redesign. It was a rebuild. A new brand — Zapp Account — built
-                ground up with a proper component system, a new visual language, and a codebase written entirely in
-                Flutter. For the first time, design and engineering could move together.</p>
-        </section>
+                <!-- Challenge -->
+                <section class="cs-section" id="cs-challenge">
+                    <div class="pajelly-feature">
+                        <h3 class="feature-title">What we inherited.</h3>
+                        <div class="feature-image-wrapper">
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/10; background: linear-gradient(to bottom right, #f2faeb, #d1e8c5); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #7cb342; font-size: 1.2rem;">
+                                [ PayZapp Old — Home · Payments · Profile ]
+                            </div>
+                        </div>
+                        <p class="feature-caption">What we inherited.</p>
+                    </div>
 
-        <!-- 8. New hero spread — full width -->
-        <section class="pajelly-feature-breakout">
-            <div class="placeholder-graphic"
-                style="aspect-ratio: 21/9; background: #e0d9cf; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #a49175; font-size: 1.5rem;">
-                [ Zapp Account Hero Spread — Home · Payments · Profile ]
-            </div>
-        </section>
+                    <div class="pajelly-cs-reviews">
+                        <div class="review-box">
+                            <div class="review-right" style="width: 100%;">
+                                <p class="review-quote">"No visual hierarchy. Actions buried. Every screen felt like it
+                                    was designed in isolation — because it was, over years of feature additions with no
+                                    system underneath."</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- 9. Design direction -->
-        <section class="pajelly-feature">
-            <p class="feature-body">The design direction was built around one principle: clarity at every step. The home
-                screen leads with balance — the one number users care about most. Actions are surfaced immediately. The
-                visual language is clean but warm, avoiding the cold utility feel of most fintech apps. Typography does
-                heavy lifting; colour is used deliberately, not decoratively.</p>
-        </section>
+                    <div class="pajelly-feature">
+                        <p class="feature-body">The core problems weren't just visual. The wallet lacked a clear
+                            information hierarchy — users couldn't tell at a glance what their balance was, what they
+                            could do, or how to get started. Onboarding was long and confusing, leading to high drop-off
+                            before first transaction. And the product had no consistent interaction language — every
+                            feature felt bolted on.</p>
+                    </div>
+                </section>
 
-        <!-- 10. New screens (2-col) -->
-        <section class="pajelly-feature">
-            <div class="feature-image-wrapper">
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/10; background: linear-gradient(to bottom right, #f4f4f4, #e6e6e6); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 1.2rem;">
-                    [ Zapp Home · Zapp Payments ]
-                </div>
-            </div>
-        </section>
+                <!-- The Rebuild -->
+                <section class="cs-section" id="cs-rebuild">
+                    <div class="pajelly-feature">
+                        <p class="feature-body">The answer wasn't a redesign. It was a rebuild. A new brand — Zapp
+                            Account — built ground up with a proper component system, a new visual language, and a
+                            codebase written entirely in Flutter. For the first time, design and engineering could move
+                            together.</p>
+                    </div>
 
-        <!-- 11. Interaction video -->
-        <section class="pajelly-feature">
-            <div class="placeholder-graphic"
-                style="aspect-ratio: 1/1.5; max-width: 320px; margin: 0 auto; background: #1a1a1a; border-radius: 8px; border: 8px solid #333; display: flex; align-items: center; justify-content: center; color: #aaa;">
-                [ Zapp Interactions — Video ]
-            </div>
-            <p class="feature-caption" style="text-align: center;">Flutter meant we could actually build the interactions
-                we designed — no compromise.</p>
-        </section>
+                    <div class="pajelly-feature-breakout">
+                        <div class="placeholder-graphic"
+                            style="aspect-ratio: 21/9; background: #e0d9cf; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #a49175; font-size: 1.5rem;">
+                            [ Zapp Account Hero Spread — Home · Payments · Profile ]
+                        </div>
+                    </div>
+                </section>
 
-        <!-- 12. Aside — Flutter -->
-        <section class="pajelly-cs-reviews">
-            <div class="review-box">
-                <div class="review-right" style="width: 100%;">
-                    <p class="review-quote">"The Flutter rewrite wasn't just a tech decision — it directly enabled the
-                        design. Transitions, micro-interactions, and motion that would have been negotiated away in a
-                        React Native or native codebase shipped as designed."</p>
-                </div>
-            </div>
-        </section>
+                <!-- Design Direction -->
+                <section class="cs-section" id="cs-design">
+                    <div class="pajelly-feature">
+                        <p class="feature-body">The design direction was built around one principle: clarity at every
+                            step. The home screen leads with balance — the one number users care about most. Actions are
+                            surfaced immediately. The visual language is clean but warm, avoiding the cold utility feel of
+                            most fintech apps. Typography does heavy lifting; colour is used deliberately, not
+                            decoratively.</p>
+                    </div>
 
-        <!-- 13. More screens (3-col) -->
-        <section class="pajelly-feature">
-            <div class="feature-image-wrapper">
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/8; background: #EAF4FC; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA;">
-                    [ Zapp Account — Additional Screens (3-col) ]
-                </div>
-            </div>
-        </section>
+                    <div class="pajelly-feature">
+                        <div class="feature-image-wrapper">
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/10; background: linear-gradient(to bottom right, #f4f4f4, #e6e6e6); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 1.2rem;">
+                                [ Zapp Home · Zapp Payments ]
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- 14. Video KYC -->
-        <section class="pajelly-feature">
-            <h3 class="feature-label">VIDEO KYC</h3>
-            <p class="feature-body">Alongside the product rebuild, we introduced Video KYC into the onboarding — a first
-                for the wallet. In India, KYC is a regulatory requirement to unlock full wallet functionality, but it's
-                historically been one of the biggest friction points in fintech onboarding. The challenge was designing a
-                flow that felt calm and guided, despite the technical and compliance constraints it had to work within.</p>
+                    <div class="pajelly-feature">
+                        <div class="placeholder-graphic"
+                            style="aspect-ratio: 1/1.5; max-width: 320px; margin: 0 auto; background: #1a1a1a; border-radius: 8px; border: 8px solid #333; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                            [ Zapp Interactions — Video ]
+                        </div>
+                        <p class="feature-caption" style="text-align: center;">Flutter meant we could actually build the
+                            interactions we designed — no compromise.</p>
+                    </div>
 
-            <div class="appstore-asset-stack">
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/8; background: #EAF4FC; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA; margin-bottom: 16px;">
-                    [ Video KYC — Step 1 · Step 2 · Step 3 ]
-                </div>
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/8; background: #D5EAF9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA;">
-                    [ Video KYC — Flow in motion ]
-                </div>
-            </div>
-            <p class="feature-caption">Video KYC — making a regulatory step feel like a product moment.</p>
-        </section>
+                    <div class="pajelly-cs-reviews">
+                        <div class="review-box">
+                            <div class="review-right" style="width: 100%;">
+                                <p class="review-quote">"The Flutter rewrite wasn't just a tech decision — it directly
+                                    enabled the design. Transitions, micro-interactions, and motion that would have been
+                                    negotiated away in a React Native or native codebase shipped as designed."</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- 15. Aside — KYC SDK -->
-        <section class="pajelly-cs-reviews">
-            <div class="review-box">
-                <div class="review-right" style="width: 100%;">
-                    <p class="review-quote">"Much of the design work here was invisible — navigating what the KYC SDK
-                        could and couldn't do, and designing around those constraints without it ever showing in the
-                        experience."</p>
-                </div>
-            </div>
-        </section>
+                    <div class="pajelly-feature">
+                        <div class="feature-image-wrapper">
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/8; background: #EAF4FC; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA;">
+                                [ Zapp Account — Additional Screens (3-col) ]
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- 16. Evolution label -->
-        <section class="pajelly-feature">
-            <p class="feature-label" style="margin-bottom: 0.5rem;">EVOLUTION</p>
-            <p class="feature-body" style="font-size: 1rem; color: #989FA3;">Two years apart. Same product, completely
-                different.</p>
-        </section>
+                <!-- Video KYC -->
+                <section class="cs-section" id="cs-kyc">
+                    <div class="pajelly-feature">
+                        <h3 class="feature-label">VIDEO KYC</h3>
+                        <p class="feature-body">Alongside the product rebuild, we introduced Video KYC into the
+                            onboarding — a first for the wallet. In India, KYC is a regulatory requirement to unlock full
+                            wallet functionality, but it's historically been one of the biggest friction points in fintech
+                            onboarding. The challenge was designing a flow that felt calm and guided, despite the
+                            technical and compliance constraints it had to work within.</p>
 
-        <!-- 17. Before and after -->
-        <section class="pajelly-feature">
-            <div class="appstore-asset-stack">
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/10; background: #FFFFFF; border: 1px solid #EDEDED; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; box-shadow: 0 20px 40px rgba(0,0,0,0.03); margin-bottom: 16px;">
-                    [ PayZapp — before ↔ Zapp Account — after — Home ]
-                </div>
-                <div class="placeholder-graphic"
-                    style="aspect-ratio: 16/10; background: #FFFFFF; border: 1px solid #EDEDED; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
-                    [ PayZapp · Zapp Account — Payments ]
-                </div>
-            </div>
-        </section>
+                        <div class="appstore-asset-stack">
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/8; background: #EAF4FC; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA; margin-bottom: 16px;">
+                                [ Video KYC — Step 1 · Step 2 · Step 3 ]
+                            </div>
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/8; background: #D5EAF9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6D98BA;">
+                                [ Video KYC — Flow in motion ]
+                            </div>
+                        </div>
+                        <p class="feature-caption">Video KYC — making a regulatory step feel like a product moment.</p>
+                    </div>
 
-        <!-- 18. Reflections -->
-        <section class="pajelly-feature">
-            <h3 class="feature-title">Reflections.</h3>
-            <p class="feature-body">Rebuilding ground up is rare — and it's a test as much as an opportunity. Without
-                legacy constraints, every decision is yours to justify, which means you have to be sharper about the why
-                behind everything. The biggest lesson from this project was that a clean slate doesn't automatically
-                produce a better product. The research, the hard conversations about what the product actually needed to
-                do, and the willingness to say no to features that didn't belong — that's what made the difference. The
-                Flutter rewrite also changed how I think about the design-engineering relationship. When the tools match
-                the ambition, you stop negotiating your design away.</p>
-        </section>
+                    <div class="pajelly-cs-reviews">
+                        <div class="review-box">
+                            <div class="review-right" style="width: 100%;">
+                                <p class="review-quote">"Much of the design work here was invisible — navigating what the
+                                    KYC SDK could and couldn't do, and designing around those constraints without it ever
+                                    showing in the experience."</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- 19. Minimal CTA Footing -->
+                <!-- Evolution -->
+                <section class="cs-section" id="cs-evolution">
+                    <div class="pajelly-feature">
+                        <p class="feature-label" style="margin-bottom: 0.5rem;">EVOLUTION</p>
+                        <p class="feature-body" style="font-size: 1rem; color: #989FA3;">Two years apart. Same product,
+                            completely different.</p>
+                    </div>
+
+                    <div class="pajelly-feature">
+                        <div class="appstore-asset-stack">
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/10; background: #FFFFFF; border: 1px solid #EDEDED; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; box-shadow: 0 20px 40px rgba(0,0,0,0.03); margin-bottom: 16px;">
+                                [ PayZapp — before ↔ Zapp Account — after — Home ]
+                            </div>
+                            <div class="placeholder-graphic"
+                                style="aspect-ratio: 16/10; background: #FFFFFF; border: 1px solid #EDEDED; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                                [ PayZapp · Zapp Account — Payments ]
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reflections -->
+                <section class="cs-section" id="cs-reflections">
+                    <div class="pajelly-feature">
+                        <h3 class="feature-title">Reflections.</h3>
+                        <p class="feature-body">Rebuilding ground up is rare — and it's a test as much as an
+                            opportunity. Without legacy constraints, every decision is yours to justify, which means you
+                            have to be sharper about the why behind everything. The biggest lesson from this project was
+                            that a clean slate doesn't automatically produce a better product. The research, the hard
+                            conversations about what the product actually needed to do, and the willingness to say no to
+                            features that didn't belong — that's what made the difference. The Flutter rewrite also
+                            changed how I think about the design-engineering relationship. When the tools match the
+                            ambition, you stop negotiating your design away.</p>
+                    </div>
+                </section>
+
+            </div><!-- /.cs-content -->
+        </div><!-- /.cs-body-layout -->
+
         <footer class="pajelly-cs-footer">
             <div class="footer-left">
                 <h4 class="footer-title">PROJECT</h4>
@@ -250,6 +279,26 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+    (function () {
+        const links = document.querySelectorAll('.cs-index__link');
+        const sections = document.querySelectorAll('.cs-section');
+        if (!links.length || !sections.length) return;
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    links.forEach(l => l.classList.remove('is-active'));
+                    const id = entry.target.id;
+                    const active = document.querySelector('.cs-index__link[href="#' + id + '"]');
+                    if (active) active.classList.add('is-active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    })();
+    </script>
 </body>
 
 </html>

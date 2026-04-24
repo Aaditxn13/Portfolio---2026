@@ -515,3 +515,70 @@ if (heroCamera) {
         });
     });
 })();
+
+/**
+ * About page — “More of me”: when a <video> has a <source> (or src), play on hover.
+ * Add: <source src="asset/your-clip.mp4" type="video/mp4" /> inside .about-more__video
+ */
+(function initAboutMoreHoverVideo() {
+    const root = document.querySelector('.about-more');
+    if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    root.querySelectorAll('.about-more__card--hover-video .about-more__media--hover-video .about-more__video').forEach((video) => {
+        const hasSource =
+            (video.currentSrc && video.currentSrc.length > 0) ||
+            (video.getAttribute('src') && video.getAttribute('src').trim().length > 0) ||
+            (video.querySelector('source') && video.querySelector('source').getAttribute('src') && video.querySelector('source').getAttribute('src').trim().length > 0);
+
+        if (!hasSource) return;
+
+        const card = video.closest('.about-more__card--hover-video');
+        if (!card) return;
+        card.classList.add('has-hover-video');
+
+        const play = () => {
+            video.play().catch(() => {});
+        };
+        const stop = () => {
+            video.pause();
+            try {
+                video.currentTime = 0;
+            } catch (_) {
+                /* nothing */
+            }
+        };
+
+        card.addEventListener('mouseenter', play);
+        card.addEventListener('mouseleave', stop);
+    });
+})();
+
+/**
+ * Home hero: mask-reveal-up (per-line), aligned with animate-text spec
+ * assets/specs/mask-reveal-up.json + site_reference runtime scaling
+ */
+(function initHeroHeadlineMaskReveal() {
+    if (typeof gsap === 'undefined') return;
+    const lines = document.querySelectorAll('.hero-v2__headline-line');
+    if (!lines.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const yTravel = 30 * 0.58; /* y_travel_multiplier */
+    const duration = (760 * 0.72) / 1000; /* enter.duration_ms * speed_multiplier */
+    const stagger = (90 * 0.72) / 1000; /* enter.stagger_ms * speed_multiplier */
+    const delay = 0.14; /* page paint / nav */
+    const ease = 'expo.out'; /* close to cubic-bezier(0.22, 1, 0.36, 1) */
+
+    gsap.set(lines, { opacity: 0, y: yTravel, filter: 'blur(6px)' });
+    gsap.to(lines, {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        duration,
+        delay,
+        stagger,
+        ease,
+        clearProps: 'filter',
+    });
+})();
