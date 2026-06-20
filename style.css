@@ -2159,23 +2159,18 @@ body.night-mode .hero-cta {
     padding-right: 0;
 }
 
-/* Match the beyond section content width to the work section's.
-   The work cards inherit an extra var(--surface-padding) inset from the
-   .projects-wrapper inner rule above; bake gutter + surface once on #beyond > .container
-   so titles and stage align — do not add horizontal padding again on .beyond-header. */
-#beyond > .container {
-    padding-left: calc(var(--layout-gutter) + var(--surface-padding));
-    padding-right: calc(var(--layout-gutter) + var(--surface-padding));
-}
-
 /* Beyond the Pixels Specifics */
-/* Title sits flush with inset from #beyond > .container (same composite as work). */
 .beyond-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: clamp(32px, 4vw, 48px);
     gap: 8px;
+}
+
+.projects-wrapper .beyond-header {
+    padding-left: var(--surface-padding);
+    padding-right: var(--surface-padding);
 }
 
 .beyond-subtitle {
@@ -2890,7 +2885,7 @@ body.webgl-cards #work-wall .work-card:focus-visible {
     max-width: 100%;
     padding: clamp(9px, 1vw, 13px) clamp(18px, 2vw, 28px);
     border: 1px solid rgba(255, 255, 255, 0.52);
-    border-radius: 999px;
+    border-radius: 999px 999px 999px 14px;
     background: var(--project-pill-orange);
     box-shadow:
         0 0 0 7px rgba(255, 255, 255, 0.38),
@@ -3700,7 +3695,7 @@ body.night-mode .play-card.is-clickable:hover {
     display: inline-block;
     max-width: min(100%, 540px);
     padding: 18px 28px 20px;
-    border-radius: 999px;
+    border-radius: 999px 999px 999px 14px;
     background: linear-gradient(180deg, #ff8648 0%, #ff743a 100%);
     border: 1px solid rgba(160, 89, 31, 0.28);
     color: #fffdf8;
@@ -4078,7 +4073,7 @@ body.night-mode .play-overlay__subtitle { color: rgba(240, 234, 219, 0.6); }
     }
 
     .play-detail__title-pill {
-        border-radius: 30px;
+        border-radius: 30px 30px 30px 12px;
     }
 }
 
@@ -5277,6 +5272,10 @@ body.night-mode::before {
     text-align: center;
 }
 
+.cs-editor-media .cs-editor-media-slot {
+    min-height: clamp(220px, 28vw, 420px);
+}
+
 .cs-editor-media .placeholder-graphic::after {
     content: attr(data-src);
     max-width: 80%;
@@ -5292,6 +5291,10 @@ body.night-mode::before {
 }
 
 .cs-editor-media--full .placeholder-graphic {
+    min-height: clamp(320px, 42vw, 620px);
+}
+
+.cs-editor-media--full .cs-editor-media-slot {
     min-height: clamp(320px, 42vw, 620px);
 }
 
@@ -5470,7 +5473,7 @@ body.night-mode::before {
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
-    background: #f4f0e7;
+    background: transparent;
 }
 .cs-media-full img,
 .cs-media-full video,
@@ -6097,6 +6100,7 @@ body.night-mode .cs-cta:hover { background: #fff; }
     }
     
     .projects-wrapper .projects-header,
+    .projects-wrapper .beyond-header,
     .projects-wrapper .work-container.bento-grid {
         padding-left: 0 !important;
         padding-right: 0 !important;
@@ -6893,6 +6897,11 @@ html[data-cs-mode="edit"] body {
 .cs-editor-toolbar__btn:hover { background: rgba(15, 23, 42, 0.06); }
 .cs-editor-toolbar__btn--danger { color: #b42318; }
 .cs-editor-toolbar__btn--danger:hover { background: rgba(180, 35, 24, 0.08); }
+.cs-editor-toolbar__btn--wide {
+    width: auto;
+    min-width: max-content;
+    padding: 8px 12px;
+}
 
 .cs-editor-toolbar__mode {
     background: #111827;
@@ -6934,6 +6943,51 @@ html[data-cs-mode="edit"] [contenteditable]:focus {
     box-shadow: 0 0 0 2px var(--cs-edit-accent-soft);
 }
 
+.cs-rich-text-toolbar {
+    position: fixed;
+    z-index: 1200;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--cs-edit-border);
+    border-radius: 8px;
+    background: var(--cs-edit-chrome-bg);
+    box-shadow: var(--cs-edit-chrome-shadow);
+    transform: translateX(-50%);
+    font-family: var(--font-sans);
+}
+
+.cs-rich-text-toolbar.is-visible {
+    display: inline-flex;
+}
+
+.cs-rich-text-toolbar__btn {
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #111827;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.cs-rich-text-toolbar__btn--italic {
+    font-style: italic;
+}
+
+.cs-rich-text-toolbar__btn--underline {
+    text-decoration: underline;
+}
+
+.cs-rich-text-toolbar__btn:hover {
+    background: rgba(15, 23, 42, 0.06);
+}
+
 /* Dark mode for editor chrome */
 body.night-mode .cs-editor-toolbar {
     background: rgba(20, 22, 28, 0.96);
@@ -6954,6 +7008,9 @@ html[data-cs-mode="edit"] .cs-block--editable {
 }
 html[data-cs-mode="edit"] .cs-block--editable:hover {
     box-shadow: inset 0 0 0 1px var(--cs-edit-border);
+}
+html[data-cs-mode="edit"] .cs-block--empty {
+    box-shadow: inset 0 0 0 1px rgba(180, 35, 24, 0.14);
 }
 html[data-cs-mode="edit"] .cs-block.is-dragging {
     opacity: 0.4;
@@ -7010,6 +7067,12 @@ html[data-cs-mode="edit"] .cs-block--editable:focus-within > .cs-block-toolbar {
     transition: background 0.15s ease;
 }
 .cs-block-toolbar__btn:hover { background: rgba(15, 23, 42, 0.06); }
+.cs-block-toolbar__btn.is-active {
+    width: auto;
+    padding: 0 7px;
+    background: rgba(15, 23, 42, 0.08);
+    color: #111827;
+}
 .cs-block-toolbar__delete:hover { background: rgba(180, 35, 24, 0.1); color: #b42318; }
 .cs-block-toolbar__drag {
     cursor: grab;
@@ -7031,12 +7094,98 @@ html[data-cs-mode="edit"] .cs-block--editable:focus-within > .cs-block-toolbar {
 }
 .cs-block-toolbar__select:hover { background: rgba(15, 23, 42, 0.06); }
 
+.cs-block-toolbar__number {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 26px;
+    padding: 0 5px;
+    border-radius: 6px;
+    color: #6b7280;
+    font: inherit;
+}
+
+.cs-block-toolbar__number:hover {
+    background: rgba(15, 23, 42, 0.06);
+}
+
+.cs-block-toolbar__number span {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.cs-block-toolbar__number input {
+    width: 42px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #111827;
+    font: inherit;
+    outline: 0;
+}
+
+.cs-block-toolbar__number input::placeholder {
+    color: #9ca3af;
+}
+
+.cs-block-toolbar__number input::-webkit-outer-spin-button,
+.cs-block-toolbar__number input::-webkit-inner-spin-button {
+    margin: 0;
+}
+
+.cs-block--media-height-custom .cs-editor-media-slot {
+    height: var(--cs-media-height-custom) !important;
+    min-height: var(--cs-media-height-custom) !important;
+}
+
+.cs-block--media-height-custom .placeholder-graphic {
+    height: var(--cs-media-height-custom) !important;
+    min-height: var(--cs-media-height-custom) !important;
+}
+
 body.night-mode .cs-block-toolbar {
     background: rgba(20, 22, 28, 0.96);
     color: #e5e7eb;
     border-color: rgba(255, 255, 255, 0.08);
 }
 body.night-mode .cs-block-toolbar__btn:hover { background: rgba(255, 255, 255, 0.06); }
+body.night-mode .cs-block-toolbar__number:hover { background: rgba(255, 255, 255, 0.06); }
+body.night-mode .cs-block-toolbar__number input { color: #f9fafb; }
+
+.cs-empty-block-delete {
+    position: absolute;
+    left: 50%;
+    top: 12px;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid rgba(180, 35, 24, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #b42318;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+}
+
+html[data-cs-mode="edit"] .cs-block--empty:hover > .cs-empty-block-delete,
+html[data-cs-mode="edit"] .cs-block--empty:focus-within > .cs-empty-block-delete {
+    display: inline-flex;
+}
+
+body.night-mode .cs-empty-block-delete {
+    background: rgba(20, 22, 28, 0.96);
+    border-color: rgba(248, 113, 113, 0.24);
+    color: #fca5a5;
+}
 
 /* --- Inserter ( + ) row between blocks --- */
 .cs-inserter {
@@ -7152,6 +7301,10 @@ body.night-mode .cs-inserter__trigger { color: #6b7280; border-color: rgba(255, 
     background: #f5f6f8;
     cursor: default;
 }
+
+.cs-editor-media-slot--filled {
+    background: transparent;
+}
 html[data-cs-mode="edit"] .cs-editor-media-slot {
     cursor: pointer;
 }
@@ -7161,6 +7314,21 @@ html[data-cs-mode="edit"] .cs-editor-media-slot {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.cs-editor-media-slot--video {
+    background: #171717;
+}
+
+.cs-editor-media-slot--video > video {
+    object-fit: contain;
+}
+
+.cs-editor-media-slot--gif-crop > img {
+    width: calc(100% + 6px);
+    height: calc(100% + 9px);
+    transform: translate3d(-3px, -3px, 0) scale(1.05);
+    transform-origin: center;
 }
 
 .cs-editor-media-slot .placeholder-graphic {
@@ -7249,9 +7417,21 @@ html[data-cs-mode="edit"] .cs-stat:hover .cs-metrics__remove {
 }
 .cs-metrics__remove:hover { background: rgba(180, 35, 24, 0.15); color: #b42318; }
 
-.cs-horizontal--reverse { grid-template-columns: 1fr 1fr; }
-.cs-horizontal--reverse .cs-horizontal__text { order: 2; }
-.cs-horizontal--reverse .cs-horizontal__media { order: 1; }
+.cs-horizontal--reverse .cs-horizontal__text {
+    grid-column: 2;
+}
+.cs-horizontal--reverse .cs-horizontal__media {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+@media (max-width: 900px) {
+    .cs-horizontal--reverse .cs-horizontal__text,
+    .cs-horizontal--reverse .cs-horizontal__media {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
 
 /* --- Per-block spacing (applied in both edit + view modes) --- */
 /* Margin BELOW the block — Notion equivalent of adding extra blank lines. */
@@ -7771,12 +7951,25 @@ body.night-mode .cs-page-hero { background: #1a1d23; }
 
 .cs-page .cs-section__caption {
     font-family: var(--font-sans);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--cs-text-mute);
-    font-style: italic;
-    margin: 12px 0 0;
-    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 31px;
+    letter-spacing: 0;
+    color: #333;
+    font-style: normal;
+    margin: 24px 0 0;
+    text-align: center;
+}
+
+html[data-cs-mode="edit"] .cs-section__caption[contenteditable] {
+    min-height: 31px;
+    cursor: text;
+    user-select: text;
+}
+
+html[data-cs-mode="edit"] .cs-section__caption[contenteditable]:empty::before {
+    color: inherit;
+    font: inherit;
 }
 
 /* Zapp Account mirrors the Figma case-study frame:
@@ -7790,6 +7983,348 @@ html[data-case-study-id="zapp-account"] .cs-main {
     width: calc(100% - 120px);
     max-width: 1200px;
     padding: 96px 0 160px;
+}
+
+/* Growth Experiments uses the same Figma rail as Zapp Account:
+   160px index + 56px gap + 984px main content. */
+html[data-case-study-id="growth-experiments"] .cs-main {
+    --cs-w-text: 984px;
+    --cs-w-media: 984px;
+    --cs-w-wide: 1200px;
+    --cs-gutter: 0px;
+    position: relative;
+    width: calc(100% - 120px);
+    max-width: 1200px;
+    padding: 96px 0 160px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-back {
+    position: absolute;
+    top: 96px;
+    left: 0;
+    width: 160px;
+    height: 40px;
+    margin: 0;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid #e3e3d6;
+    border-radius: 8px;
+    background: #f8f8f6;
+    color: #989fa3;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 23.25px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-back:hover {
+    background: #f8f8f6;
+    color: #626364;
+    transform: none;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-page-header {
+    width: 984px;
+    max-width: 984px;
+    min-height: 98px;
+    margin: 0 0 56px 216px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-page-header__title {
+    font-size: 43.8px;
+    line-height: 50.6px;
+    letter-spacing: -0.66px;
+    margin-bottom: 17px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-page-header__subtitle {
+    color: #626364;
+    font-size: 18px;
+    line-height: 30px;
+    opacity: 1;
+    max-width: 984px;
+    margin-bottom: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-page-header > .cs-page-header__meta {
+    display: none;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-page-hero {
+    width: 1200px;
+    max-width: 1200px;
+    height: 563px;
+    margin: 0 0 56px;
+    aspect-ratio: auto;
+    border-radius: 20px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-content {
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout--growth {
+    display: grid;
+    grid-template-columns: 160px 984px;
+    column-gap: 56px;
+    align-items: start;
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout--growth .cs-index {
+    position: sticky;
+    top: 120px;
+    grid-column: 1;
+    width: 160px;
+    transform: none;
+    gap: 12px;
+    padding-top: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout--growth .cs-index__link {
+    display: block;
+    min-height: 24px;
+    color: #B5BABE;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23.25px;
+    letter-spacing: 0;
+    will-change: transform;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout--growth .cs-index__link:hover {
+    color: #626364;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout--growth .cs-index__link.is-active {
+    color: #ff6b00;
+    font-weight: 600;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout__content {
+    grid-column: 2;
+    width: 984px;
+    min-width: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout__content > .cs-section {
+    width: 984px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout__content > .cs-section + .cs-section {
+    margin-top: 120px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-body-layout__content .cs-section > * {
+    max-width: 984px;
+    margin-inline: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-meta-inline {
+    display: flex;
+    grid-template-columns: none;
+    gap: 64px;
+    width: 908px;
+    max-width: 908px;
+    margin: 0 0 70px;
+    padding: 0;
+    border: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-meta-inline .cs-meta-cell {
+    gap: 12px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-meta-inline .cs-meta-cell__label,
+html[data-case-study-id="growth-experiments"] .cs-section__label {
+    color: #82bbed;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20.25px;
+    letter-spacing: 1.2px;
+    margin: 0;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-meta-inline .cs-meta-cell__value {
+    color: #626364;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24.8px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-block--section-label {
+    margin-bottom: 24px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-section__body {
+    color: #626364;
+    font-size: 18px;
+    line-height: 30.6px;
+    margin-bottom: 24px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-eyebrow-heading {
+    margin: 0 0 24px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-eyebrow:empty {
+    display: none;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-h3 {
+    color: #111;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: -0.156px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-block--image,
+html[data-case-study-id="growth-experiments"] .cs-block--horizontal,
+html[data-case-study-id="growth-experiments"] .cs-block--metrics {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-editor-media--full .placeholder-graphic {
+    min-height: 376px;
+    border: 0;
+    border-radius: 20px;
+    background: #c4c4c4;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-editor-media--full .cs-editor-media-slot {
+    min-height: 376px;
+    border-radius: 20px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-media-grid--cols-2 {
+    grid-template-columns: repeat(2, 460px);
+    gap: 64px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-media-grid--cols-3 {
+    grid-template-columns: repeat(3, 285.333px);
+    gap: 64px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-media-grid .placeholder-graphic {
+    min-height: 300px;
+    border: 0;
+    border-radius: 20px;
+    background: #c4c4c4;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-media-grid .cs-editor-media-slot {
+    min-height: 300px;
+    border-radius: 20px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: 100%;
+    max-width: 984px;
+    overflow: hidden;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item {
+    min-width: 0;
+    flex: 0 0 auto;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--1 {
+    width: calc((100% - 24px) * 0.71875);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--2 {
+    width: calc((100% - 24px) * 0.28125);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--3 {
+    width: calc((100% - 24px) * 0.5);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--4 {
+    width: calc((100% - 24px) * 0.5);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--5 {
+    width: calc((100% - 24px) * 0.64375);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento__item--6 {
+    width: calc((100% - 24px) * 0.35625);
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento .cs-editor-media-slot {
+    height: 300px;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento .placeholder-graphic {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    border: 0;
+    border-radius: 20px;
+    background: #c4c4c4;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-bento > .cs-section__caption:empty {
+    display: none;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-section__caption {
+    color: #333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 31px;
+    letter-spacing: 0;
+    margin-top: 24px;
+    text-align: center;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-index-washout {
+    position: fixed;
+    z-index: 850;
+    top: 0;
+    bottom: 0;
+    left: max(20px, calc(50% - 600px + 216px));
+    width: min(984px, calc(100vw - 40px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #111111;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 18px, 0);
+    will-change: opacity, transform;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-index-washout.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+html[data-case-study-id="growth-experiments"] .cs-index-washout__label {
+    font-family: var(--font-serif);
+    font-size: clamp(1.85rem, 4.6vw, 4.75rem);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: 0;
+    text-align: center;
+    max-width: min(720px, 80%);
+    transform: translate3d(0, 30px, 0);
+    will-change: opacity, transform;
 }
 
 html[data-case-study-id="zapp-account"] .cs-back {
@@ -7990,6 +8525,11 @@ html[data-case-study-id="zapp-account"] .cs-editor-media--full .placeholder-grap
     background: #c4c4c4;
 }
 
+html[data-case-study-id="zapp-account"] .cs-editor-media--full .cs-editor-media-slot {
+    min-height: 376px;
+    border-radius: 20px;
+}
+
 html[data-case-study-id="zapp-account"] .cs-horizontal {
     grid-template-columns: 472px 472px;
     gap: 40px;
@@ -8009,6 +8549,11 @@ html[data-case-study-id="zapp-account"] .cs-horizontal__frame .placeholder-graph
     border: 0;
     border-radius: 20px;
     background: #e9f7ff;
+}
+
+html[data-case-study-id="zapp-account"] .cs-horizontal__frame .cs-editor-media-slot {
+    min-height: 472px;
+    border-radius: 20px;
 }
 
 html[data-case-study-id="zapp-account"] .cs-horizontal__text > .cs-h3 {
@@ -8059,6 +8604,11 @@ html[data-case-study-id="zapp-account"] .cs-media-grid .placeholder-graphic {
     border: 0;
     border-radius: 20px;
     background: #c4c4c4;
+}
+
+html[data-case-study-id="zapp-account"] .cs-media-grid .cs-editor-media-slot {
+    min-height: 300px;
+    border-radius: 20px;
 }
 
 html[data-case-study-id="zapp-account"] .cs-cta-row--next {
@@ -8127,6 +8677,11 @@ html[data-case-study-id="zapp-account"] #cs-design > .cs-block--image .placehold
     background: #c4c4c4;
 }
 
+html[data-case-study-id="zapp-account"] #cs-design > .cs-block--image .cs-editor-media-slot {
+    min-height: 376px;
+    border-radius: 20px;
+}
+
 html[data-case-study-id="zapp-account"] #cs-design > .cs-block--text:nth-child(5) {
     margin-bottom: 70px;
 }
@@ -8147,6 +8702,11 @@ html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal .plac
     border: 0;
     border-radius: 20px;
     background: #e9f7ff;
+}
+
+html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal .cs-editor-media-slot {
+    min-height: 472px;
+    border-radius: 20px;
 }
 
 /* Process section: match Figma node 1750:20296, whose internal structure is
@@ -8202,6 +8762,11 @@ html[data-case-study-id="zapp-account"] #cs-process > .cs-block--horizontal .pla
     background: #c4c4c4;
 }
 
+html[data-case-study-id="zapp-account"] #cs-process > .cs-block--horizontal .cs-editor-media-slot {
+    min-height: 300px;
+    border-radius: 20px;
+}
+
 html[data-case-study-id="zapp-account"] #cs-process > .cs-block--image {
     margin: 0 0 24px;
 }
@@ -8211,6 +8776,11 @@ html[data-case-study-id="zapp-account"] #cs-process > .cs-block--image .placehol
     border: 0;
     border-radius: 20px;
     background: #c4c4c4;
+}
+
+html[data-case-study-id="zapp-account"] #cs-process > .cs-block--image .cs-editor-media-slot {
+    min-height: 376px;
+    border-radius: 20px;
 }
 
 @media (max-width: 1280px) {
@@ -8245,6 +8815,59 @@ html[data-case-study-id="zapp-account"] #cs-process > .cs-block--image .placehol
 
     html[data-case-study-id="zapp-account"] .cs-index {
         display: none;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-main {
+        width: 100%;
+        max-width: 100%;
+        padding: 72px 20px 120px;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-back {
+        position: static;
+        width: auto;
+        justify-content: flex-start;
+        margin-bottom: 24px;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-page-header,
+    html[data-case-study-id="growth-experiments"] .cs-page-hero,
+    html[data-case-study-id="growth-experiments"] .cs-content,
+    html[data-case-study-id="growth-experiments"] .cs-body-layout--growth,
+    html[data-case-study-id="growth-experiments"] .cs-body-layout__content,
+    html[data-case-study-id="growth-experiments"] .cs-body-layout__content > .cs-section {
+        width: 100%;
+        max-width: 984px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-body-layout--growth {
+        grid-template-columns: 1fr;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-index {
+        display: none;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-media-grid--cols-2,
+    html[data-case-study-id="growth-experiments"] .cs-media-grid--cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-index-washout {
+        width: min(984px, calc(100vw - 40px));
+    }
+}
+
+@media (max-width: 760px) {
+    html[data-case-study-id="growth-experiments"] .cs-bento {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    html[data-case-study-id="growth-experiments"] .cs-bento__item {
+        width: 100%;
     }
 }
 

@@ -26,9 +26,15 @@
 
     // Bumped Zapp to v3 so the new Figma-authored case-study content
     // is not masked by an older browser draft in localStorage.
-    const CONTENT_VERSION = CASE_ID === 'zapp-account' ? 'v3' : 'v2';
+    const CONTENT_VERSION = CASE_ID === 'growth-experiments'
+        ? 'v4'
+        : (CASE_ID === 'zapp-account' ? 'v3' : 'v2');
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
+    const ASSET_DB_NAME = 'cs-editor-assets';
+    const ASSET_DB_VERSION = 1;
+    const ASSET_REF_PREFIX = 'cs-asset:';
+    const assetUrlCache = new Map();
     const SECTION_ID_MAP = {
         overview: 'cs-overview',
         problem: 'cs-problem',
@@ -152,7 +158,59 @@
                 ] }
             ]
         },
-        'growth-experiments': blankDoc('growth-experiments', 'Growth Experiments — Zeta Pay'),
+        'growth-experiments': {
+            id: 'growth-experiments',
+            title: 'Growth Experiments — Zeta Pay',
+            subtitle: 'Turning festivals and seasons into interactive product moments for millions of PayZapp users.',
+            meta: [
+                { key: 'platform', label: 'Platform', value: 'iOS, Android' },
+                { key: 'role',     label: 'Role',     value: 'UX Designer II' },
+                { key: 'team',     label: 'Team',     value: '5 Designers' },
+                { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
+            ],
+            hero: { type: 'image', src: '', alt: 'Growth Experiments hero' },
+            sections: [
+                { id: 'overview', label: 'Overview', blocks: [
+                    { type: 'section-label', label: 'Overview' },
+                    { type: 'text', body: 'PayZapp is HDFC Bank\'s payments app — one of India\'s most widely used banking products. With a large existing user base and even larger competition, the challenge isn\'t just retention. It\'s relevance.' },
+                    { type: 'text', body: 'Growth experiments were our way of staying relevant. Seasonal campaigns, interactive moments, gamified rewards — each one designed to give users a reason to open the app beyond a transaction. New users discovered PayZapp through these campaigns. Existing users found new reasons to stay.' }
+                ] },
+                { id: 'cross-sell', label: 'Cross-sell', blocks: [
+                    { type: 'meta' },
+                    { type: 'eyebrow-heading', eyebrow: '', headline: 'Cross-sell.' },
+                    { type: 'image', layout: 'wide', src: '', alt: 'Cross-sell Holi campaign screens' },
+                    { type: 'text', body: 'Holi gave us a canvas. The brief was simple: cross-sell one product to a user in a way that felt festive, not forced. Every user got one unique item — curated for them — hidden inside an interactive Holi box. Open it, explore it, discover what\'s inside. A single cross-sell moment wrapped in something genuinely delightful.' },
+                    { type: 'section-label', label: 'Overview' },
+                    { type: 'eyebrow-heading', eyebrow: '', headline: 'Cross-sell on a payments app is a hard problem.' },
+                    { type: 'image', layout: '2-col', items: [
+                        { src: '', alt: 'Ignored banner', caption: 'Banner gets ignored' },
+                        { src: '', alt: 'Dismissed pop-up', caption: 'Pop-up gets dismissed' }
+                    ], caption: '' },
+                    { type: 'text', body: 'We needed a format where the user wanted to engage before they even knew a product was waiting on the other side. Holi — tactile, playful, built around surprise and colour — was the perfect wrapper for that idea. The festival didn\'t just set the visual tone, it justified the interaction model.' },
+                    { type: 'bento', items: [
+                        { src: '', alt: 'Cross-sell interaction screen 1' },
+                        { src: '', alt: 'Cross-sell interaction screen 2' },
+                        { src: '', alt: 'Cross-sell interaction screen 3' },
+                        { src: '', alt: 'Cross-sell interaction screen 4' },
+                        { src: '', alt: 'Cross-sell interaction screen 5' },
+                        { src: '', alt: 'Cross-sell interaction screen 6' }
+                    ] },
+                    { type: 'section-label', label: 'Impact' },
+                    { type: 'text', body: 'The point was not to make a campaign banner look festive. It was to turn a product recommendation into a small act of discovery — one where surprise came before the sell.' },
+                    { type: 'image', layout: '3-col', src: '', alt: 'Cross-sell final campaign screens' }
+                ] },
+                { id: 'project-three', label: 'Offer Discovery', blocks: offerDiscoveryBlocks() },
+                { id: 'project-four', label: 'Project 04', blocks: [
+                    { type: 'section-label', label: 'Project 04' },
+                    { type: 'text', body: 'This campaign section will be added later.' }
+                ] },
+                { id: 'reflection', label: 'Reflection', indexLabel: 'Reflections', blocks: [
+                    { type: 'section-label', label: 'Reflection' },
+                    { type: 'text', body: 'Growth experiments sat in a useful space between product design and campaign design. They had to work like product surfaces, but feel timed, playful, and worth opening.' },
+                    { type: 'text', body: 'The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.' }
+                ] }
+            ]
+        },
         'project-3':         blankDoc('project-3', 'Case study'),
         'now-and-me':        blankDoc('now-and-me', 'Now&Me')
     };
@@ -162,16 +220,56 @@
        --------------------------------------------------------------------------- */
 
     let doc = loadDoc();
-    // Published-only renderer: keep the case-study content generation, but
-    // remove the in-place editor UI and prevent persisted edit mode from showing.
+    ensureGrowthOfferDiscoverySection(doc);
+    // Keep the in-place editor available while case studies are still being built.
     let mode = 'view';
+    try {
+        const storedMode = sessionStorage.getItem(`cs-editor-mode:${CASE_ID}`);
+        if (storedMode === 'edit') mode = 'edit';
+    } catch (e) { /* storage unavailable */ }
     let saveTimer = null;
     let savedFlashTimer = null;
     let indexRaf = 0;
     let activeIndexTarget = '';
+    let hasIndexActiveInitialized = false;
+    let suppressContextTarget = '';
+    let sectionContextTimer = 0;
+    let activeMediaSlot = null;
+    let richTextToolbar = null;
+    let activeEditableNode = null;
 
     function uid() {
         return 'b' + Math.random().toString(36).slice(2, 10);
+    }
+
+    function offerDiscoveryBlocks() {
+        return [
+            { type: 'meta' },
+            { type: 'eyebrow-heading', eyebrow: '', headline: 'Offer Discovery' },
+            { type: 'text', body: '<em>First Transaction Offer, Scratch Card &amp; Spin the Wheel</em>' },
+            { type: 'section-label', label: 'Overview' },
+            { type: 'text', body: 'PayZapp had offers. Users just didn\'t know. These three campaigns were built to fix that — surfacing existing offers through interactive moments instead of static listings. A first-transaction animation for new users, a scratch card mechanic for existing ones, and a spin-the-wheel experience that took users to a dedicated page and landed them on a personalised offer they could claim.' },
+            { type: 'section-label', label: 'Why' },
+            { type: 'text', body: 'A discount buried in a tab doesn\'t drive behaviour. Delight does. We took what was already there and made it impossible to ignore.' },
+            { type: 'text', body: '<em>Mix of solo work and team collaboration across the three campaigns.</em>' },
+            { type: 'image', layout: 'wide', src: '', alt: 'Offer Discovery campaign screens', hideCaptions: true },
+            { type: 'section-label', label: 'Impact' },
+            { type: 'text', body: 'Improved offer awareness and claim rates. Numbers TBD.' }
+        ];
+    }
+
+    function ensureGrowthOfferDiscoverySection(targetDoc) {
+        if (CASE_ID !== 'growth-experiments' || !targetDoc || !Array.isArray(targetDoc.sections)) return;
+        const section = targetDoc.sections.find((item) => item.id === 'project-three');
+        if (!section) return;
+        const isOldPlaceholder = section.label === 'Project 03'
+            || (Array.isArray(section.blocks)
+                && section.blocks.length <= 2
+                && section.blocks.some((block) => block.body === 'This campaign section will be added later.'));
+        if (!isOldPlaceholder) return;
+        section.label = 'Offer Discovery';
+        section.blocks = offerDiscoveryBlocks();
+        ensureIds(targetDoc);
     }
 
     function ensureIds(node) {
@@ -217,21 +315,26 @@
     function clone(v) { return JSON.parse(JSON.stringify(v)); }
 
     function persist() {
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(doc)); } catch (e) { /* quota */ }
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(doc));
+            return true;
+        } catch (e) {
+            flashSaved('Save failed');
+            return false;
+        }
     }
 
     function schedulePersist() {
         if (saveTimer) clearTimeout(saveTimer);
         saveTimer = setTimeout(() => {
-            persist();
-            flashSaved();
+            if (persist()) flashSaved();
         }, 250);
     }
 
-    function flashSaved() {
+    function flashSaved(message = 'Saved') {
         const el = document.querySelector('.cs-editor-toolbar__status');
         if (!el) return;
-        el.textContent = 'Saved';
+        el.textContent = message;
         el.dataset.state = 'saved';
         if (savedFlashTimer) clearTimeout(savedFlashTimer);
         savedFlashTimer = setTimeout(() => { el.textContent = ''; el.dataset.state = 'idle'; }, 1400);
@@ -251,6 +354,61 @@
         if (opts.on) Object.entries(opts.on).forEach(([ev, fn]) => node.addEventListener(ev, fn));
         children.forEach((c) => { if (c == null) return; node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
         return node;
+    }
+
+    function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, (ch) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        })[ch]);
+    }
+
+    function sanitizeEditableHtml(value) {
+        const source = String(value || '');
+        const template = document.createElement('template');
+        template.innerHTML = source;
+        const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR']);
+
+        function cleanNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent || '');
+            if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
+            const tag = node.tagName;
+            const children = Array.from(node.childNodes).map(cleanNode);
+            if (!allowed.has(tag)) {
+                const frag = document.createDocumentFragment();
+                children.forEach((child) => frag.appendChild(child));
+                return frag;
+            }
+            const normalizedTag = tag === 'B' ? 'strong' : (tag === 'I' ? 'em' : tag.toLowerCase());
+            const next = document.createElement(normalizedTag);
+            children.forEach((child) => next.appendChild(child));
+            return next;
+        }
+
+        const output = document.createElement('div');
+        Array.from(template.content.childNodes).forEach((child) => output.appendChild(cleanNode(child)));
+        return output.innerHTML
+            .replace(/(?:<br\s*\/?>\s*){3,}/gi, '<br><br>')
+            .trim();
+    }
+
+    function editableValueFromNode(node) {
+        const html = sanitizeEditableHtml(node.innerHTML);
+        const probe = document.createElement('div');
+        probe.innerHTML = html;
+        return probe.querySelector('strong, em, u, br') ? html : (probe.textContent || '');
+    }
+
+    function setEditableHtml(node, value) {
+        const source = String(value || '');
+        if (/<\/?(strong|b|em|i|u|br)\b/i.test(source)) {
+            node.innerHTML = sanitizeEditableHtml(source);
+        } else {
+            node.textContent = source;
+        }
     }
 
     function splitBody(value) {
@@ -291,6 +449,216 @@
         });
     }
 
+    function dataUrlToBlob(dataUrl) {
+        const [meta, payload] = String(dataUrl || '').split(',');
+        const mimeMatch = /^data:([^;]+);base64$/i.exec(meta || '');
+        if (!mimeMatch || !payload) return null;
+        const binary = atob(payload);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+        return new Blob([bytes], { type: mimeMatch[1] });
+    }
+
+    function extensionFromFile(file) {
+        const fromName = file && file.name && file.name.includes('.')
+            ? file.name.split('.').pop().toLowerCase()
+            : '';
+        if (fromName) return fromName;
+        const mime = file && file.type ? file.type.split('/').pop() : '';
+        return mime || 'bin';
+    }
+
+    function assetRef(id) {
+        return `${ASSET_REF_PREFIX}${id}`;
+    }
+
+    function isAssetRef(value) {
+        return typeof value === 'string' && value.startsWith(ASSET_REF_PREFIX);
+    }
+
+    function assetIdFromRef(value) {
+        return isAssetRef(value) ? value.slice(ASSET_REF_PREFIX.length) : '';
+    }
+
+    function openAssetDb() {
+        return new Promise((resolve, reject) => {
+            if (!('indexedDB' in window)) {
+                reject(new Error('IndexedDB unavailable'));
+                return;
+            }
+            const request = indexedDB.open(ASSET_DB_NAME, ASSET_DB_VERSION);
+            request.onupgradeneeded = () => {
+                const db = request.result;
+                if (!db.objectStoreNames.contains('assets')) {
+                    db.createObjectStore('assets', { keyPath: 'id' });
+                }
+            };
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    async function saveAssetFile(file) {
+        const id = `${CASE_ID}:${Date.now()}:${uid()}`;
+        const record = {
+            id,
+            caseId: CASE_ID,
+            blob: file,
+            name: file && file.name ? file.name : `clipboard-${Date.now()}.${extensionFromFile(file)}`,
+            mimeType: file && file.type ? file.type : '',
+            size: file && typeof file.size === 'number' ? file.size : null,
+            createdAt: new Date().toISOString()
+        };
+        const db = await openAssetDb();
+        await new Promise((resolve, reject) => {
+            const tx = db.transaction('assets', 'readwrite');
+            tx.objectStore('assets').put(record);
+            tx.oncomplete = resolve;
+            tx.onerror = () => reject(tx.error);
+        });
+        db.close();
+        return { ref: assetRef(id), record };
+    }
+
+    async function migrateInlineMediaAssets() {
+        const updates = [];
+        function queue(block, field = 'src') {
+            if (!block || typeof block !== 'object') return;
+            const src = block[field];
+            if (typeof src !== 'string' || !/^data:(image|video)\//i.test(src)) return;
+            updates.push({ block, field, src });
+        }
+        function visit(block) {
+            if (!block || typeof block !== 'object') return;
+            queue(block, 'src');
+            if (block.media) visit(block.media);
+            if (Array.isArray(block.items)) block.items.forEach(visit);
+            if (Array.isArray(block.columns)) {
+                block.columns.forEach((col) => (col.blocks || []).forEach(visit));
+            }
+        }
+        if (doc.hero) visit(doc.hero);
+        (doc.sections || []).forEach((section) => (section.blocks || []).forEach(visit));
+        if (!updates.length) return false;
+
+        for (const item of updates) {
+            const blob = dataUrlToBlob(item.src);
+            if (!blob) continue;
+            const savedAsset = await saveAssetFile(blob);
+            item.block[item.field] = savedAsset.ref;
+            item.block.mediaMimeType = blob.type || mimeTypeFromDataUrl(item.src);
+            if (!item.block.cloudinary) markCloudinaryPending(item.block, item.field, blob, savedAsset.ref);
+            else item.block.cloudinary.localAssetRef = savedAsset.ref;
+        }
+        return updates.length > 0;
+    }
+
+    async function getAssetRecord(ref) {
+        const id = assetIdFromRef(ref);
+        if (!id) return null;
+        const db = await openAssetDb();
+        const record = await new Promise((resolve, reject) => {
+            const tx = db.transaction('assets', 'readonly');
+            const request = tx.objectStore('assets').get(id);
+            request.onsuccess = () => resolve(request.result || null);
+            request.onerror = () => reject(request.error);
+        });
+        db.close();
+        return record;
+    }
+
+    async function resolveAssetSrc(src) {
+        if (!isAssetRef(src)) return src;
+        if (assetUrlCache.has(src)) return assetUrlCache.get(src);
+        const record = await getAssetRecord(src);
+        if (!record || !record.blob) return '';
+        const url = URL.createObjectURL(record.blob);
+        assetUrlCache.set(src, url);
+        return url;
+    }
+
+    function cloudinaryPublicId(block, file) {
+        const stem = file && file.name
+            ? file.name.replace(/\.[^.]+$/, '')
+            : `${CASE_ID}-${block.uid || uid()}`;
+        const safeStem = stem.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'asset';
+        return `portfolio/${CASE_ID}/${block.uid || uid()}-${safeStem}`;
+    }
+
+    function isVideoFile(file) {
+        if (!file) return false;
+        if (file.type && file.type.startsWith('video/')) return true;
+        const name = file.name || '';
+        return /\.(mp4|m4v|mov|webm|ogv|avi|mkv)$/i.test(name);
+    }
+
+    function mimeTypeFromDataUrl(src) {
+        if (typeof src !== 'string' || !src.startsWith('data:')) return '';
+        const end = src.indexOf(';');
+        return end > 5 ? src.slice(5, end) : '';
+    }
+
+    function isGifMedia(block, field = 'src') {
+        if (!block) return false;
+        const src = block[field] || '';
+        const mimeType = block.mediaMimeType || (block.cloudinary && block.cloudinary.mimeType) || mimeTypeFromDataUrl(src);
+        const originalName = block.cloudinary && block.cloudinary.originalName ? block.cloudinary.originalName : '';
+        return mimeType === 'image/gif'
+            || /\.gif(?:$|[?#])/i.test(String(src))
+            || /\.gif$/i.test(originalName);
+    }
+
+    function markCloudinaryPending(block, field, file, sourceRef) {
+        const mediaKind = isVideoFile(file) ? 'video' : 'image';
+        block.cloudinary = {
+            status: 'pending-upload',
+            field,
+            publicId: cloudinaryPublicId(block, file),
+            originalName: file && file.name ? file.name : `clipboard-${Date.now()}.${extensionFromFile(file)}`,
+            mimeType: file && file.type ? file.type : '',
+            size: file && typeof file.size === 'number' ? file.size : null,
+            resourceType: mediaKind === 'video' ? 'video' : 'image',
+            localAssetRef: sourceRef || '',
+            createdAt: new Date().toISOString()
+        };
+    }
+
+    function collectCloudinaryPendingAssets() {
+        const assets = [];
+        function visitBlock(block, path) {
+            if (!block || typeof block !== 'object') return;
+            if (block.cloudinary && block.cloudinary.status === 'pending-upload') {
+                assets.push({
+                    caseStudyId: CASE_ID,
+                    blockUid: block.uid || '',
+                    blockType: block.type || '',
+                    path,
+                    srcField: block.cloudinary.field || 'src',
+                    source: block[block.cloudinary.field || 'src'] || '',
+                    cloudinary: block.cloudinary
+                });
+            }
+            if (Array.isArray(block.items)) {
+                block.items.forEach((item, i) => visitBlock(item, `${path}.items[${i}]`));
+            }
+            if (block.media) visitBlock(block.media, `${path}.media`);
+            if (Array.isArray(block.columns)) {
+                block.columns.forEach((col, colIndex) => {
+                    (col.blocks || []).forEach((child, childIndex) => {
+                        visitBlock(child, `${path}.columns[${colIndex}].blocks[${childIndex}]`);
+                    });
+                });
+            }
+        }
+        (doc.sections || []).forEach((section, sectionIndex) => {
+            (section.blocks || []).forEach((block, blockIndex) => {
+                visitBlock(block, `sections[${sectionIndex}].blocks[${blockIndex}]`);
+            });
+        });
+        if (doc.hero) visitBlock(doc.hero, 'hero');
+        return assets;
+    }
+
     /* ---------------------------------------------------------------------------
        RENDERERS — every block returns an element decorated with the block's
        UID, so the editor can re-target updates without re-rendering everything.
@@ -303,21 +671,62 @@
         return cap;
     }
 
-    function mediaSlot(block, field = 'src', altField = 'alt') {
-        const slot = el('div', {
-            class: 'cs-editor-media-slot',
-            dataset: { field, altField, blockUid: block.uid }
-        });
+    function mediaSlot(block, field = 'src', altField = 'alt', options = {}) {
         const src = block[field];
-        const isVideo = (block.type === 'video') || (block.media && block.media.type === 'video') || (field === 'src' && block.type === 'video');
+        const isVideo = isVideoMedia(block, field);
+        const isGif = !isVideo && isGifMedia(block, field);
+        const hasMedia = src && typeof src === 'string' && src.length > 0 && !src.startsWith('REPLACE_WITH_');
+        const isHero = options.priority === 'hero';
+        const slot = el('div', {
+            class: `cs-editor-media-slot${hasMedia ? ' cs-editor-media-slot--filled' : ''}${isVideo ? ' cs-editor-media-slot--video' : ''}${isGif ? ' cs-editor-media-slot--gif-crop' : ''}`,
+            dataset: { field, altField, blockUid: block.uid },
+            attrs: mode === 'edit'
+                ? { tabindex: '0', 'aria-label': 'Media slot. Paste, drop, or click to add media.' }
+                : {}
+        });
 
-        if (src && typeof src === 'string' && src.length > 0 && !src.startsWith('REPLACE_WITH_')) {
-            if (isVideo && src.startsWith('data:video')) {
-                slot.appendChild(el('video', { attrs: { src, autoplay: true, loop: true, muted: true, playsinline: true } }));
-            } else if (isVideo) {
-                slot.appendChild(el('video', { attrs: { src, controls: true } }));
+        if (hasMedia) {
+            if (isVideo) {
+                const mimeType = block.mediaMimeType || (block.cloudinary && block.cloudinary.mimeType) || mimeTypeFromDataUrl(src);
+                const video = el('video', {
+                    attrs: {
+                        controls: true,
+                        muted: true,
+                        playsinline: true,
+                        preload: isHero ? 'auto' : 'metadata'
+                    }
+                }, el('source', {
+                    attrs: {
+                        src: isAssetRef(src) ? '' : src,
+                        type: mimeType || 'video/mp4'
+                    }
+                }));
+                slot.appendChild(video);
+                if (isAssetRef(src)) {
+                    resolveAssetSrc(src).then((resolvedSrc) => {
+                        const source = video.querySelector('source');
+                        if (resolvedSrc && source) {
+                            source.setAttribute('src', resolvedSrc);
+                            video.load();
+                        }
+                    }).catch(() => {});
+                }
             } else {
-                slot.appendChild(el('img', { attrs: { src, alt: block[altField] || '' } }));
+                const img = el('img', {
+                    attrs: {
+                        src: isAssetRef(src) ? '' : src,
+                        alt: block[altField] || '',
+                        decoding: 'async',
+                        loading: isHero ? 'eager' : 'lazy',
+                        fetchpriority: isHero ? 'high' : 'auto'
+                    }
+                });
+                slot.appendChild(img);
+                if (isAssetRef(src)) {
+                    resolveAssetSrc(src).then((resolvedSrc) => {
+                        if (resolvedSrc) img.setAttribute('src', resolvedSrc);
+                    }).catch(() => {});
+                }
             }
         } else {
             const ph = el('div', {
@@ -327,7 +736,7 @@
             });
             slot.appendChild(ph);
 
-            const hint = el('div', { class: 'cs-editor-media-slot__hint', text: isVideo ? 'Drop a video, or click to pick' : 'Drop an image, or click to pick' });
+            const hint = el('div', { class: 'cs-editor-media-slot__hint', text: isVideo ? 'Paste, drop, or click for video' : 'Paste, drop, or click for image or video' });
             slot.appendChild(hint);
         }
 
@@ -336,18 +745,37 @@
     }
 
     function wireMediaSlot(slot, block, field, isVideo) {
-        const accept = isVideo ? 'video/*' : 'image/*';
+        const accept = isVideo ? 'video/*' : 'image/*,video/*';
 
         const apply = async (file) => {
             if (!file) return;
             try {
-                const dataUrl = await readAsDataURL(file);
-                block[field] = dataUrl;
+                const savedAsset = await saveAssetFile(file);
+                block[field] = savedAsset.ref;
+                if (isVideoFile(file)) {
+                    block.mediaType = 'video';
+                    block.mediaMimeType = file.type || 'video/mp4';
+                } else if (file.type && file.type.startsWith('image/')) {
+                    block.mediaType = 'image';
+                    block.mediaMimeType = file.type;
+                }
+                markCloudinaryPending(block, field, file, savedAsset.ref);
                 if (!block.alt && file.name) block.alt = file.name.replace(/\.[^.]+$/, '');
                 schedulePersist();
                 // Re-render just this block's parent section for a clean update.
                 renderAll();
-            } catch (e) { /* ignore */ }
+            } catch (e) {
+                try {
+                    const dataUrl = await readAsDataURL(file);
+                    block[field] = dataUrl;
+                    block.mediaMimeType = file.type || mimeTypeFromDataUrl(dataUrl);
+                    markCloudinaryPending(block, field, file, dataUrl);
+                    schedulePersist();
+                    renderAll();
+                } catch (fallbackError) {
+                    flashSaved('Upload failed');
+                }
+            }
         };
 
         slot.addEventListener('click', async (ev) => {
@@ -355,13 +783,25 @@
             // Don't hijack clicks on editable text
             if (ev.target.closest('[contenteditable]')) return;
             ev.preventDefault();
+            activeMediaSlot = { slot, block, field, isVideo, apply };
             const file = await pickFile(accept);
             if (file) apply(file);
+        });
+
+        slot.addEventListener('focusin', () => {
+            if (mode !== 'edit') return;
+            activeMediaSlot = { slot, block, field, isVideo, apply };
+        });
+
+        slot.addEventListener('mouseenter', () => {
+            if (mode !== 'edit') return;
+            activeMediaSlot = { slot, block, field, isVideo, apply };
         });
 
         slot.addEventListener('dragover', (ev) => {
             if (mode !== 'edit') return;
             ev.preventDefault();
+            activeMediaSlot = { slot, block, field, isVideo, apply };
             slot.classList.add('is-drop-target');
         });
         slot.addEventListener('dragleave', () => slot.classList.remove('is-drop-target'));
@@ -374,22 +814,160 @@
         });
     }
 
+    function isVideoMedia(block, field = 'src') {
+        const src = block && block[field];
+        return (block && block.type === 'video')
+            || (block && block.media && block.media.type === 'video')
+            || (block && block.mediaType === 'video')
+            || (typeof src === 'string' && src.startsWith('data:video'));
+    }
+
+    function clipboardMediaFile(event, isVideo) {
+        const accepted = isVideo ? ['video/'] : ['image/', 'video/'];
+        const items = event.clipboardData && event.clipboardData.items
+            ? Array.from(event.clipboardData.items)
+            : [];
+        const item = items.find((entry) =>
+            entry.kind === 'file' &&
+            entry.type &&
+            accepted.some((prefix) => entry.type.startsWith(prefix))
+        );
+        if (item) return item.getAsFile();
+
+        const files = event.clipboardData && event.clipboardData.files
+            ? Array.from(event.clipboardData.files)
+            : [];
+        return files.find((file) =>
+            file.type &&
+            accepted.some((prefix) => file.type.startsWith(prefix))
+        ) || null;
+    }
+
+    function handleMediaPaste(event) {
+        if (mode !== 'edit') return;
+        if (!activeMediaSlot || !activeMediaSlot.slot || !activeMediaSlot.slot.isConnected) return;
+        const target = event.target;
+        if (target && target.closest && target.closest('[contenteditable]')) return;
+
+        const file = clipboardMediaFile(event, activeMediaSlot.isVideo);
+        if (!file) return;
+
+        event.preventDefault();
+        activeMediaSlot.slot.classList.add('is-drop-target');
+        activeMediaSlot.apply(file).finally(() => {
+            if (activeMediaSlot && activeMediaSlot.slot) {
+                activeMediaSlot.slot.classList.remove('is-drop-target');
+            }
+        });
+    }
+
     /* ---------- Inline-editable text wiring ---------- */
 
     function applyEditable(node, target, field, value) {
-        node.textContent = value || '';
+        setEditableHtml(node, value || '');
         if (mode === 'edit') {
-            node.setAttribute('contenteditable', 'plaintext-only');
+            node.setAttribute('contenteditable', 'true');
             node.dataset.field = field;
+            node._csEditableTarget = target;
+            node._csEditableField = field;
+            node.addEventListener('pointerdown', (ev) => {
+                if ((node.textContent || '').trim()) return;
+                ev.preventDefault();
+                node.focus();
+                const selection = window.getSelection();
+                if (!selection) return;
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                range.collapse(false);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            });
+            node.addEventListener('focus', () => {
+                activeEditableNode = node;
+            });
             node.addEventListener('input', () => {
-                target[field] = node.textContent;
+                target[field] = editableValueFromNode(node);
                 schedulePersist();
             });
             node.addEventListener('blur', () => {
-                target[field] = node.textContent;
+                target[field] = editableValueFromNode(node);
                 schedulePersist();
             });
+            node.addEventListener('paste', () => {
+                setTimeout(() => {
+                    target[field] = editableValueFromNode(node);
+                    setEditableHtml(node, target[field]);
+                    schedulePersist();
+                }, 0);
+            });
         }
+    }
+
+    function buildRichTextToolbar() {
+        if (richTextToolbar) return richTextToolbar;
+        const bar = el('div', { class: 'cs-rich-text-toolbar', attrs: { contenteditable: 'false', role: 'toolbar', 'aria-label': 'Text style' } });
+        [
+            { cmd: 'bold', label: 'B', title: 'Bold' },
+            { cmd: 'italic', label: 'I', title: 'Italic' },
+            { cmd: 'underline', label: 'U', title: 'Underline' }
+        ].forEach(({ cmd, label, title }) => {
+            const btn = el('button', { class: `cs-rich-text-toolbar__btn cs-rich-text-toolbar__btn--${cmd}`, attrs: { type: 'button', title }, text: label });
+            btn.addEventListener('mousedown', (ev) => ev.preventDefault());
+            btn.addEventListener('click', () => applyRichTextCommand(cmd));
+            bar.appendChild(btn);
+        });
+        document.body.appendChild(bar);
+        richTextToolbar = bar;
+        return bar;
+    }
+
+    function hideRichTextToolbar() {
+        if (richTextToolbar) richTextToolbar.classList.remove('is-visible');
+    }
+
+    function selectedEditableNode() {
+        const selection = window.getSelection();
+        if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return null;
+        const node = selection.anchorNode;
+        const element = node && (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement);
+        return element && element.closest ? element.closest('[contenteditable="true"]') : null;
+    }
+
+    function updateRichTextToolbar() {
+        if (mode !== 'edit') {
+            hideRichTextToolbar();
+            return;
+        }
+        const editable = selectedEditableNode();
+        if (!editable) {
+            hideRichTextToolbar();
+            return;
+        }
+        activeEditableNode = editable;
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        if (!rect || (!rect.width && !rect.height)) {
+            hideRichTextToolbar();
+            return;
+        }
+        const bar = buildRichTextToolbar();
+        bar.style.left = `${Math.min(window.innerWidth - 120, Math.max(12, rect.left + rect.width / 2))}px`;
+        bar.style.top = `${Math.max(12, rect.top - 42)}px`;
+        bar.classList.add('is-visible');
+    }
+
+    function applyRichTextCommand(command) {
+        if (!activeEditableNode) return;
+        activeEditableNode.focus();
+        try { document.execCommand(command, false, null); } catch (e) { return; }
+        const target = activeEditableNode._csEditableTarget;
+        const field = activeEditableNode._csEditableField;
+        if (target && field) {
+            target[field] = editableValueFromNode(activeEditableNode);
+            schedulePersist();
+        }
+        updateRichTextToolbar();
     }
 
     /* ---------- Block renderers ---------- */
@@ -442,16 +1020,17 @@
 
     function renderImageBlock(block) {
         const layout = block.layout || '1-col';
+        const showCaptions = block.hideCaptions !== true;
         const wrap = el('figure', { class: 'cs-block cs-block--image', dataset: { blockUid: block.uid } });
 
         if (layout === 'fullbleed') {
             wrap.classList.add('cs-media-full', 'cs-editor-media', 'cs-editor-media--full');
             wrap.appendChild(mediaSlot(block));
-            wrap.appendChild(captionEl(block.caption, block));
+            if (showCaptions) wrap.appendChild(captionEl(block.caption, block));
         } else if (layout === 'wide') {
             wrap.classList.add('cs-editor-media', 'cs-editor-media--full');
             wrap.appendChild(mediaSlot(block));
-            wrap.appendChild(captionEl(block.caption, block));
+            if (showCaptions) wrap.appendChild(captionEl(block.caption, block));
         } else {
             const cols = columnsFromLayout(layout, 3);
             wrap.classList.add('cs-media-grid', `cs-media-grid--cols-${cols}`, 'cs-editor-media', 'cs-editor-media--grid');
@@ -469,16 +1048,43 @@
                 const calloutText = Array.isArray(block.callouts) ? block.callouts[i] : null;
                 const labelText = Array.isArray(block.labels) ? block.labels[i] : null;
                 const subtitle = item.caption || calloutText || labelText || '';
-                const cap = el('figcaption', { class: 'cs-section__caption' });
-                cap.dataset.placeholder = 'Add a label';
-                applyEditable(cap, item, 'caption', subtitle);
-                cell.appendChild(cap);
+                if (showCaptions) {
+                    const cap = el('figcaption', { class: 'cs-section__caption' });
+                    cap.dataset.placeholder = 'Add a label';
+                    applyEditable(cap, item, 'caption', subtitle);
+                    cell.appendChild(cap);
+                }
                 wrap.appendChild(cell);
             });
 
-            wrap.appendChild(captionEl(block.caption, block));
         }
 
+        decorateBlock(wrap, block);
+        return wrap;
+    }
+
+    function renderBentoBlock(block) {
+        const showCaptions = block.hideCaptions !== true;
+        const wrap = el('figure', {
+            class: 'cs-block cs-block--bento cs-bento cs-editor-media cs-editor-media--bento',
+            dataset: { blockUid: block.uid }
+        });
+
+        if (!Array.isArray(block.items) || block.items.length !== 6) {
+            block.items = Array.from({ length: 6 }, (_, i) => block.items?.[i] || { src: '', alt: '' });
+        }
+
+        block.items.forEach((item, i) => {
+            if (!item.uid) item.uid = uid();
+            const cell = el('div', {
+                class: `cs-bento__item cs-bento__item--${i + 1}`,
+                dataset: { itemUid: item.uid }
+            });
+            cell.appendChild(mediaSlot(item, 'src', 'alt'));
+            wrap.appendChild(cell);
+        });
+
+        if (showCaptions) wrap.appendChild(captionEl(block.caption, block));
         decorateBlock(wrap, block);
         return wrap;
     }
@@ -492,7 +1098,10 @@
     }
 
     function renderHorizontalBlock(block) {
-        const wrap = el('div', { class: 'cs-block cs-block--horizontal cs-horizontal cs-editor-media cs-editor-media--horizontal', dataset: { blockUid: block.uid } });
+        const wrap = el('div', {
+            class: `cs-block cs-block--horizontal cs-horizontal cs-editor-media cs-editor-media--horizontal${block.reverse ? ' cs-horizontal--reverse' : ''}`,
+            dataset: { blockUid: block.uid }
+        });
 
         const textCol = el('div', { class: 'cs-horizontal__text' });
         if (block.headline) {
@@ -749,6 +1358,7 @@
         'video':            { label: 'Video',            group: 'media',     render: renderVideoBlock,          layouts: null },
         'horizontal':       { label: 'Text + Media',     group: 'media',     render: renderHorizontalBlock,     layouts: null },
         'comparison':       { label: 'Before / After',   group: 'media',     render: renderComparisonBlock,     layouts: null },
+        'bento':            { label: 'Bento grid',       group: 'media',     render: renderBentoBlock,          layouts: null },
         'divider':          { label: 'Section heading',  group: 'structure', render: renderDividerBlock,        layouts: null },
         'rule':             { label: 'Divider line',     group: 'structure', render: renderRuleBlock,           layouts: null },
         'spacer':           { label: 'Spacer',           group: 'structure', render: renderSpacerBlock,         layouts: null, sizes: ['sm', 'md', 'lg', 'xl'] },
@@ -773,13 +1383,76 @@
        BLOCK DECORATION — drag handle, controls, drop targets (edit mode only)
        --------------------------------------------------------------------------- */
 
+    function numberOrNull(value) {
+        if (value === '' || value == null) return null;
+        const n = Number(value);
+        return Number.isFinite(n) ? Math.max(0, Math.round(n)) : null;
+    }
+
+    function setNumericOverride(block, field, value) {
+        const n = numberOrNull(value);
+        if (n == null) delete block[field];
+        else block[field] = n;
+    }
+
+    function hasNumericOverride(block, field) {
+        return Number.isFinite(Number(block && block[field]));
+    }
+
+    function applyBlockOverrides(node, block) {
+        if (hasNumericOverride(block, 'spaceBefore')) {
+            node.style.marginTop = `${Math.max(0, Number(block.spaceBefore))}px`;
+        }
+        if (hasNumericOverride(block, 'spaceAfter')) {
+            node.style.marginBottom = `${Math.max(0, Number(block.spaceAfter))}px`;
+        }
+        if (hasNumericOverride(block, 'mediaHeight')) {
+            node.classList.add('cs-block--media-height-custom');
+            node.style.setProperty('--cs-media-height-custom', `${Math.max(80, Number(block.mediaHeight))}px`);
+        }
+    }
+
+    function toolbarNumber(label, title, value, placeholder, onChange) {
+        const wrap = el('label', { class: 'cs-block-toolbar__number', attrs: { title } });
+        wrap.appendChild(el('span', { text: label }));
+        const input = el('input', {
+            attrs: {
+                type: 'number',
+                min: '0',
+                max: '1200',
+                step: '4',
+                value: value == null ? '' : String(value),
+                placeholder
+            }
+        });
+        input.addEventListener('click', (ev) => ev.stopPropagation());
+        input.addEventListener('change', () => onChange(input.value));
+        wrap.appendChild(input);
+        return wrap;
+    }
+
     function decorateBlock(node, block) {
         // Apply per-block spacing in any mode (view + edit).
         const spacing = block.spacing || 'default';
         node.classList.add(`cs-block--gap-${spacing}`);
+        applyBlockOverrides(node, block);
 
         if (mode !== 'edit') return;
         const def = BLOCK_REGISTRY[block.type];
+        const blockIsEmpty = isEmptyBlock(block);
+        if (blockIsEmpty) {
+            node.classList.add('cs-block--empty');
+            const emptyDelete = el('button', {
+                class: 'cs-empty-block-delete',
+                attrs: { type: 'button', contenteditable: 'false', title: 'Delete empty block' },
+                text: 'Delete empty block'
+            });
+            emptyDelete.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                removeBlock(block.uid);
+            });
+            node.appendChild(emptyDelete);
+        }
 
         const toolbar = el('div', { class: 'cs-block-toolbar', attrs: { contenteditable: 'false' } });
 
@@ -873,7 +1546,40 @@
                 renderAll();
             });
             toolbar.appendChild(swap);
-            if (block.reverse) node.classList.add('cs-horizontal--reverse');
+        }
+
+        toolbar.appendChild(toolbarNumber('T', 'Custom spacing above this block in pixels', block.spaceBefore, 'top', (value) => {
+            setNumericOverride(block, 'spaceBefore', value);
+            schedulePersist();
+            renderAll();
+        }));
+
+        toolbar.appendChild(toolbarNumber('B', 'Custom spacing below this block in pixels', block.spaceAfter, 'bot', (value) => {
+            setNumericOverride(block, 'spaceAfter', value);
+            schedulePersist();
+            renderAll();
+        }));
+
+        if (['image', 'video', 'bento', 'horizontal', 'comparison'].includes(block.type)) {
+            toolbar.appendChild(toolbarNumber('H', 'Custom media container height in pixels', block.mediaHeight, 'height', (value) => {
+                setNumericOverride(block, 'mediaHeight', value);
+                schedulePersist();
+                renderAll();
+            }));
+        }
+
+        if (['image', 'bento'].includes(block.type)) {
+            const captionToggle = el('button', {
+                class: `cs-block-toolbar__btn cs-block-toolbar__btn--caption${block.hideCaptions ? '' : ' is-active'}`,
+                attrs: { type: 'button', title: block.hideCaptions ? 'Show captions' : 'Hide captions' },
+                text: 'Cap'
+            });
+            captionToggle.addEventListener('click', () => {
+                block.hideCaptions = !block.hideCaptions;
+                schedulePersist();
+                renderAll();
+            });
+            toolbar.appendChild(captionToggle);
         }
 
         // Universal: per-block spacing (margin below). Notion equivalent of
@@ -940,6 +1646,52 @@
         });
     }
 
+    function isBlank(value) {
+        return String(value || '').trim().length === 0;
+    }
+
+    function isEmptyMedia(value) {
+        return !value || isBlank(value.src);
+    }
+
+    function isEmptyBlock(block) {
+        if (!block || typeof block !== 'object') return true;
+        switch (block.type) {
+            case 'text':
+                return isBlank(block.body);
+            case 'section-label':
+                return isBlank(block.label);
+            case 'eyebrow-heading':
+                return isBlank(block.eyebrow) && isBlank(block.headline);
+            case 'impact':
+                return isBlank(block.headline) && isBlank(block.body);
+            case 'numbered':
+                return isBlank(block.index) && isBlank(block.headline) && isBlank(block.body);
+            case 'pullquote':
+                return isBlank(block.body);
+            case 'image':
+                return isBlank(block.src)
+                    && isBlank(block.caption)
+                    && (!Array.isArray(block.items) || block.items.every(isEmptyMedia));
+            case 'video':
+                return isBlank(block.src) && isBlank(block.caption);
+            case 'horizontal':
+                return isBlank(block.headline) && isBlank(block.text) && isEmptyMedia(block.media);
+            case 'comparison':
+                return isBlank(block.beforeSrc) && isBlank(block.afterSrc) && isBlank(block.caption);
+            case 'bento':
+                return !Array.isArray(block.items) || block.items.every(isEmptyMedia);
+            case 'metrics':
+                return !Array.isArray(block.items)
+                    || block.items.every((item) => isBlank(item.stat) && isBlank(item.label) && isBlank(item.note));
+            case 'columns':
+                return !Array.isArray(block.columns)
+                    || block.columns.every((col) => !Array.isArray(col.blocks) || col.blocks.every(isEmptyBlock));
+            default:
+                return false;
+        }
+    }
+
     /* ---------------------------------------------------------------------------
        BLOCK MUTATIONS
        --------------------------------------------------------------------------- */
@@ -991,6 +1743,38 @@
         hit.container.blocks.splice(hit.idx, 1);
         schedulePersist();
         renderAll();
+    }
+
+    function removeEmptyBlocksFromContainer(container) {
+        if (!container || !Array.isArray(container.blocks)) return 0;
+        let removed = 0;
+
+        container.blocks.forEach((block) => {
+            if (block.type === 'columns' && Array.isArray(block.columns)) {
+                block.columns.forEach((col) => {
+                    removed += removeEmptyBlocksFromContainer(col);
+                });
+            }
+        });
+
+        const before = container.blocks.length;
+        container.blocks = container.blocks.filter((block) => !isEmptyBlock(block));
+        removed += before - container.blocks.length;
+        return removed;
+    }
+
+    function removeAllEmptyBlocks() {
+        let removed = 0;
+        (doc.sections || []).forEach((section) => {
+            removed += removeEmptyBlocksFromContainer(section);
+        });
+        if (!removed) {
+            flashSaved('No empty blocks');
+            return;
+        }
+        schedulePersist();
+        renderAll();
+        flashSaved(`Removed ${removed}`);
     }
 
     function moveBlock(sourceUid, targetUid, where) {
@@ -1156,9 +1940,9 @@
 
     function updateIndexActive() {
         indexRaf = 0;
-        if (CASE_ID !== 'zapp-account') return;
-        const sections = [...document.querySelectorAll('.cs-body-layout--zapp .cs-section')];
-        const links = [...document.querySelectorAll('.cs-body-layout--zapp .cs-index__link')];
+        if (!isIndexedCaseStudy()) return;
+        const sections = [...document.querySelectorAll('.cs-body-layout--indexed .cs-section')];
+        const links = [...document.querySelectorAll('.cs-body-layout--indexed .cs-index__link')];
         if (!sections.length || !links.length) return;
 
         const probeY = Math.min(window.innerHeight * 0.42, 320);
@@ -1192,11 +1976,120 @@
                 link.style.transform = isActive ? 'translateX(18px)' : '';
             }
         });
+
+        const activeLink = links.find((link) => link.dataset.target === active.id);
+        if (CASE_ID === 'growth-experiments' && activeLink) {
+            if (suppressContextTarget === active.id) {
+                suppressContextTarget = '';
+            } else if (hasIndexActiveInitialized && shouldShowSectionContext(activeLink, links)) {
+                showSectionContext(activeLink.textContent.trim());
+            } else {
+                hasIndexActiveInitialized = true;
+            }
+        }
     }
 
     function requestIndexActiveUpdate() {
         if (indexRaf) return;
         indexRaf = requestAnimationFrame(updateIndexActive);
+    }
+
+    function isIndexedCaseStudy() {
+        return CASE_ID === 'zapp-account' || CASE_ID === 'growth-experiments';
+    }
+
+    function showSectionContext(label, options = {}) {
+        if (CASE_ID !== 'growth-experiments' || !label) return;
+        const content = document.querySelector('.cs-body-layout--growth .cs-body-layout__content');
+        if (!content) return;
+
+        const reduceMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let overlay = content.querySelector('.cs-index-washout');
+        if (!overlay) {
+            overlay = el('div', { class: 'cs-index-washout', attrs: { 'aria-hidden': 'true' } });
+            overlay.appendChild(el('span', { class: 'cs-index-washout__label' }));
+            content.appendChild(overlay);
+        }
+        syncSectionContextBounds(overlay, content);
+
+        const labelEl = overlay.querySelector('.cs-index-washout__label');
+        labelEl.textContent = label;
+        overlay.classList.add('is-active');
+        if (sectionContextTimer) clearTimeout(sectionContextTimer);
+
+        if (typeof gsap !== 'undefined' && !reduceMotion) {
+            gsap.killTweensOf([overlay, labelEl]);
+            gsap.set(overlay, { autoAlpha: 0, y: 18 });
+            gsap.set(labelEl, { autoAlpha: 0, y: 30, scale: 0.985 });
+            const tl = gsap.timeline({
+                defaults: { overwrite: 'auto' },
+                onComplete: () => overlay.classList.remove('is-active')
+            });
+            tl.to(overlay, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'power3.out'
+            });
+            tl.to(labelEl, {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.72,
+                ease: 'power4.out'
+            }, '<0.1');
+            tl.to({}, { duration: options.hold || 1.25 });
+            tl.to(labelEl, {
+                autoAlpha: 0,
+                y: -28,
+                scale: 1.006,
+                duration: 0.86,
+                ease: 'power3.inOut'
+            });
+            tl.to(overlay, {
+                autoAlpha: 0,
+                y: -18,
+                duration: 0.9,
+                ease: 'power3.inOut'
+            }, '<0.12');
+        } else {
+            overlay.classList.add('is-active');
+            sectionContextTimer = setTimeout(() => {
+                overlay.classList.remove('is-active');
+            }, 1000);
+        }
+    }
+
+    function shouldShowSectionContext(link, links) {
+        const index = links.indexOf(link);
+        return index > 0 && index < links.length - 1;
+    }
+
+    function syncSectionContextBounds(overlay, content) {
+        if (!overlay || !content) return;
+        const rect = content.getBoundingClientRect();
+        overlay.style.left = `${Math.round(rect.left)}px`;
+        overlay.style.width = `${Math.round(rect.width)}px`;
+    }
+
+    function runIndexWashout(link, target) {
+        if (CASE_ID !== 'growth-experiments') return false;
+        const links = [...document.querySelectorAll('.cs-body-layout--growth .cs-index__link')];
+        if (!shouldShowSectionContext(link, links)) return false;
+        const targetSection = document.getElementById(target);
+        if (!targetSection) return false;
+        suppressContextTarget = target;
+        showSectionContext(link.textContent.trim(), { hold: 1.35 });
+
+        window.setTimeout(() => {
+            targetSection.scrollIntoView({ block: 'start', behavior: 'instant' });
+            if (history && typeof history.replaceState === 'function') {
+                history.replaceState(null, '', `#${target}`);
+            }
+            requestIndexActiveUpdate();
+        }, 180);
+        return true;
     }
 
     function renderHero() {
@@ -1205,7 +2098,7 @@
         wrap.innerHTML = '';
         if (!doc.hero) doc.hero = { type: 'image', src: '', alt: '' };
         if (!doc.hero.uid) doc.hero.uid = uid();
-        const slot = mediaSlot(doc.hero, 'src', 'alt');
+        const slot = mediaSlot(doc.hero, 'src', 'alt', { priority: 'hero' });
         slot.classList.add('cs-editor-media-slot--hero');
         wrap.appendChild(slot);
     }
@@ -1233,7 +2126,7 @@
         const wrap = document.querySelector('[data-meta-row]');
         if (!wrap) return;
         wrap.innerHTML = '';
-        if (CASE_ID === 'zapp-account') return;
+        if (isIndexedCaseStudy()) return;
         if (!Array.isArray(doc.meta)) doc.meta = defaultMeta();
 
         doc.meta.forEach((cell, i) => {
@@ -1281,8 +2174,11 @@
         [...content.querySelectorAll(':scope > .cs-body-layout, :scope > .cs-section, :scope > .cs-credits, :scope > .cs-callout, :scope > .cs-stats, :scope > .pajelly-cs-grid, :scope > .cs-inserter')].forEach(n => n.remove());
 
         const cta = content.querySelector('.cs-cta-row');
-        if (CASE_ID === 'zapp-account') {
-            const layout = el('div', { class: 'cs-body-layout cs-body-layout--zapp' });
+        if (isIndexedCaseStudy()) {
+            const layoutClass = CASE_ID === 'zapp-account'
+                ? 'cs-body-layout cs-body-layout--indexed cs-body-layout--zapp'
+                : 'cs-body-layout cs-body-layout--indexed cs-body-layout--growth';
+            const layout = el('div', { class: layoutClass });
             const sectionWrap = el('div', { class: 'cs-body-layout__content' });
             layout.appendChild(renderIndex(doc.sections));
             doc.sections.forEach((section) => {
@@ -1317,6 +2213,10 @@
         renderHeader();
         renderHero();
         renderContent();
+        updateToolbar();
+        activeIndexTarget = '';
+        hasIndexActiveInitialized = false;
+        suppressContextTarget = '';
         requestIndexActiveUpdate();
     }
 
@@ -1330,6 +2230,11 @@
 
         const modeBtn = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__mode', attrs: { type: 'button' } });
         modeBtn.addEventListener('click', () => {
+            if (mode === 'edit' && saveTimer) {
+                clearTimeout(saveTimer);
+                saveTimer = null;
+                persist();
+            }
             mode = mode === 'edit' ? 'view' : 'edit';
             sessionStorage.setItem(`cs-editor-mode:${CASE_ID}`, mode);
             renderAll();
@@ -1366,6 +2271,33 @@
             } catch (e) { /* ignore */ }
         });
 
+        const exportAssets = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--wide', attrs: { type: 'button', title: 'Download manifest of local assets to upload to Cloudinary' }, text: 'Cloudinary list' });
+        exportAssets.addEventListener('click', () => {
+            const assets = collectCloudinaryPendingAssets();
+            const manifest = {
+                caseStudyId: CASE_ID,
+                generatedAt: new Date().toISOString(),
+                cloudinaryFolder: `portfolio/${CASE_ID}`,
+                assetCount: assets.length,
+                assets
+            };
+            const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cloudinary-assets-${CASE_ID}.json`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            flashSaved(assets.length ? `${assets.length} assets` : 'No local assets');
+        });
+
+        const cleanEmpty = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--wide', attrs: { type: 'button', title: 'Delete all empty blocks' }, text: 'Clean empty' });
+        cleanEmpty.addEventListener('click', () => {
+            removeAllEmptyBlocks();
+        });
+
         const reset = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--danger', attrs: { type: 'button', title: 'Discard local edits and revert to the default content' }, text: 'Reset' });
         reset.addEventListener('click', () => {
             if (!confirm('Discard all local edits for this case study?')) return;
@@ -1379,6 +2311,8 @@
         bar.appendChild(modeBtn);
         bar.appendChild(publish);
         bar.appendChild(importBtn);
+        bar.appendChild(exportAssets);
+        bar.appendChild(cleanEmpty);
         bar.appendChild(reset);
         bar.appendChild(status);
         document.body.appendChild(bar);
@@ -1395,11 +2329,26 @@
        BOOT
        --------------------------------------------------------------------------- */
 
-    function boot() {
+    async function boot() {
+        buildToolbar();
+        try {
+            if (await migrateInlineMediaAssets()) persist();
+        } catch (e) {
+            flashSaved('Media migration failed');
+        }
         renderAll();
-        if (CASE_ID === 'zapp-account') {
+        document.addEventListener('paste', handleMediaPaste);
+        document.addEventListener('selectionchange', updateRichTextToolbar);
+        if (isIndexedCaseStudy()) {
             window.addEventListener('scroll', requestIndexActiveUpdate, { passive: true });
             window.addEventListener('resize', requestIndexActiveUpdate, { passive: true });
+            document.addEventListener('click', (ev) => {
+                const link = ev.target.closest && ev.target.closest('.cs-body-layout--growth .cs-index__link');
+                if (!link) return;
+                const target = link.dataset.target;
+                if (!target || !document.getElementById(target)) return;
+                if (runIndexWashout(link, target)) ev.preventDefault();
+            });
         }
     }
 
