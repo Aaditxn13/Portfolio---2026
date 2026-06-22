@@ -34,6 +34,16 @@
     const ASSET_DB_NAME = 'cs-editor-assets';
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
+    const LOCAL_ASSET_OVERRIDES = {
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781979790777:bshl8ycca': 'asset/case-studies/zapp-account/bsy7x35a2-screen-recording-jun-20-2026-from-kommodo.gif',
+        'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'asset/case-studies/zapp-account/b3o4grj75-screenrecording2026-06-19at12-48-40pm-ezgif-com-crop-1.gif',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'asset/case-studies/zapp-account/b5591rluy-image.png'
+    };
     const assetUrlCache = new Map();
     const SECTION_ID_MAP = {
         overview: 'cs-overview',
@@ -547,8 +557,7 @@
             const savedAsset = await saveAssetFile(blob);
             item.block[item.field] = savedAsset.ref;
             item.block.mediaMimeType = blob.type || mimeTypeFromDataUrl(item.src);
-            if (!item.block.cloudinary) markCloudinaryPending(item.block, item.field, blob, savedAsset.ref);
-            else item.block.cloudinary.localAssetRef = savedAsset.ref;
+            markLocalAsset(item.block, item.field, blob, savedAsset.ref);
         }
         return updates.length > 0;
     }
@@ -569,20 +578,13 @@
 
     async function resolveAssetSrc(src) {
         if (!isAssetRef(src)) return src;
+        if (LOCAL_ASSET_OVERRIDES[src]) return LOCAL_ASSET_OVERRIDES[src];
         if (assetUrlCache.has(src)) return assetUrlCache.get(src);
         const record = await getAssetRecord(src);
         if (!record || !record.blob) return '';
         const url = URL.createObjectURL(record.blob);
         assetUrlCache.set(src, url);
         return url;
-    }
-
-    function cloudinaryPublicId(block, file) {
-        const stem = file && file.name
-            ? file.name.replace(/\.[^.]+$/, '')
-            : `${CASE_ID}-${block.uid || uid()}`;
-        const safeStem = stem.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'asset';
-        return `portfolio/${CASE_ID}/${block.uid || uid()}-${safeStem}`;
     }
 
     function isVideoFile(file) {
@@ -601,62 +603,27 @@
     function isGifMedia(block, field = 'src') {
         if (!block) return false;
         const src = block[field] || '';
-        const mimeType = block.mediaMimeType || (block.cloudinary && block.cloudinary.mimeType) || mimeTypeFromDataUrl(src);
-        const originalName = block.cloudinary && block.cloudinary.originalName ? block.cloudinary.originalName : '';
+        const localOverride = LOCAL_ASSET_OVERRIDES[src] || '';
+        const mimeType = block.mediaMimeType || (block.localAsset && block.localAsset.mimeType) || mimeTypeFromDataUrl(src);
+        const originalName = block.localAsset && block.localAsset.originalName ? block.localAsset.originalName : '';
         return mimeType === 'image/gif'
             || /\.gif(?:$|[?#])/i.test(String(src))
+            || /\.gif(?:$|[?#])/i.test(localOverride)
             || /\.gif$/i.test(originalName);
     }
 
-    function markCloudinaryPending(block, field, file, sourceRef) {
+    function markLocalAsset(block, field, file, sourceRef) {
         const mediaKind = isVideoFile(file) ? 'video' : 'image';
-        block.cloudinary = {
-            status: 'pending-upload',
+        block.localAsset = {
+            status: 'local',
             field,
-            publicId: cloudinaryPublicId(block, file),
             originalName: file && file.name ? file.name : `clipboard-${Date.now()}.${extensionFromFile(file)}`,
             mimeType: file && file.type ? file.type : '',
             size: file && typeof file.size === 'number' ? file.size : null,
             resourceType: mediaKind === 'video' ? 'video' : 'image',
-            localAssetRef: sourceRef || '',
+            ref: sourceRef || '',
             createdAt: new Date().toISOString()
         };
-    }
-
-    function collectCloudinaryPendingAssets() {
-        const assets = [];
-        function visitBlock(block, path) {
-            if (!block || typeof block !== 'object') return;
-            if (block.cloudinary && block.cloudinary.status === 'pending-upload') {
-                assets.push({
-                    caseStudyId: CASE_ID,
-                    blockUid: block.uid || '',
-                    blockType: block.type || '',
-                    path,
-                    srcField: block.cloudinary.field || 'src',
-                    source: block[block.cloudinary.field || 'src'] || '',
-                    cloudinary: block.cloudinary
-                });
-            }
-            if (Array.isArray(block.items)) {
-                block.items.forEach((item, i) => visitBlock(item, `${path}.items[${i}]`));
-            }
-            if (block.media) visitBlock(block.media, `${path}.media`);
-            if (Array.isArray(block.columns)) {
-                block.columns.forEach((col, colIndex) => {
-                    (col.blocks || []).forEach((child, childIndex) => {
-                        visitBlock(child, `${path}.columns[${colIndex}].blocks[${childIndex}]`);
-                    });
-                });
-            }
-        }
-        (doc.sections || []).forEach((section, sectionIndex) => {
-            (section.blocks || []).forEach((block, blockIndex) => {
-                visitBlock(block, `sections[${sectionIndex}].blocks[${blockIndex}]`);
-            });
-        });
-        if (doc.hero) visitBlock(doc.hero, 'hero');
-        return assets;
     }
 
     /* ---------------------------------------------------------------------------
@@ -687,7 +654,7 @@
 
         if (hasMedia) {
             if (isVideo) {
-                const mimeType = block.mediaMimeType || (block.cloudinary && block.cloudinary.mimeType) || mimeTypeFromDataUrl(src);
+                const mimeType = block.mediaMimeType || (block.localAsset && block.localAsset.mimeType) || mimeTypeFromDataUrl(src);
                 const video = el('video', {
                     attrs: {
                         controls: true,
@@ -759,7 +726,7 @@
                     block.mediaType = 'image';
                     block.mediaMimeType = file.type;
                 }
-                markCloudinaryPending(block, field, file, savedAsset.ref);
+                markLocalAsset(block, field, file, savedAsset.ref);
                 if (!block.alt && file.name) block.alt = file.name.replace(/\.[^.]+$/, '');
                 schedulePersist();
                 // Re-render just this block's parent section for a clean update.
@@ -769,7 +736,7 @@
                     const dataUrl = await readAsDataURL(file);
                     block[field] = dataUrl;
                     block.mediaMimeType = file.type || mimeTypeFromDataUrl(dataUrl);
-                    markCloudinaryPending(block, field, file, dataUrl);
+                    markLocalAsset(block, field, file, dataUrl);
                     schedulePersist();
                     renderAll();
                 } catch (fallbackError) {
@@ -2271,28 +2238,6 @@
             } catch (e) { /* ignore */ }
         });
 
-        const exportAssets = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--wide', attrs: { type: 'button', title: 'Download manifest of local assets to upload to Cloudinary' }, text: 'Cloudinary list' });
-        exportAssets.addEventListener('click', () => {
-            const assets = collectCloudinaryPendingAssets();
-            const manifest = {
-                caseStudyId: CASE_ID,
-                generatedAt: new Date().toISOString(),
-                cloudinaryFolder: `portfolio/${CASE_ID}`,
-                assetCount: assets.length,
-                assets
-            };
-            const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `cloudinary-assets-${CASE_ID}.json`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-            flashSaved(assets.length ? `${assets.length} assets` : 'No local assets');
-        });
-
         const cleanEmpty = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--wide', attrs: { type: 'button', title: 'Delete all empty blocks' }, text: 'Clean empty' });
         cleanEmpty.addEventListener('click', () => {
             removeAllEmptyBlocks();
@@ -2311,7 +2256,6 @@
         bar.appendChild(modeBtn);
         bar.appendChild(publish);
         bar.appendChild(importBtn);
-        bar.appendChild(exportAssets);
         bar.appendChild(cleanEmpty);
         bar.appendChild(reset);
         bar.appendChild(status);

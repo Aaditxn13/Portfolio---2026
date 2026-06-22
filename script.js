@@ -692,6 +692,11 @@ const modalClose = document.getElementById('modal-close');
 const workCards = document.querySelectorAll('.work-card');
 const homeWorkCards = document.querySelectorAll('#work-wall .work-card');
 const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v1';
+const HOME_CARD_LOCAL_ASSETS = {
+    'card-1': { src: 'asset/home-project-cards/card-1.png', x: -7.203125, y: 22.7890625, scale: 1.15, rotate: 0 },
+    'card-2': { src: 'asset/home-project-cards/card-2.png', x: -0.35546875, y: 63.1953125, scale: 1, rotate: 0 },
+    'card-4': { src: 'asset/home-project-cards/card-4.png', x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
+};
 let homeCardEditorActive = false;
 let activeHomeCardEditorCard = null;
 
@@ -719,7 +724,26 @@ function saveHomeCardEditorState(state) {
     }
 }
 
-const homeCardEditorState = readHomeCardEditorState();
+function normalizeHomeCardEditorState(state) {
+    const nextState = { ...(state || {}) };
+    let changed = false;
+    Object.entries(HOME_CARD_LOCAL_ASSETS).forEach(([key, localAsset]) => {
+        const current = nextState[key];
+        if (!current) {
+            nextState[key] = { ...localAsset };
+            changed = true;
+            return;
+        }
+        if (typeof current.src === 'string' && current.src.startsWith('data:image/')) {
+            nextState[key] = { ...current, src: localAsset.src };
+            changed = true;
+        }
+    });
+    if (changed) saveHomeCardEditorState(nextState);
+    return nextState;
+}
+
+const homeCardEditorState = normalizeHomeCardEditorState(readHomeCardEditorState());
 
 function applyHomeCardImageState(card, cardState) {
     const content = card.querySelector('.card-content');
@@ -728,9 +752,9 @@ function applyHomeCardImageState(card, cardState) {
         content.dataset.homeCardDefaultImage = content.style.backgroundImage || '';
     }
 
-    let image = content.querySelector('.home-card-edit-image');
+    let image = card.querySelector(':scope > .home-card-edit-image');
     if (!cardState?.src) {
-        content.classList.remove('card-content--custom-image');
+        card.classList.remove('work-card--custom-image');
         if (image) image.remove();
         return;
     }
@@ -741,7 +765,7 @@ function applyHomeCardImageState(card, cardState) {
         image.alt = '';
         image.decoding = 'async';
         image.draggable = false;
-        content.prepend(image);
+        card.appendChild(image);
     }
 
     image.src = cardState.src;
@@ -749,7 +773,7 @@ function applyHomeCardImageState(card, cardState) {
     image.style.setProperty('--home-card-img-y', `${Number(cardState.y) || 0}px`);
     image.style.setProperty('--home-card-img-scale', `${Number(cardState.scale) || 1}`);
     image.style.setProperty('--home-card-img-rotate', `${Number(cardState.rotate) || 0}deg`);
-    content.classList.add('card-content--custom-image');
+    card.classList.add('work-card--custom-image');
     content.style.backgroundImage = content.dataset.homeCardDefaultImage;
 }
 

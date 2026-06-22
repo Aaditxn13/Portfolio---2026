@@ -2679,15 +2679,6 @@ body.webgl-cards #work-wall .card-content {
     opacity: 0;
 }
 
-body.home-card-editor-active.webgl-cards #work-wall .card-content,
-body.webgl-cards #work-wall .card-content.card-content--custom-image {
-    opacity: 1;
-}
-
-body.home-card-editor-active .work-shader-canvas {
-    opacity: 0;
-}
-
 body.webgl-cards #work-wall .work-card__lottie,
 body.webgl-cards #work-wall .work-card__center-image {
     opacity: 0;
@@ -2816,10 +2807,6 @@ body.webgl-cards #work-wall .work-card:focus-visible {
         filter 0.55s ease;
 }
 
-#work-wall .card-content--custom-image {
-    overflow: hidden;
-}
-
 #work-wall .home-card-edit-image {
     position: absolute;
     left: 50%;
@@ -2833,7 +2820,8 @@ body.webgl-cards #work-wall .work-card:focus-visible {
     transform-origin: center;
     user-select: none;
     -webkit-user-drag: none;
-    z-index: 2;
+    pointer-events: none;
+    z-index: 6;
 }
 
 #work-wall .card-content::after {
