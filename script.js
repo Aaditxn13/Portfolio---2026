@@ -698,10 +698,10 @@ const HOME_CARD_BACKGROUND_PATHS = new Set([
     'asset/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': "url('asset/grassland.png')",
-    'card-2': "url('asset/water.png')",
-    'card-3': "url('asset/project-3-night-meadow-background.jpg')",
-    'card-4': "url('asset/project-4-green-background.jpg')"
+    'card-1': 'asset/grassland.png',
+    'card-2': 'asset/water.png',
+    'card-3': 'asset/project-3-night-meadow-background.jpg',
+    'card-4': 'asset/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -726,8 +726,9 @@ function ensureHomeCardShaderBackgrounds() {
         const content = card.querySelector('.card-content');
         const expected = HOME_CARD_SHADER_BACKGROUNDS[key];
         if (!content || !expected) return;
-        content.style.backgroundImage = expected;
+        content.setAttribute('data-lazy-bg', expected);
         content.dataset.homeCardDefaultImage = expected;
+        window.PortfolioLazyLoad?.observe(content);
     });
 }
 
@@ -1858,10 +1859,12 @@ if (topContainer && centerContainer && bottomContainer) {
         loopImages.forEach(src => {
             const div = document.createElement('div');
             div.className = 'ticker-image-wrapper';
-            div.innerHTML = `<img src="${src}" alt="" loading="lazy" decoding="async" fetchpriority="low">`;
+            div.innerHTML = `<img data-src="${src}" alt="" decoding="async" fetchpriority="low">`;
             container.appendChild(div);
         });
     });
+
+    window.PortfolioLazyLoad?.scan(topContainer.parentElement || document);
 
     const foldsContent = [topContainer, centerContainer, bottomContainer];
 
@@ -1940,6 +1943,7 @@ if (topContainer && centerContainer && bottomContainer) {
 }
 
 (function prefetchCaseStudyPagesWhenIdle() {
+    if (navigator.connection?.saveData) return;
     const pages = ['project-1.html', 'project-2.html', 'project-4.html'];
     const run = () => {
         pages.forEach((href) => {
@@ -2339,6 +2343,7 @@ if (heroCamera) {
     function buildDetailMediaClone(card) {
         const sourceMedia = card.querySelector('.play-card__media');
         if (!sourceMedia) return document.createElement('div');
+        window.PortfolioLazyLoad?.applyLazyBg(sourceMedia);
         const clone = sourceMedia.cloneNode(true);
         const video = clone.querySelector('video');
         if (video) {

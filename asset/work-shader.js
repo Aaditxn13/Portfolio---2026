@@ -187,9 +187,10 @@
             if (!contentEl) return;
 
             const bg = contentEl.style.backgroundImage || '';
+            const lazyBg = contentEl.getAttribute('data-lazy-bg') || '';
             const match = bg.match(/url\((['"]?)(.*?)\1\)/);
-            if (!match || !match[2]) return;
-            const url = match[2];
+            const url = (match && match[2]) || lazyBg;
+            if (!url) return;
 
             const texture = textureLoader.load(
                 url,
@@ -348,6 +349,9 @@
     }
 
     function loadThreeJs() {
+        if (window.PortfolioLazyLoad?.loadThreeJs) {
+            return window.PortfolioLazyLoad.loadThreeJs();
+        }
         if (typeof THREE !== 'undefined') return Promise.resolve();
         return new Promise((resolve, reject) => {
             const script = document.createElement('script');
@@ -364,6 +368,10 @@
         if (!container) return;
 
         const boot = () => {
+            container.querySelectorAll('.card-content[data-lazy-bg]').forEach((el) => {
+                window.PortfolioLazyLoad?.applyLazyBg(el);
+            });
+
             loadThreeJs()
                 .then(() => {
                     if (typeof THREE === 'undefined') return;

@@ -12,7 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"
+        media="print"
+        onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"></noscript>
     <!-- Defer case-study HTML prefetch until the browser is idle. -->
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" defer></script>
@@ -190,7 +193,7 @@
                         <div class="work-card card-1" data-parallax="0.05" data-title="Building Zapp Account"
                             data-desc="Rebranding an existing product and scaling it beyond"
                             data-link="/project-1.html" role="link" tabindex="0">
-                            <div class="card-content" style="background-image: url('asset/grassland.png');">
+                            <div class="card-content" data-lazy-bg="asset/grassland.png">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -201,7 +204,7 @@
                         <div class="work-card card-2" data-parallax="-0.08" data-title="Growth Experiments on PayZapp"
                             data-desc="Interactive campaigns built around cultural moments to drive growth"
                             data-link="/project-2.html" role="link" tabindex="0">
-                            <div class="card-content" style="background-image: url('asset/water.png');">
+                            <div class="card-content" data-lazy-bg="asset/water.png">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -212,7 +215,7 @@
                         <div class="work-card card-3" data-parallax="0.1" data-title="Building the AI first work platform"
                             data-desc="">
                             <span class="work-card__status">Coming Soon</span>
-                            <div class="card-content" style="background-image: url('asset/project-3-night-meadow-background.jpg');">
+                            <div class="card-content" data-lazy-bg="asset/project-3-night-meadow-background.jpg">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -223,7 +226,7 @@
                         <div class="work-card card-4" data-parallax="-0.03" data-title="Experience Cricket while paying"
                             data-desc="Designing a IPL cricket experience for PayZapp"
                             data-link="/project-4.html" role="link" tabindex="0">
-                            <div class="card-content" style="background-image: url('asset/project-4-green-background.jpg');">
+                            <div class="card-content" data-lazy-bg="asset/project-4-green-background.jpg">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -252,10 +255,10 @@
                             </p>
                             <p class="beyond-note">feel free to connect for cool projects</p>
                             <div class="beyond-illustration" aria-hidden="true">
-                                <img class="beyond-illustration__camera" src="asset/beyond-illustration-camera.png?v=beyond-illustrations-1" alt="">
-                                <img class="beyond-illustration__film-roll" src="asset/beyond-illustration-film-roll.png?v=beyond-illustrations-1" alt="">
-                                <img class="beyond-illustration__flower" src="asset/beyond-illustration-flower.png?v=beyond-illustrations-1" alt="">
-                                <img class="beyond-illustration__notebook" src="asset/beyond-illustration-notebook.png?v=beyond-illustrations-1" alt="">
+                                <img class="beyond-illustration__camera" data-src="asset/beyond-illustration-camera.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__film-roll" data-src="asset/beyond-illustration-film-roll.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__flower" data-src="asset/beyond-illustration-flower.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__notebook" data-src="asset/beyond-illustration-notebook.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
                             </div>
                         </div>
                         <div class="museum-stage">
@@ -289,11 +292,10 @@
 
     <!-- Project Modal Overlay -->
 
-    <script src="asset/work-shader.js?v=no-netlify-cdn-1" defer></script>
-    <script src="asset/dappled-light-shader.js?v=restore-hero-shader-case-study" defer></script>
-    <script src="asset/leaf-fall.js" defer></script>
+    <script src="asset/lazy-load.js?v=lazy-load-1" defer></script>
+    <script src="asset/work-shader.js?v=lazy-load-1" defer></script>
     <script src="asset/ambient-audio.js" defer></script>
-    <script src="script.js?v=no-netlify-cdn-1" defer></script>
+    <script src="script.js?v=lazy-load-1" defer></script>
 
 </body>
 
