@@ -27,6 +27,23 @@ function getCurrentThemeName() {
     const el = document.getElementById('portfolio-loader');
     if (!el || !document.body) return;
 
+    const LOADER_SEEN_KEY = 'portfolio-loader-seen';
+
+    function skipLoaderInstantly() {
+        el.classList.add('portfolio-loader--done');
+        document.body.classList.remove('portfolio-loader-active');
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('aria-busy', 'false');
+        if (el.parentNode) el.parentNode.removeChild(el);
+    }
+
+    try {
+        if (sessionStorage.getItem(LOADER_SEEN_KEY) === '1') {
+            skipLoaderInstantly();
+            return;
+        }
+    } catch (_) { /* private mode */ }
+
     const prefersReducedMotion =
         window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -106,7 +123,7 @@ function getCurrentThemeName() {
         if (document.fonts && document.fonts.ready) {
             return Promise.race([
                 document.fonts.ready.then(() => {}).catch(() => {}),
-                new Promise(resolve => window.setTimeout(resolve, 600))
+                new Promise(resolve => window.setTimeout(resolve, 150))
             ]);
         }
         return Promise.resolve();
@@ -180,9 +197,7 @@ function getCurrentThemeName() {
 
     function idleFrame() {
         return new Promise(resolve => {
-            if (typeof window.requestIdleCallback === 'function')
-                window.requestIdleCallback(() => resolve(), { timeout: 3000 });
-            else window.setTimeout(resolve, 120);
+            requestAnimationFrame(() => requestAnimationFrame(resolve));
         });
     }
 
@@ -285,6 +300,10 @@ function getCurrentThemeName() {
 
     /** @returns {void} */
     function finishLoading() {
+        try {
+            sessionStorage.setItem(LOADER_SEEN_KEY, '1');
+        } catch (_) { /* ignore */ }
+
         el.classList.add('portfolio-loader--done');
         document.body.classList.remove('portfolio-loader-active');
         el.setAttribute('aria-busy', 'false');
@@ -303,7 +322,7 @@ function getCurrentThemeName() {
         }
 
         el.addEventListener('transitionend', onTe);
-        window.setTimeout(removeLoader, 1100);
+        window.setTimeout(removeLoader, 500);
     }
 
     let finished = false;
@@ -317,11 +336,15 @@ function getCurrentThemeName() {
         idleFrame().then(finishLoading);
     }
 
-    watchdogHandle = window.setTimeout(() => dismissOnce(), 3200);
+    watchdogHandle = window.setTimeout(() => dismissOnce(), 550);
 
     startInfinityLoop();
 
-    Promise.all([gatherAssetWaits(), new Promise(r => window.setTimeout(r, 120))])
+    Promise.all([
+        domReadyPromise(),
+        idleFrame(),
+        new Promise(r => window.setTimeout(r, 80))
+    ])
         .then(() => dismissOnce())
         .catch(() => dismissOnce());
 })();
@@ -456,23 +479,23 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        src="asset/grass-footer.png"
+                        data-src="asset/optimized/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
-                        loading="lazy"
                         decoding="async"
                         fetchpriority="low"
+                        data-loader-skip="true"
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        src="asset/grass-footer-dark.png"
+                        data-src="asset/optimized/grass-footer-dark.jpg"
                         alt=""
                         width="1440"
                         height="400"
-                        loading="lazy"
                         decoding="async"
                         fetchpriority="low"
+                        data-loader-skip="true"
                     >
                     <iframe
                         class="footer-grass-scene__overlay"
@@ -495,6 +518,7 @@ footerMounts.forEach(mount => {
             </div>
         </footer>
     `;
+    window.PortfolioLazyLoad?.scan(mount);
 });
 
 (function initFooterGrassSceneMotion() {
@@ -693,15 +717,19 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
     'asset/grassland.png',
+    'asset/optimized/grassland.jpg',
     'asset/water.png',
+    'asset/optimized/water.jpg',
     'asset/project-3-night-meadow-background.jpg',
-    'asset/project-4-green-background.jpg'
+    'asset/optimized/project-3-night-meadow-background.jpg',
+    'asset/project-4-green-background.jpg',
+    'asset/optimized/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'asset/grassland.png',
-    'card-2': 'asset/water.png',
-    'card-3': 'asset/project-3-night-meadow-background.jpg',
-    'card-4': 'asset/project-4-green-background.jpg'
+    'card-1': 'asset/optimized/grassland.jpg',
+    'card-2': 'asset/optimized/water.jpg',
+    'card-3': 'asset/optimized/project-3-night-meadow-background.jpg',
+    'card-4': 'asset/optimized/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -1943,7 +1971,8 @@ if (topContainer && centerContainer && bottomContainer) {
 }
 
 (function prefetchCaseStudyPagesWhenIdle() {
-    if (navigator.connection?.saveData) return;
+    const conn = navigator.connection;
+    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''))) return;
     const pages = ['project-1.html', 'project-2.html', 'project-4.html'];
     const run = () => {
         pages.forEach((href) => {

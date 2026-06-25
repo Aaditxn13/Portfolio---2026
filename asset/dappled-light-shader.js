@@ -326,7 +326,7 @@
     // (the shader's alpha output evaluates to 0 against a null sampler).
     const loader = new THREE.TextureLoader();
     loader.load(
-        'asset/dappled-tree.png',
+        'asset/optimized/dappled-tree.jpg',
         (tex) => {
             tex.wrapS = THREE.ClampToEdgeWrapping;
             tex.wrapT = THREE.ClampToEdgeWrapping;
@@ -338,7 +338,7 @@
         },
         undefined,
         (err) => {
-            console.warn('[dappled-light] failed to load asset/dappled-tree.png', err);
+            console.warn('[dappled-light] failed to load asset/optimized/dappled-tree.jpg', err);
         }
     );
 

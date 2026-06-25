@@ -583,7 +583,7 @@ body a, body button, body [role="button"], body input, body textarea, body selec
     place-items: center;
     background-color: var(--bg-color);
     isolation: isolate;
-    transition: opacity 0.72s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: opacity 0.38s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 body.night-mode .portfolio-loader {
