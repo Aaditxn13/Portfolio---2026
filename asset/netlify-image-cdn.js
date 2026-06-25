@@ -4,13 +4,19 @@
     const SKIP_EXTENSIONS = /\.(svg|mp4|mov|m4v|webm|json|mp3|wav|ogg|ttf|woff2?)(?:[?#].*)?$/i;
     const WIDTHS = [240, 320, 480, 640, 768, 960, 1200, 1440, 1600, 1920, 2400];
     const DEFAULT_QUALITY = 82;
+    const backgroundProbes = new Set();
 
     const isLocalPreview = () => {
         const { protocol, hostname } = window.location;
         return protocol === 'file:' || hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1';
     };
 
-    const enabled = !isLocalPreview();
+    const isKnownNonNetlifyHost = () => {
+        const hostname = window.location.hostname.toLowerCase();
+        return hostname === 'github.com' || hostname.endsWith('.github.io');
+    };
+
+    const enabled = !isLocalPreview() && !isKnownNonNetlifyHost();
 
     const unwrapCssUrl = (value) => {
         if (!value) return '';
@@ -40,6 +46,11 @@
         return `${url.pathname}${url.search}`;
     };
 
+    const encodeSourcePath = (value) => encodeURI(value)
+        .replace(/\?/g, '%3F')
+        .replace(/&/g, '%26')
+        .replace(/#/g, '%23');
+
     const nearestWidth = (element, requestedWidth) => {
         const rawWidth = Number(requestedWidth) || element?.getBoundingClientRect?.().width || element?.naturalWidth || 1200;
         const scaledWidth = Math.ceil(rawWidth * Math.min(window.devicePixelRatio || 1, 2));
@@ -49,15 +60,14 @@
     const netlifyImageUrl = (src, options = {}) => {
         if (!enabled || !isEligibleImage(src)) return src;
 
-        const params = new URLSearchParams();
-        params.set('url', pathWithQuery(src));
+        const params = [`url=${encodeSourcePath(pathWithQuery(src))}`];
 
         if (options.width !== false) {
-            params.set('w', String(nearestWidth(options.element, options.width)));
+            params.push(`w=${nearestWidth(options.element, options.width)}`);
         }
 
-        params.set('q', String(options.quality || DEFAULT_QUALITY));
-        return `${CDN_PATH}?${params.toString()}`;
+        params.push(`q=${options.quality || DEFAULT_QUALITY}`);
+        return `${CDN_PATH}?${params.join('&')}`;
     };
 
     window.netlifyImageUrl = netlifyImageUrl;
@@ -79,11 +89,17 @@
     };
 
     const rewriteImage = (img) => {
+        if (img.dataset.netlifyCdnFailed === 'true' || img.dataset.netlifyImageCdn === 'skip') return;
+
         const original = img.dataset.netlifyCdnOriginalSrc || img.getAttribute('src');
         if (!original || !isEligibleImage(original)) return;
 
+        const cdnSrc = netlifyImageUrl(original, { element: img });
+        if (cdnSrc === original) return;
+
         img.dataset.netlifyCdnOriginalSrc = original;
-        img.setAttribute('src', netlifyImageUrl(original, { element: img }));
+        img.addEventListener('error', restoreOriginalImage, { once: true });
+        img.setAttribute('src', cdnSrc);
 
         if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
         if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
@@ -91,25 +107,64 @@
         rewriteSrcset(img);
     };
 
+    const restoreOriginalImage = (event) => {
+        const img = event.currentTarget;
+        const original = img.dataset.netlifyCdnOriginalSrc;
+        if (!original || img.getAttribute('src') === original) return;
+
+        img.dataset.netlifyCdnFailed = 'true';
+        if (img.dataset.netlifyCdnOriginalSrcset) {
+            img.setAttribute('srcset', img.dataset.netlifyCdnOriginalSrcset);
+        } else {
+            img.removeAttribute('srcset');
+        }
+        img.setAttribute('src', original);
+    };
+
     const rewritePoster = (video) => {
+        if (video.dataset.netlifyCdnFailed === 'true' || video.dataset.netlifyImageCdn === 'skip') return;
+
         const original = video.dataset.netlifyCdnOriginalPoster || video.getAttribute('poster');
         if (!original || !isEligibleImage(original)) return;
 
+        const cdnPoster = netlifyImageUrl(original, { element: video });
+        if (cdnPoster === original) return;
+
         video.dataset.netlifyCdnOriginalPoster = original;
-        video.setAttribute('poster', netlifyImageUrl(original, { element: video }));
+        video.setAttribute('poster', cdnPoster);
     };
 
     const rewriteInlineBackground = (element) => {
+        if (element.dataset.netlifyCdnFailed === 'true' || element.dataset.netlifyImageCdn === 'skip') return;
+
         const style = element.getAttribute('style');
         if (!style || !style.includes('url(')) return;
 
+        const cdnUrls = [];
         const rewritten = style.replace(/url\((['"]?)(.*?)\1\)/g, (match, quote, url) => {
             if (!isEligibleImage(url)) return match;
-            return `url("${netlifyImageUrl(url, { element })}")`;
+            const cdnUrl = netlifyImageUrl(url, { element });
+            if (cdnUrl === url) return match;
+            cdnUrls.push(cdnUrl);
+            return `url("${cdnUrl}")`;
         });
 
         if (rewritten !== style) {
+            element.dataset.netlifyCdnOriginalStyle = style;
             element.setAttribute('style', rewritten);
+            cdnUrls.forEach((cdnUrl) => {
+                const probe = new Image();
+                backgroundProbes.add(probe);
+                probe.onload = () => backgroundProbes.delete(probe);
+                probe.onerror = () => {
+                    backgroundProbes.delete(probe);
+                    if (element.dataset.netlifyCdnOriginalStyle) {
+                        element.dataset.netlifyCdnFailed = 'true';
+                        element.setAttribute('style', element.dataset.netlifyCdnOriginalStyle);
+                    }
+                };
+                probe.src = cdnUrl;
+            });
         }
     };
 
