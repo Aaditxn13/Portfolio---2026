@@ -334,6 +334,7 @@
             tex.minFilter = THREE.LinearMipmapLinearFilter;
             tex.magFilter = THREE.LinearFilter;
             uniforms.u_treeTex.value = tex;
+            canvas.closest('.hero-v2__dappled')?.classList.add('is-shader-ready');
             console.info('[dappled-light] texture ready');
         },
         undefined,

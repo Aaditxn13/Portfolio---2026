@@ -1284,7 +1284,33 @@ html.cs-incoming body > :not(#portfolio-loader) {
     z-index: 80;
 }
 
+.hero-v2__dappled::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #403E39;
+    -webkit-mask-image: url('asset/dappled-tree.png');
+            mask-image: url('asset/dappled-tree.png');
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: 54% 42%;
+            mask-position: 54% 42%;
+    -webkit-mask-size: 84% auto;
+            mask-size: 84% auto;
+    filter: blur(14px);
+    opacity: 0.18;
+    pointer-events: none;
+    transform: translate(6%, 7%) scale(1.04);
+    transition: opacity 420ms ease;
+    z-index: 1;
+}
+
+.hero-v2__dappled.is-shader-ready::after {
+    opacity: 0;
+}
+
 .hero-v2__dappled-canvas {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%;
@@ -1297,12 +1323,18 @@ html.cs-incoming body > :not(#portfolio-loader) {
        (e.g. project card-1 sits in the upper-left, partially under the
        70vw-wide shader strip). Explicitly opt the canvas out. */
     pointer-events: none;
+    z-index: 2;
 }
 
 /* Dark mode bumps canvas opacity so the procedural moon backlight registers
    brightly behind the now-pitch-black tree silhouette. */
 body.night-mode .hero-v2__dappled-canvas {
     opacity: 0.85;
+}
+
+body.night-mode .hero-v2__dappled::after {
+    background: #EFEFDA;
+    opacity: 0.2;
 }
 
 body.night-mode .hero-v2__dappled::before {
