@@ -1,0 +1,457 @@
+{
+  "id": "growth-experiments",
+  "title": "PayZapp - Seasonal Growth Campaigns",
+  "subtitle": "Turning festivals and seasons into interactive product moments for millions of PayZapp users.",
+  "meta": [
+    {
+      "key": "platform",
+      "label": "Platform",
+      "value": "iOS, Android"
+    },
+    {
+      "key": "role",
+      "label": "Role",
+      "value": "UX Designer II"
+    },
+    {
+      "key": "team",
+      "label": "Team",
+      "value": "6 Designers"
+    },
+    {
+      "key": "timeline",
+      "label": "Timeline",
+      "value": "2-3 Weeks"
+    }
+  ],
+  "hero": {
+    "type": "image",
+    "src": "cs-asset:growth-experiments:1781886666080:bi5uwrly0",
+    "alt": "Growth Experiments hero",
+    "uid": "bh2ni5v69",
+    "mediaType": "image",
+    "mediaMimeType": "image/png",
+    "cloudinary": {
+      "status": "pending-upload",
+      "field": "src",
+      "publicId": "portfolio/growth-experiments/bh2ni5v69-image",
+      "originalName": "image.png",
+      "mimeType": "image/png",
+      "size": 1181313,
+      "resourceType": "image",
+      "localAssetRef": "cs-asset:growth-experiments:1781886666080:bi5uwrly0",
+      "createdAt": "2026-06-19T16:31:06.097Z"
+    }
+  },
+  "sections": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "blocks": [
+        {
+          "type": "section-label",
+          "label": "Overview",
+          "uid": "bhs6sx8c9"
+        },
+        {
+          "type": "text",
+          "body": "PayZapp is HDFC Bank's payments app — one of India's most widely used banking products. With a large existing user base and even larger competition, the challenge isn't just retention. It's relevance.",
+          "uid": "b65f7lc6h"
+        },
+        {
+          "type": "text",
+          "body": "Growth experiments were our way of staying relevant. Seasonal campaigns, interactive moments, gamified rewards — each one designed to give users a reason to open the app beyond a transaction. New users discovered PayZapp through these campaigns. Existing users found new reasons to stay.",
+          "uid": "bz8w6bccy"
+        }
+      ],
+      "uid": "bzy5hoea2"
+    },
+    {
+      "id": "cross-sell",
+      "label": "Cross-sell",
+      "blocks": [
+        {
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Product Led Cross Selling",
+          "uid": "b6nyedfvz"
+        },
+        {
+          "type": "meta",
+          "uid": "b9ojz92ll"
+        },
+        {
+          "uid": "bxf9nxx1z",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Cross-sell on a payments app is a hard problem"
+        },
+        {
+          "type": "image",
+          "layout": "2-col",
+          "items": [
+            {
+              "src": "cs-asset:growth-experiments:1782281704108:b7r16mbtm",
+              "alt": "Ignored banner",
+              "caption": "Banner gets ignored",
+              "uid": "bt5tnt1kr",
+              "mediaType": "image",
+              "mediaMimeType": "image/png",
+              "cloudinary": {
+                "status": "pending-upload",
+                "field": "src",
+                "publicId": "portfolio/growth-experiments/bt5tnt1kr-image",
+                "originalName": "image.png",
+                "mimeType": "image/png",
+                "size": 57227,
+                "resourceType": "image",
+                "localAssetRef": "cs-asset:growth-experiments:1781876903226:b3bypz8g4",
+                "createdAt": "2026-06-19T13:48:23.241Z"
+              },
+              "localAsset": {
+                "status": "local",
+                "field": "src",
+                "originalName": "image.png",
+                "mimeType": "image/png",
+                "size": 182143,
+                "resourceType": "image",
+                "ref": "cs-asset:growth-experiments:1782281704108:b7r16mbtm",
+                "createdAt": "2026-06-24T06:15:04.116Z"
+              }
+            },
+            {
+              "src": "cs-asset:growth-experiments:1782281712048:b8dpm7ilj",
+              "alt": "Dismissed pop-up",
+              "caption": "Pop-up gets dismissed",
+              "uid": "bm2aq405c",
+              "mediaType": "image",
+              "mediaMimeType": "image/png",
+              "cloudinary": {
+                "status": "pending-upload",
+                "field": "src",
+                "publicId": "portfolio/growth-experiments/bm2aq405c-image",
+                "originalName": "image.png",
+                "mimeType": "image/png",
+                "size": 56028,
+                "resourceType": "image",
+                "localAssetRef": "cs-asset:growth-experiments:1781885652372:b2u10a58d",
+                "createdAt": "2026-06-19T16:14:12.394Z"
+              },
+              "localAsset": {
+                "status": "local",
+                "field": "src",
+                "originalName": "image.png",
+                "mimeType": "image/png",
+                "size": 332441,
+                "resourceType": "image",
+                "ref": "cs-asset:growth-experiments:1782281712048:b8dpm7ilj",
+                "createdAt": "2026-06-24T06:15:12.054Z"
+              }
+            }
+          ],
+          "caption": "",
+          "uid": "b0d915piw",
+          "mediaHeight": 300,
+          "hideCaptions": false,
+          "spacing": "tight"
+        },
+        {
+          "type": "text",
+          "body": "We needed a format where the user wanted to engage before they even knew a product was waiting on the other side. Holi — tactile, playful, built around surprise and colour was the perfect wrapper for that idea. The festival didn't just set the visual tone, it justified the interaction model.",
+          "uid": "bpmh0l0nh"
+        },
+        {
+          "uid": "b09r54bwr",
+          "type": "text",
+          "body": "These two campaigns one for Valentine's Day, one for Holi were our attempt at doing it differently. Same goal across both: surface a relevant product to the right user at the right cultural moment. The cross-sell items were identical across campaigns, but the interaction pattern was designed fresh each time to match the mood of the festival."
+        },
+        {
+          "uid": "bbh511tsd",
+          "type": "spacer",
+          "size": "md",
+          "spaceAfter": 50,
+          "spaceBefore": 50
+        },
+        {
+          "uid": "b6ofon1ap",
+          "type": "section-label",
+          "label": "WHY THIS APProach?"
+        },
+        {
+          "uid": "b53yfaw10",
+          "type": "text",
+          "body": "Festivals put users in a different headspace. They're generous, they're playful, they're open. We used that window intentionally — wrapping a product recommendation inside something people actually wanted to interact with. The festival didn't just set the visual tone, it justified the interaction. That's what made these campaigns feel earned rather than interrupting."
+        },
+        {
+          "uid": "ba4yj5j06",
+          "type": "image",
+          "layout": "fullbleed",
+          "src": "cs-asset:growth-experiments:1781873847321:bmetkyegb",
+          "alt": "image",
+          "mediaType": "image",
+          "mediaMimeType": "image/png",
+          "cloudinary": {
+            "status": "pending-upload",
+            "field": "src",
+            "publicId": "portfolio/growth-experiments/ba4yj5j06-image",
+            "originalName": "image.png",
+            "mimeType": "image/png",
+            "size": 5850246,
+            "resourceType": "image",
+            "localAssetRef": "cs-asset:growth-experiments:1781873847321:bmetkyegb",
+            "createdAt": "2026-06-19T12:57:27.345Z"
+          },
+          "items": null,
+          "caption": "",
+          "hideCaptions": true
+        },
+        {
+          "uid": "bclbxz0xd",
+          "type": "image",
+          "layout": "2-col",
+          "src": "",
+          "alt": "",
+          "hideCaptions": true,
+          "mediaHeight": 550,
+          "items": [
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bwo7mfjm0"
+            },
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bfdpjqu3e"
+            }
+          ]
+        },
+        {
+          "type": "section-label",
+          "label": "Impact",
+          "uid": "bgfj397g8"
+        },
+        {
+          "type": "text",
+          "body": "The point was not to make a campaign banner look festive. It was to turn a product recommendation into a small act of discovery — one where surprise came before the sell.",
+          "uid": "bwlhvxcxi"
+        },
+        {
+          "uid": "bj8jyll8o",
+          "type": "spacer",
+          "size": "md",
+          "spaceBefore": 100,
+          "spaceAfter": 100
+        }
+      ],
+      "uid": "bgjdg03nd"
+    },
+    {
+      "id": "project-three",
+      "label": "Offer Discovery",
+      "blocks": [
+        {
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Offer Discovery",
+          "uid": "b3txbjzcg"
+        },
+        {
+          "type": "meta",
+          "uid": "bpfq8gtrp"
+        },
+        {
+          "type": "section-label",
+          "label": "Overview",
+          "uid": "b2klxtkp7"
+        },
+        {
+          "type": "text",
+          "body": "PayZapp had offers. Users just didn't know. These three campaigns were built to fix that — surfacing existing offers through interactive moments instead of static listings. A first-transaction animation for new users, a scratch card mechanic for existing ones, and a spin-the-wheel experience that took users to a dedicated page and landed them on a personalised offer they could claim.",
+          "uid": "bxciqrxlq"
+        },
+        {
+          "uid": "bu5fogz69",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "type": "section-label",
+          "label": "Why",
+          "uid": "b1353t4m7"
+        },
+        {
+          "type": "text",
+          "body": "A discount buried in a tab doesn't drive behaviour. Delight does. We took what was already there and made it impossible to ignore.",
+          "uid": "b1b9hgps8"
+        },
+        {
+          "type": "text",
+          "body": "<em>Mix of solo work and team collaboration across the three campaigns.</em>",
+          "uid": "b1ofv5gug"
+        },
+        {
+          "type": "image",
+          "layout": "wide",
+          "src": "cs-asset:growth-experiments:1781985006272:b35psgf3p",
+          "alt": "Offer Discovery campaign screens",
+          "hideCaptions": true,
+          "uid": "bomzw3181",
+          "mediaType": "image",
+          "mediaMimeType": "image/png",
+          "cloudinary": {
+            "status": "pending-upload",
+            "field": "src",
+            "publicId": "portfolio/growth-experiments/bomzw3181-image",
+            "originalName": "image.png",
+            "mimeType": "image/png",
+            "size": 5419799,
+            "resourceType": "image",
+            "localAssetRef": "cs-asset:growth-experiments:1781985006272:b35psgf3p",
+            "createdAt": "2026-06-20T19:50:06.296Z"
+          }
+        },
+        {
+          "type": "section-label",
+          "label": "Impact",
+          "uid": "bckioghdi"
+        },
+        {
+          "uid": "bfgeae0m0",
+          "type": "metrics",
+          "style": "standard",
+          "items": [
+            {
+              "uid": "bt8l07sjf",
+              "stat": "",
+              "label": "",
+              "note": ""
+            }
+          ]
+        }
+      ],
+      "uid": "bfxhkelwz"
+    },
+    {
+      "id": "project-four",
+      "label": "Project 04",
+      "blocks": [
+        {
+          "uid": "basxgkz1c",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Year in Review"
+        },
+        {
+          "uid": "b3kb2de9c",
+          "type": "meta"
+        },
+        {
+          "uid": "bo2yxzp7n",
+          "type": "section-label",
+          "label": "Overview"
+        },
+        {
+          "uid": "bpyzdxl16",
+          "type": "text",
+          "body": "At the end of every year, we gave users a reason to look back. PayZapp Wrapped was a personalised, interactive flipbook experience — swipeable cards revealing key insights from a user's year on the app. Top spend categories, biggest transactions, most used features. Pure delight, no utility agenda."
+        },
+        {
+          "uid": "bc26dpcfz",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "uid": "b70e9b1qa",
+          "type": "section-label",
+          "label": "why"
+        },
+        {
+          "uid": "bmfrbbja4",
+          "type": "text",
+          "body": "Payments are functional by nature. Year Wrapped was our one moment to make the app feel personal. If a user sees their own story reflected back at them, the app stops being a tool and starts being something they have a relationship with."
+        },
+        {
+          "uid": "bxw81ubmc",
+          "type": "image",
+          "layout": "fullbleed",
+          "src": "cs-asset:growth-experiments:1782292288726:bxab2rm3l",
+          "alt": "image",
+          "hideCaptions": true,
+          "mediaType": "image",
+          "mediaMimeType": "image/png",
+          "localAsset": {
+            "status": "local",
+            "field": "src",
+            "originalName": "image.png",
+            "mimeType": "image/png",
+            "size": 4373020,
+            "resourceType": "image",
+            "ref": "cs-asset:growth-experiments:1782292288726:bxab2rm3l",
+            "createdAt": "2026-06-24T09:11:28.742Z"
+          }
+        },
+        {
+          "uid": "bjwg5e758",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "uid": "bnu2u006e",
+          "type": "section-label",
+          "label": "impact"
+        },
+        {
+          "uid": "bp6isrmd6",
+          "type": "metrics",
+          "style": "standard",
+          "items": [
+            {
+              "uid": "bmtme5ujn",
+              "stat": "<strong>6.54%</strong>",
+              "label": "CTR on Banners",
+              "note": ""
+            },
+            {
+              "stat": "<strong>9.4%</strong>",
+              "label": "Activation of dormant users",
+              "note": "",
+              "uid": "bmeo7ui8a"
+            },
+            {
+              "stat": "1.2",
+              "label": "Average times user interaction",
+              "note": "",
+              "uid": "bibun2m2t"
+            }
+          ],
+          "caption": ""
+        }
+      ],
+      "uid": "ba32cewdu"
+    },
+    {
+      "id": "reflection",
+      "label": "Reflection",
+      "indexLabel": "Reflections",
+      "blocks": [
+        {
+          "type": "section-label",
+          "label": "Reflection",
+          "uid": "bhb7th0np"
+        },
+        {
+          "type": "text",
+          "body": "Growth experiments sat in a useful space between product design and campaign design. They had to work like product surfaces, but feel timed, playful, and worth opening.",
+          "uid": "bz7359jf7"
+        },
+        {
+          "type": "text",
+          "body": "The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.",
+          "uid": "b1fzvwwga"
+        }
+      ],
+      "uid": "b4tu7ddz2"
+    }
+  ]
+}

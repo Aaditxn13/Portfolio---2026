@@ -27,11 +27,16 @@
     // Bumped Zapp to v3 so the new Figma-authored case-study content
     // is not masked by an older browser draft in localStorage.
     const CONTENT_VERSION = CASE_ID === 'growth-experiments'
-        ? 'v4'
-        : (CASE_ID === 'zapp-account' ? 'v3' : (CASE_ID === 'project-3' || CASE_ID === 'now-and-me' ? 'v3' : 'v2'));
+        ? 'v5'
+        : (CASE_ID === 'zapp-account' ? 'v4' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
     const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'project-3', 'now-and-me']);
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
+    const BUNDLED_CONTENT_PATHS = {
+        'zapp-account': 'content/case-study-zapp-account.json',
+        'growth-experiments': 'content/case-study-growth-experiments.json',
+        'now-and-me': 'content/case-study-now-and-me.json'
+    };
     const ASSET_DB_NAME = 'cs-editor-assets';
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
@@ -43,7 +48,8 @@
         'cs-asset:zapp-account:1781856232150:bc8yjynts': 'asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'asset/case-studies/zapp-account/bsy7x35a2-screen-recording-jun-20-2026-from-kommodo.gif',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'asset/case-studies/zapp-account/b3o4grj75-screenrecording2026-06-19at12-48-40pm-ezgif-com-crop-1.gif',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'asset/case-studies/zapp-account/b5591rluy-image.png'
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'asset/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -306,9 +312,7 @@
        STATE
        --------------------------------------------------------------------------- */
 
-    let doc = loadDoc();
-    applyLocalCaseStudyAssetDefaults(doc);
-    ensureGrowthOfferDiscoverySection(doc);
+    let doc = null;
     // Keep the in-place editor available while case studies are still being built.
     let mode = 'view';
     try {
@@ -399,20 +403,48 @@
         });
     }
 
-    function loadDoc() {
-        const fallback = clone(DEFAULT_DOCS[CASE_ID] || { id: CASE_ID, title: '', subtitle: '', sections: [] });
+    function loadDocFromStorage() {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
-            if (raw) {
-                const parsed = JSON.parse(raw);
-                if (parsed && Array.isArray(parsed.sections)) {
-                    ensureIds(parsed);
-                    return parsed;
-                }
-            }
-        } catch (e) { /* ignore */ }
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || !Array.isArray(parsed.sections)) return null;
+            ensureIds(parsed);
+            return parsed;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function fallbackDoc() {
+        const fallback = clone(DEFAULT_DOCS[CASE_ID] || { id: CASE_ID, title: '', subtitle: '', sections: [] });
         ensureIds(fallback);
         return fallback;
+    }
+
+    async function loadBundledDoc() {
+        const path = BUNDLED_CONTENT_PATHS[CASE_ID];
+        if (!path) return fallbackDoc();
+        try {
+            const response = await fetch(path, { cache: 'no-store' });
+            if (!response.ok) return fallbackDoc();
+            const parsed = await response.json();
+            if (!parsed || parsed.id !== CASE_ID || !Array.isArray(parsed.sections)) return fallbackDoc();
+            ensureIds(parsed);
+            return parsed;
+        } catch (e) {
+            return fallbackDoc();
+        }
+    }
+
+    async function resolveDoc() {
+        const stored = loadDocFromStorage();
+        if (stored) return stored;
+        return loadBundledDoc();
+    }
+
+    function loadDoc() {
+        return loadDocFromStorage() || fallbackDoc();
     }
 
     function clone(v) { return JSON.parse(JSON.stringify(v)); }
@@ -2233,10 +2265,12 @@
         });
 
         const reset = el('button', { class: 'cs-editor-toolbar__btn cs-editor-toolbar__btn--danger', attrs: { type: 'button', title: 'Discard local edits and revert to the default content' }, text: 'Reset' });
-        reset.addEventListener('click', () => {
+        reset.addEventListener('click', async () => {
             if (!confirm('Discard all local edits for this case study?')) return;
             localStorage.removeItem(STORAGE_KEY);
-            doc = loadDoc();
+            doc = await loadBundledDoc();
+            applyLocalCaseStudyAssetDefaults(doc);
+            ensureGrowthOfferDiscoverySection(doc);
             renderAll();
         });
 
@@ -2263,6 +2297,9 @@
        --------------------------------------------------------------------------- */
 
     async function boot() {
+        doc = await resolveDoc();
+        applyLocalCaseStudyAssetDefaults(doc);
+        ensureGrowthOfferDiscoverySection(doc);
         buildToolbar();
         try {
             if (await migrateInlineMediaAssets()) persist();
