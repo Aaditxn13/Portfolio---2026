@@ -26,7 +26,7 @@
   ],
   "hero": {
     "type": "image",
-    "src": "cs-asset:growth-experiments:1781886666080:bi5uwrly0",
+    "src": "cs-asset:growth-experiments:1782380753585:b59u1ehlg",
     "alt": "Growth Experiments hero",
     "uid": "bh2ni5v69",
     "mediaType": "image",
@@ -41,6 +41,16 @@
       "resourceType": "image",
       "localAssetRef": "cs-asset:growth-experiments:1781886666080:bi5uwrly0",
       "createdAt": "2026-06-19T16:31:06.097Z"
+    },
+    "localAsset": {
+      "status": "local",
+      "field": "src",
+      "originalName": "image.png",
+      "mimeType": "image/png",
+      "size": 1036911,
+      "resourceType": "image",
+      "ref": "cs-asset:growth-experiments:1782380753585:b59u1ehlg",
+      "createdAt": "2026-06-25T09:45:53.604Z"
     }
   },
   "sections": [
@@ -449,9 +459,20 @@
           "type": "text",
           "body": "The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.",
           "uid": "b1fzvwwga"
+        },
+        {
+          "uid": "bpn13x7fr",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "💌 Get in touch for more details."
         }
       ],
       "uid": "b4tu7ddz2"
     }
-  ]
+  ],
+  "__editor": {
+    "repoVersion": 1782383737130,
+    "syncedAt": "2026-06-25T10:35:37.130Z",
+    "dirty": false
+  }
 }

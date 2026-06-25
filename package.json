@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "case-study:sync": "node scripts/case-study-sync-server.mjs",
+    "sync": "node scripts/case-study-sync-server.mjs",
     "footer:install": "npm --prefix asset/grass-footer-app install",
     "footer:build": "npm --prefix asset/grass-footer-app run build",
     "footer:dev": "npm --prefix asset/grass-footer-app run dev",

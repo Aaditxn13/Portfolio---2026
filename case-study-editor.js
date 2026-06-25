@@ -7,9 +7,9 @@
      layout/style, delete), and there's a "+" inserter between blocks and
      between sections to add new content.
    - Storage: localStorage draft (auto-saved on every change).
-   - Publish: downloads a JSON snapshot you can commit to the repo, and also
-     copies the same JSON into the "published" slot (rendered when ?mode=view
-     or when the Publish button is the last action).
+   - Local sync: when `npm run case-study:sync` is running on localhost, edits
+     auto-write to content/*.json and asset/case-studies/* in the repo.
+   - Publish: downloads a JSON snapshot backup; Sync to repo writes files directly.
    - Import: load a JSON file to replace the current draft.
 
    The data model intentionally matches what the previous sync script used so
@@ -35,8 +35,12 @@
     const BUNDLED_CONTENT_PATHS = {
         'zapp-account': 'content/case-study-zapp-account.json',
         'growth-experiments': 'content/case-study-growth-experiments.json',
-        'now-and-me': 'content/case-study-now-and-me.json'
+        'now-and-me': 'content/case-study-now-and-me.json',
+        'project-3': 'content/case-study-project-3.json'
     };
+    const ASSET_MANIFEST_PATH = 'content/case-study-asset-manifest.json';
+    const SYNC_SERVER_URL = `http://localhost:${window.CASE_STUDY_SYNC_PORT || 4567}`;
+    const SYNC_DEBOUNCE_MS = 2000;
     const ASSET_DB_NAME = 'cs-editor-assets';
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
@@ -79,6 +83,10 @@
         }
     ];
     const assetUrlCache = new Map();
+    let runtimeAssetManifest = {};
+    let syncServerReady = null;
+    let syncTimer = null;
+    let syncInFlight = null;
     const SECTION_ID_MAP = {
         overview: 'cs-overview',
         problem: 'cs-problem',
@@ -437,10 +445,193 @@
         }
     }
 
+    async function loadAssetManifest() {
+        try {
+            const response = await fetch(ASSET_MANIFEST_PATH, { cache: 'no-store' });
+            if (!response.ok) return;
+            const parsed = await response.json();
+            if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+                runtimeAssetManifest = parsed;
+            }
+        } catch (e) { /* offline or static preview */ }
+    }
+
+    function getAssetOverride(ref) {
+        return LOCAL_ASSET_OVERRIDES[ref] || runtimeAssetManifest[ref] || '';
+    }
+
+    function isLocalDev() {
+        const { hostname, protocol } = window.location;
+        return protocol === 'http:' && (hostname === 'localhost' || hostname === '127.0.0.1');
+    }
+
+    async function isSyncServerAvailable() {
+        if (!isLocalDev()) return false;
+        if (syncServerReady != null) return syncServerReady;
+        try {
+            const response = await fetch(`${SYNC_SERVER_URL}/health`, { cache: 'no-store' });
+            syncServerReady = response.ok;
+        } catch (e) {
+            syncServerReady = false;
+        }
+        return syncServerReady;
+    }
+
+    function markDocDirty() {
+        if (!doc) return;
+        doc.__editor = {
+            ...(doc.__editor || {}),
+            dirty: true,
+            localUpdatedAt: Date.now()
+        };
+    }
+
+    function docRepoVersion(value) {
+        return Number(value?.__editor?.repoVersion) || 0;
+    }
+
+    function choosePreferredDoc(stored, bundled) {
+        if (!stored) return bundled;
+        if (!bundled) return stored;
+        const storedVersion = docRepoVersion(stored);
+        const bundledVersion = docRepoVersion(bundled);
+        if (stored.__editor?.dirty && storedVersion >= bundledVersion) return stored;
+        if (bundledVersion > storedVersion) return bundled;
+        if (storedVersion > bundledVersion) return stored;
+        return stored;
+    }
+
+    function visitDocMedia(docValue, visitor) {
+        function visitBlock(block) {
+            if (!block || typeof block !== 'object') return;
+            visitor(block, 'src');
+            if (block.media) visitBlock(block.media);
+            if (Array.isArray(block.items)) block.items.forEach(visitBlock);
+            if (Array.isArray(block.columns)) {
+                block.columns.forEach((col) => (col.blocks || []).forEach(visitBlock));
+            }
+        }
+        if (docValue?.hero) visitBlock(docValue.hero);
+        (docValue?.sections || []).forEach((section) => (section.blocks || []).forEach(visitBlock));
+    }
+
+    function blobToBase64(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const result = String(reader.result || '');
+                const comma = result.indexOf(',');
+                resolve(comma >= 0 ? result.slice(comma + 1) : result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    }
+
+    async function collectAssetsPayload(docValue) {
+        const assets = [];
+        const refs = new Map();
+
+        visitDocMedia(docValue, (block, field) => {
+            const src = block[field];
+            if (!isAssetRef(src) || refs.has(src)) return;
+            refs.set(src, {
+                ref: src,
+                uid: block.uid || '',
+                originalName: block.localAsset?.originalName || block.cloudinary?.originalName || '',
+                mimeType: block.mediaMimeType || block.localAsset?.mimeType || block.cloudinary?.mimeType || ''
+            });
+        });
+
+        for (const meta of refs.values()) {
+            const record = await getAssetRecord(meta.ref);
+            if (!record?.blob) continue;
+            assets.push({
+                ...meta,
+                data: await blobToBase64(record.blob)
+            });
+        }
+
+        return assets;
+    }
+
+    async function syncToRepo(options = {}) {
+        if (!doc || !isLocalDev()) return false;
+        if (!(await isSyncServerAvailable())) {
+            if (options.showStatus) flashSaved('Start npm run case-study:sync');
+            return false;
+        }
+
+        if (syncInFlight) return syncInFlight;
+
+        syncInFlight = (async () => {
+            try {
+                if (saveTimer) {
+                    clearTimeout(saveTimer);
+                    saveTimer = null;
+                }
+                persist();
+
+                const payload = {
+                    caseId: CASE_ID,
+                    doc: clone(doc),
+                    assets: await collectAssetsPayload(doc),
+                    knownPaths: { ...LOCAL_ASSET_OVERRIDES, ...runtimeAssetManifest }
+                };
+
+                const response = await fetch(`${SYNC_SERVER_URL}/sync`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (!response.ok || !result.ok) {
+                    throw new Error(result.error || 'Sync failed');
+                }
+
+                doc.__editor = {
+                    repoVersion: result.repoVersion,
+                    syncedAt: result.syncedAt,
+                    dirty: false,
+                    localUpdatedAt: Date.now()
+                };
+                persist({ markDirty: false, scheduleSync: false });
+                runtimeAssetManifest = {
+                    ...runtimeAssetManifest,
+                    ...(result.manifestUpdates || {})
+                };
+                if (options.showStatus !== false) {
+                    flashSaved(result.assetsWritten ? `Synced (${result.assetsWritten} assets)` : 'Synced to repo');
+                }
+                return true;
+            } catch (error) {
+                if (options.showStatus !== false) {
+                    flashSaved('Sync failed');
+                }
+                console.warn('Case study repo sync failed', error);
+                return false;
+            } finally {
+                syncInFlight = null;
+            }
+        })();
+
+        return syncInFlight;
+    }
+
+    function scheduleRepoSync() {
+        if (!isLocalDev() || mode !== 'edit') return;
+        if (syncTimer) clearTimeout(syncTimer);
+        syncTimer = setTimeout(() => {
+            syncToRepo({ showStatus: true });
+        }, SYNC_DEBOUNCE_MS);
+    }
+
     async function resolveDoc() {
-        const stored = loadDocFromStorage();
-        if (stored) return stored;
-        return loadBundledDoc();
+        const [stored, bundled] = await Promise.all([
+            Promise.resolve(loadDocFromStorage()),
+            loadBundledDoc()
+        ]);
+        return choosePreferredDoc(stored, bundled);
     }
 
     function loadDoc() {
@@ -449,9 +640,13 @@
 
     function clone(v) { return JSON.parse(JSON.stringify(v)); }
 
-    function persist() {
+    function persist(options = {}) {
         try {
+            if (options.markDirty !== false) markDocDirty();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(doc));
+            if (options.scheduleSync !== false && options.markDirty !== false) {
+                scheduleRepoSync();
+            }
             return true;
         } catch (e) {
             flashSaved('Save failed');
@@ -703,7 +898,8 @@
 
     async function resolveAssetSrc(src) {
         if (!isAssetRef(src)) return src;
-        if (LOCAL_ASSET_OVERRIDES[src]) return LOCAL_ASSET_OVERRIDES[src];
+        const override = getAssetOverride(src);
+        if (override) return override;
         if (assetUrlCache.has(src)) return assetUrlCache.get(src);
         const record = await getAssetRecord(src);
         if (!record || !record.blob) return '';
@@ -728,7 +924,7 @@
     function isGifMedia(block, field = 'src') {
         if (!block) return false;
         const src = block[field] || '';
-        const localOverride = LOCAL_ASSET_OVERRIDES[src] || '';
+        const localOverride = getAssetOverride(src) || '';
         const mimeType = block.mediaMimeType || (block.localAsset && block.localAsset.mimeType) || mimeTypeFromDataUrl(src);
         const originalName = block.localAsset && block.localAsset.originalName ? block.localAsset.originalName : '';
         return mimeType === 'image/gif'
@@ -2283,8 +2479,13 @@
             renderAll();
         });
 
-        const publish = el('button', { class: 'cs-editor-toolbar__btn', attrs: { type: 'button', title: 'Download a JSON snapshot to commit' }, text: 'Publish' });
+        const publish = el('button', { class: 'cs-editor-toolbar__btn', attrs: { type: 'button', title: 'Write content and assets into the repo (local dev)' }, text: 'Sync to repo' });
         publish.addEventListener('click', () => {
+            syncToRepo({ showStatus: true });
+        });
+
+        const exportBtn = el('button', { class: 'cs-editor-toolbar__btn', attrs: { type: 'button', title: 'Download a JSON backup' }, text: 'Export JSON' });
+        exportBtn.addEventListener('click', () => {
             persist();
             try { localStorage.setItem(PUBLISHED_KEY, JSON.stringify(doc)); } catch (e) {}
             const blob = new Blob([JSON.stringify(doc, null, 2)], { type: 'application/json' });
@@ -2333,6 +2534,7 @@
 
         bar.appendChild(modeBtn);
         bar.appendChild(publish);
+        bar.appendChild(exportBtn);
         bar.appendChild(importBtn);
         bar.appendChild(cleanEmpty);
         bar.appendChild(reset);
@@ -2352,10 +2554,14 @@
        --------------------------------------------------------------------------- */
 
     async function boot() {
+        await loadAssetManifest();
         doc = await resolveDoc();
         applyLocalCaseStudyAssetDefaults(doc);
         ensureGrowthOfferDiscoverySection(doc);
         buildToolbar();
+        if (await isSyncServerAvailable()) {
+            flashSaved('Repo sync on');
+        }
         try {
             if (await migrateInlineMediaAssets()) persist();
         } catch (e) {

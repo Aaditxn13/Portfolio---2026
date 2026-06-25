@@ -2803,7 +2803,9 @@ body.webgl-cards #work-wall .work-card:focus-visible {
         filter 0.55s ease;
 }
 
+#work-wall .home-card-overlay-image,
 #work-wall .home-card-edit-image {
+    display: block;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -2817,7 +2819,12 @@ body.webgl-cards #work-wall .work-card:focus-visible {
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
-    z-index: 6;
+    z-index: 5;
+}
+
+body.webgl-cards #work-wall .home-card-overlay-image,
+body.webgl-cards #work-wall .home-card-edit-image {
+    z-index: 5;
 }
 
 #work-wall .card-content::after {
@@ -3029,11 +3036,21 @@ body.webgl-cards #work-wall .work-card:focus-visible {
     position: relative;
 }
 
-.home-card-editor-toggle {
+.home-card-editor-actions {
     position: absolute;
     right: 0;
     bottom: 4px;
     z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: min(100%, 520px);
+}
+
+.home-card-editor-toggle,
+.home-card-editor-sync {
     border: 1px solid rgba(18, 18, 18, 0.12);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.88);
@@ -3047,6 +3064,28 @@ body.webgl-cards #work-wall .work-card:focus-visible {
     padding: 10px 14px;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+}
+
+.home-card-editor-sync {
+    background: rgba(236, 253, 245, 0.92);
+    border-color: rgba(16, 185, 129, 0.28);
+    color: #065f46;
+}
+
+.home-card-editor-sync__status {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #047857;
+    min-height: 1em;
+}
+
+.home-card-editor-sync__status[data-state="saved"] {
+    color: #047857;
+}
+
+.home-card-editor-toggle {
+    position: static;
 }
 
 .home-card-editor-toggle.is-active {

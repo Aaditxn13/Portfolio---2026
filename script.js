@@ -681,43 +681,160 @@ const modalBackdrop = document.getElementById('modal-backdrop');
 const modalClose = document.getElementById('modal-close');
 const workCards = document.querySelectorAll('.work-card');
 const homeWorkCards = document.querySelectorAll('#work-wall .work-card');
-const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v3';
-const HOME_CARD_LOCAL_ASSETS = {
-    'card-1': { src: 'asset/grassland.png', x: -7.203125, y: 22.7890625, scale: 1.15, rotate: 0 },
-    'card-2': { src: 'asset/water.png', x: -0.35546875, y: 63.1953125, scale: 1, rotate: 0 },
-    'card-3': { src: 'asset/project-3-night-meadow-background.jpg', x: 0, y: 0, scale: 1, rotate: 0 },
-    'card-4': { src: 'asset/project-4-green-background.jpg', x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
+const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v4';
+const HOME_CARDS_CONFIG_PATH = 'content/home-project-cards.json';
+const HOME_CARD_SYNC_SERVER_URL = `http://localhost:${window.CASE_STUDY_SYNC_PORT || 4567}`;
+const HOME_CARD_SYNC_DEBOUNCE_MS = 2000;
+const HOME_CARD_FALLBACK_TRANSFORMS = {
+    'card-1': { x: -7.203125, y: 22.7890625, scale: 1.15, rotate: 0 },
+    'card-2': { x: -0.35546875, y: 63.1953125, scale: 1, rotate: 0 },
+    'card-3': { x: 0, y: 0, scale: 1, rotate: 0 },
+    'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
-const HOME_CARD_REVERTED_PATHS = {
-    'asset/home-project-cards/card-1.png': 'asset/grassland.png',
-    'asset/home-project-cards/card-2.png': 'asset/water.png',
-    'asset/home-project-cards/card-3.jpg': 'asset/project-3-night-meadow-background.jpg',
-    'asset/home-project-cards/card-4.png': 'asset/project-4-green-background.jpg'
+const HOME_CARD_BACKGROUND_PATHS = new Set([
+    'asset/grassland.png',
+    'asset/water.png',
+    'asset/project-3-night-meadow-background.jpg',
+    'asset/project-4-green-background.jpg'
+]);
+const HOME_CARD_SHADER_BACKGROUNDS = {
+    'card-1': "url('asset/grassland.png')",
+    'card-2': "url('asset/water.png')",
+    'card-3': "url('asset/project-3-night-meadow-background.jpg')",
+    'card-4': "url('asset/project-4-green-background.jpg')"
 };
-let homeCardEditorActive = false;
-let activeHomeCardEditorCard = null;
+let homeCardBundledDefaults = {};
+let homeCardEditorState = {};
+let homeCardEditorMeta = { dirty: false, localUpdatedAt: 0, repoVersion: 0 };
+let homeCardSyncServerReady = null;
+let homeCardSyncTimer = null;
+let homeCardSyncInFlight = null;
+let homeCardSyncStatusEl = null;
 
 function getHomeCardKey(card, index = 0) {
     return Array.from(card.classList).find(className => /^card-\d+$/.test(className)) || `card-${index + 1}`;
 }
 
+function isHomeCardLocalDev() {
+    const { hostname, protocol } = window.location;
+    return protocol === 'http:' && (hostname === 'localhost' || hostname === '127.0.0.1');
+}
+
+function ensureHomeCardShaderBackgrounds() {
+    homeWorkCards.forEach((card, index) => {
+        const key = getHomeCardKey(card, index);
+        const content = card.querySelector('.card-content');
+        const expected = HOME_CARD_SHADER_BACKGROUNDS[key];
+        if (!content || !expected) return;
+        content.style.backgroundImage = expected;
+        content.dataset.homeCardDefaultImage = expected;
+    });
+}
+
+function isHomeCardBackgroundPath(src) {
+    return typeof src === 'string' && HOME_CARD_BACKGROUND_PATHS.has(src);
+}
+
+function hasHomeCardOverlay(cardState) {
+    return !!(cardState?.src && !isHomeCardBackgroundPath(cardState.src));
+}
+
+function sanitizeHomeCardOverlayState(state) {
+    if (!state || typeof state !== 'object') return null;
+    const transforms = HOME_CARD_FALLBACK_TRANSFORMS;
+    const key = state.__cardKey;
+    const fallback = key ? transforms[key] : null;
+    const cleaned = {
+        src: hasHomeCardOverlay(state) ? state.src : '',
+        x: Number(state.x) || fallback?.x || 0,
+        y: Number(state.y) || fallback?.y || 0,
+        scale: Number(state.scale) || fallback?.scale || 1,
+        rotate: Number(state.rotate) || 0
+    };
+    return cleaned;
+}
+
+function getHomeCardDefault(key) {
+    const state = homeCardEditorState[key] || homeCardBundledDefaults[key];
+    if (!state) return { ...HOME_CARD_FALLBACK_TRANSFORMS[key], src: '' };
+    return sanitizeHomeCardOverlayState({ ...state, __cardKey: key });
+}
+
+function flashHomeCardSyncStatus(message) {
+    if (!homeCardSyncStatusEl) return;
+    homeCardSyncStatusEl.textContent = message;
+    homeCardSyncStatusEl.dataset.state = 'saved';
+    window.clearTimeout(flashHomeCardSyncStatus._timer);
+    flashHomeCardSyncStatus._timer = window.setTimeout(() => {
+        if (homeCardSyncStatusEl) {
+            homeCardSyncStatusEl.textContent = '';
+            homeCardSyncStatusEl.dataset.state = 'idle';
+        }
+    }, 1800);
+}
+
+async function isHomeCardSyncServerAvailable() {
+    if (!isHomeCardLocalDev()) return false;
+    if (homeCardSyncServerReady != null) return homeCardSyncServerReady;
+    try {
+        const response = await fetch(`${HOME_CARD_SYNC_SERVER_URL}/health`, { cache: 'no-store' });
+        homeCardSyncServerReady = response.ok;
+    } catch (error) {
+        homeCardSyncServerReady = false;
+    }
+    return homeCardSyncServerReady;
+}
+
 function readHomeCardEditorState() {
     try {
-        let raw = window.localStorage.getItem(HOME_CARD_EDITOR_KEY);
-        if (!raw) {
-            raw = window.localStorage.getItem('portfolio-home-card-editor:v2')
-                || window.localStorage.getItem('portfolio-home-card-editor:v1');
+        const keys = [
+            HOME_CARD_EDITOR_KEY,
+            'portfolio-home-card-editor:v3',
+            'portfolio-home-card-editor:v2',
+            'portfolio-home-card-editor:v1'
+        ];
+        let raw = null;
+        for (const key of keys) {
+            raw = window.localStorage.getItem(key);
+            if (raw) break;
         }
-        return raw ? JSON.parse(raw) : {};
+        if (!raw) return { cards: {}, meta: {} };
+
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.cards && typeof parsed.cards === 'object') {
+            return {
+                cards: parsed.cards,
+                meta: parsed.__editor || {}
+            };
+        }
+
+        const cards = {};
+        Object.entries(parsed || {}).forEach(([key, value]) => {
+            if (/^card-\d+$/.test(key) && value && typeof value === 'object') {
+                cards[key] = value;
+            }
+        });
+        return { cards, meta: {} };
     } catch (error) {
         console.warn('Unable to read homepage card editor state', error);
-        return {};
+        return { cards: {}, meta: {} };
     }
 }
 
-function saveHomeCardEditorState(state) {
+function saveHomeCardEditorState(state, meta = homeCardEditorMeta, options = {}) {
     try {
-        window.localStorage.setItem(HOME_CARD_EDITOR_KEY, JSON.stringify(state));
+        const payload = {
+            __editor: {
+                dirty: meta.dirty !== false,
+                localUpdatedAt: meta.localUpdatedAt || Date.now(),
+                repoVersion: Number(meta.repoVersion) || 0
+            },
+            cards: state
+        };
+        window.localStorage.setItem(HOME_CARD_EDITOR_KEY, JSON.stringify(payload));
+        if (options.scheduleSync !== false && meta.dirty !== false) {
+            scheduleHomeCardRepoSync();
+        }
         return true;
     } catch (error) {
         console.warn('Unable to save homepage card editor state', error);
@@ -728,42 +845,190 @@ function saveHomeCardEditorState(state) {
 function normalizeHomeCardEditorState(state) {
     const nextState = { ...(state || {}) };
     let changed = false;
-    Object.entries(HOME_CARD_LOCAL_ASSETS).forEach(([key, localAsset]) => {
-        if (!nextState[key]) {
-            nextState[key] = { ...localAsset };
+    Object.keys(HOME_CARD_FALLBACK_TRANSFORMS).forEach((key) => {
+        const current = nextState[key];
+        const sanitized = sanitizeHomeCardOverlayState({ ...(current || {}), __cardKey: key });
+        if (!current) {
+            nextState[key] = sanitized;
             changed = true;
             return;
         }
-        const revertedSrc = HOME_CARD_REVERTED_PATHS[nextState[key].src];
-        if (revertedSrc) {
-            nextState[key] = { ...nextState[key], src: revertedSrc };
+        if (JSON.stringify(current) !== JSON.stringify(sanitized)) {
+            nextState[key] = sanitized;
             changed = true;
         }
     });
-    if (changed) saveHomeCardEditorState(nextState);
+    if (changed) saveHomeCardEditorState(nextState, homeCardEditorMeta, { scheduleSync: false });
     return nextState;
 }
 
-const homeCardEditorState = normalizeHomeCardEditorState(readHomeCardEditorState());
+async function loadHomeCardBundledConfig() {
+    try {
+        const response = await fetch(HOME_CARDS_CONFIG_PATH, { cache: 'no-store' });
+        if (!response.ok) return null;
+        const parsed = await response.json();
+        if (!parsed?.cards || typeof parsed.cards !== 'object') return null;
+        return parsed;
+    } catch (error) {
+        return null;
+    }
+}
 
-function applyHomeCardImageState(card, cardState) {
+function choosePreferredHomeCardState(storedCards, storedMeta, bundledConfig) {
+    const bundledCards = bundledConfig?.cards || {};
+    const bundledVersion = Number(bundledConfig?.__editor?.repoVersion) || 0;
+    const storedVersion = Number(storedMeta?.repoVersion) || 0;
+
+    if (!Object.keys(storedCards || {}).length) return { cards: bundledCards, meta: bundledConfig?.__editor || {} };
+    if (storedMeta?.dirty && storedVersion >= bundledVersion) {
+        return { cards: storedCards, meta: storedMeta };
+    }
+    if (bundledVersion > storedVersion) {
+        return { cards: bundledCards, meta: bundledConfig?.__editor || {} };
+    }
+    return { cards: storedCards, meta: storedMeta };
+}
+
+async function initHomeCardEditorState() {
+    const bundledConfig = await loadHomeCardBundledConfig();
+    if (bundledConfig?.cards) {
+        const sanitizedCards = {};
+        Object.entries(bundledConfig.cards).forEach(([key, value]) => {
+            sanitizedCards[key] = sanitizeHomeCardOverlayState({ ...value, __cardKey: key });
+        });
+        homeCardBundledDefaults = sanitizedCards;
+    }
+
+    const stored = readHomeCardEditorState();
+    const preferred = choosePreferredHomeCardState(stored.cards, stored.meta, bundledConfig);
+    const preferredCards = {};
+    Object.entries(preferred.cards || {}).forEach(([key, value]) => {
+        preferredCards[key] = sanitizeHomeCardOverlayState({ ...value, __cardKey: key });
+    });
+    homeCardEditorState = normalizeHomeCardEditorState(preferredCards);
+    homeCardEditorMeta = {
+        dirty: false,
+        localUpdatedAt: Date.now(),
+        repoVersion: Number(preferred.meta?.repoVersion) || 0
+    };
+    saveHomeCardEditorState(homeCardEditorState, homeCardEditorMeta, { scheduleSync: false });
+}
+
+function collectHomeCardsSyncPayload() {
+    const cards = {};
+    const keys = new Set([
+        ...Object.keys(HOME_CARD_FALLBACK_TRANSFORMS),
+        ...Object.keys(homeCardBundledDefaults),
+        ...Object.keys(homeCardEditorState)
+    ]);
+
+    keys.forEach((key) => {
+        const state = sanitizeHomeCardOverlayState({
+            ...(homeCardEditorState[key] || homeCardBundledDefaults[key] || {}),
+            __cardKey: key
+        });
+        if (!hasHomeCardOverlay(state)) return;
+
+        const payload = {
+            src: state.src,
+            x: state.x,
+            y: state.y,
+            scale: state.scale,
+            rotate: state.rotate
+        };
+        if (typeof state.src === 'string' && state.src.startsWith('data:image/')) {
+            const match = /^data:([^;]+);base64,(.+)$/i.exec(state.src);
+            if (match) {
+                payload.mimeType = match[1];
+                payload.imageData = match[2];
+            }
+        }
+        cards[key] = payload;
+    });
+
+    return cards;
+}
+
+async function syncHomeCardsToRepo(options = {}) {
+    if (!isHomeCardLocalDev()) return false;
+    if (!(await isHomeCardSyncServerAvailable())) {
+        if (options.showStatus) flashHomeCardSyncStatus('Run npm run case-study:sync');
+        return false;
+    }
+    if (homeCardSyncInFlight) return homeCardSyncInFlight;
+
+    homeCardSyncInFlight = (async () => {
+        try {
+            const response = await fetch(`${HOME_CARD_SYNC_SERVER_URL}/sync/home-cards`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cards: collectHomeCardsSyncPayload() })
+            });
+            const result = await response.json();
+            if (!response.ok || !result.ok) {
+                throw new Error(result.error || 'Home card sync failed');
+            }
+
+            homeCardBundledDefaults = { ...homeCardBundledDefaults, ...(result.cards || {}) };
+            homeCardEditorState = normalizeHomeCardEditorState({
+                ...homeCardEditorState,
+                ...(result.cards || {})
+            });
+            homeCardEditorMeta = {
+                dirty: false,
+                localUpdatedAt: Date.now(),
+                repoVersion: result.repoVersion
+            };
+            saveHomeCardEditorState(homeCardEditorState, homeCardEditorMeta, { scheduleSync: false });
+            applyAllHomeCardOverlays();
+
+            if (options.showStatus !== false) {
+                const parts = ['Synced cards'];
+                if (result.assetsWritten) parts.push(`${result.assetsWritten} assets`);
+                flashHomeCardSyncStatus(parts.join(' · '));
+            }
+            return true;
+        } catch (error) {
+            if (options.showStatus !== false) flashHomeCardSyncStatus('Card sync failed');
+            console.warn('Home card repo sync failed', error);
+            return false;
+        } finally {
+            homeCardSyncInFlight = null;
+        }
+    })();
+
+    return homeCardSyncInFlight;
+}
+
+function scheduleHomeCardRepoSync() {
+    if (!isHomeCardLocalDev() || !homeCardEditorActive) return;
+    if (homeCardSyncTimer) window.clearTimeout(homeCardSyncTimer);
+    homeCardSyncTimer = window.setTimeout(() => {
+        syncHomeCardsToRepo({ showStatus: true });
+    }, HOME_CARD_SYNC_DEBOUNCE_MS);
+}
+
+let homeCardEditorActive = false;
+let activeHomeCardEditorCard = null;
+
+function applyHomeCardOverlay(card, cardState) {
     const content = card.querySelector('.card-content');
     if (!content) return;
     if (!content.dataset.homeCardDefaultImage) {
         content.dataset.homeCardDefaultImage = content.style.backgroundImage || '';
     }
+    content.style.backgroundImage = content.dataset.homeCardDefaultImage;
 
-    let image = card.querySelector(':scope > .home-card-edit-image');
-    if (!cardState?.src) {
-        card.classList.remove('work-card--custom-image');
+    let image = card.querySelector(':scope > .home-card-overlay-image');
+    if (!hasHomeCardOverlay(cardState)) {
+        card.classList.remove('work-card--has-overlay');
         if (image) image.remove();
-        content.style.backgroundImage = content.dataset.homeCardDefaultImage;
         return;
     }
 
     if (!image) {
         image = document.createElement('img');
-        image.className = 'home-card-edit-image';
+        image.className = 'home-card-overlay-image home-card-edit-image';
         image.alt = '';
         image.decoding = 'async';
         image.draggable = false;
@@ -775,8 +1040,29 @@ function applyHomeCardImageState(card, cardState) {
     image.style.setProperty('--home-card-img-y', `${Number(cardState.y) || 0}px`);
     image.style.setProperty('--home-card-img-scale', `${Number(cardState.scale) || 1}`);
     image.style.setProperty('--home-card-img-rotate', `${Number(cardState.rotate) || 0}deg`);
-    card.classList.add('work-card--custom-image');
-    content.style.backgroundImage = `url("${String(cardState.src).replace(/"/g, '\\"')}")`;
+    card.classList.add('work-card--has-overlay');
+}
+
+function applyAllHomeCardOverlays() {
+    if (!homeWorkCards.length) return;
+    homeWorkCards.forEach((card, index) => {
+        const key = getHomeCardKey(card, index);
+        applyHomeCardOverlay(card, getHomeCardDefault(key));
+    });
+}
+
+function clearHomeCardOverlay(card) {
+    const key = card.dataset.homeCardKey;
+    if (key) {
+        const fallback = HOME_CARD_FALLBACK_TRANSFORMS[key] || { x: 0, y: 0, scale: 1, rotate: 0 };
+        applyHomeCardOverlay(card, { ...fallback, src: '' });
+        return;
+    }
+    applyHomeCardOverlay(card, null);
+}
+
+function applyHomeCardImageState(card, cardState) {
+    applyHomeCardOverlay(card, cardState);
 }
 
 function updateHomeCardEditorControls(card, cardState) {
@@ -797,17 +1083,19 @@ function updateHomeCardEditorControls(card, cardState) {
 function persistHomeCardState(card, nextState) {
     const key = card.dataset.homeCardKey;
     if (!key) return;
-    const cleanedState = {
-        src: nextState.src,
-        x: Number(nextState.x) || 0,
-        y: Number(nextState.y) || 0,
-        scale: Number(nextState.scale) || 1,
-        rotate: Number(nextState.rotate) || 0
-    };
+    const cleanedState = sanitizeHomeCardOverlayState({
+        ...nextState,
+        __cardKey: key
+    });
     homeCardEditorState[key] = cleanedState;
     applyHomeCardImageState(card, cleanedState);
     updateHomeCardEditorControls(card, cleanedState);
-    saveHomeCardEditorState(homeCardEditorState);
+    homeCardEditorMeta = {
+        ...homeCardEditorMeta,
+        dirty: true,
+        localUpdatedAt: Date.now()
+    };
+    saveHomeCardEditorState(homeCardEditorState, homeCardEditorMeta);
 }
 
 function setActiveHomeCardEditorCard(card) {
@@ -863,12 +1151,37 @@ function setupHomeCardEditor() {
 
     const workWall = document.getElementById('work-wall');
     const projectsHeader = document.querySelector('.projects-header');
+    const editorActions = document.createElement('div');
+    editorActions.className = 'home-card-editor-actions';
+
     const toggle = document.createElement('button');
     toggle.type = 'button';
     toggle.className = 'home-card-editor-toggle';
     toggle.textContent = 'Edit project cards';
     toggle.setAttribute('aria-pressed', 'false');
-    (projectsHeader || workWall).appendChild(toggle);
+
+    const syncButton = document.createElement('button');
+    syncButton.type = 'button';
+    syncButton.className = 'home-card-editor-sync';
+    syncButton.textContent = 'Sync cards to repo';
+    syncButton.title = 'Save overlay images and layout to the repo (backgrounds stay unchanged)';
+
+    homeCardSyncStatusEl = document.createElement('span');
+    homeCardSyncStatusEl.className = 'home-card-editor-sync__status';
+    homeCardSyncStatusEl.dataset.state = 'idle';
+
+    editorActions.appendChild(toggle);
+    editorActions.appendChild(syncButton);
+    editorActions.appendChild(homeCardSyncStatusEl);
+    (projectsHeader || workWall).appendChild(editorActions);
+
+    syncButton.addEventListener('click', () => {
+        syncHomeCardsToRepo({ showStatus: true });
+    });
+
+    isHomeCardSyncServerAvailable().then((ready) => {
+        if (ready) flashHomeCardSyncStatus('Repo sync on');
+    });
 
     const setEditorActive = (active) => {
         homeCardEditorActive = active;
@@ -877,20 +1190,32 @@ function setupHomeCardEditor() {
         toggle.setAttribute('aria-pressed', active ? 'true' : 'false');
         toggle.textContent = active ? 'Done editing cards' : 'Edit project cards';
         if (active) {
+            document.body.classList.remove('webgl-cards');
             hideCursorTooltip(0);
             cursorDot.classList.remove('cursor-dot--hover');
+        } else {
+            applyAllHomeCardOverlays();
+            if (document.querySelector('#work-wall .work-shader-canvas')) {
+                document.body.classList.add('webgl-cards');
+            }
         }
     };
 
-    toggle.addEventListener('click', () => setEditorActive(!homeCardEditorActive));
+    toggle.addEventListener('click', () => {
+        const nextActive = !homeCardEditorActive;
+        setEditorActive(nextActive);
+        if (nextActive) {
+            homeWorkCards.forEach((workCard, workIndex) => {
+                const cardKey = getHomeCardKey(workCard, workIndex);
+                applyHomeCardOverlay(workCard, getHomeCardDefault(cardKey));
+            });
+        }
+    });
 
     homeWorkCards.forEach((card, index) => {
         const key = getHomeCardKey(card, index);
-        const existingState = homeCardEditorState[key] || HOME_CARD_LOCAL_ASSETS[key];
+        const existingState = getHomeCardDefault(key);
         card.dataset.homeCardKey = key;
-        if (existingState?.src) {
-            applyHomeCardImageState(card, existingState);
-        }
 
         const panel = document.createElement('div');
         panel.className = 'home-card-editor-panel';
@@ -952,20 +1277,21 @@ function setupHomeCardEditor() {
         });
 
         resetButton?.addEventListener('click', () => {
-            const fallback = HOME_CARD_LOCAL_ASSETS[key];
-            if (fallback?.src) {
-                persistHomeCardState(card, { ...fallback });
+            const fallback = homeCardBundledDefaults[key] || { ...HOME_CARD_FALLBACK_TRANSFORMS[key], src: '' };
+            if (fallback) {
+                persistHomeCardState(card, { ...fallback, src: '' });
             } else {
                 delete homeCardEditorState[key];
-                saveHomeCardEditorState(homeCardEditorState);
-                applyHomeCardImageState(card, null);
+                homeCardEditorMeta = { ...homeCardEditorMeta, dirty: true, localUpdatedAt: Date.now() };
+                saveHomeCardEditorState(homeCardEditorState, homeCardEditorMeta);
+                clearHomeCardOverlay(card);
                 updateHomeCardEditorControls(card, { x: 0, y: 0, scale: 1, rotate: 0 });
             }
         });
 
         centerButton?.addEventListener('click', () => {
             const current = homeCardEditorState[key];
-            if (!current?.src) return;
+            if (!hasHomeCardOverlay(current)) return;
             persistHomeCardState(card, {
                 ...current,
                 x: 0,
@@ -975,7 +1301,7 @@ function setupHomeCardEditor() {
 
         const updateFromInputs = () => {
             const current = homeCardEditorState[key];
-            if (!current?.src) return;
+            if (!hasHomeCardOverlay(current)) return;
             const rotate = Number(rotateInput?.value ?? rotateNumberInput?.value) || 0;
             persistHomeCardState(card, {
                 src: current.src,
@@ -1003,7 +1329,7 @@ function setupHomeCardEditor() {
             if (!homeCardEditorActive || event.button !== 0) return;
             setActiveHomeCardEditorCard(card);
             const current = homeCardEditorState[key];
-            if (!current?.src) return;
+            if (!hasHomeCardOverlay(current)) return;
             event.preventDefault();
             event.stopPropagation();
             card.setPointerCapture?.(event.pointerId);
@@ -1020,7 +1346,7 @@ function setupHomeCardEditor() {
         card.addEventListener('pointermove', (event) => {
             if (!dragStart || dragStart.pointerId !== event.pointerId) return;
             const current = homeCardEditorState[key];
-            if (!current?.src) return;
+            if (!hasHomeCardOverlay(current)) return;
             persistHomeCardState(card, {
                 ...current,
                 x: dragStart.x + event.clientX - dragStart.clientX,
@@ -1169,7 +1495,25 @@ function expandCursorTooltip(card) {
     }, isSwitchingCards ? 80 : 140);
 }
 
-setupHomeCardEditor();
+async function initHomeCardEditor() {
+    const stored = readHomeCardEditorState();
+    homeCardEditorState = normalizeHomeCardEditorState(stored.cards);
+    homeCardEditorMeta = {
+        dirty: false,
+        localUpdatedAt: Date.now(),
+        repoVersion: Number(stored.meta?.repoVersion) || 0
+    };
+
+    setupHomeCardEditor();
+    ensureHomeCardShaderBackgrounds();
+    applyAllHomeCardOverlays();
+
+    await initHomeCardEditorState();
+    ensureHomeCardShaderBackgrounds();
+    applyAllHomeCardOverlays();
+}
+
+initHomeCardEditor();
 
 workCards.forEach(card => {
     const link = card.getAttribute('data-link');
