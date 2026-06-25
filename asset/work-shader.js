@@ -17,7 +17,6 @@
 
 (function () {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
-    if (typeof THREE === 'undefined') return;
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
@@ -140,6 +139,8 @@
     `;
 
     function init() {
+        if (typeof THREE === 'undefined') return;
+
         const container = document.getElementById('work-wall');
         if (!container) return;
 
@@ -188,7 +189,13 @@
             const bg = contentEl.style.backgroundImage || '';
             const match = bg.match(/url\((['"]?)(.*?)\1\)/);
             if (!match || !match[2]) return;
-            const url = match[2];
+            const url = typeof window.netlifyImageUrl === 'function'
+                ? window.netlifyImageUrl(match[2], {
+                    element: contentEl,
+                    maxWidth: Math.min(900, Math.ceil(contentEl.getBoundingClientRect().width * 2) || 720),
+                    quality: 75
+                })
+                : match[2];
 
             const texture = textureLoader.load(
                 url,
@@ -346,9 +353,48 @@
         rafId = requestAnimationFrame(animate);
     }
 
+    function loadThreeJs() {
+        if (typeof THREE !== 'undefined') return Promise.resolve();
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+            script.async = true;
+            script.onload = () => resolve();
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    function startWhenVisible() {
+        const container = document.getElementById('work-wall');
+        if (!container) return;
+
+        const boot = () => {
+            loadThreeJs()
+                .then(() => {
+                    if (typeof THREE === 'undefined') return;
+                    init();
+                })
+                .catch(() => { /* keep PNG cards */ });
+        };
+
+        if (typeof IntersectionObserver !== 'function') {
+            boot();
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            boot();
+        }, { rootMargin: '240px 0px', threshold: 0.01 });
+
+        observer.observe(container);
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init, { once: true });
+        document.addEventListener('DOMContentLoaded', startWhenVisible, { once: true });
     } else {
-        init();
+        startWhenVisible();
     }
 })();

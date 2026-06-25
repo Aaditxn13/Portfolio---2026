@@ -106,7 +106,7 @@ function getCurrentThemeName() {
         if (document.fonts && document.fonts.ready) {
             return Promise.race([
                 document.fonts.ready.then(() => {}).catch(() => {}),
-                new Promise(resolve => window.setTimeout(resolve, 1400))
+                new Promise(resolve => window.setTimeout(resolve, 600))
             ]);
         }
         return Promise.resolve();
@@ -317,11 +317,11 @@ function getCurrentThemeName() {
         idleFrame().then(finishLoading);
     }
 
-    watchdogHandle = window.setTimeout(() => dismissOnce(), 6500);
+    watchdogHandle = window.setTimeout(() => dismissOnce(), 3200);
 
     startInfinityLoop();
 
-    Promise.all([gatherAssetWaits(), new Promise(r => window.setTimeout(r, 560))])
+    Promise.all([gatherAssetWaits(), new Promise(r => window.setTimeout(r, 120))])
         .then(() => dismissOnce())
         .catch(() => dismissOnce());
 })();
@@ -481,7 +481,7 @@ footerMounts.forEach(mount => {
                         data-src-light="${FOOTER_GRASS_IFRAME_SRCS.light}"
                         data-src-dark="${FOOTER_GRASS_IFRAME_SRCS.dark}"
                         data-current-theme="${getCurrentThemeName()}"
-                        src="${footerIframeSrc}"
+                        data-src="${footerIframeSrc}"
                         title="Animated grass and robot"
                         loading="lazy"
                         scrolling="no"
@@ -536,6 +536,12 @@ footerMounts.forEach(mount => {
         const nextSrc = iframe.dataset[`src${nextTheme[0].toUpperCase()}${nextTheme.slice(1)}`];
         scene.dataset.footerTheme = nextTheme;
         if (!nextSrc) return;
+        const hasSrc = !!iframe.getAttribute('src');
+        const visible = scene.dataset.footerVisible === 'true';
+        if (!hasSrc && !visible) {
+            iframe.dataset.currentTheme = nextTheme;
+            return;
+        }
         if (iframe.dataset.currentTheme === nextTheme && iframe.getAttribute('src') === nextSrc) {
             postSceneState(scene);
             return;
@@ -565,11 +571,22 @@ footerMounts.forEach(mount => {
             entries.forEach(entry => {
                 const scene = entry.target;
                 scene.dataset.footerVisible = entry.isIntersecting ? 'true' : 'false';
+                if (entry.isIntersecting) ensureFooterIframeLoaded(scene);
                 if (!entry.isIntersecting) postPointerLeave(scene);
                 postSceneState(scene);
             });
         }, { threshold: 0.08, rootMargin: '160px 0px' })
         : null;
+
+    function ensureFooterIframeLoaded(scene) {
+        const iframe = getSceneIframe(scene);
+        if (!iframe || iframe.getAttribute('src')) return;
+        const theme = scene.dataset.footerTheme || getCurrentThemeName();
+        const src = theme === 'dark'
+            ? (iframe.dataset.srcDark || iframe.dataset.src)
+            : (iframe.dataset.srcLight || iframe.dataset.src);
+        if (src) iframe.setAttribute('src', src);
+    }
 
     scenes.forEach(scene => {
         let rafId = 0;
@@ -584,6 +601,7 @@ footerMounts.forEach(mount => {
         scene.dataset.footerVisible = visibilityObserver ? 'false' : 'true';
         scene.dataset.footerTheme = getCurrentThemeName();
         syncSceneTheme(scene, scene.dataset.footerTheme);
+        if (!visibilityObserver) ensureFooterIframeLoaded(scene);
         iframe?.addEventListener('load', () => {
             postSceneState(scene);
             postPointer(scene, currentX, currentY);
@@ -663,11 +681,18 @@ const modalBackdrop = document.getElementById('modal-backdrop');
 const modalClose = document.getElementById('modal-close');
 const workCards = document.querySelectorAll('.work-card');
 const homeWorkCards = document.querySelectorAll('#work-wall .work-card');
-const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v1';
+const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v3';
 const HOME_CARD_LOCAL_ASSETS = {
-    'card-1': { src: 'asset/home-project-cards/card-1.png', x: -7.203125, y: 22.7890625, scale: 1.15, rotate: 0 },
-    'card-2': { src: 'asset/home-project-cards/card-2.png', x: -0.35546875, y: 63.1953125, scale: 1, rotate: 0 },
-    'card-4': { src: 'asset/home-project-cards/card-4.png', x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
+    'card-1': { src: 'asset/grassland.png', x: -7.203125, y: 22.7890625, scale: 1.15, rotate: 0 },
+    'card-2': { src: 'asset/water.png', x: -0.35546875, y: 63.1953125, scale: 1, rotate: 0 },
+    'card-3': { src: 'asset/project-3-night-meadow-background.jpg', x: 0, y: 0, scale: 1, rotate: 0 },
+    'card-4': { src: 'asset/project-4-green-background.jpg', x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
+};
+const HOME_CARD_REVERTED_PATHS = {
+    'asset/home-project-cards/card-1.png': 'asset/grassland.png',
+    'asset/home-project-cards/card-2.png': 'asset/water.png',
+    'asset/home-project-cards/card-3.jpg': 'asset/project-3-night-meadow-background.jpg',
+    'asset/home-project-cards/card-4.png': 'asset/project-4-green-background.jpg'
 };
 let homeCardEditorActive = false;
 let activeHomeCardEditorCard = null;
@@ -678,7 +703,11 @@ function getHomeCardKey(card, index = 0) {
 
 function readHomeCardEditorState() {
     try {
-        const raw = window.localStorage.getItem(HOME_CARD_EDITOR_KEY);
+        let raw = window.localStorage.getItem(HOME_CARD_EDITOR_KEY);
+        if (!raw) {
+            raw = window.localStorage.getItem('portfolio-home-card-editor:v2')
+                || window.localStorage.getItem('portfolio-home-card-editor:v1');
+        }
         return raw ? JSON.parse(raw) : {};
     } catch (error) {
         console.warn('Unable to read homepage card editor state', error);
@@ -700,14 +729,14 @@ function normalizeHomeCardEditorState(state) {
     const nextState = { ...(state || {}) };
     let changed = false;
     Object.entries(HOME_CARD_LOCAL_ASSETS).forEach(([key, localAsset]) => {
-        const current = nextState[key];
-        if (!current) {
+        if (!nextState[key]) {
             nextState[key] = { ...localAsset };
             changed = true;
             return;
         }
-        if (typeof current.src === 'string' && current.src.startsWith('data:image/')) {
-            nextState[key] = { ...current, src: localAsset.src };
+        const revertedSrc = HOME_CARD_REVERTED_PATHS[nextState[key].src];
+        if (revertedSrc) {
+            nextState[key] = { ...nextState[key], src: revertedSrc };
             changed = true;
         }
     });
@@ -728,6 +757,7 @@ function applyHomeCardImageState(card, cardState) {
     if (!cardState?.src) {
         card.classList.remove('work-card--custom-image');
         if (image) image.remove();
+        content.style.backgroundImage = content.dataset.homeCardDefaultImage;
         return;
     }
 
@@ -746,7 +776,7 @@ function applyHomeCardImageState(card, cardState) {
     image.style.setProperty('--home-card-img-scale', `${Number(cardState.scale) || 1}`);
     image.style.setProperty('--home-card-img-rotate', `${Number(cardState.rotate) || 0}deg`);
     card.classList.add('work-card--custom-image');
-    content.style.backgroundImage = content.dataset.homeCardDefaultImage;
+    content.style.backgroundImage = `url("${String(cardState.src).replace(/"/g, '\\"')}")`;
 }
 
 function updateHomeCardEditorControls(card, cardState) {
@@ -856,7 +886,7 @@ function setupHomeCardEditor() {
 
     homeWorkCards.forEach((card, index) => {
         const key = getHomeCardKey(card, index);
-        const existingState = homeCardEditorState[key];
+        const existingState = homeCardEditorState[key] || HOME_CARD_LOCAL_ASSETS[key];
         card.dataset.homeCardKey = key;
         if (existingState?.src) {
             applyHomeCardImageState(card, existingState);
@@ -922,10 +952,15 @@ function setupHomeCardEditor() {
         });
 
         resetButton?.addEventListener('click', () => {
-            delete homeCardEditorState[key];
-            saveHomeCardEditorState(homeCardEditorState);
-            applyHomeCardImageState(card, null);
-            updateHomeCardEditorControls(card, { x: 0, y: 0, scale: 1, rotate: 0 });
+            const fallback = HOME_CARD_LOCAL_ASSETS[key];
+            if (fallback?.src) {
+                persistHomeCardState(card, { ...fallback });
+            } else {
+                delete homeCardEditorState[key];
+                saveHomeCardEditorState(homeCardEditorState);
+                applyHomeCardImageState(card, null);
+                updateHomeCardEditorControls(card, { x: 0, y: 0, scale: 1, rotate: 0 });
+            }
         });
 
         centerButton?.addEventListener('click', () => {
@@ -1479,7 +1514,10 @@ if (topContainer && centerContainer && bottomContainer) {
         loopImages.forEach(src => {
             const div = document.createElement('div');
             div.className = 'ticker-image-wrapper';
-            div.innerHTML = `<img src="${src}" alt="" loading="lazy" decoding="async">`;
+            const optimizedSrc = typeof window.netlifyImageUrl === 'function'
+                ? window.netlifyImageUrl(src, { maxWidth: 960, quality: 72 })
+                : src;
+            div.innerHTML = `<img src="${optimizedSrc}" alt="" loading="lazy" decoding="async" fetchpriority="low">`;
             container.appendChild(div);
         });
     });
@@ -1555,10 +1593,28 @@ if (topContainer && centerContainer && bottomContainer) {
 
     // Delay start so layout has settled before we start measuring item height.
     setTimeout(() => {
-        if (!tickerRaf) tickerRaf = requestAnimationFrame(tick);
+        if (!tickerRaf && tickerInView) tickerRaf = requestAnimationFrame(tick);
     }, 500);
 
 }
+
+(function prefetchCaseStudyPagesWhenIdle() {
+    const pages = ['project-1.html', 'project-2.html', 'project-4.html'];
+    const run = () => {
+        pages.forEach((href) => {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.as = 'document';
+            link.href = href;
+            document.head.appendChild(link);
+        });
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(run, { timeout: 4000 });
+    } else {
+        window.setTimeout(run, 2500);
+    }
+})();
 
 // --- Camera Interaction ---
 const heroCamera = document.getElementById('hero-camera');

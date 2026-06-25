@@ -756,6 +756,37 @@
        UID, so the editor can re-target updates without re-rendering everything.
        --------------------------------------------------------------------------- */
 
+    function optimizeDisplaySrc(src, element, options = {}) {
+        if (!src || typeof src !== 'string') return src;
+        if (src.startsWith('blob:') || src.startsWith('data:')) return src;
+        if (typeof window.netlifyImageUrl !== 'function') return src;
+        return window.netlifyImageUrl(src, {
+            element,
+            maxWidth: options.isHero ? 1200 : 1080,
+            quality: options.isHero ? 78 : 75
+        });
+    }
+
+    function whenMediaNearViewport(node, callback) {
+        if (typeof IntersectionObserver !== 'function') {
+            callback();
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                observer.disconnect();
+                callback();
+            });
+        }, { rootMargin: '320px 0px', threshold: 0.01 });
+        observer.observe(node);
+    }
+
+    function applyResolvedImage(img, src, options = {}) {
+        const displaySrc = optimizeDisplaySrc(src, img, options);
+        if (displaySrc) img.setAttribute('src', displaySrc);
+    }
+
     function captionEl(value, block, field = 'caption') {
         const cap = el('figcaption', { class: 'cs-section__caption' });
         applyEditable(cap, block, field, value || '');
@@ -785,7 +816,7 @@
                         controls: true,
                         muted: true,
                         playsinline: true,
-                        preload: isHero ? 'auto' : 'metadata'
+                        preload: isHero ? 'auto' : 'none'
                     }
                 }, el('source', {
                     attrs: {
@@ -794,30 +825,54 @@
                     }
                 }));
                 slot.appendChild(video);
-                if (isAssetRef(src)) {
-                    resolveAssetSrc(src).then((resolvedSrc) => {
-                        const source = video.querySelector('source');
-                        if (resolvedSrc && source) {
-                            source.setAttribute('src', resolvedSrc);
-                            video.load();
-                        }
-                    }).catch(() => {});
+
+                const startVideoLoad = () => {
+                    if (isAssetRef(src)) {
+                        resolveAssetSrc(src).then((resolvedSrc) => {
+                            const source = video.querySelector('source');
+                            if (resolvedSrc && source) {
+                                source.setAttribute('src', resolvedSrc);
+                                video.load();
+                            }
+                        }).catch(() => {});
+                    } else if (!video.querySelector('source')?.getAttribute('src')) {
+                        video.load();
+                    }
+                };
+
+                if (isHero) {
+                    startVideoLoad();
+                } else {
+                    whenMediaNearViewport(slot, startVideoLoad);
                 }
             } else {
                 const img = el('img', {
                     attrs: {
-                        src: isAssetRef(src) ? '' : src,
                         alt: block[altField] || '',
                         decoding: 'async',
                         loading: isHero ? 'eager' : 'lazy',
-                        fetchpriority: isHero ? 'high' : 'auto'
+                        fetchpriority: isHero ? 'high' : 'low'
                     }
                 });
+                if (isHero) img.setAttribute('data-netlify-priority', 'high');
                 slot.appendChild(img);
-                if (isAssetRef(src)) {
-                    resolveAssetSrc(src).then((resolvedSrc) => {
-                        if (resolvedSrc) img.setAttribute('src', resolvedSrc);
-                    }).catch(() => {});
+
+                const loadImage = (resolvedSrc) => {
+                    applyResolvedImage(img, resolvedSrc || src, { isHero });
+                };
+
+                const startImageLoad = () => {
+                    if (isAssetRef(src)) {
+                        resolveAssetSrc(src).then(loadImage).catch(() => {});
+                    } else {
+                        loadImage(src);
+                    }
+                };
+
+                if (isHero) {
+                    startImageLoad();
+                } else {
+                    whenMediaNearViewport(slot, startImageLoad);
                 }
             }
         } else {

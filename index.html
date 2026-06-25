@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AS | Designer Portfolio</title>
     <link rel="icon" type="image/png" href="asset/favicon.png?v=blue-logo-1">
-    <link rel="stylesheet" href="style.css?v=local-card-assets-2">
+    <link rel="stylesheet" href="style.css?v=perf-assets-1">
     <script src="asset/netlify-image-cdn.js"></script>
     <!-- Premium Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +14,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
         rel="stylesheet">
-    <!-- Prefetch case study pages so the page-fade transition has the
-         destination HTML already in cache when the user clicks a card.
-         All four hero images are reused as homepage card backgrounds, so
-         they're cached automatically — only the HTML needs prefetching. -->
-    <link rel="prefetch" href="project-1.html" as="document">
-    <link rel="prefetch" href="project-2.html" as="document">
-    <link rel="prefetch" href="project-4.html" as="document">
+    <!-- Defer case-study HTML prefetch until the browser is idle. -->
     <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
-    <!-- Three.js powers the translucent glass overlay above the work cards (asset/work-shader.js) -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" defer></script>
     <!-- Page-transition bootstrap: if we arrived here from a case
          study's fade-out, hide body BEFORE first paint and pin <html>
          to the current theme's bg colour so there is no flash of
@@ -115,7 +107,7 @@
          `muted autoplay` is the only combo modern browsers allow without a
          gesture; asset/ambient-audio.js unmutes on the first user
          interaction so the loop is already running by then. -->
-    <audio id="ambient-leaves" src="asset/leaves-rustling.mp3" loop muted autoplay playsinline preload="auto" aria-hidden="true"></audio>
+    <audio id="ambient-leaves" src="asset/leaves-rustling.mp3" loop muted playsinline preload="none" aria-hidden="true"></audio>
 
     <!-- Dappled-light shader strip — pinned to the page's top-right edge so
          it can extend above .hero-v2 (which uses overflow:hidden). It scrolls
@@ -298,11 +290,11 @@
 
     <!-- Project Modal Overlay -->
 
-    <script src="asset/work-shader.js"></script>
-    <script src="asset/dappled-light-shader.js?v=restore-hero-shader-case-study"></script>
-    <script src="asset/leaf-fall.js"></script>
-    <script src="asset/ambient-audio.js"></script>
-    <script src="script.js?v=local-card-assets-2"></script>
+    <script src="asset/work-shader.js?v=perf-assets-1" defer></script>
+    <script src="asset/dappled-light-shader.js?v=restore-hero-shader-case-study" defer></script>
+    <script src="asset/leaf-fall.js" defer></script>
+    <script src="asset/ambient-audio.js" defer></script>
+    <script src="script.js?v=restore-original-cards-1" defer></script>
 
 </body>
 
