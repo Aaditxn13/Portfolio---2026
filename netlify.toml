@@ -1,0 +1,4 @@
+# Static site — publish repo root as-is (no npm build step).
+[build]
+  publish = "."
+  command = ""
