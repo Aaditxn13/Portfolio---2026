@@ -456,19 +456,6 @@
         } catch (e) { /* offline or static preview */ }
     }
 
-    async function preloadCaseStudyAssets() {
-        const urls = new Set();
-        Object.values(runtimeAssetManifest).forEach((path) => {
-            if (typeof path === 'string' && path.startsWith('asset/')) urls.add(path);
-        });
-        Object.values(LOCAL_ASSET_OVERRIDES).forEach((path) => {
-            if (typeof path === 'string' && path.startsWith('asset/')) urls.add(path);
-        });
-        const preload = window.PortfolioMediaPreload;
-        if (!preload?.preloadUrl || urls.size === 0) return;
-        await Promise.all([...urls].map((url) => preload.preloadUrl(url)));
-    }
-
     function getAssetOverride(ref) {
         return LOCAL_ASSET_OVERRIDES[ref] || runtimeAssetManifest[ref] || '';
     }
@@ -966,7 +953,18 @@
        --------------------------------------------------------------------------- */
 
     function whenMediaNearViewport(node, callback) {
-        callback();
+        if (typeof IntersectionObserver !== 'function') {
+            callback();
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                observer.disconnect();
+                callback();
+            });
+        }, { rootMargin: '320px 0px', threshold: 0.01 });
+        observer.observe(node);
     }
 
     function applyResolvedImage(img, src) {
@@ -1002,7 +1000,7 @@
                         controls: true,
                         muted: true,
                         playsinline: true,
-                        preload: 'auto'
+                        preload: isHero ? 'auto' : 'none'
                     }
                 }, el('source', {
                     attrs: {
@@ -1036,8 +1034,8 @@
                     attrs: {
                         alt: block[altField] || '',
                         decoding: 'async',
-                        loading: 'eager',
-                        fetchpriority: isHero ? 'high' : 'auto'
+                        loading: isHero ? 'eager' : 'lazy',
+                        fetchpriority: isHero ? 'high' : 'low'
                     }
                 });
                 slot.appendChild(img);
@@ -2446,7 +2444,6 @@
         updateToolbar();
         activeIndexTarget = '';
         requestIndexActiveUpdate();
-        window.PortfolioMediaPreload?.scan(document.querySelector('.cs-shell') || document.body);
     }
 
     /* ---------------------------------------------------------------------------
@@ -2545,7 +2542,6 @@
 
     async function boot() {
         await loadAssetManifest();
-        await preloadCaseStudyAssets();
         doc = await resolveDoc();
         applyLocalCaseStudyAssetDefaults(doc);
         ensureGrowthOfferDiscoverySection(doc);
@@ -2565,11 +2561,6 @@
             window.addEventListener('scroll', requestIndexActiveUpdate, { passive: true });
             window.addEventListener('resize', requestIndexActiveUpdate, { passive: true });
         }
-        const root = document.querySelector('.cs-shell') || document.body;
-        if (window.PortfolioMediaPreload?.preloadAll) {
-            await window.PortfolioMediaPreload.preloadAll(root);
-        }
-        window.PortfolioMediaPreload?.markReady?.();
     }
 
     if (document.readyState === 'loading') {
