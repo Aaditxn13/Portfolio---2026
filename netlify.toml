@@ -4,11 +4,6 @@
   command = ""
 
 [[headers]]
-  for = "/asset/optimized/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
   for = "/asset/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"

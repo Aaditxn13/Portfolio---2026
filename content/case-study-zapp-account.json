@@ -372,7 +372,8 @@
               "createdAt": "2026-06-26T00:38:00.000Z"
             }
           },
-          "uid": "bzr0iwgvg"
+          "uid": "bzr0iwgvg",
+          "mediaMimeType": "video/mp4"
         },
         {
           "uid": "bm8yfteoo",
@@ -407,7 +408,8 @@
             }
           },
           "uid": "bzal1lu8t",
-          "reverse": true
+          "reverse": true,
+          "mediaMimeType": "video/mp4"
         },
         {
           "uid": "brl4wwppm",
@@ -419,13 +421,30 @@
           "headline": "Balance & Delight",
           "text": "The balance display wasn't just a number it was an interaction moment. A small but deliberate detail that made the product feel alive rather than static. Useful information delivered with a bit of character.",
           "media": {
-            "type": "image",
-            "src": "",
-            "alt": "Zapp Account hero screens",
+            "type": "video",
+            "src": "cs-asset:zapp-account:1782612000000:bbalancevd",
+            "alt": "Balance interaction on Zapp Account",
             "device": "wide",
-            "uid": "bjhjof4qd"
+            "uid": "bjhjof4qd",
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "autoplay": true,
+            "loop": true,
+            "controls": false,
+            "cloudinary": {
+              "status": "pending-upload",
+              "field": "src",
+              "publicId": "portfolio/zapp-account/balance",
+              "originalName": "Balance.mp4",
+              "mimeType": "video/mp4",
+              "size": 172457,
+              "resourceType": "video",
+              "localAssetRef": "cs-asset:zapp-account:1782612000000:bbalancevd",
+              "createdAt": "2026-06-26T08:58:00.000Z"
+            }
           },
-          "uid": "b6mc1cbzu"
+          "uid": "b6mc1cbzu",
+          "mediaMimeType": "video/mp4"
         },
         {
           "uid": "bgguc7mi8",
@@ -587,8 +606,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782382796740,
-    "syncedAt": "2026-06-25T10:19:56.740Z",
+    "repoVersion": 1782465981638,
+    "syncedAt": "2026-06-26T09:26:21.638Z",
     "dirty": false
   }
 }

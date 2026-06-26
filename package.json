@@ -1,13 +1,6 @@
 {
   "scripts": {
     "case-study:sync": "node scripts/case-study-sync-server.mjs",
-    "sync": "node scripts/case-study-sync-server.mjs",
-    "assets:optimize": "bash scripts/optimize-critical-images.sh",
-    "footer:install": "npm --prefix asset/grass-footer-app install",
-    "footer:build": "npm --prefix asset/grass-footer-app run build",
-    "footer:dev": "npm --prefix asset/grass-footer-app run dev",
-    "footer:dark:install": "npm --prefix asset/grass-footer-dark-app install",
-    "footer:dark:build": "npm --prefix asset/grass-footer-dark-app run build",
-    "footer:dark:dev": "npm --prefix asset/grass-footer-dark-app run dev"
+    "sync": "node scripts/case-study-sync-server.mjs"
   }
 }

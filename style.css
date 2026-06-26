@@ -2473,6 +2473,7 @@ body.night-mode .hero-cta {
     margin-right: calc(50% - 50vw);
     aspect-ratio: 1440 / 400;
     overflow: hidden;
+    pointer-events: auto;
     content-visibility: auto;
     contain: layout paint style;
     contain-intrinsic-size: auto 400px;
@@ -2528,7 +2529,14 @@ body.night-mode .footer-grass-scene::before {
     transform: translate(-50%, calc(-1 * var(--grass-overlay-shift-y) - var(--grass-overlay-shift-up)));
 }
 
-.footer-grass-scene__base--dark,
+.footer-grass-scene__base--light {
+    opacity: 1;
+}
+
+.footer-grass-scene__base--dark {
+    opacity: 0;
+}
+
 body.night-mode .footer-grass-scene__base--light {
     opacity: 0;
 }
@@ -4306,7 +4314,7 @@ body.night-mode .play-card__media[data-lazy-bg]:not([data-lazy-loaded]) {
     background-color: #1c1c1c;
 }
 
-img[data-src] {
+img[data-src]:not(.footer-grass-scene__base) {
     opacity: 0;
     transition: opacity 0.35s ease;
 }

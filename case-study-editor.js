@@ -53,7 +53,8 @@
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'asset/case-studies/zapp-account/zapp-home.mp4',
         'cs-asset:zapp-account:1781857889963:b375vscv0': 'asset/case-studies/zapp-account/b5591rluy-image.png',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'asset/water.png'
+        'cs-asset:zapp-account:1782612000000:bbalancevd': 'asset/case-studies/zapp-account/balance.mp4',
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -88,6 +89,15 @@
         {
             path: ['design', 8, 'media'],
             src: 'cs-asset:zapp-account:1781856244196:bl0lzy1g3',
+            mimeType: 'video/mp4',
+            mediaType: 'video',
+            autoplay: true,
+            loop: true,
+            controls: false
+        },
+        {
+            path: ['design', 10, 'media'],
+            src: 'cs-asset:zapp-account:1782612000000:bbalancevd',
             mimeType: 'video/mp4',
             mediaType: 'video',
             autoplay: true,
@@ -233,7 +243,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'asset/water.png', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -281,7 +291,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'asset/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -307,7 +317,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'asset/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },

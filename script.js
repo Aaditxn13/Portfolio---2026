@@ -479,7 +479,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="asset/optimized/grass-footer.jpg"
+                        src="asset/grass-footer.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -489,7 +489,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="asset/optimized/grass-footer-dark.jpg"
+                        src="asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -506,7 +506,6 @@ footerMounts.forEach(mount => {
                         data-current-theme="${getCurrentThemeName()}"
                         data-src="${footerIframeSrc}"
                         title="Animated grass and robot"
-                        loading="lazy"
                         scrolling="no"
                         tabindex="-1"
                     ></iframe>
@@ -541,43 +540,65 @@ footerMounts.forEach(mount => {
         return scene.querySelector('[data-footer-overlay]');
     }
 
+    function isSceneEngaged(scene) {
+        return scene.dataset.footerVisible === 'true' || scene.dataset.footerPointerInside === 'true';
+    }
+
     function getSceneActiveState(scene) {
-        return scene.dataset.footerVisible === 'true' && document.visibilityState === 'visible';
+        return isSceneEngaged(scene) && document.visibilityState === 'visible';
+    }
+
+    function getFooterIframeSrc(iframe, theme) {
+        return theme === 'dark'
+            ? (iframe.dataset.srcDark || iframe.dataset.src)
+            : (iframe.dataset.srcLight || iframe.dataset.src);
     }
 
     function postSceneState(scene) {
         const iframe = getSceneIframe(scene);
-        if (!iframe) return;
-        iframe.contentWindow?.postMessage({
+        if (!iframe?.contentWindow) return;
+        iframe.contentWindow.postMessage({
             type: 'footer-scene-state',
             active: getSceneActiveState(scene)
         }, window.location.origin);
     }
 
-    function syncSceneTheme(scene, nextTheme = getCurrentThemeName()) {
+    function syncSceneState(scene) {
+        postSceneState(scene);
+        requestAnimationFrame(() => postSceneState(scene));
+    }
+
+    function ensureFooterIframeLoaded(scene) {
         const iframe = getSceneIframe(scene);
         if (!iframe) return;
-        const nextSrc = iframe.dataset[`src${nextTheme[0].toUpperCase()}${nextTheme.slice(1)}`];
-        scene.dataset.footerTheme = nextTheme;
+        const theme = scene.dataset.footerTheme || getCurrentThemeName();
+        const nextSrc = getFooterIframeSrc(iframe, theme);
         if (!nextSrc) return;
-        const hasSrc = !!iframe.getAttribute('src');
-        const visible = scene.dataset.footerVisible === 'true';
-        if (!hasSrc && !visible) {
-            iframe.dataset.currentTheme = nextTheme;
+
+        const currentSrc = iframe.getAttribute('src');
+        if (!currentSrc) {
+            iframe.dataset.currentTheme = theme;
+            iframe.setAttribute('src', nextSrc);
             return;
         }
-        if (iframe.dataset.currentTheme === nextTheme && iframe.getAttribute('src') === nextSrc) {
-            postSceneState(scene);
-            return;
+
+        if (iframe.dataset.currentTheme !== theme && currentSrc !== nextSrc) {
+            iframe.dataset.currentTheme = theme;
+            iframe.setAttribute('src', nextSrc);
         }
-        iframe.dataset.currentTheme = nextTheme;
-        iframe.setAttribute('src', nextSrc);
+    }
+
+    function syncSceneTheme(scene, nextTheme = getCurrentThemeName()) {
+        scene.dataset.footerTheme = nextTheme;
+        if (!isSceneEngaged(scene)) return;
+        ensureFooterIframeLoaded(scene);
+        syncSceneState(scene);
     }
 
     function postPointer(scene, x, y) {
         const iframe = getSceneIframe(scene);
-        if (!iframe || !getSceneActiveState(scene)) return;
-        iframe.contentWindow?.postMessage({
+        if (!iframe?.contentWindow || !getSceneActiveState(scene)) return;
+        iframe.contentWindow.postMessage({
             type: 'footer-pointer',
             x,
             y
@@ -596,21 +617,13 @@ footerMounts.forEach(mount => {
                 const scene = entry.target;
                 scene.dataset.footerVisible = entry.isIntersecting ? 'true' : 'false';
                 if (entry.isIntersecting) ensureFooterIframeLoaded(scene);
-                if (!entry.isIntersecting) postPointerLeave(scene);
-                postSceneState(scene);
+                if (!entry.isIntersecting && scene.dataset.footerPointerInside !== 'true') {
+                    postPointerLeave(scene);
+                }
+                syncSceneState(scene);
             });
         }, { threshold: 0.08, rootMargin: '160px 0px' })
         : null;
-
-    function ensureFooterIframeLoaded(scene) {
-        const iframe = getSceneIframe(scene);
-        if (!iframe || iframe.getAttribute('src')) return;
-        const theme = scene.dataset.footerTheme || getCurrentThemeName();
-        const src = theme === 'dark'
-            ? (iframe.dataset.srcDark || iframe.dataset.src)
-            : (iframe.dataset.srcLight || iframe.dataset.src);
-        if (src) iframe.setAttribute('src', src);
-    }
 
     scenes.forEach(scene => {
         let rafId = 0;
@@ -623,14 +636,23 @@ footerMounts.forEach(mount => {
 
         const iframe = getSceneIframe(scene);
         scene.dataset.footerVisible = visibilityObserver ? 'false' : 'true';
+        scene.dataset.footerPointerInside = 'false';
         scene.dataset.footerTheme = getCurrentThemeName();
-        syncSceneTheme(scene, scene.dataset.footerTheme);
-        if (!visibilityObserver) ensureFooterIframeLoaded(scene);
+        if (!visibilityObserver) {
+            ensureFooterIframeLoaded(scene);
+            syncSceneState(scene);
+        }
         iframe?.addEventListener('load', () => {
-            postSceneState(scene);
+            syncSceneState(scene);
             postPointer(scene, currentX, currentY);
         });
         visibilityObserver?.observe(scene);
+
+        scene.addEventListener('pointerenter', () => {
+            scene.dataset.footerPointerInside = 'true';
+            ensureFooterIframeLoaded(scene);
+            syncSceneState(scene);
+        }, { passive: true });
 
         const paint = () => {
             rafId = 0;
@@ -651,7 +673,8 @@ footerMounts.forEach(mount => {
         };
 
         scene.addEventListener('pointermove', (event) => {
-            if (!prefersFinePointer.matches || getSceneActiveState(scene) === false) return;
+            if (!prefersFinePointer.matches || document.visibilityState !== 'visible') return;
+            scene.dataset.footerPointerInside = 'true';
             const rect = scene.getBoundingClientRect();
             targetX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
             targetY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
@@ -659,9 +682,11 @@ footerMounts.forEach(mount => {
         }, { passive: true });
 
         scene.addEventListener('pointerleave', () => {
+            scene.dataset.footerPointerInside = 'false';
             targetX = 0;
             targetY = 0;
             postPointerLeave(scene);
+            syncSceneState(scene);
             requestPaint();
         }, { passive: true });
     });
@@ -669,7 +694,7 @@ footerMounts.forEach(mount => {
     document.addEventListener('visibilitychange', () => {
         scenes.forEach(scene => {
             if (document.visibilityState !== 'visible') postPointerLeave(scene);
-            postSceneState(scene);
+            syncSceneState(scene);
         });
     });
 
@@ -716,20 +741,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'asset/grassland.png',
-    'asset/optimized/grassland.jpg',
-    'asset/water.png',
-    'asset/optimized/water.jpg',
-    'asset/project-3-night-meadow-background.jpg',
-    'asset/optimized/project-3-night-meadow-background.jpg',
-    'asset/project-4-green-background.jpg',
-    'asset/optimized/project-4-green-background.jpg'
+    'asset/home-project-cards/grassland.png',
+    'asset/home-project-cards/water.png',
+    'asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'asset/optimized/grassland.jpg',
-    'card-2': 'asset/optimized/water.jpg',
-    'card-3': 'asset/optimized/project-3-night-meadow-background.jpg',
-    'card-4': 'asset/optimized/project-4-green-background.jpg'
+    'card-1': 'asset/home-project-cards/grassland.png',
+    'card-2': 'asset/home-project-cards/water.png',
+    'card-3': 'asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -1872,13 +1893,13 @@ if (topContainer && centerContainer && bottomContainer) {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "./asset/gallery-web-01.jpg",
-        "./asset/gallery-web-02.jpg",
-        "./asset/gallery-web-03.jpg",
-        "./asset/gallery-web-04.jpg",
-        "./asset/gallery-web-05.jpg",
-        "./asset/gallery-web-06.jpg",
-        "./asset/gallery-web-07.jpg"
+        "./asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "./asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2005,7 +2026,7 @@ if (heroCamera) {
 
 /**
  * About page — “More of me”: when a <video> has a <source> (or src), play on hover.
- * Add: <source src="asset/your-clip.mp4" type="video/mp4" /> inside .about-more__video
+ * Add a source element inside .about-more__video to enable hover playback.
  */
 (function initAboutMoreHoverVideo() {
     const root = document.querySelector('.about-more');
@@ -2392,8 +2413,8 @@ if (heroCamera) {
         const title = card.dataset.playTitle || DETAIL_DEFAULT_TITLE;
         const description = card.dataset.playDescription || DETAIL_DEFAULT_DESCRIPTION;
         const stats = [
-            { value: card.dataset.playHeart, icon: 'asset/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'asset/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
