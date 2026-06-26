@@ -107,7 +107,7 @@
         heroBootStarted = true;
         return loadThreeJs()
             .then(() => Promise.all([
-                loadScript('asset/dappled-light-shader.js?v=lazy-hero-1'),
+                loadScript('asset/dappled-light-shader.js?v=first-load-1'),
                 loadScript('asset/leaf-fall.js')
             ]))
             .catch(() => { /* hero effects are decorative */ });
@@ -129,9 +129,9 @@
         }
 
         if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(run, { timeout: 1800 });
+            window.requestIdleCallback(run, { timeout: 900 });
         } else {
-            window.setTimeout(run, 900);
+            window.setTimeout(run, 500);
         }
     }
 

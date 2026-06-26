@@ -17,10 +17,9 @@
         onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"></noscript>
     <!-- Defer case-study HTML prefetch until the browser is idle. -->
-    <!-- GSAP for animations -->
+    <!-- GSAP for hero animations; THREE.js loads on demand via lazy-load.js / work-shader.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" defer></script>
-    <!-- Three.js powers the hero tree shader and the work-card shader. Load it directly so the animated hero is not gated behind idle callbacks. -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+    <link rel="preload" href="script.js?v=first-load-1" as="script">
     <!-- Page-transition bootstrap: if we arrived here from a case
          study's fade-out, hide body BEFORE first paint and pin <html>
          to the current theme's bg colour so there is no flash of
@@ -45,7 +44,7 @@
 
 <body>
 
-    <!-- Full-screen preload until window + media/iframes are ready (portfolio-loader-* in style.css + script.js) -->
+    <!-- Full-screen preload until core scripts are ready (portfolio-loader-* in style.css + script.js) -->
     <div id="portfolio-loader" class="portfolio-loader" aria-live="polite" aria-busy="true" role="status"
         aria-valuetext="Loading portfolio">
         <div class="portfolio-loader__grid" aria-hidden="true"></div>
@@ -294,12 +293,9 @@
 
     <!-- Project Modal Overlay -->
 
-    <script src="asset/lazy-load.js?v=lazy-load-1" defer></script>
-    <script src="asset/work-shader.js?v=lazy-load-1" defer></script>
-    <script src="asset/dappled-light-shader.js?v=animated-tree-2" defer></script>
-    <script src="asset/leaf-fall.js?v=animated-tree-2" defer></script>
-    <script src="asset/ambient-audio.js" defer></script>
-    <script src="script.js?v=lazy-load-1" defer></script>
+    <script src="script.js?v=first-load-1" defer></script>
+    <script src="asset/lazy-load.js?v=first-load-1" defer></script>
+    <script src="asset/work-shader.js?v=first-load-1" defer></script>
 
 </body>
 

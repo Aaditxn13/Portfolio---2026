@@ -30,14 +30,6 @@
     // audio: when we unmute, this volume kicks in immediately.
     audio.volume = AMBIENT_VOLUME;
 
-    // Try to start playback (it's muted in HTML, so this should succeed
-    // in every browser). If it doesn't, no harm — onFirstGesture will
-    // catch it next.
-    const initialPlay = audio.play();
-    if (initialPlay && typeof initialPlay.catch === 'function') {
-        initialPlay.catch(() => { /* will retry on first gesture */ });
-    }
-
     let unmuted = false;
     const GESTURES = ['pointerdown', 'click', 'keydown', 'scroll', 'touchstart'];
 

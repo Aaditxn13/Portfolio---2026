@@ -23,6 +23,34 @@ function getCurrentThemeName() {
     return document.body.classList.contains('night-mode') ? 'dark' : 'light';
 }
 
+function scheduleDeferredSiteScripts() {
+    if (!document.getElementById('ambient-leaves')) return;
+
+    const loadAmbient = () => {
+        if (document.querySelector('script[data-ambient-audio]')) return;
+        const script = document.createElement('script');
+        script.src = 'asset/ambient-audio.js';
+        script.defer = true;
+        script.dataset.ambientAudio = 'true';
+        document.body.appendChild(script);
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(loadAmbient, { timeout: 4000 });
+    } else {
+        window.setTimeout(loadAmbient, 2000);
+    }
+}
+
+function ensureFooterGrassBaseLoaded(theme = getCurrentThemeName()) {
+    const selector = theme === 'dark'
+        ? '.footer-grass-scene__base--dark'
+        : '.footer-grass-scene__base--light';
+    document.querySelectorAll(selector).forEach((img) => {
+        window.PortfolioLazyLoad?.applyLazyImg(img);
+    });
+}
+
 (function initPortfolioLoader() {
     const el = document.getElementById('portfolio-loader');
     if (!el || !document.body) return;
@@ -35,6 +63,7 @@ function getCurrentThemeName() {
         el.setAttribute('aria-hidden', 'true');
         el.setAttribute('aria-busy', 'false');
         if (el.parentNode) el.parentNode.removeChild(el);
+        scheduleDeferredSiteScripts();
     }
 
     try {
@@ -312,6 +341,8 @@ function getCurrentThemeName() {
         animationGen += 100;
         if (rafId) cancelAnimationFrame(rafId);
 
+        scheduleDeferredSiteScripts();
+
         function removeLoader() {
             el.removeEventListener('transitionend', onTe);
             if (el.parentNode) el.parentNode.removeChild(el);
@@ -336,14 +367,13 @@ function getCurrentThemeName() {
         idleFrame().then(finishLoading);
     }
 
-    watchdogHandle = window.setTimeout(() => dismissOnce(), 550);
+    watchdogHandle = window.setTimeout(() => dismissOnce(), 400);
 
     startInfinityLoop();
 
     Promise.all([
         domReadyPromise(),
-        idleFrame(),
-        new Promise(r => window.setTimeout(r, 80))
+        idleFrame()
     ])
         .then(() => dismissOnce())
         .catch(() => dismissOnce());
@@ -455,7 +485,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img src="asset/stticky%20note.png" alt="Sticky Note" class="sticker-image">
+                        <img data-src="asset/stticky%20note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -479,7 +509,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        src="asset/grass-footer.png"
+                        data-src="asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -489,7 +519,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        src="asset/grass-footer-dark.png"
+                        data-src="asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -616,7 +646,13 @@ footerMounts.forEach(mount => {
             entries.forEach(entry => {
                 const scene = entry.target;
                 scene.dataset.footerVisible = entry.isIntersecting ? 'true' : 'false';
-                if (entry.isIntersecting) ensureFooterIframeLoaded(scene);
+                if (entry.isIntersecting) {
+                    ensureFooterIframeLoaded(scene);
+                    ensureFooterGrassBaseLoaded(scene.dataset.footerTheme || getCurrentThemeName());
+                    scene.querySelectorAll('img[data-src]:not(.footer-grass-scene__base)').forEach((img) => {
+                        window.PortfolioLazyLoad?.applyLazyImg(img);
+                    });
+                }
                 if (!entry.isIntersecting && scene.dataset.footerPointerInside !== 'true') {
                     postPointerLeave(scene);
                 }
@@ -700,6 +736,7 @@ footerMounts.forEach(mount => {
 
     window.addEventListener('portfolio-theme-change', (event) => {
         const nextTheme = event.detail?.theme === 'dark' ? 'dark' : 'light';
+        ensureFooterGrassBaseLoaded(nextTheme);
         scenes.forEach(scene => syncSceneTheme(scene, nextTheme));
     });
 })();
