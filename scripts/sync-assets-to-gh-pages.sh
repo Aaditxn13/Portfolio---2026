@@ -5,7 +5,7 @@
 #   The portfolio (deployed on Netlify) loads images/videos/audio/fonts from
 #   GitHub Pages instead of bundling them with each Netlify deploy. The
 #   gh-pages branch on `origin` hosts those files at
-#   https://aaadityaas.github.io/Portfolio---2026/asset/<path>.
+#   https://aaditxn13.github.io/Portfolio---2026/asset/<path>.
 #
 # Run this whenever you add, remove, or change anything in asset/.
 #
@@ -125,8 +125,8 @@ if [[ -f "$REPO_ROOT/scripts/rewrite-asset-urls.mjs" ]]; then
 fi
 
 echo "✓ assets synced"
-echo "  jsDelivr: https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@$NEW_COMMIT/asset/"
-echo "  fallback: https://aaadityaas.github.io/Portfolio---2026/asset/"
+echo "  jsDelivr: https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@$NEW_COMMIT/asset/"
+echo "  fallback: https://aaditxn13.github.io/Portfolio---2026/asset/"
 echo ""
 echo "Next: review & commit the touched files on main so Netlify picks up"
 echo "      the new pinned commit:"

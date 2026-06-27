@@ -6,18 +6,22 @@
  * URLs to match the current CDN strategy:
  *
  *   * Small/medium assets (png, jpg, svg, audio, fonts, …) →
- *       https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@<commit>/asset/...
+ *       https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@<commit>/asset/...
  *     pinned to a specific commit so jsDelivr serves with an immutable
  *     1-year cache.
  *
  *   * Video files (mp4, webm, mov, m4v) →
- *       https://aaadityaas.github.io/Portfolio---2026/asset/...
+ *       https://aaditxn13.github.io/Portfolio---2026/asset/...
  *     GH Pages / Fastly is meaningfully faster than jsDelivr for large
  *     media files in our benchmarks.
  *
  * Pulls the pinned commit from asset/head-boot.js so this script and the
  * runtime resolver always agree. Idempotent: re-running after a sync is a
  * no-op if the commit hash hasn't changed.
+ *
+ * The absolute-URL rewriters intentionally match both the current
+ * Aaditxn13 host AND the legacy aaadityaas host so the first run after the
+ * GitHub account migration sweeps all stale URLs forward.
  *
  * Usage:
  *   node scripts/rewrite-asset-urls.mjs            # apply changes
@@ -31,8 +35,10 @@ import { fileURLToPath } from 'node:url';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DRY_RUN = process.argv.includes('--dry-run');
 
-const GH_REPO = 'aaadityaas/Portfolio---2026';
-const GH_PAGES_BASE = 'https://aaadityaas.github.io/Portfolio---2026/';
+const GH_REPO = 'Aaditxn13/Portfolio---2026';
+const GH_PAGES_BASE = 'https://aaditxn13.github.io/Portfolio---2026/';
+const LEGACY_GH_REPOS = ['aaadityaas/Portfolio---2026', 'Aaditxn13/Portfolio---2026'];
+const LEGACY_GH_PAGES_HOSTS = ['aaadityaas.github.io', 'aaditxn13.github.io'];
 const VIDEO_EXTENSIONS = new Set(['mp4', 'webm', 'mov', 'm4v']);
 
 function readPinnedCommit() {
@@ -85,19 +91,25 @@ function processFile(relPath) {
     let replacements = 0;
 
     // 1. Existing absolute jsDelivr OR GH Pages URLs → normalize to the
-    //    correct CDN for their file type. Catches stale commit hashes too.
+    //    correct CDN for their file type. Catches stale commit hashes AND
+    //    the legacy `aaadityaas` GitHub account so URLs migrate cleanly
+    //    after the account swap.
+    const jsDelivrRepoAlternation = LEGACY_GH_REPOS
+        .map((r) => r.replace(/\//g, '\\/'))
+        .join('|');
+    const ghPagesHostAlternation = LEGACY_GH_PAGES_HOSTS
+        .map((h) => h.replace(/\./g, '\\.'))
+        .join('|');
     const absoluteRewriters = [
-        // jsDelivr URLs (any commit) → pickBase
         {
             re: new RegExp(
-                `https://cdn\\.jsdelivr\\.net/gh/${GH_REPO.replace(/\//g, '\\/')}@[a-f0-9A-Z._-]+/asset/([^\\s"'\`)<>]+?\\.(?:${MEDIA_EXTENSIONS})(?:\\?[^\\s"'\`)<>]*)?)`,
+                `https://cdn\\.jsdelivr\\.net/gh/(?:${jsDelivrRepoAlternation})@[a-f0-9A-Z._-]+/asset/([^\\s"'\`)<>]+?\\.(?:${MEDIA_EXTENSIONS})(?:\\?[^\\s"'\`)<>]*)?)`,
                 'gi'
             )
         },
-        // GH Pages URLs → pickBase (videos stay, others move to jsDelivr)
         {
             re: new RegExp(
-                `https://aaadityaas\\.github\\.io/Portfolio---2026/asset/([^\\s"'\`)<>]+?\\.(?:${MEDIA_EXTENSIONS})(?:\\?[^\\s"'\`)<>]*)?)`,
+                `https://(?:${ghPagesHostAlternation})/Portfolio---2026/asset/([^\\s"'\`)<>]+?\\.(?:${MEDIA_EXTENSIONS})(?:\\?[^\\s"'\`)<>]*)?)`,
                 'gi'
             )
         }
@@ -133,7 +145,27 @@ function processFile(relPath) {
         return `${pickBase(rest)}asset/${rest}`;
     });
 
-    // 3. asset/site-prefetch.js carries the runtime resolver. Make sure it
+    // 3. Sweep preconnect/dns-prefetch hint URLs (no /asset/ suffix, so the
+    //    matchers above miss them) and bare host references in scripts.
+    const newHost = GH_PAGES_BASE.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    for (const legacyHost of LEGACY_GH_PAGES_HOSTS) {
+        if (legacyHost === newHost) continue;
+        const re = new RegExp(legacyHost.replace(/\./g, '\\.'), 'g');
+        content = content.replace(re, (m) => {
+            replacements += 1;
+            return newHost;
+        });
+    }
+    for (const legacyRepo of LEGACY_GH_REPOS) {
+        if (legacyRepo === GH_REPO) continue;
+        const re = new RegExp(legacyRepo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        content = content.replace(re, (m) => {
+            replacements += 1;
+            return GH_REPO;
+        });
+    }
+
+    // 4. asset/site-prefetch.js carries the runtime resolver. Make sure it
     //    delegates to the global window.resolveAssetUrl() helper defined in
     //    head-boot.js (single source of truth for CDN routing).
     if (relPath === 'asset/site-prefetch.js') {
