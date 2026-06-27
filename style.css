@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -5408,6 +5408,79 @@ body.night-mode::before {
 .cs-section__body:last-child { margin-bottom: 0; }
 .cs-section__body strong { font-weight: var(--t-weight-semibold); }
 
+/* Inline hover-pill links inside case-study copy */
+.cs-inline-link {
+    font-weight: var(--t-weight-semibold);
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    --cs-link-accent: #14b8a6;
+}
+
+/* Stable accent palette — hash of pill label / link text picks one */
+.cs-inline-link[data-link-accent="0"],
+.cs-link-pill[data-link-accent="0"] { --cs-link-accent: #14b8a6; }
+
+.cs-inline-link[data-link-accent="1"],
+.cs-link-pill[data-link-accent="1"] { --cs-link-accent: #72c5f9; }
+
+.cs-inline-link[data-link-accent="2"],
+.cs-link-pill[data-link-accent="2"] { --cs-link-accent: #a855f7; }
+
+.cs-inline-link[data-link-accent="3"],
+.cs-link-pill[data-link-accent="3"] { --cs-link-accent: #22c55e; }
+
+.cs-inline-link[data-link-accent="4"],
+.cs-link-pill[data-link-accent="4"] { --cs-link-accent: #f59e0b; }
+
+.cs-inline-link[data-link-accent="5"],
+.cs-link-pill[data-link-accent="5"] { --cs-link-accent: #ec4899; }
+
+.cs-inline-link[data-link-accent="6"],
+.cs-link-pill[data-link-accent="6"] { --cs-link-accent: #6366f1; }
+
+html[data-cs-mode="edit"] .cs-inline-link {
+    text-decoration: underline dotted;
+    text-decoration-color: rgba(51, 51, 51, 0.35);
+    text-underline-offset: 3px;
+    background: rgba(255, 116, 56, 0.08);
+    border-radius: 4px;
+    padding: 0 2px;
+    box-shadow: inset 0 -1px 0 rgba(255, 116, 56, 0.25);
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+html[data-cs-mode="edit"] .cs-inline-link:hover {
+    color: var(--cs-link-accent);
+    background: color-mix(in srgb, var(--cs-link-accent) 12%, transparent);
+    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--cs-link-accent) 45%, transparent);
+}
+
+html[data-cs-link-editor-open="true"] .cs-inline-link,
+html[data-cs-link-editor-open="true"] .cs-inline-link:hover {
+    background: rgba(255, 116, 56, 0.08);
+    box-shadow: inset 0 -1px 0 rgba(255, 116, 56, 0.25);
+    color: inherit;
+}
+
+html[data-cs-mode="view"] .cs-inline-link {
+    transition: color 0.22s ease;
+}
+
+html[data-cs-mode="view"] .cs-inline-link[data-href],
+html[data-cs-mode="view"] a.cs-inline-link[href] {
+    cursor: pointer;
+}
+
+html[data-cs-mode="view"] .cs-inline-link:hover,
+html[data-cs-mode="view"] .cs-inline-link:focus-visible {
+    color: var(--cs-link-accent);
+}
+
+html[data-cs-mode="view"] .cs-link-pill__label {
+    color: var(--cs-link-accent, #989FA3);
+}
+
 /* Caption that sits below an image / grid / comparison. */
 .cs-section__caption {
     font-family: var(--font-sans);
@@ -7617,6 +7690,333 @@ html[data-cs-mode="edit"] [contenteditable]:focus {
 
 .cs-rich-text-toolbar__btn:hover {
     background: rgba(15, 23, 42, 0.06);
+}
+
+.cs-rich-text-toolbar__btn--link {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* Hover pill shown on linked text (view mode) */
+.cs-link-pill {
+    position: fixed;
+    z-index: 1150;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 20px 10px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow:
+        0 12px 32px rgba(15, 23, 42, 0.1),
+        0 4px 10px rgba(15, 23, 42, 0.05);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, calc(-100% + 6px)) scale(0.94);
+    transform-origin: 50% 100%;
+    transition:
+        opacity 0.2s ease,
+        transform 0.24s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.cs-link-pill.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+.cs-link-pill::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: 2px;
+}
+
+.cs-link-pill__avatar-wrap {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f3f4f6;
+}
+
+.cs-link-pill__avatar-wrap.has-image {
+    display: block;
+}
+
+.cs-link-pill__avatar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cs-link-pill__label {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--cs-link-accent, #989FA3);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+/* Link editor popover (edit mode) */
+.cs-link-editor-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2147482998;
+    background: rgba(247, 248, 250, 0.82);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s ease;
+}
+
+.cs-link-editor-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cs-link-editor {
+    position: fixed;
+    z-index: 2147482999;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow:
+        0 24px 48px rgba(15, 23, 42, 0.14),
+        0 4px 12px rgba(15, 23, 42, 0.06);
+    font-family: var(--font-sans);
+    isolation: isolate;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.cs-link-editor.is-visible {
+    display: flex;
+}
+
+.cs-link-editor__title {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.cs-link-editor__hint {
+    margin: -4px 0 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #9ca3af;
+}
+
+.cs-link-editor__input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--cs-edit-border);
+    border-radius: 8px;
+    background: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    color: #111827;
+    box-sizing: border-box;
+}
+
+.cs-link-editor__input:focus {
+    outline: none;
+    border-color: rgba(15, 23, 42, 0.25);
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.06);
+}
+
+.cs-link-editor__dropzone {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px dashed rgba(15, 23, 42, 0.18);
+    border-radius: 12px;
+    background: #fafafa;
+    cursor: pointer;
+    text-align: left;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.cs-link-editor__dropzone:hover,
+.cs-link-editor__dropzone.is-dragover,
+.cs-link-editor__dropzone:focus-visible {
+    outline: none;
+    border-color: rgba(255, 116, 56, 0.55);
+    background: rgba(255, 116, 56, 0.05);
+    box-shadow: inset 0 0 0 1px rgba(255, 116, 56, 0.08);
+}
+
+.cs-link-editor__dropzone-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cs-link-editor__dropzone-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.cs-link-editor__dropzone-hint {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.cs-link-editor__image-preview {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f3f4f6;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+}
+
+.cs-link-editor__dropzone.has-image .cs-link-editor__image-preview {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cs-link-editor__dropzone:not(.has-image) .cs-link-editor__image-preview::before {
+    content: "+";
+    font-size: 20px;
+    line-height: 1;
+    color: #9ca3af;
+}
+
+.cs-link-editor__thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cs-link-editor__file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cs-link-editor__status {
+    margin: 0;
+    min-height: 16px;
+    font-size: 12px;
+    color: #059669;
+}
+
+.cs-link-editor__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.cs-link-editor__btn {
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cs-link-editor__btn--ghost {
+    background: transparent;
+    color: #6b7280;
+}
+
+.cs-link-editor__btn--ghost:hover {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+.cs-link-editor__btn--primary {
+    background: #111827;
+    color: #fff;
+}
+
+.cs-link-editor__btn--primary:hover {
+    background: #1f2937;
+}
+
+body.night-mode .cs-link-pill {
+    background: #1f2229;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .cs-link-pill::after {
+    background: #1f2229;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.night-mode .cs-link-pill__label {
+    color: var(--cs-link-accent, #cbd5e1);
+}
+
+body.night-mode .cs-link-editor-backdrop {
+    background: rgba(10, 12, 16, 0.72);
+}
+
+body.night-mode .cs-link-editor {
+    background: #1f2229;
+    color: #e5e7eb;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.night-mode .cs-link-editor__input {
+    background: #14161c;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #e5e7eb;
+}
+
+body.night-mode .cs-link-editor__dropzone {
+    background: #14161c;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.night-mode .cs-link-editor__btn--primary {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cs-link-pill {
+        transition: none;
+    }
 }
 
 /* Dark mode for editor chrome */

@@ -24,12 +24,10 @@
     const CASE_ID = document.documentElement.dataset.caseStudyId;
     if (!CASE_ID) return;
 
-    // Bumped Zapp to v7 so the two new Design-section blocks (Welcome to
-    // New Users + PayZapp Home Widget) aren't masked by an older browser
-    // draft in localStorage.
+    // Bumped Zapp to v8 for inline hover-pill links in case-study copy.
     const CONTENT_VERSION = CASE_ID === 'growth-experiments'
         ? 'v5'
-        : (CASE_ID === 'zapp-account' ? 'v7' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
+        : (CASE_ID === 'zapp-account' ? 'v8' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
     const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'project-3', 'now-and-me']);
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
@@ -46,16 +44,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/case-studies/zapp-account/b5591rluy-image.png',
         'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/water.png'
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -244,7 +242,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -292,7 +290,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -318,7 +316,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -357,7 +355,34 @@
     let activeIndexTarget = '';
     let activeMediaSlot = null;
     let richTextToolbar = null;
+    let linkEditorPopover = null;
+    let linkEditorBackdrop = null;
+    let linkHoverPill = null;
+    let linkHoverTimer = null;
     let activeEditableNode = null;
+    let linkEditorState = null;
+    let linkEditorCloseBlock = 0;
+
+    const INLINE_LINK_CLASS = 'cs-inline-link';
+    const INLINE_LINK_DATA_ATTRS = ['data-pill-label', 'data-pill-image', 'data-href'];
+    const LINK_ACCENT_COUNT = 7;
+
+    function linkAccentIndex(link) {
+        const key = (
+            link.getAttribute('data-pill-label')
+            || link.textContent
+            || ''
+        ).trim().toLowerCase();
+        let hash = 0;
+        for (let i = 0; i < key.length; i += 1) {
+            hash = (hash + key.charCodeAt(i) * 17 + i) % LINK_ACCENT_COUNT;
+        }
+        return hash;
+    }
+
+    function applyLinkAccent(link) {
+        link.dataset.linkAccent = String(linkAccentIndex(link));
+    }
 
     function uid() {
         return 'b' + Math.random().toString(36).slice(2, 10);
@@ -592,6 +617,8 @@
             });
         });
 
+        visitDocTextHtml(docValue, (html) => collectInlineLinkAssetRefs(html, refs));
+
         for (const meta of refs.values()) {
             const record = await getAssetRecord(meta.ref);
             if (!record?.blob) continue;
@@ -745,17 +772,51 @@
         })[ch]);
     }
 
+    function isInlineLinkElement(node) {
+        return node
+            && node.nodeType === Node.ELEMENT_NODE
+            && node.classList
+            && node.classList.contains(INLINE_LINK_CLASS);
+    }
+
+    function copyInlineLinkAttributes(from, to) {
+        INLINE_LINK_DATA_ATTRS.forEach((attr) => {
+            const value = from.getAttribute(attr);
+            if (value != null && value !== '') to.setAttribute(attr, value);
+        });
+        const href = from.getAttribute('href') || from.getAttribute('data-href');
+        if (href && /^https?:\/\//i.test(href)) {
+            to.setAttribute('href', href);
+            to.setAttribute('target', '_blank');
+            to.setAttribute('rel', 'noopener noreferrer');
+        }
+    }
+
     function sanitizeEditableHtml(value) {
         const source = String(value || '');
         const template = document.createElement('template');
         template.innerHTML = source;
-        const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR']);
+        const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'SPAN', 'A']);
 
         function cleanNode(node) {
             if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent || '');
             if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
             const tag = node.tagName;
             const children = Array.from(node.childNodes).map(cleanNode);
+            if (tag === 'SPAN' && isInlineLinkElement(node)) {
+                const next = document.createElement('span');
+                next.className = INLINE_LINK_CLASS;
+                copyInlineLinkAttributes(node, next);
+                children.forEach((child) => next.appendChild(child));
+                return next;
+            }
+            if (tag === 'A' && isInlineLinkElement(node)) {
+                const next = document.createElement('a');
+                next.className = INLINE_LINK_CLASS;
+                copyInlineLinkAttributes(node, next);
+                children.forEach((child) => next.appendChild(child));
+                return next;
+            }
             if (!allowed.has(tag)) {
                 const frag = document.createDocumentFragment();
                 children.forEach((child) => frag.appendChild(child));
@@ -774,20 +835,69 @@
             .trim();
     }
 
+    function editableHasMarkup(probe) {
+        return probe.querySelector('strong, em, u, br, .cs-inline-link, a.cs-inline-link');
+    }
+
     function editableValueFromNode(node) {
         const html = sanitizeEditableHtml(node.innerHTML);
         const probe = document.createElement('div');
         probe.innerHTML = html;
-        return probe.querySelector('strong, em, u, br') ? html : (probe.textContent || '');
+        return editableHasMarkup(probe) ? html : (probe.textContent || '');
     }
 
     function setEditableHtml(node, value) {
         const source = String(value || '');
-        if (/<\/?(strong|b|em|i|u|br)\b/i.test(source)) {
+        if (/<\/?(strong|b|em|i|u|br|span|a)\b/i.test(source) || /cs-inline-link/.test(source)) {
             node.innerHTML = sanitizeEditableHtml(source);
         } else {
             node.textContent = source;
         }
+    }
+
+    function visitDocTextHtml(docValue, visitor) {
+        if (!docValue || typeof visitor !== 'function') return;
+        ['title', 'subtitle'].forEach((field) => {
+            if (typeof docValue[field] === 'string') visitor(docValue[field]);
+        });
+        (docValue.meta || []).forEach((cell) => {
+            ['label', 'value'].forEach((field) => {
+                if (typeof cell[field] === 'string') visitor(cell[field]);
+            });
+        });
+        function visitBlock(block) {
+            if (!block || typeof block !== 'object') return;
+            ['body', 'text', 'headline', 'label', 'caption', 'eyebrow', 'index', 'stat', 'note'].forEach((field) => {
+                if (typeof block[field] === 'string') visitor(block[field]);
+            });
+            if (block.labels && typeof block.labels === 'object') {
+                Object.values(block.labels).forEach((value) => {
+                    if (typeof value === 'string') visitor(value);
+                });
+            }
+            if (Array.isArray(block.items)) block.items.forEach(visitBlock);
+            if (Array.isArray(block.columns)) {
+                block.columns.forEach((col) => (col.blocks || []).forEach(visitBlock));
+            }
+        }
+        if (docValue.hero) visitBlock(docValue.hero);
+        (docValue.sections || []).forEach((section) => (section.blocks || []).forEach(visitBlock));
+    }
+
+    function collectInlineLinkAssetRefs(html, refs) {
+        if (!html || typeof html !== 'string' || !html.includes('cs-inline-link')) return;
+        const probe = document.createElement('div');
+        probe.innerHTML = sanitizeEditableHtml(html);
+        probe.querySelectorAll(`.${INLINE_LINK_CLASS}[data-pill-image]`).forEach((node) => {
+            const ref = node.getAttribute('data-pill-image');
+            if (!isAssetRef(ref) || refs.has(ref)) return;
+            refs.set(ref, {
+                ref,
+                uid: `pill-${uid()}`,
+                originalName: 'pill-avatar.png',
+                mimeType: 'image/png'
+            });
+        });
     }
 
     function splitBody(value) {
@@ -803,17 +913,31 @@
        works offline without a server. (Be mindful of size; small images only.)
        --------------------------------------------------------------------------- */
 
+    function blockLinkEditorClose() {
+        linkEditorCloseBlock += 1;
+    }
+
+    function unblockLinkEditorClose() {
+        linkEditorCloseBlock = Math.max(0, linkEditorCloseBlock - 1);
+    }
+
     function pickFile(accept) {
         return new Promise((resolve) => {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = accept;
             input.style.display = 'none';
-            input.addEventListener('change', () => {
-                const file = input.files && input.files[0];
+            let settled = false;
+            const finish = (file) => {
+                if (settled) return;
+                settled = true;
                 resolve(file || null);
                 input.remove();
+            };
+            input.addEventListener('change', () => {
+                finish(input.files && input.files[0] ? input.files[0] : null);
             }, { once: true });
+            input.addEventListener('cancel', () => finish(null), { once: true });
             document.body.appendChild(input);
             input.click();
         });
@@ -1390,6 +1514,17 @@
             btn.addEventListener('click', () => applyRichTextCommand(cmd));
             bar.appendChild(btn);
         });
+        const linkBtn = el('button', {
+            class: 'cs-rich-text-toolbar__btn cs-rich-text-toolbar__btn--link',
+            attrs: { type: 'button', title: 'Add hover pill link' },
+            text: '⛓'
+        });
+        linkBtn.addEventListener('mousedown', (ev) => ev.preventDefault());
+        linkBtn.addEventListener('click', () => {
+            const existing = inlineLinkAtSelection();
+            requestOpenLinkEditor(existing);
+        });
+        bar.appendChild(linkBtn);
         document.body.appendChild(bar);
         richTextToolbar = bar;
         return bar;
@@ -1407,21 +1542,35 @@
         return element && element.closest ? element.closest('[contenteditable="true"]') : null;
     }
 
+    function activeRichTextContext() {
+        if (activeEditableNode && activeEditableNode.isConnected) return activeEditableNode;
+        const editable = selectedEditableNode();
+        if (editable) return editable;
+        const selection = window.getSelection();
+        if (!selection || !selection.rangeCount) return null;
+        let node = selection.anchorNode;
+        if (node && node.nodeType === Node.TEXT_NODE) node = node.parentElement;
+        return node && node.closest ? node.closest('[contenteditable="true"]') : null;
+    }
+
     function updateRichTextToolbar() {
         if (mode !== 'edit') {
             hideRichTextToolbar();
             return;
         }
-        const editable = selectedEditableNode();
+        const editable = activeRichTextContext();
         if (!editable) {
             hideRichTextToolbar();
             return;
         }
         activeEditableNode = editable;
+        const existingLink = inlineLinkAtSelection();
         const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const rect = range.getBoundingClientRect();
-        if (!rect || (!rect.width && !rect.height)) {
+        const range = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+        const rect = existingLink
+            ? existingLink.getBoundingClientRect()
+            : (range ? range.getBoundingClientRect() : null);
+        if (!rect || (!rect.width && !rect.height && !existingLink)) {
             hideRichTextToolbar();
             return;
         }
@@ -1442,6 +1591,488 @@
             schedulePersist();
         }
         updateRichTextToolbar();
+    }
+
+    function inlineLinkAtSelection() {
+        const editable = activeEditableNode || selectedEditableNode();
+        if (!editable) return null;
+        const selection = window.getSelection();
+        if (!selection || !selection.rangeCount) return null;
+        let node = selection.anchorNode;
+        if (!node) return null;
+        if (node.nodeType === Node.TEXT_NODE) node = node.parentElement;
+        return node && node.closest ? node.closest(`.${INLINE_LINK_CLASS}`) : null;
+    }
+
+    function persistActiveEditable() {
+        if (!activeEditableNode) return;
+        const target = activeEditableNode._csEditableTarget;
+        const field = activeEditableNode._csEditableField;
+        if (target && field) {
+            target[field] = editableValueFromNode(activeEditableNode);
+            schedulePersist();
+        }
+    }
+
+    function ensureLinkEditorBackdrop() {
+        if (linkEditorBackdrop) return linkEditorBackdrop;
+        linkEditorBackdrop = el('div', {
+            class: 'cs-link-editor-backdrop',
+            attrs: { 'aria-hidden': 'true' }
+        });
+        linkEditorBackdrop.addEventListener('mousedown', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+        });
+        linkEditorBackdrop.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            closeLinkEditor();
+        });
+        document.body.appendChild(linkEditorBackdrop);
+        return linkEditorBackdrop;
+    }
+
+    function showLinkEditorChrome() {
+        ensureLinkEditorBackdrop().classList.add('is-visible');
+        document.documentElement.dataset.csLinkEditorOpen = 'true';
+        hideRichTextToolbar();
+    }
+
+    function hideLinkEditorChrome() {
+        if (linkEditorBackdrop) linkEditorBackdrop.classList.remove('is-visible');
+        delete document.documentElement.dataset.csLinkEditorOpen;
+    }
+
+    function buildLinkEditorPopover() {
+        if (linkEditorPopover) return linkEditorPopover;
+
+        const pop = el('div', {
+            class: 'cs-link-editor',
+            attrs: { contenteditable: 'false', role: 'dialog', 'aria-label': 'Link pill settings' }
+        });
+
+        const title = el('p', { class: 'cs-link-editor__title', text: 'Hover pill link' });
+        const hint = el('p', { class: 'cs-link-editor__hint', text: 'Click a linked word in the text to edit it, or select new text and use ⛓ in the toolbar.' });
+
+        const labelField = el('input', {
+            class: 'cs-link-editor__input',
+            attrs: { type: 'text', placeholder: 'Pill text (shown on hover)', 'aria-label': 'Pill text' }
+        });
+        const urlField = el('input', {
+            class: 'cs-link-editor__input',
+            attrs: { type: 'url', placeholder: 'Optional URL (https://…)', 'aria-label': 'Optional URL' }
+        });
+
+        const imageDrop = el('button', {
+            class: 'cs-link-editor__dropzone',
+            attrs: { type: 'button', 'aria-label': 'Add pill image' }
+        });
+        const imagePreview = el('div', { class: 'cs-link-editor__image-preview', attrs: { 'aria-hidden': 'true' } });
+        const imageCopy = el('div', { class: 'cs-link-editor__dropzone-copy' });
+        const imageTitle = el('span', { class: 'cs-link-editor__dropzone-title', text: 'Pill image' });
+        const imageHint = el('span', { class: 'cs-link-editor__dropzone-hint', text: 'Click, drop, or paste an image' });
+        imageCopy.appendChild(imageTitle);
+        imageCopy.appendChild(imageHint);
+        imageDrop.appendChild(imagePreview);
+        imageDrop.appendChild(imageCopy);
+
+        const fileInput = el('input', {
+            class: 'cs-link-editor__file-input',
+            attrs: { type: 'file', accept: 'image/*', tabindex: '-1', 'aria-hidden': 'true' }
+        });
+
+        const status = el('p', { class: 'cs-link-editor__status', attrs: { 'aria-live': 'polite' } });
+
+        const actions = el('div', { class: 'cs-link-editor__actions' });
+        const removeBtn = el('button', {
+            class: 'cs-link-editor__btn cs-link-editor__btn--ghost',
+            attrs: { type: 'button' },
+            text: 'Remove link'
+        });
+        const clearImageBtn = el('button', {
+            class: 'cs-link-editor__btn cs-link-editor__btn--ghost',
+            attrs: { type: 'button', text: 'Clear image' }
+        });
+        const saveBtn = el('button', {
+            class: 'cs-link-editor__btn cs-link-editor__btn--primary',
+            attrs: { type: 'button' },
+            text: 'Save'
+        });
+        actions.appendChild(removeBtn);
+        actions.appendChild(clearImageBtn);
+        actions.appendChild(saveBtn);
+
+        pop.appendChild(title);
+        pop.appendChild(hint);
+        pop.appendChild(labelField);
+        pop.appendChild(urlField);
+        pop.appendChild(imageDrop);
+        pop.appendChild(fileInput);
+        pop.appendChild(status);
+        pop.appendChild(actions);
+        document.body.appendChild(pop);
+
+        async function assignPillImageFile(file) {
+            if (!file || !linkEditorState) return;
+            if (!file.type || !file.type.startsWith('image/')) {
+                setLinkEditorStatus('Please choose an image file');
+                return;
+            }
+            setLinkEditorStatus('Uploading image…');
+            try {
+                const saved = await saveAssetFile(file);
+                linkEditorState.pillImage = saved.ref;
+                await updateLinkEditorPreview();
+                setLinkEditorStatus('Image added');
+            } catch (e) {
+                setLinkEditorStatus('Image upload failed');
+            }
+        }
+
+        imageDrop.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', async () => {
+            const file = fileInput.files && fileInput.files[0];
+            fileInput.value = '';
+            await assignPillImageFile(file);
+        });
+
+        imageDrop.addEventListener('dragover', (ev) => {
+            ev.preventDefault();
+            imageDrop.classList.add('is-dragover');
+        });
+        imageDrop.addEventListener('dragleave', () => {
+            imageDrop.classList.remove('is-dragover');
+        });
+        imageDrop.addEventListener('drop', async (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            imageDrop.classList.remove('is-dragover');
+            const file = ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0];
+            await assignPillImageFile(file);
+        });
+
+        pop.addEventListener('paste', async (ev) => {
+            const file = clipboardMediaFile(ev, false);
+            if (!file) return;
+            ev.preventDefault();
+            ev.stopPropagation();
+            await assignPillImageFile(file);
+        });
+
+        clearImageBtn.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            if (!linkEditorState) return;
+            linkEditorState.pillImage = '';
+            updateLinkEditorPreview();
+            setLinkEditorStatus('Image cleared');
+        });
+
+        removeBtn.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            removeInlineLink();
+            closeLinkEditor();
+        });
+
+        saveBtn.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            applyInlineLinkFromEditor();
+        });
+
+        pop.addEventListener('mousedown', (ev) => ev.stopPropagation());
+        pop.addEventListener('click', (ev) => ev.stopPropagation());
+
+        linkEditorPopover = pop;
+        linkEditorPopover._fields = {
+            labelField,
+            urlField,
+            imageDrop,
+            imagePreview,
+            removeBtn,
+            clearImageBtn,
+            status,
+            fileInput
+        };
+        return pop;
+    }
+
+    function setLinkEditorStatus(message) {
+        if (!linkEditorPopover || !linkEditorPopover._fields) return;
+        linkEditorPopover._fields.status.textContent = message || '';
+    }
+
+    async function updateLinkEditorPreview() {
+        if (!linkEditorPopover || !linkEditorState) return;
+        const { imagePreview, imageDrop, clearImageBtn } = linkEditorPopover._fields;
+        imagePreview.innerHTML = '';
+        imageDrop.classList.toggle('has-image', Boolean(linkEditorState.pillImage));
+        clearImageBtn.style.display = linkEditorState.pillImage ? '' : 'none';
+        if (linkEditorState.pillImage) {
+            const src = await resolveAssetSrc(linkEditorState.pillImage);
+            if (src) {
+                const img = el('img', { class: 'cs-link-editor__thumb', attrs: { src, alt: '' } });
+                imagePreview.appendChild(img);
+            }
+        }
+    }
+
+    function positionLinkEditor(anchorRect) {
+        if (!linkEditorPopover || !anchorRect) return;
+        const width = 320;
+        const editingExisting = Boolean(linkEditorState?.existingLink);
+        const height = linkEditorPopover.offsetHeight || 360;
+        const left = Math.min(window.innerWidth - width - 12, Math.max(12, anchorRect.left + anchorRect.width / 2 - width / 2));
+        const spaceAbove = anchorRect.top;
+        const spaceBelow = window.innerHeight - anchorRect.bottom;
+        const placeBelow = editingExisting || (spaceAbove < height + 32 && spaceBelow > spaceAbove);
+        const gap = editingExisting ? 20 : 12;
+
+        linkEditorPopover.style.width = `${width}px`;
+        linkEditorPopover.style.left = `${left}px`;
+        linkEditorPopover.style.top = placeBelow
+            ? `${anchorRect.bottom + gap}px`
+            : `${Math.max(12, anchorRect.top - gap)}px`;
+        linkEditorPopover.style.transform = placeBelow ? 'none' : 'translateY(-100%)';
+        linkEditorPopover.dataset.placement = placeBelow ? 'below' : 'above';
+    }
+
+    function closeLinkEditor() {
+        if (linkEditorCloseBlock > 0) return;
+        if (!linkEditorPopover) return;
+        linkEditorPopover.classList.remove('is-visible');
+        hideLinkEditorChrome();
+        linkEditorState = null;
+        setLinkEditorStatus('');
+    }
+
+    async function openLinkEditor(existingLink) {
+        if (mode !== 'edit') return;
+        const editable = activeEditableNode || selectedEditableNode() || activeRichTextContext();
+        if (!editable && !existingLink) return;
+
+        const selection = window.getSelection();
+        const range = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+        const rect = existingLink
+            ? existingLink.getBoundingClientRect()
+            : (range ? range.getBoundingClientRect() : editable.getBoundingClientRect());
+
+        const selectedText = existingLink
+            ? (existingLink.textContent || '').trim()
+            : (range && !range.collapsed ? range.toString().trim() : '');
+
+        if (!existingLink && !selectedText) {
+            flashSaved('Select text first');
+            return;
+        }
+
+        buildLinkEditorPopover();
+        linkEditorState = {
+            existingLink: existingLink || null,
+            editable: editable || (existingLink && existingLink.closest('[contenteditable="true"]')),
+            pillLabel: existingLink?.getAttribute('data-pill-label') || selectedText,
+            pillImage: existingLink?.getAttribute('data-pill-image') || '',
+            href: existingLink?.getAttribute('href') || existingLink?.getAttribute('data-href') || ''
+        };
+
+        const { labelField, urlField, removeBtn } = linkEditorPopover._fields;
+        labelField.value = linkEditorState.pillLabel;
+        urlField.value = linkEditorState.href;
+        removeBtn.style.display = existingLink ? '' : 'none';
+        setLinkEditorStatus('');
+        await updateLinkEditorPreview();
+        showLinkEditorChrome();
+        linkEditorPopover.classList.add('is-visible');
+        positionLinkEditor(rect);
+        labelField.focus();
+        labelField.select();
+    }
+
+    function applyInlineLinkAttributes(node, { pillLabel, pillImage, href }) {
+        node.className = INLINE_LINK_CLASS;
+        if (pillLabel) node.setAttribute('data-pill-label', pillLabel);
+        else node.removeAttribute('data-pill-label');
+        if (pillImage) node.setAttribute('data-pill-image', pillImage);
+        else node.removeAttribute('data-pill-image');
+        if (href) {
+            node.setAttribute('href', href);
+            node.setAttribute('data-href', href);
+            node.setAttribute('target', '_blank');
+            node.setAttribute('rel', 'noopener noreferrer');
+        } else {
+            node.removeAttribute('href');
+            node.removeAttribute('data-href');
+            node.removeAttribute('target');
+            node.removeAttribute('rel');
+        }
+    }
+
+    function applyInlineLinkFromEditor() {
+        if (!linkEditorState || !linkEditorPopover) return;
+        const { labelField, urlField } = linkEditorPopover._fields;
+        const pillLabel = labelField.value.trim();
+        const href = urlField.value.trim();
+        if (!pillLabel) {
+            flashSaved('Pill text required');
+            return;
+        }
+
+        const payload = {
+            pillLabel,
+            pillImage: linkEditorState.pillImage || '',
+            href: /^https?:\/\//i.test(href) ? href : ''
+        };
+
+        if (linkEditorState.existingLink) {
+            const node = linkEditorState.existingLink;
+            if (payload.href && node.tagName !== 'A') {
+                const replacement = document.createElement('a');
+                replacement.textContent = node.textContent;
+                applyInlineLinkAttributes(replacement, payload);
+                node.replaceWith(replacement);
+            } else if (!payload.href && node.tagName === 'A') {
+                const replacement = document.createElement('span');
+                replacement.textContent = node.textContent;
+                applyInlineLinkAttributes(replacement, payload);
+                node.replaceWith(replacement);
+            } else {
+                applyInlineLinkAttributes(node, payload);
+            }
+        } else {
+            const selection = window.getSelection();
+            if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return;
+            const range = selection.getRangeAt(0);
+            const wrapper = document.createElement(payload.href ? 'a' : 'span');
+            wrapper.appendChild(range.extractContents());
+            applyInlineLinkAttributes(wrapper, payload);
+            range.insertNode(wrapper);
+            selection.removeAllRanges();
+            const after = document.createRange();
+            after.setStartAfter(wrapper);
+            after.collapse(true);
+            selection.addRange(after);
+        }
+
+        if (linkEditorState.editable) {
+            activeEditableNode = linkEditorState.editable;
+        }
+        persistActiveEditable();
+        wireInlineLinks(true);
+        closeLinkEditor();
+        flashSaved('Link saved');
+    }
+
+    function requestOpenLinkEditor(existingLink) {
+        blockLinkEditorClose();
+        window.requestAnimationFrame(() => {
+            openLinkEditor(existingLink).finally(() => {
+                window.setTimeout(unblockLinkEditorClose, 0);
+            });
+        });
+    }
+
+    function removeInlineLink() {
+        if (!linkEditorState || !linkEditorState.existingLink) return;
+        const node = linkEditorState.existingLink;
+        const text = node.textContent || '';
+        node.replaceWith(document.createTextNode(text));
+        persistActiveEditable();
+        wireInlineLinks(true);
+        flashSaved('Link removed');
+    }
+
+    function buildLinkHoverPill() {
+        if (linkHoverPill) return linkHoverPill;
+        const pill = el('div', { class: 'cs-link-pill', attrs: { 'aria-hidden': 'true' } });
+        const avatarWrap = el('div', { class: 'cs-link-pill__avatar-wrap' });
+        const avatar = el('img', { class: 'cs-link-pill__avatar', attrs: { alt: '' } });
+        const label = el('span', { class: 'cs-link-pill__label' });
+        avatarWrap.appendChild(avatar);
+        pill.appendChild(avatarWrap);
+        pill.appendChild(label);
+        document.body.appendChild(pill);
+        linkHoverPill = pill;
+        linkHoverPill._avatar = avatar;
+        linkHoverPill._avatarWrap = avatarWrap;
+        linkHoverPill._label = label;
+        return pill;
+    }
+
+    function hideLinkHoverPill() {
+        if (linkHoverTimer) {
+            clearTimeout(linkHoverTimer);
+            linkHoverTimer = null;
+        }
+        if (linkHoverPill) linkHoverPill.classList.remove('is-visible');
+    }
+
+    function scheduleHideLinkHoverPill() {
+        if (linkHoverTimer) clearTimeout(linkHoverTimer);
+        linkHoverTimer = setTimeout(hideLinkHoverPill, 80);
+    }
+
+    async function showLinkHoverPill(link) {
+        if (mode === 'edit') return;
+        const pillLabel = link.getAttribute('data-pill-label') || link.textContent.trim();
+        if (!pillLabel) return;
+
+        buildLinkHoverPill();
+        if (linkHoverTimer) {
+            clearTimeout(linkHoverTimer);
+            linkHoverTimer = null;
+        }
+
+        linkHoverPill._label.textContent = pillLabel;
+        linkHoverPill._avatar.removeAttribute('src');
+        linkHoverPill._avatarWrap.classList.remove('has-image');
+        linkHoverPill.dataset.linkAccent = link.dataset.linkAccent || String(linkAccentIndex(link));
+
+        const imageRef = link.getAttribute('data-pill-image');
+        if (imageRef) {
+            const src = await resolveAssetSrc(imageRef);
+            if (src) {
+                linkHoverPill._avatar.src = src;
+                linkHoverPill._avatarWrap.classList.add('has-image');
+            }
+        }
+
+        const rect = link.getBoundingClientRect();
+        linkHoverPill.style.left = `${rect.left + rect.width / 2}px`;
+        linkHoverPill.style.top = `${rect.top - 14}px`;
+        linkHoverPill.classList.add('is-visible');
+    }
+
+    function wireInlineLinks(forceRewire) {
+        document.querySelectorAll(`.${INLINE_LINK_CLASS}`).forEach((link) => {
+            applyLinkAccent(link);
+            if (forceRewire) delete link.dataset.csLinkWired;
+            if (link.dataset.csLinkWired) return;
+            link.dataset.csLinkWired = '1';
+
+            if (mode === 'view') {
+                link.addEventListener('mouseenter', () => showLinkHoverPill(link));
+                link.addEventListener('mouseleave', scheduleHideLinkHoverPill);
+                link.addEventListener('focus', () => showLinkHoverPill(link));
+                link.addEventListener('blur', scheduleHideLinkHoverPill);
+            } else {
+                link.addEventListener('mousedown', (ev) => {
+                    if (link.hasAttribute('href') && (ev.metaKey || ev.ctrlKey)) return;
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                });
+                link.addEventListener('click', (ev) => {
+                    if (link.hasAttribute('href') && (ev.metaKey || ev.ctrlKey)) return;
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    activeEditableNode = link.closest('[contenteditable="true"]');
+                    requestOpenLinkEditor(link);
+                });
+                link.setAttribute('title', 'Click to edit hover pill');
+            }
+        });
     }
 
     /* ---------- Block renderers ---------- */
@@ -2582,9 +3213,12 @@
 
     function renderAll() {
         document.documentElement.dataset.csMode = mode;
+        hideLinkHoverPill();
+        closeLinkEditor();
         renderHeader();
         renderHero();
         renderContent();
+        wireInlineLinks(true);
         updateToolbar();
         activeIndexTarget = '';
         requestIndexActiveUpdate();
@@ -2701,6 +3335,17 @@
         renderAll();
         document.addEventListener('paste', handleMediaPaste);
         document.addEventListener('selectionchange', updateRichTextToolbar);
+        document.addEventListener('click', (ev) => {
+            if (!linkEditorPopover || !linkEditorPopover.classList.contains('is-visible')) return;
+            if (linkEditorCloseBlock > 0) return;
+            if (linkEditorPopover.contains(ev.target)) return;
+            if (ev.target.closest('.cs-rich-text-toolbar__btn--link')) return;
+            if (ev.target.closest(`.${INLINE_LINK_CLASS}`)) return;
+            closeLinkEditor();
+        });
+        document.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Escape') closeLinkEditor();
+        });
         if (isIndexedCaseStudy()) {
             window.addEventListener('scroll', requestIndexActiveUpdate, { passive: true });
             window.addEventListener('resize', requestIndexActiveUpdate, { passive: true });

@@ -684,18 +684,18 @@
         },
         {
           "type": "text",
-          "body": "My role shifted across this project. I started in the thinking phase direction, system, flow architecture. I ended up sitting with developers daily, going screen by screen, making sure what shipped matched what was designed.",
+          "body": "My role shifted across this project. I started in the thinking phase direction, system, flow architecture. I ended up sitting with developers daily, going screen by screen, making sure what shipped matched what was designed. The pixel-perfect phase isn't vanity. When you're rebuilding trust in a product people have written off, every rough edge is a reason to leave again.",
           "uid": "bbvh6dvm0"
-        },
-        {
-          "type": "text",
-          "body": "The pixel-perfect phase isn't vanity. When you're rebuilding trust in a product people have written off, every rough edge is a reason to leave again.",
-          "uid": "b2wrj69ab"
         },
         {
           "type": "text",
           "body": "The hardest call wasn't a design decision. It was arguing for a focused launch pushing back on the feature list, convincing stakeholders that a wallet which earns one user's trust completely is worth more than one that half-impresses everyone. That's the one I'm most proud of.",
           "uid": "bz221xgq4"
+        },
+        {
+          "uid": "ba2mt5qup",
+          "type": "text",
+          "body": "A big thanks to&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Ishant's work\" data-pill-image=\"cs-asset:zapp-account:1782587619171:bxrgjdpsm\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">@Ishant</a> on leading the direction of this project and guiding on my first big launch"
         },
         {
           "uid": "b7my9799f",
@@ -708,8 +708,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782584979191,
-    "syncedAt": "2026-06-27T18:29:39.191Z",
+    "repoVersion": 1782587641544,
+    "syncedAt": "2026-06-27T19:14:01.544Z",
     "dirty": false
   }
 }
