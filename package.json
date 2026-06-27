@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "case-study:sync": "node scripts/case-study-sync-server.mjs",
-    "sync": "node scripts/case-study-sync-server.mjs"
-  }
-}

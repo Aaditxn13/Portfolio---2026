@@ -2,7 +2,7 @@
     'use strict';
 
     // --- Asset hosting --------------------------------------------------
-    // Assets live on the gh-pages branch of aaadityaas/Portfolio---2026 and
+    // Assets live on the gh-pages branch of Aaditxn13/Portfolio---2026 and
     // are served by two CDNs in parallel:
     //
     //   * jsDelivr (pinned to the exact gh-pages commit) for small/medium
@@ -20,14 +20,14 @@
     // window.VIDEO_BASE_URL before this script loads.
 
     var ASSETS_PINNED_COMMIT = '773fd51d68c77467b409804b029a148cb9e35083'; // AUTO-BUMPED
-    var GH_REPO = 'aaadityaas/Portfolio---2026';
+    var GH_REPO = 'Aaditxn13/Portfolio---2026';
 
     if (!window.ASSET_BASE_URL) {
         window.ASSET_BASE_URL =
             'https://cdn.jsdelivr.net/gh/' + GH_REPO + '@' + ASSETS_PINNED_COMMIT + '/';
     }
     if (!window.VIDEO_BASE_URL) {
-        window.VIDEO_BASE_URL = 'https://aaadityaas.github.io/Portfolio---2026/';
+        window.VIDEO_BASE_URL = 'https://aaditxn13.github.io/Portfolio---2026/';
     }
     window.ASSET_VIDEO_EXTENSIONS = window.ASSET_VIDEO_EXTENSIONS || ['mp4', 'webm', 'mov', 'm4v'];
 
