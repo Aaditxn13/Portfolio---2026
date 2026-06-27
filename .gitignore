@@ -14,3 +14,8 @@ skills-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Re-encoded media backups + AVFoundation temp swap files
+*.original.mp4
+*.sb-*
+

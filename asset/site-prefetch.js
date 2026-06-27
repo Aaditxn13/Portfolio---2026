@@ -16,15 +16,15 @@
         'project-1.html': { json: 'content/case-study-zapp-account.json' },
         'project-2.html': { json: 'content/case-study-growth-experiments.json' },
         'project-4.html': { json: 'content/case-study-now-and-me.json' },
-        'play.html': { assets: ['asset/play-tab-assets/play_sero.png'] },
+        'play.html': { assets: ['https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/play-tab-assets/play_sero.png'] },
         'about.html': {
-            assets: ['asset/gallery-beyond-pixels/gallery-web-01.jpg']
+            assets: ['https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/gallery-beyond-pixels/gallery-web-01.jpg']
         }
     };
 
     const SHARED = [
         'content/case-study-asset-manifest.json',
-        'case-study-editor.js?v=first-load-1'
+        'case-study-editor.js?v=design-blocks-1'
     ];
 
     const OTHER_PAGES = ['play.html', 'about.html'];
@@ -111,7 +111,11 @@
     function resolveMediaSrc(src, manifest) {
         if (!src || typeof src !== 'string') return '';
         if (src.startsWith('cs-asset:')) return manifest?.[src] || '';
-        if (src.startsWith('asset/') || src.startsWith('/')) return src.replace(/^\//, '');
+        if (typeof window !== 'undefined' && typeof window.resolveAssetUrl === 'function') {
+            const resolved = window.resolveAssetUrl(src);
+            if (resolved && resolved !== src) return resolved;
+        }
+        if (src.startsWith('/')) return src.replace(/^\//, '');
         return src;
     }
 

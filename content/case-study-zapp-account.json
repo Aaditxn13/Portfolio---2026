@@ -412,6 +412,26 @@
           "mediaMimeType": "video/mp4"
         },
         {
+          "uid": "bspacer-wtnu-1",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "type": "horizontal",
+          "headline": "Welcome to New Users",
+          "text": "For someone opening the app for the very first time, the experience had to feel familiar without being patronising. A short welcome moment that explained what Zapp was, why it mattered, and what they could do next without slowing down the people who already knew the drill.",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "Welcome flow for new Zapp Account users",
+            "device": "wide",
+            "uid": "bmedia-wtnu-1",
+            "mediaType": "image"
+          },
+          "uid": "bhorizontal-wtnu-1",
+          "reverse": false
+        },
+        {
           "uid": "brl4wwppm",
           "type": "spacer",
           "size": "md"
@@ -477,6 +497,26 @@
           },
           "uid": "ba4l9ingm",
           "reverse": true
+        },
+        {
+          "uid": "bspacer-pzhw-1",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "type": "horizontal",
+          "headline": "PayZapp Home Widget",
+          "text": "A surface beyond the app itself a home-screen widget that brought balance, quick actions, and recent activity one tap away. It gave Zapp a presence in users' daily flow without forcing them to open the app every time, and reinforced the product's promise of being immediate and within reach.",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "PayZapp home-screen widget concept",
+            "device": "wide",
+            "uid": "bmedia-pzhw-1",
+            "mediaType": "image"
+          },
+          "uid": "bhorizontal-pzhw-1",
+          "reverse": false
         },
         {
           "uid": "brvsdrc2i",

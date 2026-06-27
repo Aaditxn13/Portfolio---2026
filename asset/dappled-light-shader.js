@@ -3,7 +3,7 @@
  *
  * Vanilla port of the dappled-light Three.js demo: paints a cream
  * (#EFEFEA) base with a soft, slowly swaying tree shadow projected from
- * asset/dappled-tree.png. Mounts on #hero-dappled-canvas inside
+ * https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/dappled-tree.png. Mounts on #hero-dappled-canvas inside
  * .hero-v2__frame; no-ops if THREE or the canvas isn't present.
  *
  * Reuses the THREE UMD global already loaded by index.html (no new
@@ -328,7 +328,7 @@
     // (the shader's alpha output evaluates to 0 against a null sampler).
     const loader = new THREE.TextureLoader();
     loader.load(
-        'asset/dappled-tree.png',
+        'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/dappled-tree.png',
         (tex) => {
             tex.wrapS = THREE.ClampToEdgeWrapping;
             tex.wrapT = THREE.ClampToEdgeWrapping;
@@ -341,7 +341,7 @@
         },
         undefined,
         (err) => {
-            console.warn('[dappled-light] failed to load asset/dappled-tree.png', err);
+            console.warn('[dappled-light] failed to load https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/dappled-tree.png', err);
         }
     );
 

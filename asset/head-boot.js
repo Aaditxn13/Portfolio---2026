@@ -1,6 +1,53 @@
 (function () {
     'use strict';
 
+    // --- Asset hosting --------------------------------------------------
+    // Assets live on the gh-pages branch of aaadityaas/Portfolio---2026 and
+    // are served by two CDNs in parallel:
+    //
+    //   * jsDelivr (pinned to the exact gh-pages commit) for small/medium
+    //     assets (images, svgs, audio, fonts). jsDelivr returns an immutable
+    //     1-year cache on commit-hash URLs, so once a visitor loads an asset
+    //     once it is effectively free forever.
+    //
+    //   * GitHub Pages for video files (mp4/webm/mov), because GH Pages is
+    //     fronted by Fastly anycast and delivers large media faster than
+    //     jsDelivr for cold/uncached requests.
+    //
+    // The ASSETS_PINNED_COMMIT below is auto-bumped by
+    // scripts/sync-assets-to-gh-pages.sh after each push. Do not edit by
+    // hand. Override either base by setting window.ASSET_BASE_URL or
+    // window.VIDEO_BASE_URL before this script loads.
+
+    var ASSETS_PINNED_COMMIT = '773fd51d68c77467b409804b029a148cb9e35083'; // AUTO-BUMPED
+    var GH_REPO = 'aaadityaas/Portfolio---2026';
+
+    if (!window.ASSET_BASE_URL) {
+        window.ASSET_BASE_URL =
+            'https://cdn.jsdelivr.net/gh/' + GH_REPO + '@' + ASSETS_PINNED_COMMIT + '/';
+    }
+    if (!window.VIDEO_BASE_URL) {
+        window.VIDEO_BASE_URL = 'https://aaadityaas.github.io/Portfolio---2026/';
+    }
+    window.ASSET_VIDEO_EXTENSIONS = window.ASSET_VIDEO_EXTENSIONS || ['mp4', 'webm', 'mov', 'm4v'];
+
+    // Pick the right CDN for a given asset path based on its extension.
+    // Exposed globally so resolvers in other scripts (site-prefetch.js,
+    // case-study-editor.js, script.js) share the same logic.
+    window.resolveAssetUrl = function (src) {
+        if (typeof src !== 'string' || !src) return src;
+        var stripped = src.replace(/^\//, '');
+        if (!/^asset\//.test(stripped)) return src;
+        var queryIdx = stripped.indexOf('?');
+        var pathOnly = queryIdx === -1 ? stripped : stripped.slice(0, queryIdx);
+        var match = /\.([a-z0-9]+)$/i.exec(pathOnly);
+        var ext = match ? match[1].toLowerCase() : '';
+        var base = window.ASSET_VIDEO_EXTENSIONS.indexOf(ext) !== -1
+            ? window.VIDEO_BASE_URL
+            : window.ASSET_BASE_URL;
+        return base + stripped;
+    };
+
     try {
         var raw = sessionStorage.getItem('cs-fade');
         if (raw) {

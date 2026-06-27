@@ -24,11 +24,12 @@
     const CASE_ID = document.documentElement.dataset.caseStudyId;
     if (!CASE_ID) return;
 
-    // Bumped Zapp to v3 so the new Figma-authored case-study content
-    // is not masked by an older browser draft in localStorage.
+    // Bumped Zapp to v7 so the two new Design-section blocks (Welcome to
+    // New Users + PayZapp Home Widget) aren't masked by an older browser
+    // draft in localStorage.
     const CONTENT_VERSION = CASE_ID === 'growth-experiments'
         ? 'v5'
-        : (CASE_ID === 'zapp-account' ? 'v6' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
+        : (CASE_ID === 'zapp-account' ? 'v7' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
     const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'project-3', 'now-and-me']);
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
@@ -45,16 +46,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
-        'cs-asset:zapp-account:1781979790777:bshl8ycca': 'asset/case-studies/zapp-account/onboarding.mp4',
-        'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'asset/case-studies/zapp-account/b5591rluy-image.png',
-        'cs-asset:zapp-account:1782612000000:bbalancevd': 'asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'asset/home-project-cards/water.png'
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaadityaas.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
+        'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaadityaas.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaadityaas.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -243,7 +244,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -291,7 +292,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -317,7 +318,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/aaadityaas/Portfolio---2026@773fd51d68c77467b409804b029a148cb9e35083/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -496,7 +497,16 @@
     }
 
     function getAssetOverride(ref) {
-        return LOCAL_ASSET_OVERRIDES[ref] || runtimeAssetManifest[ref] || '';
+        const raw = LOCAL_ASSET_OVERRIDES[ref] || runtimeAssetManifest[ref] || '';
+        if (!raw) return '';
+        // runtimeAssetManifest stores bare "asset/..." paths so the JSON file
+        // stays portable. Upgrade them through the global CDN resolver here so
+        // every caller of getAssetOverride() receives a fetchable absolute URL
+        // (jsDelivr for images/fonts/audio, GitHub Pages for video).
+        if (typeof window.resolveAssetUrl === 'function') {
+            return window.resolveAssetUrl(raw);
+        }
+        return raw;
     }
 
     function isLocalDev() {
@@ -935,8 +945,20 @@
         return record;
     }
 
+    function withAssetBase(src) {
+        // Bare "asset/..." strings come from content/*.json. Route them
+        // through the global CDN resolver defined in asset/head-boot.js so
+        // images go to jsDelivr (immutable cache) and videos go to GH Pages
+        // (faster cold delivery).
+        if (typeof src !== 'string') return src;
+        if (typeof window !== 'undefined' && typeof window.resolveAssetUrl === 'function') {
+            return window.resolveAssetUrl(src);
+        }
+        return src;
+    }
+
     async function resolveAssetSrc(src) {
-        if (!isAssetRef(src)) return src;
+        if (!isAssetRef(src)) return withAssetBase(src);
         const override = getAssetOverride(src);
         if (override) return override;
         if (assetUrlCache.has(src)) return assetUrlCache.get(src);
@@ -1049,7 +1071,15 @@
                     }
                 }, el('source', {
                     attrs: {
-                        src: isAssetRef(src) ? '' : src,
+                        // Resolve bare "asset/..." sources up-front so the
+                        // initial render produces a working URL; cs-asset:
+                        // refs stay empty here and get filled by startVideoLoad
+                        // once their override / IndexedDB record resolves.
+                        src: isAssetRef(src)
+                            ? ''
+                            : (typeof window.resolveAssetUrl === 'function'
+                                ? window.resolveAssetUrl(src)
+                                : src),
                         type: mimeType || 'video/mp4'
                     }
                 }));
@@ -1079,11 +1109,19 @@
                 const startVideoLoad = () => {
                     const applySrc = (resolvedSrc) => {
                         if (!resolvedSrc) return;
+                        // Final safety net: if anything in the pipeline handed
+                        // us a bare "asset/..." path (e.g. a value from
+                        // runtimeAssetManifest, or a JSON src that isn't a
+                        // cs-asset: ref), upgrade it to the CDN URL before the
+                        // browser tries to fetch it as a relative path.
+                        const finalSrc = (typeof window.resolveAssetUrl === 'function')
+                            ? window.resolveAssetUrl(resolvedSrc)
+                            : resolvedSrc;
                         const source = video.querySelector('source');
                         if (source) {
-                            source.setAttribute('src', resolvedSrc);
+                            source.setAttribute('src', finalSrc);
                         }
-                        video.setAttribute('src', resolvedSrc);
+                        video.setAttribute('src', finalSrc);
                         video.load();
                         playVideo();
                     };
@@ -1124,7 +1162,14 @@
                 slot.appendChild(img);
 
                 const loadImage = (resolvedSrc) => {
-                    applyResolvedImage(img, resolvedSrc || src);
+                    const raw = resolvedSrc || src;
+                    // Mirror the video flow: if anything in the resolver chain
+                    // returned a bare "asset/..." path, upgrade it to the CDN
+                    // URL before assigning to img.src.
+                    const finalSrc = (typeof window.resolveAssetUrl === 'function')
+                        ? window.resolveAssetUrl(raw)
+                        : raw;
+                    applyResolvedImage(img, finalSrc);
                 };
 
                 const startImageLoad = () => {
