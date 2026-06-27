@@ -1,4 +1,0 @@
-# Force apex domain — avoids www socket/redirect issues in some browsers
-https://www.adityaaa.com/*  https://adityaaa.com/:splat  301!
-http://www.adityaaa.com/*   https://adityaaa.com/:splat  301!
-http://adityaaa.com/*       https://adityaaa.com/:splat  301!

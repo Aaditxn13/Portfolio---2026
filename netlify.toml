@@ -3,24 +3,6 @@
   publish = "."
   command = ""
 
-[[redirects]]
-  from = "https://www.adityaaa.com/*"
-  to = "https://adityaaa.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "http://www.adityaaa.com/*"
-  to = "https://adityaaa.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "http://adityaaa.com/*"
-  to = "https://adityaaa.com/:splat"
-  status = 301
-  force = true
-
 [[headers]]
   for = "/asset/*"
   [headers.values]

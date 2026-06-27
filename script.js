@@ -94,6 +94,11 @@ function scheduleDeferredSiteScripts() {
     }
 }
 
+window.addEventListener('portfolio:failsafe-reveal', function () {
+    scheduleDeferredSiteScripts();
+    signalPortfolioReady();
+}, { once: true });
+
 function scheduleSitePrefetch() {
     const isHome = document.querySelector('[data-site-header][data-page="home"]');
     if (!isHome) return;
@@ -1690,7 +1695,6 @@ async function initHomeCardEditor() {
         repoVersion: Number(stored.meta?.repoVersion) || 0
     };
 
-    setupHomeCardEditor();
     ensureHomeCardShaderBackgrounds();
     applyAllHomeCardOverlays();
 

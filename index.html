@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="asset/head-boot.js?v=chrome-fix-1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AS | Designer Portfolio</title>
     <link rel="canonical" href="https://adityaaa.com/">
     <link rel="icon" type="image/png" href="asset/favicon.png?v=blue-logo-1">
-    <link rel="preload" href="style.css?v=first-load-2" as="style">
+    <link rel="preload" href="style.css?v=chrome-fix-1" as="style">
     <link rel="preload" href="script.js?v=first-load-2" as="script">
     <link rel="preload" href="asset/lazy_dog.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=first-load-2">
+    <link rel="stylesheet" href="style.css?v=chrome-fix-1">
     <!-- Homepage fonts only — full set loads on play / about / case studies -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,26 +21,6 @@
         media="print"
         onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></noscript>
-    <!-- Page-transition bootstrap: if we arrived here from a case
-         study's fade-out, hide body BEFORE first paint and pin <html>
-         to the current theme's bg colour so there is no flash of
-         content or wrong-mode bg between pages. script.js fades body
-         back in. -->
-    <script>
-        (function () {
-            try {
-                var raw = sessionStorage.getItem('cs-fade');
-                if (!raw) return;
-                var data = JSON.parse(raw);
-                if (!data || Date.now() - data.ts > 4000) return;
-                sessionStorage.removeItem('cs-fade');
-                document.documentElement.classList.add('cs-incoming');
-                var theme = localStorage.getItem('portfolio-theme');
-                document.documentElement.style.backgroundColor =
-                    theme === 'dark' ? '#0d0d0d' : '#fcfbf9';
-            } catch (e) { }
-        })();
-    </script>
 </head>
 
 <body>
@@ -296,21 +277,6 @@
     <script src="script.js?v=first-load-2" defer></script>
     <script src="asset/lazy-load.js?v=first-load-2" defer></script>
     <script src="asset/work-shader.js?v=first-load-2" defer></script>
-    <script>
-        /* Failsafe: if script.js never runs, remove the loader after 3s */
-        setTimeout(function () {
-            var loader = document.getElementById('portfolio-loader');
-            if (!loader || loader.classList.contains('portfolio-loader--done')) return;
-            loader.classList.add('portfolio-loader--done');
-            document.body.classList.remove('portfolio-loader-active');
-            document.documentElement.classList.remove('cs-incoming');
-            Array.from(document.body.children).forEach(function (el) {
-                if (el.id === 'portfolio-loader') return;
-                el.style.opacity = '';
-                el.style.visibility = '';
-            });
-        }, 3000);
-    </script>
 
 </body>
 

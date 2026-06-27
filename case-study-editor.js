@@ -1045,7 +1045,7 @@
                         'webkit-playsinline': true,
                         disablepictureinpicture: true,
                         controlslist: 'nodownload noplaybackrate noremoteplayback',
-                        preload: isHero ? 'auto' : 'none'
+                        preload: isHero ? 'auto' : 'metadata'
                     }
                 }, el('source', {
                     attrs: {
@@ -1077,24 +1077,35 @@
                 video.addEventListener('canplay', playVideo, { once: true });
 
                 const startVideoLoad = () => {
-                    if (isAssetRef(src)) {
-                        resolveAssetSrc(src).then((resolvedSrc) => {
-                            const source = video.querySelector('source');
-                            if (resolvedSrc && source) {
-                                source.setAttribute('src', resolvedSrc);
-                                video.load();
-                                playVideo();
-                            }
-                        }).catch(() => {});
-                    } else {
+                    const applySrc = (resolvedSrc) => {
+                        if (!resolvedSrc) return;
                         const source = video.querySelector('source');
-                        if (source && !source.getAttribute('src')) {
-                            source.setAttribute('src', src);
+                        if (source) {
+                            source.setAttribute('src', resolvedSrc);
                         }
+                        video.setAttribute('src', resolvedSrc);
                         video.load();
                         playVideo();
+                    };
+
+                    if (isAssetRef(src)) {
+                        const override = getAssetOverride(src);
+                        if (override) {
+                            applySrc(override);
+                            return;
+                        }
+                        resolveAssetSrc(src).then(applySrc).catch(() => {});
+                    } else {
+                        applySrc(src);
                     }
                 };
+
+                video.addEventListener('error', () => {
+                    const current = video.currentSrc || video.getAttribute('src') || '';
+                    if (!current || video.dataset.retried === '1') return;
+                    video.dataset.retried = '1';
+                    window.setTimeout(startVideoLoad, 400);
+                }, { once: true });
 
                 if (isHero) {
                     startVideoLoad();
