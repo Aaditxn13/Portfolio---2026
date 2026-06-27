@@ -28,10 +28,17 @@
         }));
     }
 
+    function resolveLazySrc(src) {
+        if (typeof window.resolveAssetUrl === 'function') {
+            return window.resolveAssetUrl(src);
+        }
+        return src;
+    }
+
     function applyLazyImg(el) {
         const src = el.getAttribute('data-src');
         if (!src || el.dataset.lazyLoaded === 'true') return;
-        el.src = src;
+        el.src = resolveLazySrc(src);
         el.removeAttribute('data-src');
         el.dataset.lazyLoaded = 'true';
     }

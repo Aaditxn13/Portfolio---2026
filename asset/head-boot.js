@@ -19,7 +19,7 @@
     // hand. Override either base by setting window.ASSET_BASE_URL or
     // window.VIDEO_BASE_URL before this script loads.
 
-    var ASSETS_PINNED_COMMIT = 'c6bc732627fd53b0203d63d3ef3eee64b222e3ef'; // AUTO-BUMPED
+    var ASSETS_PINNED_COMMIT = 'd2f6b942877dab0806fa2bd743ef0e69a5c721ef'; // AUTO-BUMPED
     var GH_REPO = 'Aaditxn13/Portfolio---2026';
 
     if (!window.ASSET_BASE_URL) {
@@ -47,6 +47,32 @@
             : window.ASSET_BASE_URL;
         return base + stripped;
     };
+
+    // When jsDelivr misses a commit-pinned file, retry from GitHub Pages.
+    window.assetCdnFallbackUrl = function (src) {
+        if (typeof src !== 'string' || !src) return src;
+        if (/^https:\/\/aaditxn13\.github\.io\/Portfolio---2026\//i.test(src)) return src;
+
+        var stripped = src.replace(/^\//, '');
+        var queryIdx = stripped.indexOf('?');
+        var pathOnly = queryIdx === -1 ? stripped : stripped.slice(0, queryIdx);
+        var query = queryIdx === -1 ? '' : stripped.slice(queryIdx);
+        var jsdelivrMatch = /^https:\/\/cdn\.jsdelivr\.net\/gh\/[^/]+\/[^@]+@[^/]+\/(.+)$/i.exec(pathOnly);
+        var assetPath = jsdelivrMatch ? jsdelivrMatch[1] : (/^asset\//.test(pathOnly) ? pathOnly : '');
+
+        if (!assetPath) return src;
+        return window.VIDEO_BASE_URL + assetPath + query;
+    };
+
+    document.addEventListener('error', function (event) {
+        var el = event.target;
+        if (!el || el.tagName !== 'IMG' || el.dataset.cdnFallback === 'done') return;
+        var current = el.currentSrc || el.src || '';
+        var fallback = window.assetCdnFallbackUrl(current);
+        if (!fallback || fallback === current) return;
+        el.dataset.cdnFallback = 'done';
+        el.src = fallback;
+    }, true);
 
     try {
         var raw = sessionStorage.getItem('cs-fade');
