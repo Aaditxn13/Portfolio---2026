@@ -147,19 +147,27 @@ function processFile(relPath) {
 
     // 3. Sweep preconnect/dns-prefetch hint URLs (no /asset/ suffix, so the
     //    matchers above miss them) and bare host references in scripts.
-    const newHost = GH_PAGES_BASE.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    //    IMPORTANT: this is a bare-HOSTNAME swap only (no path component) to
+    //    avoid duplicating "/Portfolio---2026" into the URL. The path stays
+    //    as whatever the source had after the host.
+    const newHost = new URL(GH_PAGES_BASE).hostname; // e.g. "aaditxn13.github.io"
     for (const legacyHost of LEGACY_GH_PAGES_HOSTS) {
         if (legacyHost === newHost) continue;
-        const re = new RegExp(legacyHost.replace(/\./g, '\\.'), 'g');
-        content = content.replace(re, (m) => {
+        // Match the hostname only when it's NOT followed by alphanumerics
+        // (so "aaadityaas.github.io" matches but "aaadityaas.github.iox" doesn't).
+        const re = new RegExp(`${legacyHost.replace(/\./g, '\\.')}(?![a-zA-Z0-9])`, 'g');
+        content = content.replace(re, () => {
             replacements += 1;
             return newHost;
         });
     }
     for (const legacyRepo of LEGACY_GH_REPOS) {
         if (legacyRepo === GH_REPO) continue;
-        const re = new RegExp(legacyRepo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-        content = content.replace(re, (m) => {
+        // Word-boundary guard: only swap when the next char isn't a path or
+        // identifier character so we don't double-rewrite already-correct URLs.
+        const escaped = legacyRepo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const re = new RegExp(`${escaped}(?![a-zA-Z0-9/])`, 'g');
+        content = content.replace(re, () => {
             replacements += 1;
             return GH_REPO;
         });

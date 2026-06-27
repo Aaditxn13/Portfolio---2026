@@ -15,8 +15,8 @@ function applyStoredTheme() {
 applyStoredTheme();
 
 const FOOTER_GRASS_IFRAME_SRCS = {
-    light: 'https://aaditxn13.github.io/Portfolio---2026/Portfolio---2026/Portfolio---2026/Portfolio---2026/asset/grass-footer-app/dist/index.html',
-    dark: 'https://aaditxn13.github.io/Portfolio---2026/Portfolio---2026/Portfolio---2026/Portfolio---2026/asset/grass-footer-dark-app/dist/index.html'
+    light: 'https://aaditxn13.github.io/Portfolio---2026/asset/grass-footer-app/dist/index.html',
+    dark: 'https://aaditxn13.github.io/Portfolio---2026/asset/grass-footer-dark-app/dist/index.html'
 };
 
 function getCurrentThemeName() {

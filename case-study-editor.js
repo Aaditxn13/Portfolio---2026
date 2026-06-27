@@ -51,10 +51,10 @@
         'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c265951730395f564d8fd2328eae90579e934f16/asset/case-studies/zapp-account/bbwcmexhv-image.png',
         'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c265951730395f564d8fd2328eae90579e934f16/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
         'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c265951730395f564d8fd2328eae90579e934f16/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
-        'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/Portfolio---2026/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
-        'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/Portfolio---2026/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
+        'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
+        'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
         'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c265951730395f564d8fd2328eae90579e934f16/asset/case-studies/zapp-account/b5591rluy-image.png',
-        'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/Portfolio---2026/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
+        'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
         'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c265951730395f564d8fd2328eae90579e934f16/asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
