@@ -26,9 +26,21 @@
   ],
   "hero": {
     "type": "image",
-    "src": "asset/case-studies/zapp-account/busact944-zapp-account-busact944.png",
+    "src": "cs-asset:zapp-account:1782581633944:bqpdslri8",
     "alt": "Zapp Account hero",
-    "uid": "bueegn8tb"
+    "uid": "bueegn8tb",
+    "mediaType": "image",
+    "mediaMimeType": "image/png",
+    "localAsset": {
+      "status": "local",
+      "field": "src",
+      "originalName": "Hero Image from TinyJPG.png",
+      "mimeType": "image/png",
+      "size": 476820,
+      "resourceType": "image",
+      "ref": "cs-asset:zapp-account:1782581633944:bqpdslri8",
+      "createdAt": "2026-06-27T17:33:53.960Z"
+    }
   },
   "sections": [
     {
@@ -422,14 +434,29 @@
           "text": "For someone opening the app for the very first time, the experience had to feel familiar without being patronising. A short welcome moment that explained what Zapp was, why it mattered, and what they could do next without slowing down the people who already knew the drill.",
           "media": {
             "type": "image",
-            "src": "",
+            "src": "cs-asset:zapp-account:1782581351851:biaverbn7",
             "alt": "Welcome flow for new Zapp Account users",
             "device": "wide",
             "uid": "bmedia-wtnu-1",
-            "mediaType": "image"
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "autoplay": true,
+            "loop": true,
+            "controls": false,
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "Screen Recording Jun 27 2026.mp4",
+              "mimeType": "video/mp4",
+              "size": 752534,
+              "resourceType": "video",
+              "ref": "cs-asset:zapp-account:1782581351851:biaverbn7",
+              "createdAt": "2026-06-27T17:29:11.867Z"
+            }
           },
           "uid": "bhorizontal-wtnu-1",
-          "reverse": false
+          "reverse": false,
+          "mediaMimeType": "video/mp4"
         },
         {
           "uid": "brl4wwppm",
@@ -464,7 +491,8 @@
             }
           },
           "uid": "b6mc1cbzu",
-          "mediaMimeType": "video/mp4"
+          "mediaMimeType": "video/mp4",
+          "reverse": true
         },
         {
           "uid": "bgguc7mi8",
@@ -496,7 +524,7 @@
             }
           },
           "uid": "ba4l9ingm",
-          "reverse": true
+          "reverse": false
         },
         {
           "uid": "bspacer-pzhw-1",
@@ -506,17 +534,28 @@
         {
           "type": "horizontal",
           "headline": "PayZapp Home Widget",
-          "text": "A surface beyond the app itself a home-screen widget that brought balance, quick actions, and recent activity one tap away. It gave Zapp a presence in users' daily flow without forcing them to open the app every time, and reinforced the product's promise of being immediate and within reach.",
+          "text": "A surface beyond the app itself a home-screen widget that brought balance, quick actions, and recent activity one tap away. It gave Zapp a presence in users' daily flow without forcing them to go indise every time, and reinforced the product's promise of being immediate and within reach.",
           "media": {
             "type": "image",
-            "src": "",
+            "src": "cs-asset:zapp-account:1782581420999:bmqypzunk",
             "alt": "PayZapp home-screen widget concept",
             "device": "wide",
             "uid": "bmedia-pzhw-1",
-            "mediaType": "image"
+            "mediaType": "image",
+            "mediaMimeType": "image/png",
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "PZ Home Image (1).png",
+              "mimeType": "image/png",
+              "size": 53530,
+              "resourceType": "image",
+              "ref": "cs-asset:zapp-account:1782581420999:bmqypzunk",
+              "createdAt": "2026-06-27T17:30:21.015Z"
+            }
           },
           "uid": "bhorizontal-pzhw-1",
-          "reverse": false
+          "reverse": true
         },
         {
           "uid": "brvsdrc2i",
@@ -546,33 +585,46 @@
           "uid": "bo7wxur28"
         },
         {
-          "type": "image",
-          "layout": "3-col",
-          "src": "",
-          "alt": "Zapp Account hero screens",
-          "uid": "b4k5ozqb3",
-          "items": [
-            {
-              "src": "",
-              "alt": "",
-              "uid": "bjiblg0jf"
-            },
-            {
-              "src": "",
-              "alt": "",
-              "uid": "btoz5us1p"
-            },
-            {
-              "src": "",
-              "alt": "",
-              "uid": "bajhwxr6o"
-            }
-          ]
-        },
-        {
           "uid": "b1b9yx64z",
           "type": "spacer",
           "size": "md"
+        },
+        {
+          "uid": "bmz9iudpu",
+          "type": "metrics",
+          "style": "standard",
+          "items": [
+            {
+              "uid": "bbforl1uf",
+              "stat": "2.1x",
+              "label": "Growth in Monthly Spends",
+              "note": ""
+            },
+            {
+              "stat": "1.5x",
+              "label": "Growth in Monthly Loads",
+              "note": "",
+              "uid": "bztspjkpl"
+            },
+            {
+              "stat": "#5",
+              "label": "In the Industry",
+              "note": "",
+              "uid": "b9to5ycuj"
+            },
+            {
+              "stat": "+25%",
+              "label": "P2P payments via UPI",
+              "note": "",
+              "uid": "bcdke10sp"
+            },
+            {
+              "stat": "+22%",
+              "label": "P2M payments via UPI",
+              "note": "",
+              "uid": "b3raiyc9o"
+            }
+          ]
         }
       ],
       "uid": "bu6hx52ck"
@@ -646,8 +698,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782465981638,
-    "syncedAt": "2026-06-26T09:26:21.638Z",
+    "repoVersion": 1782584563213,
+    "syncedAt": "2026-06-27T18:22:43.213Z",
     "dirty": false
   }
 }
