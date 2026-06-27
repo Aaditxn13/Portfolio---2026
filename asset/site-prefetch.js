@@ -16,9 +16,9 @@
         'project-1.html': { json: 'content/case-study-zapp-account.json' },
         'project-2.html': { json: 'content/case-study-growth-experiments.json' },
         'project-4.html': { json: 'content/case-study-now-and-me.json' },
-        'play.html': { assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/play-tab-assets/play_sero.png'] },
+        'play.html': { assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0b86888f6627f2e888a8f8293336059187932063/asset/play-tab-assets/play_sero.png'] },
         'about.html': {
-            assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-01.jpg']
+            assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0b86888f6627f2e888a8f8293336059187932063/asset/gallery-beyond-pixels/gallery-web-01.jpg']
         }
     };
 
