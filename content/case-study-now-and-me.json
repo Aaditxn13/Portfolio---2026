@@ -26,9 +26,21 @@
   ],
   "hero": {
     "type": "image",
-    "src": "asset/home-project-cards/project-4-green-background.jpg",
+    "src": "cs-asset:now-and-me:1782589863542:br5a68svq",
     "alt": "Now&Me hero",
-    "uid": "bbs5zejb7"
+    "uid": "bbs5zejb7",
+    "mediaType": "image",
+    "mediaMimeType": "image/png",
+    "localAsset": {
+      "status": "local",
+      "field": "src",
+      "originalName": "IPL Hero Image (2).png",
+      "mimeType": "image/png",
+      "size": 108301,
+      "resourceType": "image",
+      "ref": "cs-asset:now-and-me:1782589863542:br5a68svq",
+      "createdAt": "2026-06-27T19:51:03.566Z"
+    }
   },
   "sections": [
     {
@@ -170,5 +182,10 @@
       ],
       "uid": "bm1pbxtjz"
     }
-  ]
+  ],
+  "__editor": {
+    "repoVersion": 1782589873835,
+    "syncedAt": "2026-06-27T19:51:13.835Z",
+    "dirty": false
+  }
 }

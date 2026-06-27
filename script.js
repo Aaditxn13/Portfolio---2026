@@ -523,7 +523,7 @@ if (headerMount) {
         <header class="navbar">
             <div class="navbar__pill">
                 <a href="index.html" class="navbar__logo" aria-label="Go to homepage">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/Logo.svg" alt="AS Logo" class="logo-img">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/Logo.svg" alt="AS Logo" class="logo-img">
                 </a>
 
                 <nav class="nav-tray">
@@ -588,7 +588,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/stticky%20note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -598,13 +598,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -612,7 +612,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -622,7 +622,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -881,16 +881,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/grassland.png',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/water.png',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/grassland.png',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/water.png',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/grassland.png',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/water.png',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/grassland.png',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/water.png',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -2059,13 +2059,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2589,8 +2589,8 @@ scheduleDeferredHeroEffects();
         const title = card.dataset.playTitle || DETAIL_DEFAULT_TITLE;
         const description = card.dataset.playDescription || DETAIL_DEFAULT_DESCRIPTION;
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;

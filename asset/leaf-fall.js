@@ -56,10 +56,10 @@
     // `aspect` = native height / width, used to set the <div>'s height since
     // mask-image doesn't auto-size like <img>.
     const LEAF_VARIANTS = [
-        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/leaves/leaf-1.svg', aspect: 88 / 72 },
-        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/leaves/leaf-2.svg', aspect: 98 / 66 },
-        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/leaves/leaf-3.svg', aspect: 71 / 66 },
-        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d2f6b942877dab0806fa2bd743ef0e69a5c721ef/asset/leaves/leaf-4.svg', aspect: 95 / 75 }
+        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/leaves/leaf-1.svg', aspect: 88 / 72 },
+        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/leaves/leaf-2.svg', aspect: 98 / 66 },
+        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/leaves/leaf-3.svg', aspect: 71 / 66 },
+        { src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d715f3f9852da559aef04d5c1921abbf633d8751/asset/leaves/leaf-4.svg', aspect: 95 / 75 }
     ];
 
     // ── Hover state — same right-half check used by the (former) wind hover.
