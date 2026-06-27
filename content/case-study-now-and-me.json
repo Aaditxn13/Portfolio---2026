@@ -6,7 +6,7 @@
     {
       "key": "timeline",
       "label": "Timeline",
-      "value": "March 2024 – May 2024"
+      "value": "Mar – May 2024"
     },
     {
       "key": "platform",
@@ -16,7 +16,7 @@
     {
       "key": "role",
       "label": "Role",
-      "value": "UX Designer 2"
+      "value": "UX Designer II"
     },
     {
       "key": "team",
@@ -184,8 +184,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782591694607,
-    "syncedAt": "2026-06-27T20:21:34.607Z",
+    "repoVersion": 1782592411136,
+    "syncedAt": "2026-06-27T20:33:31.136Z",
     "dirty": false
   }
 }

@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0b86888f6627f2e888a8f8293336059187932063/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -924,7 +924,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: space-between;
     gap: 24px;
     width: 100%;
