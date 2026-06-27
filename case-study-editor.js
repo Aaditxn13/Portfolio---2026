@@ -46,16 +46,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/case-studies/zapp-account/b5591rluy-image.png',
         'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/home-project-cards/water.png'
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -244,7 +244,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -292,7 +292,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -318,7 +318,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@5324bd88b6923cd915841b3cc9130fbb83c60aa5/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c6bc732627fd53b0203d63d3ef3eee64b222e3ef/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },

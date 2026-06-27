@@ -646,18 +646,28 @@
         },
         {
           "type": "text",
-          "body": "Nothing came easy. The product went through multiple rounds of direction changes across product managers, bank leadership, and internal teams. Information architecture was rethought more than once. What looked right one week got challenged the next.",
+          "body": "The product had more potential than what launched. During the process, we explored several directions — new features, deeper functionality, and ideas that could meaningfully grow the product. Some made it in, many didn't. Priorities shifted, timelines tightened, and v1 had to stay focused.",
           "uid": "blb56sblk"
         },
         {
-          "type": "text",
-          "body": "Every round made the product sharper. Here's what we landed on.",
-          "uid": "bdoiezwq5"
-        },
-        {
-          "uid": "btvv0m9m0",
-          "type": "spacer",
-          "size": "md"
+          "uid": "beaxfsxcl",
+          "type": "image",
+          "layout": "wide",
+          "src": "cs-asset:zapp-account:1782584950486:by1cc30p3",
+          "alt": "Last Meeting Image",
+          "items": null,
+          "mediaType": "image",
+          "mediaMimeType": "image/png",
+          "localAsset": {
+            "status": "local",
+            "field": "src",
+            "originalName": "Last Meeting Image.png",
+            "mimeType": "image/png",
+            "size": 191336,
+            "resourceType": "image",
+            "ref": "cs-asset:zapp-account:1782584950486:by1cc30p3",
+            "createdAt": "2026-06-27T18:29:10.496Z"
+          }
         }
       ],
       "uid": "b88ku9dq0"
@@ -698,8 +708,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782584563213,
-    "syncedAt": "2026-06-27T18:22:43.213Z",
+    "repoVersion": 1782584979191,
+    "syncedAt": "2026-06-27T18:29:39.191Z",
     "dirty": false
   }
 }
