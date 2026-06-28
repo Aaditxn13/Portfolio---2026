@@ -21,7 +21,7 @@
     {
       "key": "timeline",
       "label": "Timeline",
-      "value": "2-3 Weeks"
+      "value": "1-2 Weeks"
     }
   ],
   "hero": {
@@ -245,6 +245,25 @@
           "type": "text",
           "body": "The point was not to make a campaign banner look festive. It was to turn a product recommendation into a small act of discovery — one where surprise came before the sell.",
           "uid": "bwlhvxcxi"
+        },
+        {
+          "uid": "bfv6w4tyq",
+          "type": "metrics",
+          "style": "standard",
+          "items": [
+            {
+              "uid": "bkzxdh77b",
+              "stat": "560k+",
+              "label": "Users Reached",
+              "note": ""
+            },
+            {
+              "stat": "24.2%",
+              "label": "Conversion Rate",
+              "note": "",
+              "uid": "bpimbmwo8"
+            }
+          ]
         },
         {
           "uid": "bj8jyll8o",
@@ -471,8 +490,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782383737130,
-    "syncedAt": "2026-06-25T10:35:37.130Z",
+    "repoVersion": 1782631891196,
+    "syncedAt": "2026-06-28T07:31:31.196Z",
     "dirty": false
   }
 }

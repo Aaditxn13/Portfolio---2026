@@ -6,7 +6,7 @@
     {
       "key": "timeline",
       "label": "Timeline",
-      "value": "2023–24"
+      "value": "Nov'24 – Apr'25"
     },
     {
       "key": "platform",
@@ -21,7 +21,7 @@
     {
       "key": "team",
       "label": "Team",
-      "value": "2 UX Designer, 2 Product Manager, 4 Developer"
+      "value": "2 UX Designer, 2 PM's, 4 Developers"
     }
   ],
   "hero": {
@@ -708,8 +708,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782587641544,
-    "syncedAt": "2026-06-27T19:14:01.544Z",
+    "repoVersion": 1782631487148,
+    "syncedAt": "2026-06-28T07:24:47.148Z",
     "dirty": false
   }
 }

@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -1043,6 +1043,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
 /* Theme toggle — Figma 210:9618, circular chip housing sun/moon glyph */
 .theme-toggle {
     flex-shrink: 0;
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1058,8 +1059,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     transition:
         background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
         border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-toggle:hover {
@@ -1073,25 +1073,29 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
 }
 
 .theme-toggle__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 24px;
     height: 24px;
     color: inherit;
-    transition: opacity 0.25s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
 }
 
 .theme-toggle__icon--moon {
-    display: none;
+    opacity: 0;
 }
 
 .theme-toggle[aria-checked='true'] .theme-toggle__icon--sun {
-    display: none;
+    opacity: 0;
 }
 
 .theme-toggle[aria-checked='true'] .theme-toggle__icon--moon {
-    display: inline-flex;
+    opacity: 1;
 }
 
 /* Legacy .logo-circle kept for any non-header uses (about page etc.).
@@ -4694,6 +4698,22 @@ body.night-mode .mobile-nav-overlay {
     background: rgba(13, 13, 13, 0.97);
 }
 
+body.mobile-nav-open {
+    overflow: hidden;
+}
+
+body.night-mode .mobile-nav-overlay__close {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f0eadb;
+}
+
+body.night-mode .mobile-nav-overlay__close:hover,
+body.night-mode .mobile-nav-overlay__close:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
 body.night-mode .mobile-menu-btn span {
     background-color: #dcdcdc;
 }
@@ -4931,6 +4951,15 @@ body.night-mode .logo-circle {
     height: 2px;
     background-color: var(--text-primary);
     transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.mobile-menu-btn.active span:first-child {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Mobile Nav Modal Setup */
@@ -4940,6 +4969,7 @@ body.night-mode .logo-circle {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     background: rgba(249, 248, 246, 0.98);
     backdrop-filter: blur(12px);
     display: flex;
@@ -4948,13 +4978,71 @@ body.night-mode .logo-circle {
     justify-content: center;
     gap: 40px;
     transform: translateY(-100%);
-    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    pointer-events: auto;
+    transition:
+        transform 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+        background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
     z-index: 999;
+}
+
+.mobile-nav-overlay__header {
+    position: absolute;
+    top: 14px;
+    left: var(--layout-gutter);
+    right: var(--layout-gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.mobile-nav-overlay__theme-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.mobile-nav-overlay__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid #E3E3D6;
+    border-radius: 36px;
+    background: #F6F6ED;
+    color: #1A1A1A;
+    cursor: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-overlay__close svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.mobile-nav-overlay__close:hover,
+.mobile-nav-overlay__close:focus-visible {
+    background: #EFEFE2;
+    border-color: #D7D7C7;
 }
 
 .mobile-nav-overlay.active {
     transform: translateY(0);
+    pointer-events: auto;
+    z-index: 1100;
+}
+
+@media (max-width: 768px) {
+    .navbar:has(.mobile-nav-overlay.active) .navbar__pill {
+        visibility: hidden;
+    }
 }
 
 .mobile-nav-overlay .nav-item {
@@ -4978,6 +5066,11 @@ body.night-mode .logo-circle {
 
     .mobile-menu-btn {
         display: flex;
+    }
+
+    .mobile-nav-overlay {
+        justify-content: center;
+        padding: 104px 24px 48px;
     }
 }
 
@@ -5738,13 +5831,104 @@ html[data-cs-mode="view"] .cs-link-pill__label {
     color: rgba(22, 22, 22, 0.55);
 }
 
+.cs-feature-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: clamp(40px, 5vw, 84px);
+    align-items: center;
+    margin-top: 48px;
+}
+
+.cs-feature-block__text {
+    min-width: 0;
+}
+
+.cs-feature-block__headline {
+    margin: 0 0 28px;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    color: var(--cs-text-ink);
+}
+
+.cs-feature-block__body {
+    margin-bottom: 0 !important;
+}
+
+.cs-feature-block__statement {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.1vw, 36px);
+    font-weight: 600;
+    line-height: 1.42;
+    letter-spacing: -0.02em;
+    color: var(--cs-text-ink);
+    text-wrap: pretty;
+}
+
+.cs-feature-block__media {
+    display: grid;
+}
+
+.cs-feature-block__stage {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 472px;
+    padding: 0;
+    border-radius: 28px;
+    background: #e9f5ff;
+    overflow: hidden;
+}
+
+.cs-feature-block__frame {
+    width: 100%;
+    height: 100%;
+}
+
+.cs-feature-block__stage .cs-editor-media-slot,
+.cs-feature-block__stage .placeholder-graphic {
+    width: 100%;
+    height: 100%;
+    min-height: 472px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.cs-feature-block__stage .cs-editor-media-slot > img,
+.cs-feature-block__stage .cs-editor-media-slot > video {
+    object-fit: contain;
+}
+
+.cs-feature-block--reverse .cs-feature-block__text {
+    order: 2;
+}
+
+.cs-feature-block--reverse .cs-feature-block__media {
+    order: 1;
+}
+
 @media (max-width: 900px) {
     .cs-horizontal {
         grid-template-columns: 1fr;
         gap: 32px;
     }
+    .cs-feature-block {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
     .cs-horizontal__frame--phone {
         margin: 0 auto;
+    }
+    .cs-feature-block__stage {
+        min-height: 360px;
+    }
+    .cs-feature-block__stage .cs-editor-media-slot,
+    .cs-feature-block__stage .placeholder-graphic {
+        min-height: 360px;
     }
 }
 
@@ -9035,6 +9219,8 @@ body.night-mode .cs-page-hero { background: #1a1d23; }
 .cs-page .cs-block--image,
 .cs-page .cs-block--video,
 .cs-page .cs-block--horizontal,
+.cs-page .cs-block--feature-1,
+.cs-page .cs-block--feature-2,
 .cs-page .cs-block--comparison,
 .cs-page .cs-block--metrics,
 .cs-page .cs-editor-media,
@@ -9047,6 +9233,8 @@ body.night-mode .cs-page-hero { background: #1a1d23; }
 .cs-page .cs-block--image,
 .cs-page .cs-block--video,
 .cs-page .cs-block--horizontal,
+.cs-page .cs-block--feature-1,
+.cs-page .cs-block--feature-2,
 .cs-page .cs-block--comparison,
 .cs-page .cs-block--metrics {
     margin-top: 24px;
@@ -9691,6 +9879,8 @@ html[data-case-study-id="zapp-account"] .cs-h3 {
 
 html[data-case-study-id="zapp-account"] .cs-block--image,
 html[data-case-study-id="zapp-account"] .cs-block--horizontal,
+html[data-case-study-id="zapp-account"] .cs-block--feature-1,
+html[data-case-study-id="zapp-account"] .cs-block--feature-2,
 html[data-case-study-id="zapp-account"] .cs-block--metrics {
     margin-top: 70px;
     margin-bottom: 70px;
@@ -9714,11 +9904,26 @@ html[data-case-study-id="zapp-account"] .cs-horizontal {
     margin: 0;
 }
 
+html[data-case-study-id="zapp-account"] .cs-feature-block {
+    grid-template-columns: 472px 472px;
+    gap: 40px;
+    margin: 0;
+}
+
 html[data-case-study-id="zapp-account"] .cs-horizontal + .cs-horizontal {
     margin-top: 64px;
 }
 
+html[data-case-study-id="zapp-account"] .cs-feature-block + .cs-feature-block {
+    margin-top: 64px;
+}
+
 html[data-case-study-id="zapp-account"] .cs-horizontal__frame {
+    max-width: 472px;
+}
+
+html[data-case-study-id="zapp-account"] .cs-feature-block__stage,
+html[data-case-study-id="zapp-account"] .cs-feature-block__frame {
     max-width: 472px;
 }
 
@@ -9734,7 +9939,23 @@ html[data-case-study-id="zapp-account"] .cs-horizontal__frame .cs-editor-media-s
     border-radius: 20px;
 }
 
+html[data-case-study-id="zapp-account"] .cs-feature-block__stage {
+    min-height: 472px;
+    border-radius: 20px;
+}
+
+html[data-case-study-id="zapp-account"] .cs-feature-block__stage .placeholder-graphic,
+html[data-case-study-id="zapp-account"] .cs-feature-block__stage .cs-editor-media-slot {
+    min-height: 472px;
+}
+
 html[data-case-study-id="zapp-account"] .cs-horizontal__text > .cs-h3 {
+    font-size: 20px;
+    line-height: 39px;
+    margin-bottom: 24px;
+}
+
+html[data-case-study-id="zapp-account"] .cs-feature-block__headline {
     font-size: 20px;
     line-height: 39px;
     margin-bottom: 24px;
@@ -9742,6 +9963,16 @@ html[data-case-study-id="zapp-account"] .cs-horizontal__text > .cs-h3 {
 
 html[data-case-study-id="zapp-account"] .cs-horizontal__text > .cs-section__body {
     margin-bottom: 0;
+}
+
+html[data-case-study-id="zapp-account"] .cs-feature-block__body {
+    margin-bottom: 0;
+}
+
+html[data-case-study-id="zapp-account"] .cs-feature-block__statement {
+    font-size: 32px;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
 }
 
 html[data-case-study-id="zapp-account"] .cs-media-grid--cols-3 {
@@ -10171,6 +10402,7 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
     html[data-case-study-id="zapp-account"] .cs-body-layout__content > .cs-section,
     html[data-case-study-id="zapp-account"] .cs-meta-inline,
     html[data-case-study-id="zapp-account"] .cs-horizontal,
+    html[data-case-study-id="zapp-account"] .cs-feature-block,
     html[data-case-study-id="zapp-account"] .cs-media-grid,
     html[data-case-study-id="zapp-account"] .cs-cta-row--next {
         width: min(100%, 320px);
@@ -10262,6 +10494,8 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
 
     html[data-case-study-id="zapp-account"] .cs-block--image,
     html[data-case-study-id="zapp-account"] .cs-block--horizontal,
+    html[data-case-study-id="zapp-account"] .cs-block--feature-1,
+    html[data-case-study-id="zapp-account"] .cs-block--feature-2,
     html[data-case-study-id="zapp-account"] .cs-block--metrics {
         margin-top: 40px;
         margin-bottom: 40px;
@@ -10273,6 +10507,7 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
     }
 
     html[data-case-study-id="zapp-account"] .cs-horizontal,
+    html[data-case-study-id="zapp-account"] .cs-feature-block,
     html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal,
     html[data-case-study-id="zapp-account"] #cs-process > .cs-block--horizontal {
         display: flex;
@@ -10283,12 +10518,14 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
     }
 
     html[data-case-study-id="zapp-account"] .cs-horizontal + .cs-horizontal,
+    html[data-case-study-id="zapp-account"] .cs-feature-block + .cs-feature-block,
     html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal + .cs-block--horizontal,
     html[data-case-study-id="zapp-account"] #cs-process > .cs-block--horizontal + .cs-block--horizontal {
         margin-top: 32px;
     }
 
-    html[data-case-study-id="zapp-account"] .cs-horizontal__text {
+    html[data-case-study-id="zapp-account"] .cs-horizontal__text,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__text {
         display: contents;
     }
 
@@ -10298,7 +10535,15 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
         margin: 0;
     }
 
-    html[data-case-study-id="zapp-account"] .cs-horizontal__media {
+    html[data-case-study-id="zapp-account"] .cs-feature-block__headline,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__statement {
+        order: 1;
+        width: 100%;
+        margin: 0;
+    }
+
+    html[data-case-study-id="zapp-account"] .cs-horizontal__media,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__media {
         order: 2;
         width: 100%;
     }
@@ -10309,9 +10554,18 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
         margin: 0;
     }
 
+    html[data-case-study-id="zapp-account"] .cs-feature-block__body {
+        order: 3;
+        width: 100%;
+        margin: 0;
+    }
+
     html[data-case-study-id="zapp-account"] .cs-horizontal__frame,
     html[data-case-study-id="zapp-account"] .cs-horizontal__media,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__stage,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__media,
     html[data-case-study-id="zapp-account"] .cs-horizontal__text > *,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__text > *,
     html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal .cs-editor-media-slot,
     html[data-case-study-id="zapp-account"] #cs-design > .cs-block--horizontal .placeholder-graphic,
     html[data-case-study-id="zapp-account"] #cs-process > .cs-block--horizontal .cs-editor-media-slot,
@@ -10322,7 +10576,10 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
 
     html[data-case-study-id="zapp-account"] .cs-horizontal__frame,
     html[data-case-study-id="zapp-account"] .cs-horizontal__frame .cs-editor-media-slot,
-    html[data-case-study-id="zapp-account"] .cs-horizontal__frame .placeholder-graphic {
+    html[data-case-study-id="zapp-account"] .cs-horizontal__frame .placeholder-graphic,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__stage,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__stage .cs-editor-media-slot,
+    html[data-case-study-id="zapp-account"] .cs-feature-block__stage .placeholder-graphic {
         min-height: 320px;
         height: 320px;
     }
@@ -10545,5 +10802,20 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
 
     .projects-title {
         font-size: clamp(2.5rem, 2.25vw, 3.15rem);
+    }
+}
+
+/* Keep the Eyebrow + heading block on one shared type scale across all case studies. */
+html[data-case-study-id] .cs-eyebrow-heading .cs-h3 {
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: -0.156px;
+}
+
+@media (max-width: 768px) {
+    html[data-case-study-id] .cs-eyebrow-heading .cs-h3 {
+        font-size: 24px;
+        line-height: 1.22;
+        letter-spacing: -0.02em;
     }
 }

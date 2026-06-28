@@ -44,16 +44,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/case-studies/zapp-account/b5591rluy-image.png',
         'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/water.png'
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/water.png'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -242,7 +242,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/water.png', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -290,7 +290,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -316,7 +316,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -2236,6 +2236,68 @@
         return wrap;
     }
 
+    function createFeatureMediaStage(media, opts = {}) {
+        if (!media.uid) media.uid = uid();
+        const stage = el('div', {
+            class: `cs-feature-block__stage${opts.stageClass ? ` ${opts.stageClass}` : ''}`
+        });
+        const frame = el('div', {
+            class: `cs-feature-block__frame${opts.frameClass ? ` ${opts.frameClass}` : ''}`
+        });
+        frame.appendChild(mediaSlot(media, 'src', 'alt'));
+        stage.appendChild(frame);
+        return stage;
+    }
+
+    function renderFeatureBlockOne(block) {
+        const wrap = el('div', {
+            class: `cs-block cs-block--feature-1 cs-feature-block cs-feature-block--one cs-editor-media${block.reverse ? ' cs-feature-block--reverse' : ''}`,
+            dataset: { blockUid: block.uid }
+        });
+
+        const textCol = el('div', { class: 'cs-feature-block__text' });
+        const head = el('h3', { class: 'cs-feature-block__headline' });
+        head.dataset.placeholder = 'Feature title';
+        applyEditable(head, block, 'headline', block.headline || '');
+        textCol.appendChild(head);
+
+        const body = el('p', { class: 'cs-feature-block__body cs-section__body' });
+        body.dataset.placeholder = 'Write something…';
+        applyEditable(body, block, 'body', block.body || '');
+        textCol.appendChild(body);
+
+        const mediaCol = el('div', { class: 'cs-feature-block__media' });
+        const media = block.media || (block.media = { type: 'image', src: '', alt: '', uid: uid() });
+        mediaCol.appendChild(createFeatureMediaStage(media));
+
+        wrap.appendChild(textCol);
+        wrap.appendChild(mediaCol);
+        decorateBlock(wrap, block);
+        return wrap;
+    }
+
+    function renderFeatureBlockTwo(block) {
+        const wrap = el('div', {
+            class: `cs-block cs-block--feature-2 cs-feature-block cs-feature-block--two cs-editor-media${block.reverse ? ' cs-feature-block--reverse' : ''}`,
+            dataset: { blockUid: block.uid }
+        });
+
+        const textCol = el('div', { class: 'cs-feature-block__text' });
+        const statement = el('p', { class: 'cs-feature-block__statement' });
+        statement.dataset.placeholder = 'Write the feature statement…';
+        applyEditable(statement, block, 'body', block.body || '');
+        textCol.appendChild(statement);
+
+        const mediaCol = el('div', { class: 'cs-feature-block__media' });
+        const media = block.media || (block.media = { type: 'image', src: '', alt: '', uid: uid() });
+        mediaCol.appendChild(createFeatureMediaStage(media));
+
+        wrap.appendChild(textCol);
+        wrap.appendChild(mediaCol);
+        decorateBlock(wrap, block);
+        return wrap;
+    }
+
     function renderComparisonBlock(block) {
         const wrap = el('figure', { class: 'cs-block cs-block--comparison cs-media-comparison cs-editor-media cs-editor-media--comparison', dataset: { blockUid: block.uid } });
         if (!block.labels) block.labels = { before: 'Before', after: 'After' };
@@ -2462,6 +2524,8 @@
         'image':            { label: 'Image',            group: 'media',     render: renderImageBlock,          layouts: ['wide', 'fullbleed', '2-col', '3-col', '4-col', '5-col'] },
         'video':            { label: 'Video',            group: 'media',     render: renderVideoBlock,          layouts: null },
         'horizontal':       { label: 'Text + Media',     group: 'media',     render: renderHorizontalBlock,     layouts: null },
+        'feature-1':        { label: 'Feature Block 1',  group: 'media',     render: renderFeatureBlockOne,     layouts: null },
+        'feature-2':        { label: 'Feature Block 2',  group: 'media',     render: renderFeatureBlockTwo,     layouts: null },
         'comparison':       { label: 'Before / After',   group: 'media',     render: renderComparisonBlock,     layouts: null },
         'bento':            { label: 'Bento grid',       group: 'media',     render: renderBentoBlock,          layouts: null },
         'divider':          { label: 'Section heading',  group: 'structure', render: renderDividerBlock,        layouts: null },
@@ -2643,7 +2707,7 @@
         }
 
         // Swap sides for horizontal blocks
-        if (block.type === 'horizontal') {
+        if (['horizontal', 'feature-1', 'feature-2'].includes(block.type)) {
             const swap = el('button', { class: 'cs-block-toolbar__btn', attrs: { type: 'button', title: 'Swap sides' }, text: '⇄' });
             swap.addEventListener('click', () => {
                 block.reverse = !block.reverse;
@@ -2665,7 +2729,7 @@
             renderAll();
         }));
 
-        if (['image', 'video', 'bento', 'horizontal', 'comparison'].includes(block.type)) {
+        if (['image', 'video', 'bento', 'horizontal', 'feature-1', 'feature-2', 'comparison'].includes(block.type)) {
             toolbar.appendChild(toolbarNumber('H', 'Custom media container height in pixels', block.mediaHeight, 'height', (value) => {
                 setNumericOverride(block, 'mediaHeight', value);
                 schedulePersist();
@@ -2782,6 +2846,10 @@
                 return isBlank(block.src) && isBlank(block.caption);
             case 'horizontal':
                 return isBlank(block.headline) && isBlank(block.text) && isEmptyMedia(block.media);
+            case 'feature-1':
+                return isBlank(block.headline) && isBlank(block.body) && isEmptyMedia(block.media);
+            case 'feature-2':
+                return isBlank(block.body) && isEmptyMedia(block.media);
             case 'comparison':
                 return isBlank(block.beforeSrc) && isBlank(block.afterSrc) && isBlank(block.caption);
             case 'bento':
@@ -2946,6 +3014,8 @@
             case 'image': base.layout = 'fullbleed'; base.src = ''; base.alt = ''; break;
             case 'video': base.src = ''; base.alt = ''; break;
             case 'horizontal': base.text = ''; base.media = { type: 'video', src: '', alt: '', device: 'phone', uid: uid() }; break;
+            case 'feature-1': base.headline = ''; base.body = ''; base.media = { type: 'image', src: '', alt: '', uid: uid() }; break;
+            case 'feature-2': base.body = ''; base.media = { type: 'image', src: '', alt: '', uid: uid() }; break;
             case 'comparison': base.beforeSrc = ''; base.afterSrc = ''; base.labels = { before: 'Before', after: 'After' }; break;
             case 'metrics': base.style = 'standard'; base.items = [{ uid: uid(), stat: '', label: '', note: '' }]; break;
             case 'divider': base.label = 'New section'; base.id = 'new-section'; break;

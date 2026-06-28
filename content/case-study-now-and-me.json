@@ -58,7 +58,7 @@
         },
         {
           "type": "text",
-          "body": "IPL is a moment — not a month. For PayZapp, HDFC Bank's payments super-app, it was also an opportunity: a built-in spike in attention, emotion, and screen time that could be converted into activation, engagement, and transaction behaviour.<br>The brief: design a full-season experience layer on top of the app — one that felt native to cricket, not bolted on. Three campaigns, a redesigned app skin, and the infrastructure to survive match-night traffic.",
+          "body": "In 2024, HDFC Bank signed PayZapp as a lead sponsor of IPL. The campaigns, mechanics, and offers were defined by the bank. What came to us was the brief — make it work inside the app.\nOur job was to take what was handed to us and build an experience around it. One that felt like the season, not just a banner.",
           "uid": "baej6r1mo"
         },
         {
@@ -74,21 +74,36 @@
         {
           "uid": "bno0ea8w2",
           "type": "text",
-          "body": "The app had no reason to be opened during a match.\nPayZapp's core loop was transactional — you opened it to pay, then left. IPL gave us a window to change that behaviour: to make the app feel alive, contextual, and worth coming back to. Two real challenges shaped the work:"
+          "body": "The sponsorship guaranteed visibility. It didn't guarantee engagement. "
         },
         {
-          "uid": "bt1ateaew",
-          "type": "numbered",
-          "index": "01",
-          "headline": "Campaigns without a clear entry point stay invisible",
-          "body": "Banners, nudges, and deep links had to work together to surface the right thing at the right moment — without feeling like spam."
+          "uid": "b7x6ecgtx",
+          "type": "text",
+          "body": "Users seeing PayZapp on JioCinema would open the app to find a standard payments experience with no sense of the season. The gap between the sponsorship's promise and the in-app reality was the design problem."
         },
         {
-          "uid": "bm0nfqcpc",
-          "type": "numbered",
-          "index": "02",
-          "headline": "A sponsorship this visible couldn't afford visible failures",
-          "body": "IPL sends traffic spikes unlike anything a payments app usually handles. The design had to degrade gracefully — hiding heavy modules, collapsing banners when APIs failed, never letting the UX break under load. The engineering and design problems were the same problem."
+          "uid": "b73l0j1k3",
+          "type": "text",
+          "body": "Two campaigns were running through the season:"
+        },
+        {
+          "uid": "bogmzdvde",
+          "type": "image",
+          "layout": "2-col",
+          "src": "",
+          "alt": "",
+          "items": [
+            {
+              "src": "",
+              "alt": "",
+              "uid": "b5zeneolw"
+            },
+            {
+              "src": "",
+              "alt": "",
+              "uid": "b9d00k2su"
+            }
+          ]
         }
       ],
       "uid": "b0apxby0c"
@@ -104,34 +119,13 @@
         },
         {
           "type": "text",
-          "body": "Three campaigns. One consistent language.<br>The design challenge wasn't just making things look IPL-themed. It was building a coherent system where three very different campaigns — acquisition, real-time urgency, and long-form gamification — could coexist inside the same app without feeling like three different products. And doing it at a scale the sponsorship made unavoidable.<br>We started by mapping each campaign to a distinct emotional state:",
+          "body": "Campaigns and mechanics came to us as briefs — we weren't the authors of what users would be doing. We proposed the visual direction and designed the experience around the given logic.",
           "uid": "b1gomrpc4"
         },
         {
-          "uid": "bd0lmartf",
-          "type": "numbered",
-          "index": "01",
-          "headline": "Jeeto Dhan Dhana Dhan",
-          "body": "Acquisition energy. New user, first reward, instant payoff. Design posture: remove every point of friction between arriving and getting something."
-        },
-        {
-          "uid": "b90wpvslw",
-          "type": "numbered",
-          "index": "02",
-          "headline": "Strategic Timeout",
-          "body": "Live urgency. 1000 spots. Match in progress. Open now. Design posture: communicate scarcity without anxiety. The window is real; the clock is visible. And critically — this was our naming rights moment. The Strategic Timeout was PayZapp's on-air. The in-app experience had to match that energy."
-        },
-        {
-          "uid": "bovf7ed36",
-          "type": "numbered",
-          "index": "03",
-          "headline": "Score & Win",
-          "body": "Progress and pride. Accumulate, track, compete over a season. Design posture: a persistent presence inside the app — something always telling you where you stand."
-        },
-        {
-          "uid": "b7ofkx66k",
+          "uid": "b0usnwyjn",
           "type": "text",
-          "body": "The direction we aligned on: a full event layer across the app, not just campaign landing pages. IPL theming on the icon, the splash, the QR screen, the payment success moment. Every surface saying <em>cricket season</em> — so the sponsorship wasn't just something users saw on TV, but something they felt inside the product. A campaign landing page users have to find is already a failed campaign."
+          "body": "That started with a surface audit: every screen we could touch, and what each one could carry. The proposal was an IPL event layer across the app — ambient enough that users felt the season before they even tapped into a campaign."
         }
       ],
       "uid": "bo565g0yo"
@@ -152,14 +146,114 @@
           "headline": "The IPL Skin"
         },
         {
-          "uid": "b9grcx1db",
-          "type": "text",
-          "body": "Before campaigns, we established the visual language. IPL blue and gold tones, kinetic cricket motifs on the splash, a cricket-themed app icon, and a texture layer that showed up across banners, QR screens, and payment moments."
+          "uid": "bu2msdpbq",
+          "type": "feature-1",
+          "headline": "PayZapp Splash Screen",
+          "body": "",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "",
+            "uid": "bozgw054m"
+          }
         },
         {
-          "uid": "bl749ncmu",
+          "uid": "bj51sso9k",
+          "type": "feature-1",
+          "headline": "Scan QR",
+          "body": "Fours and sixes animations played randomly on every scan. A small cricket moment every time you paid, making users wait for such a small delight every time you pay",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "",
+            "uid": "bpotln6bx"
+          },
+          "reverse": true
+        },
+        {
+          "uid": "biwd9ghub",
+          "type": "feature-1",
+          "headline": "Transaction Success",
+          "body": "The circular tick became a bouncing ball. Pure delight post payments. Along side that, an animated bottom sheet confirmed your runs after every payment. Made the gamification feel immediate.",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "",
+            "uid": "bblsqzged"
+          },
+          "reverse": false
+        },
+        {
+          "uid": "b39haoe2n",
+          "type": "feature-1",
+          "headline": "Refer & Score",
+          "body": "Referrals earned the highest runs in the campaign. The section got a visual upgrade to match that weight.",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "",
+            "uid": "bdvf18ris"
+          },
+          "reverse": true
+        },
+        {
+          "uid": "b8f3qpt00",
+          "type": "feature-1",
+          "headline": "Spotlight Banners",
+          "body": "Variants for active campaigns, general IPL theming, and no-load fallbacks.",
+          "media": {
+            "type": "image",
+            "src": "",
+            "alt": "",
+            "uid": "b44j5kelf"
+          },
+          "reverse": false
+        },
+        {
+          "uid": "bmqc7gof0",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "uid": "bffwdwmqg",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Jeeto Dhan Dhana Dhan"
+        },
+        {
+          "uid": "b7ula2g95",
           "type": "text",
-          "body": "The goal wasn't decoration — it was continuity. A user watching PayZapp's name during a Strategic Timeout on JioCinema, then opening the app, needed to feel like they'd stepped into the same world, not switched contexts entirely. Sponsorship creates brand recognition. Design had to close the gap between recognition and experience."
+          "body": "A Jio-partnered campaign where users answered cricket questions on JioCinema to win prizes on PayZapp. We designed the in-app landing, the reward state, and the fallback for users who hit onboarding errors — a ₹50 SmartBuy voucher so no attempt felt wasted."
+        },
+        {
+          "uid": "bwl177cs9",
+          "type": "image",
+          "layout": "fullbleed",
+          "src": "",
+          "alt": ""
+        },
+        {
+          "uid": "bg7x82b5e",
+          "type": "spacer",
+          "size": "md"
+        },
+        {
+          "uid": "b8vt5eqay",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "Score & Win"
+        },
+        {
+          "uid": "by2w8jbat",
+          "type": "text",
+          "body": "Users earned runs through payments, tap-and-pay, bill payments, and referrals. We designed the leaderboard, the runs widget, and the overlay — everything that made the scoring logic visible and worth caring about."
+        },
+        {
+          "uid": "bgnjjijdq",
+          "type": "image",
+          "layout": "fullbleed",
+          "src": "",
+          "alt": ""
         }
       ],
       "uid": "be27or06n"
@@ -176,16 +270,33 @@
         },
         {
           "type": "text",
-          "body": "",
+          "body": "<strong>Working within a brief is its own design skill.</strong> The campaigns were set. Making them feel like one coherent season required as much judgment as building from scratch.&nbsp;",
           "uid": "bzdv4w6wl"
+        },
+        {
+          "uid": "bnukku1gm",
+          "type": "text",
+          "body": "<strong>Delight at the right moment goes a long way.</strong> The scanner animations and the bouncing ball were small bets. They were the moments people actually noticed and talked about. Sometimes the highest-leverage design work is finding the right surface for a small moment."
+        },
+        {
+          "uid": "be3svpjfw",
+          "type": "text",
+          "body": "This was a key visual design project I got to be a part of with an amazing team,&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Ishant's work\" data-pill-image=\"cs-asset:zapp-account:1782587619171:bxrgjdpsm\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">@Ishant</a>&nbsp;leading the motion design along with <strong>@Vibhore</strong> on leading the direction of this project.",
+          "spaceBefore": 0
+        },
+        {
+          "uid": "bccyu4tfz",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "💌 Get in touch for more details."
         }
       ],
       "uid": "bm1pbxtjz"
     }
   ],
   "__editor": {
-    "repoVersion": 1782592411136,
-    "syncedAt": "2026-06-27T20:33:31.136Z",
+    "repoVersion": 1782631963978,
+    "syncedAt": "2026-06-28T07:32:43.978Z",
     "dirty": false
   }
 }
