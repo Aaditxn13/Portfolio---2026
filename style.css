@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -867,6 +867,56 @@ body.night-mode .portfolio-loader__grid {
 html.cs-incoming body > :not(#portfolio-loader) {
     opacity: 0 !important;
     animation: portfolio-stuck-reveal 0.001s 4s forwards;
+}
+
+html.cs-incoming body.cs-page > :not(#portfolio-loader) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+}
+
+.cs-case-entry-veil {
+    position: fixed;
+    inset: 0;
+    z-index: 2147482500;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 44%),
+        var(--cs-entry-veil-bg, #fcfbf9);
+    opacity: 1;
+    will-change: opacity;
+}
+
+body.night-mode .cs-case-entry-veil {
+    background:
+        radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 44%),
+        #0d0d0d;
+}
+
+.cs-page.cs-reveal-active .cs-reveal-item {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    filter: blur(6px);
+    transition:
+        opacity 1180ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1180ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1280ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--cs-reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+}
+
+.cs-page.cs-reveal-active .cs-reveal-item.cs-reveal-item--visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+}
+
+html[data-cs-mode="edit"] .cs-page .cs-reveal-item,
+html[data-cs-reveal="off"] .cs-page .cs-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
 }
 
 @keyframes portfolio-loader-hide {
@@ -2661,8 +2711,7 @@ body.about-page .site-footer {
 }
 
 body.about-page .footer-cta-shell,
-body.about-page .footer-meta,
-body.about-page .footer-meta-copy {
+body.about-page .footer-meta {
     display: none;
 }
 

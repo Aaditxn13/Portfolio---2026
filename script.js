@@ -523,7 +523,7 @@ if (headerMount) {
         <header class="navbar">
             <div class="navbar__pill">
                 <a href="index.html" class="navbar__logo" aria-label="Go to homepage">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/Logo.svg" alt="AS Logo" class="logo-img">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/Logo.svg" alt="AS Logo" class="logo-img">
                 </a>
 
                 <nav class="nav-tray">
@@ -588,7 +588,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -598,13 +598,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -612,7 +612,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -622,7 +622,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -881,16 +881,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/grassland.png',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/water.png',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/grassland.png',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/water.png',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/grassland.png',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/water.png',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/grassland.png',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/water.png',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -1779,6 +1779,7 @@ workCards.forEach(card => {
     const FADE_KEY = 'cs-fade';
     const reduceMotion = window.matchMedia
         && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let caseStudyRevealObserver = null;
 
     function bodyFadeElems() {
         return Array.from(document.body.children).filter(
@@ -1814,6 +1815,136 @@ workCards.forEach(card => {
             target.scrollIntoView();
         }
     }
+
+    function isCaseStudyPage() {
+        return !!(document.body && document.body.classList.contains('cs-page'));
+    }
+
+    function caseStudyRevealDisabled() {
+        return !isCaseStudyPage()
+            || reduceMotion
+            || document.documentElement.dataset.csMode === 'edit';
+    }
+
+    function caseStudyRevealTargets() {
+        return Array.from(document.querySelectorAll([
+            '.cs-back',
+            '.cs-page-header',
+            '.cs-page-hero',
+            '.cs-content > .cs-body-layout > .cs-index',
+            '.cs-content > .cs-body-layout > .cs-body-layout__content > .cs-section > *',
+            '.cs-content > .cs-section > *',
+            '.cs-content > .cs-cta-row'
+        ].join(','))).filter((node) => {
+            if (!(node instanceof HTMLElement)) return false;
+            if (node.classList.contains('cs-inserter')) return false;
+            if (node.closest('.cs-editor-toolbar')) return false;
+            if (node.closest('.cs-inserter')) return false;
+            return true;
+        });
+    }
+
+    function clearCaseStudyReveal() {
+        if (caseStudyRevealObserver) {
+            caseStudyRevealObserver.disconnect();
+            caseStudyRevealObserver = null;
+        }
+        document.documentElement.dataset.csReveal = 'off';
+        if (document.body) document.body.classList.remove('cs-reveal-active');
+        caseStudyRevealTargets().forEach((node) => {
+            node.classList.remove('cs-reveal-item', 'cs-reveal-item--visible');
+            node.style.removeProperty('--cs-reveal-delay');
+            delete node.dataset.csRevealState;
+        });
+    }
+
+    function revealCaseStudyBatch(nodes, baseDelay, stepDelay) {
+        if (!nodes.length) return;
+        nodes.forEach((node, index) => {
+            if (!(node instanceof HTMLElement)) return;
+            if (node.dataset.csRevealState === 'visible') return;
+            node.dataset.csRevealState = 'queued';
+            node.classList.remove('cs-reveal-item--visible');
+            node.style.setProperty('--cs-reveal-delay', `${Math.max(0, Math.round(baseDelay + (index * stepDelay)))}ms`);
+            node.getBoundingClientRect();
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    node.dataset.csRevealState = 'visible';
+                    node.classList.add('cs-reveal-item--visible');
+                });
+            });
+        });
+    }
+
+    function isRevealInView(node) {
+        const rect = node.getBoundingClientRect();
+        const probe = window.innerHeight * 0.9;
+        return rect.bottom > 0 && rect.top < probe;
+    }
+
+    function refreshCaseStudyReveal(options = {}) {
+        if (!isCaseStudyPage()) return;
+
+        if (caseStudyRevealDisabled()) {
+            clearCaseStudyReveal();
+            return;
+        }
+
+        document.documentElement.dataset.csReveal = 'on';
+        document.body.classList.add('cs-reveal-active');
+
+        const allTargets = caseStudyRevealTargets();
+        const pendingNow = [];
+
+        if (!caseStudyRevealObserver && typeof IntersectionObserver === 'function') {
+            caseStudyRevealObserver = new IntersectionObserver((entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting && entry.target instanceof HTMLElement)
+                    .map((entry) => entry.target)
+                    .filter((node) => node.dataset.csRevealState !== 'visible')
+                    .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+
+                if (!visible.length) return;
+
+                revealCaseStudyBatch(visible, 60, 80);
+                visible.forEach((node) => {
+                    if (caseStudyRevealObserver) caseStudyRevealObserver.unobserve(node);
+                });
+            }, {
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.18
+            });
+        }
+
+        allTargets.forEach((node) => {
+            if (node.dataset.csRevealState === 'visible') return;
+            if (!node.classList.contains('cs-reveal-item')) {
+                node.classList.add('cs-reveal-item');
+            }
+            if (isRevealInView(node)) {
+                pendingNow.push(node);
+                return;
+            }
+            if (caseStudyRevealObserver) {
+                caseStudyRevealObserver.observe(node);
+            } else {
+                node.dataset.csRevealState = 'visible';
+                node.classList.add('cs-reveal-item--visible');
+            }
+        });
+
+        pendingNow.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        revealCaseStudyBatch(
+            pendingNow,
+            options.initial ? 160 : 60,
+            options.initial ? 95 : 80
+        );
+        if (caseStudyRevealObserver) {
+            pendingNow.forEach((node) => caseStudyRevealObserver.unobserve(node));
+        }
+    }
+
+    window.refreshCaseStudyReveal = refreshCaseStudyReveal;
 
     function navigateWithFade(link) {
         if (!link) return;
@@ -1895,8 +2026,44 @@ workCards.forEach(card => {
     function runIncomingFadeIn() {
         const incoming = document.documentElement.classList.contains('cs-incoming');
         if (!incoming) return;
+        const isCaseStudy = isCaseStudyPage();
 
         const play = () => {
+            if (isCaseStudy) {
+                const veil = document.createElement('div');
+                veil.className = 'cs-case-entry-veil';
+                document.body.appendChild(veil);
+                document.documentElement.classList.remove('cs-incoming');
+                refreshCaseStudyReveal({ initial: true });
+
+                requestAnimationFrame(() => {
+                    safeScrollToHash(window.location.hash);
+
+                    if (typeof gsap === 'undefined') {
+                        veil.style.transition = reduceMotion ? 'none' : 'opacity 980ms cubic-bezier(0.22, 1, 0.36, 1)';
+                        veil.style.opacity = '0';
+                        window.setTimeout(() => {
+                            veil.remove();
+                            document.documentElement.style.backgroundColor = '';
+                        }, reduceMotion ? 0 : 1040);
+                        return;
+                    }
+
+                    gsap.fromTo(veil,
+                        { autoAlpha: 1 },
+                        {
+                            autoAlpha: 0,
+                            duration: reduceMotion ? 0.001 : 0.96,
+                            ease: 'power2.out',
+                            onComplete: () => {
+                                veil.remove();
+                                document.documentElement.style.backgroundColor = '';
+                            }
+                        });
+                });
+                return;
+            }
+
             if (typeof gsap === 'undefined') {
                 document.documentElement.classList.remove('cs-incoming');
                 document.documentElement.style.backgroundColor = '';
@@ -1927,6 +2094,16 @@ workCards.forEach(card => {
         document.addEventListener('DOMContentLoaded', runIncomingFadeIn);
     } else {
         runIncomingFadeIn();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (isCaseStudyPage()) {
+                window.setTimeout(() => refreshCaseStudyReveal({ initial: true }), 60);
+            }
+        }, { once: true });
+    } else if (isCaseStudyPage()) {
+        window.setTimeout(() => refreshCaseStudyReveal({ initial: true }), 60);
     }
 
     // Safety: if fade-in stalls, force the page visible (Chrome can throw on
@@ -2059,13 +2236,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2589,8 +2766,8 @@ scheduleDeferredHeroEffects();
         const title = card.dataset.playTitle || DETAIL_DEFAULT_TITLE;
         const description = card.dataset.playDescription || DETAIL_DEFAULT_DESCRIPTION;
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4ae6bd0caf3446d8a06850676c712876ea36076/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@ce965279f72d1522a79486a79eea50cbd17e2132/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
