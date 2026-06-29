@@ -19,15 +19,15 @@
         'play.html': {
             assets: [
                 'https://aaditxn13.github.io/Portfolio---2026/asset/zapp-add-money.mp4',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/play-tab-assets/play_sero.png',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/gallery-beyond-pixels/gallery-web-04.jpg'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/play-tab-assets/play_sero.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/gallery-beyond-pixels/gallery-web-04.jpg'
             ]
         },
         'about.html': {
             assets: [
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/me.avif',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/company-icons/zeta.png',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/about-more/travel.png'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/me.avif',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/company-icons/zeta.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/about-more/travel.png'
             ]
         }
     };
@@ -37,16 +37,16 @@
         'case-study-editor.js?v=inline-links-4'
     ];
     const HOME_WORK_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/grassland.png',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/water.png',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/project-3-night-meadow-background.jpg',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/home-project-cards/project-4-green-background.jpg'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/grassland.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/water.webp',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-3-night-meadow-background.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-4-green-background.jpg'
     ];
     const HOME_BEYOND_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
     ];
 
     const OTHER_PAGES = ['play.html', 'about.html'];
