@@ -12,6 +12,8 @@
     const ROOT_MARGIN = '320px 0px';
     const THRESHOLD = 0.01;
     const THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+    const CURRENT_PAGE_WARM_LIMIT = 14;
+    const CURRENT_PAGE_WARM_CONCURRENCY = 3;
 
     function escapeCssUrl(url) {
         return String(url).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
@@ -41,6 +43,70 @@
         el.src = resolveLazySrc(src);
         el.removeAttribute('data-src');
         el.dataset.lazyLoaded = 'true';
+    }
+
+    function shouldWarmCurrentPage() {
+        const conn = navigator.connection;
+        if (conn && conn.saveData) return false;
+        if (conn && /(^|-)2g$/.test(conn.effectiveType || '')) return false;
+        return true;
+    }
+
+    function isNearViewport(el, extra = 320) {
+        if (!el || typeof el.getBoundingClientRect !== 'function') return false;
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+        return rect.top < vh + extra && rect.bottom > -extra;
+    }
+
+    function collectCurrentPageWarmTargets(limit = CURRENT_PAGE_WARM_LIMIT) {
+        const targets = [];
+        const seen = new Set();
+
+        function push(type, el, src) {
+            if (!src || seen.has(src)) return;
+            if (isNearViewport(el)) return;
+            seen.add(src);
+            targets.push({ type, el, src });
+        }
+
+        document.querySelectorAll('[data-lazy-bg]:not([data-lazy-loaded])').forEach((el) => {
+            push('bg', el, el.getAttribute('data-lazy-bg'));
+        });
+
+        document.querySelectorAll('img[data-src]:not([data-lazy-loaded])').forEach((el) => {
+            push('img', el, resolveLazySrc(el.getAttribute('data-src')));
+        });
+
+        return targets.slice(0, limit);
+    }
+
+    function warmImageSrc(src) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.decoding = 'async';
+            img.onload = img.onerror = () => resolve();
+            img.src = src;
+        });
+    }
+
+    async function drainWarmQueue(items, concurrency = CURRENT_PAGE_WARM_CONCURRENCY) {
+        if (!items.length) return;
+        let index = 0;
+        async function worker() {
+            while (index < items.length) {
+                const current = items[index++];
+                await warmImageSrc(current.src);
+            }
+        }
+        await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+    }
+
+    function warmCurrentPageDeferredAssets() {
+        if (!shouldWarmCurrentPage()) return;
+        const items = collectCurrentPageWarmTargets();
+        if (!items.length) return;
+        drainWarmQueue(items).catch(() => { /* best effort */ });
     }
 
     function observeTarget(el, io) {
@@ -145,6 +211,12 @@
     function onReady() {
         scan(document);
         scheduleHeroEffects();
+        const warm = () => scheduleIdleTask(() => warmCurrentPageDeferredAssets(), 1800);
+        if (document.readyState === 'complete') {
+            warm();
+        } else {
+            window.addEventListener('load', warm, { once: true });
+        }
     }
 
     if (document.readyState === 'loading') {
