@@ -19,15 +19,15 @@
         'play.html': {
             assets: [
                 'https://aaditxn13.github.io/Portfolio---2026/asset/zapp-add-money.mp4',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/play-tab-assets/play_sero.png',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/gallery-beyond-pixels/gallery-web-04.jpg'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/play-tab-assets/play_sero.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/gallery-beyond-pixels/gallery-web-04.jpg'
             ]
         },
         'about.html': {
             assets: [
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/me.avif',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/company-icons/zeta.png',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/about-more/travel.png'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/me.avif',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/company-icons/zeta.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/about-more/travel.png'
             ]
         }
     };
@@ -37,20 +37,21 @@
         'case-study-editor.js?v=inline-links-4'
     ];
     const HOME_WORK_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/grassland.jpg',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/water.webp',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-3-night-meadow-background.jpg',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-4-green-background.jpg'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/home-project-cards/grassland.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/home-project-cards/water.webp',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/home-project-cards/project-3-night-meadow-background.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/home-project-cards/project-4-green-background.jpg'
     ];
     const HOME_BEYOND_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0c611865a601c4a816d189cfd5f4f2ad92f951a2/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
     ];
 
     const OTHER_PAGES = ['play.html', 'about.html'];
     const CASE_PAGES = ['project-1.html', 'project-2.html', 'project-4.html'];
+    const ALL_TABS = ['about.html', 'play.html', 'project-1.html', 'project-2.html', 'project-4.html'];
     const MANIFEST_PATH = 'content/case-study-asset-manifest.json';
 
     const prefetched = new Set();
@@ -245,8 +246,11 @@
             const manifest = await ensureManifest();
             const doc = await warmFetch(route.json);
             if (doc) {
-                collectDocMediaPaths(doc, manifest, priority ? 10 : 4)
-                    .forEach(prefetchMediaPath);
+                const mediaPaths = collectDocMediaPaths(doc, manifest, priority ? 8 : 4);
+                for (const path of mediaPaths) {
+                    prefetchMediaPath(path);
+                    await warmMedia(path);
+                }
             }
             linkPrefetch(pageName, 'document');
         };
@@ -290,20 +294,48 @@
 
     function warmOtherPages() {
         OTHER_PAGES.forEach((page) => {
-            enqueue(() => {
+            enqueue(async () => {
                 linkPrefetch(page, 'document');
                 const assets = ROUTES[page]?.assets || [];
-                assets.forEach((path) => prefetchMediaPath(path));
+                for (const path of assets) {
+                    prefetchMediaPath(path);
+                    await warmMedia(path);
+                }
             });
+        });
+    }
+
+    function warmAllTabDocuments() {
+        ALL_TABS.forEach((page) => {
+            enqueue(async () => {
+                linkPrefetch(page, 'document');
+                await warmFetch(page);
+            });
+        });
+    }
+
+    function warmSecondFoldCaseStudies() {
+        CASE_PAGES.forEach((page) => {
+            enqueue(() => warmCaseStudy(page, { priority: false }));
+        });
+    }
+
+    function warmHeroDestinations() {
+        enqueue(() => warmRoute('about.html', { priority: true }));
+        enqueue(() => warmRoute('play.html', { priority: true }));
+        CASE_PAGES.forEach((page) => {
+            enqueue(() => warmRoute(page, { priority: true }));
         });
     }
 
     function boot() {
         if (!shouldPrefetch()) return;
-        warmHomeWorkSection();
-        warmHomeBeyondSection();
+        enqueue(() => warmHomeWorkSection());
+        enqueue(() => warmHomeBeyondSection());
+        warmAllTabDocuments();
         warmShared();
-        warmAllCaseStudies();
+        warmHeroDestinations();
+        warmSecondFoldCaseStudies();
         warmOtherPages();
     }
 
