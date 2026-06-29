@@ -16,15 +16,37 @@
         'project-1.html': { json: 'content/case-study-zapp-account.json' },
         'project-2.html': { json: 'content/case-study-growth-experiments.json' },
         'project-4.html': { json: 'content/case-study-now-and-me.json' },
-        'play.html': { assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/play-tab-assets/play_sero.png'] },
+        'play.html': {
+            assets: [
+                'https://aaditxn13.github.io/Portfolio---2026/asset/zapp-add-money.mp4',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/play-tab-assets/play_sero.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/gallery-beyond-pixels/gallery-web-04.jpg'
+            ]
+        },
         'about.html': {
-            assets: ['https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3511488fddbacb1b5e3ff3949f3b374deec9bff0/asset/gallery-beyond-pixels/gallery-web-01.jpg']
+            assets: [
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/me.avif',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/company-icons/zeta.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/about-more/travel.png'
+            ]
         }
     };
 
     const SHARED = [
         'content/case-study-asset-manifest.json',
         'case-study-editor.js?v=inline-links-4'
+    ];
+    const HOME_WORK_MEDIA = [
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/grassland.png',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/water.png',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-3-night-meadow-background.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/home-project-cards/project-4-green-background.jpg'
+    ];
+    const HOME_BEYOND_MEDIA = [
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@7d19309e5e2c3d0a758f521469978570435023d6/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
     ];
 
     const OTHER_PAGES = ['play.html', 'about.html'];
@@ -159,6 +181,55 @@
         linkPrefetch(path, as);
     }
 
+    function warmImage(path) {
+        const key = `img:${path}`;
+        if (!path || prefetched.has(key)) return Promise.resolve();
+        prefetched.add(key);
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.decoding = 'async';
+            img.onload = img.onerror = () => resolve();
+            img.src = path;
+        });
+    }
+
+    function warmVideo(path) {
+        const key = `video:${path}`;
+        if (!path || prefetched.has(key)) return Promise.resolve();
+        prefetched.add(key);
+        return new Promise((resolve) => {
+            const video = document.createElement('video');
+            video.preload = 'auto';
+            video.muted = true;
+            video.playsInline = true;
+            const done = () => resolve();
+            video.onloadeddata = done;
+            video.onerror = done;
+            video.src = path;
+            try { video.load(); } catch (_) { resolve(); }
+        });
+    }
+
+    function warmMedia(path) {
+        if (!path) return Promise.resolve();
+        if (/\.(mp4|webm|mov)(\?|$)/i.test(path)) return warmVideo(path);
+        return warmImage(path);
+    }
+
+    async function warmHomeWorkSection() {
+        for (const path of HOME_WORK_MEDIA) {
+            prefetchMediaPath(path);
+            await warmMedia(path);
+        }
+    }
+
+    async function warmHomeBeyondSection() {
+        for (const path of HOME_BEYOND_MEDIA) {
+            prefetchMediaPath(path);
+            await warmMedia(path);
+        }
+    }
+
     async function ensureManifest() {
         if (manifestCache) return manifestCache;
         manifestCache = await warmFetch(MANIFEST_PATH);
@@ -229,6 +300,8 @@
 
     function boot() {
         if (!shouldPrefetch()) return;
+        warmHomeWorkSection();
+        warmHomeBeyondSection();
         warmShared();
         warmAllCaseStudies();
         warmOtherPages();
@@ -237,11 +310,13 @@
     function scheduleBoot() {
         if (!shouldPrefetch()) return;
         const run = () => boot();
-        if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(run, { timeout: 5000 });
-        } else {
-            window.setTimeout(run, 2000);
+        if (document.readyState === 'complete') {
+            window.setTimeout(run, 180);
+            return;
         }
+        window.addEventListener('load', () => {
+            window.setTimeout(run, 180);
+        }, { once: true });
     }
 
     window.SitePrefetch = {
