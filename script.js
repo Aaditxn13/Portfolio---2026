@@ -526,7 +526,7 @@ if (headerMount) {
         <header class="navbar">
             <div class="navbar__pill">
                 <a href="index.html" class="navbar__logo" aria-label="Go to homepage">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/Logo.svg" alt="AS Logo" class="logo-img">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/Logo.svg" alt="AS Logo" class="logo-img">
                 </a>
 
                 <nav class="nav-tray">
@@ -610,7 +610,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -620,13 +620,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -634,7 +634,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -644,7 +644,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -903,16 +903,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/grassland.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/water.webp',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/grassland.jpg',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/water.webp',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -2273,13 +2273,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2621,12 +2621,12 @@ scheduleDeferredHeroEffects();
     if (!canvas || !world) return;
 
     const STORAGE_KEY = 'play-sticker-positions';
-    const LAYOUT_STORAGE_KEY = 'play-layout-editor-v1';
+    const LAYOUT_STORAGE_KEY = 'play-layout-editor-v2';
     const INITIAL_WORLD_CENTER_X = 1500;
     const INITIAL_WORLD_CENTER_Y = 1000;
-    const MIN_EDGE_PADDING = 260;
-    const MAX_EDGE_PADDING = 520;
-    const EDGE_PADDING_RATIO = 0.45;
+    const MIN_EDGE_PADDING = 180;
+    const MAX_EDGE_PADDING = 360;
+    const EDGE_PADDING_RATIO = 0.32;
     const TOUCH_TAP_THRESHOLD = 14;
     const DETAIL_DEFAULT_TITLE = 'Play study';
     const DETAIL_DEFAULT_DESCRIPTION = 'A visual experiment from my playground exploring motion, framing, and storytelling.';
@@ -2642,12 +2642,14 @@ scheduleDeferredHeroEffects();
         const w = parseFloat(el.dataset.w || '0');
         const h = parseFloat(el.dataset.h || '0');
         const rot = parseFloat(el.dataset.rot || '0');
+        const scale = parseFloat(el.dataset.scale || '1');
         const z = parseFloat(el.dataset.z || '');
         if (!Number.isNaN(x)) el.style.left = x + 'px';
         if (!Number.isNaN(y)) el.style.top = y + 'px';
         if (!Number.isNaN(w) && w > 0) el.style.width = w + 'px';
         if (!Number.isNaN(h) && h > 0) el.style.height = h + 'px';
         if (!Number.isNaN(rot)) el.style.setProperty('--rot', rot + 'deg');
+        if (!Number.isNaN(scale) && scale > 0) el.style.setProperty('--scale', String(scale));
         if (!Number.isNaN(z)) el.style.zIndex = String(z);
     }
 
@@ -2657,9 +2659,10 @@ scheduleDeferredHeroEffects();
         const w = parseFloat(el.dataset.w || el.style.width || String(el.offsetWidth || 0)) || 0;
         const h = parseFloat(el.dataset.h || el.style.height || String(el.offsetHeight || 0)) || 0;
         const rot = parseFloat(el.dataset.rot || '0') || 0;
+        const scale = Math.max(0.1, parseFloat(el.dataset.scale || el.style.getPropertyValue('--scale') || '1') || 1);
         const zRaw = parseFloat(el.dataset.z || el.style.zIndex || '');
         const z = Number.isNaN(zRaw) ? fallbackZ : zRaw;
-        return { x, y, w, h, rot, z };
+        return { x, y, w, h, rot, scale, z };
     }
 
     function writePlacement(el, placement) {
@@ -2673,6 +2676,7 @@ scheduleDeferredHeroEffects();
         if (next.w > 0) el.dataset.w = String(round(next.w));
         if (next.h > 0) el.dataset.h = String(round(next.h));
         el.dataset.rot = String(round(next.rot));
+        el.dataset.scale = String(round(Math.max(0.1, next.scale || 1)));
         el.dataset.z = String(Math.round(Number(next.z) || 0));
         applyWorldPlacement(el);
     }
@@ -2730,6 +2734,7 @@ scheduleDeferredHeroEffects();
                 w: Math.round(placement.w * 10) / 10,
                 h: Math.round(placement.h * 10) / 10,
                 rot: Math.round(placement.rot * 10) / 10,
+                scale: Math.round(placement.scale * 10) / 10,
                 z: Math.round(placement.z)
             };
         });
@@ -2765,6 +2770,7 @@ scheduleDeferredHeroEffects();
     const detailTitle = canvas.querySelector('[data-play-detail-title]');
     const detailDescription = canvas.querySelector('[data-play-detail-description]');
     const detailStats = canvas.querySelector('[data-play-detail-stats]');
+    const detailLink = canvas.querySelector('[data-play-detail-link]');
     const mascot = canvas.querySelector('[data-play-mascot]');
     const mascotTooltip = mascot?.querySelector('.play-mascot__tooltip');
     const defaultMascotTooltip = mascotTooltip?.textContent || '';
@@ -2802,9 +2808,11 @@ scheduleDeferredHeroEffects();
         const height = parseFloat(card.dataset.h || '') || card.offsetHeight || 420;
         const title = card.dataset.playTitle || DETAIL_DEFAULT_TITLE;
         const description = card.dataset.playDescription || DETAIL_DEFAULT_DESCRIPTION;
+        const link = card.dataset.playLink || '';
+        const linkLabel = card.dataset.playLinkLabel || 'View More';
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
@@ -2830,6 +2838,18 @@ scheduleDeferredHeroEffects();
             }));
             detailStats.hidden = stats.length === 0;
         }
+
+        if (detailLink) {
+            if (link) {
+                detailLink.href = link;
+                detailLink.textContent = linkLabel;
+                detailLink.hidden = false;
+            } else {
+                detailLink.removeAttribute('href');
+                detailLink.textContent = '';
+                detailLink.hidden = true;
+            }
+        }
     }
 
     function clearDetail() {
@@ -2838,6 +2858,11 @@ scheduleDeferredHeroEffects();
         detailDescription.textContent = '';
         detailStats?.replaceChildren();
         if (detailStats) detailStats.hidden = true;
+        if (detailLink) {
+            detailLink.removeAttribute('href');
+            detailLink.textContent = '';
+            detailLink.hidden = true;
+        }
     }
 
     function createMorphGhost(card, rect, mode = 'card') {
@@ -2945,9 +2970,9 @@ scheduleDeferredHeroEffects();
             populateDetail(card);
             detail.hidden = false;
             detail.setAttribute('aria-hidden', 'false');
+            detail.classList.remove('is-closing');
             detail.classList.add('is-active', 'is-morphing');
             canvas.classList.add('is-detail-open');
-            card.classList.add('is-source-hidden');
             syncDetailTooltip(DETAIL_OPEN_TOOLTIP);
 
             await waitForNextFrame();
@@ -2957,6 +2982,8 @@ scheduleDeferredHeroEffects();
             const fromRotation = parseFloat(card.dataset.rot || '0');
             ghost = createMorphGhost(card, fromRect);
             document.body.appendChild(ghost);
+            await waitForNextFrame();
+            card.classList.add('is-source-hidden');
 
             await animateGhost(ghost, fromRect, toRect, fromRotation, 0, 460);
         } finally {
@@ -2972,7 +2999,7 @@ scheduleDeferredHeroEffects();
 
         const card = detailActiveCard;
         detailAnimating = true;
-        detail.classList.add('is-morphing');
+        detail.classList.add('is-morphing', 'is-closing');
         let ghost = null;
 
         try {
@@ -2981,17 +3008,17 @@ scheduleDeferredHeroEffects();
             const toRotation = parseFloat(card.dataset.rot || '0');
             ghost = createMorphGhost(card, fromRect, 'detail');
             document.body.appendChild(ghost);
-
-            detail.classList.remove('is-active');
             syncDetailTooltip(defaultMascotTooltip);
+            await waitForNextFrame();
 
             await animateGhost(ghost, fromRect, toRect, 0, toRotation, 380);
         } finally {
             ghost?.remove();
             card.classList.remove('is-source-hidden');
+            detail.classList.remove('is-active');
             detail.hidden = true;
             detail.setAttribute('aria-hidden', 'true');
-            detail.classList.remove('is-morphing');
+            detail.classList.remove('is-morphing', 'is-closing');
             canvas.classList.remove('is-detail-open');
             clearDetail();
 
@@ -3058,29 +3085,22 @@ scheduleDeferredHeroEffects();
         });
     });
 
-    const requestDetailClose = (e) => {
-        e?.preventDefault?.();
+    const requestDetailClose = (e, options = {}) => {
+        if (!detailActiveCard || detailAnimating) return;
+        if (options.preventDefault !== false) {
+            e?.preventDefault?.();
+        }
         closePlayCardDetail();
     };
 
-    detailBackdrop?.addEventListener('pointerdown', requestDetailClose);
-    detailBackdrop?.addEventListener('click', requestDetailClose);
-
-    const shouldCloseFromOverlayTarget = (target) => {
-        if (!(target instanceof Element)) return false;
-        return !target.closest('.play-detail__stage');
-    };
-
-    detail?.addEventListener('pointerdown', (e) => {
-        if (shouldCloseFromOverlayTarget(e.target)) {
-            requestDetailClose(e);
-        }
-    });
+    detailBackdrop?.addEventListener('click', (e) => requestDetailClose(e));
 
     detail?.addEventListener('click', (e) => {
-        if (shouldCloseFromOverlayTarget(e.target)) {
-            requestDetailClose(e);
-        }
+        if (!detailActiveCard || detailAnimating) return;
+        const target = e.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('[data-play-detail-link]')) return;
+        requestDetailClose(e, { preventDefault: false });
     });
 
     window.addEventListener('keydown', (e) => {
@@ -3145,7 +3165,7 @@ scheduleDeferredHeroEffects();
     }
 
     function getContentBounds() {
-        if (!cards.length) {
+        if (!layoutItems.length) {
             return {
                 minX: INITIAL_WORLD_CENTER_X,
                 minY: INITIAL_WORLD_CENTER_Y,
@@ -3153,16 +3173,21 @@ scheduleDeferredHeroEffects();
                 maxY: INITIAL_WORLD_CENTER_Y
             };
         }
-        return cards.reduce((bounds, card) => {
-            const x = parseFloat(card.style.left) || 0;
-            const y = parseFloat(card.style.top) || 0;
-            const w = parseFloat(card.style.width) || card.offsetWidth || 0;
-            const h = parseFloat(card.style.height) || card.offsetHeight || 0;
+        return layoutItems.reduce((bounds, item) => {
+            const x = parseFloat(item.style.left) || 0;
+            const y = parseFloat(item.style.top) || 0;
+            const baseW = parseFloat(item.style.width) || item.offsetWidth || 0;
+            const baseH = parseFloat(item.style.height) || item.offsetHeight || 0;
+            const scale = parseFloat(item.style.getPropertyValue('--scale') || item.dataset.scale || '1') || 1;
+            const w = baseW * scale;
+            const h = baseH * scale;
+            const left = x + (baseW - w) / 2;
+            const top = y + (baseH - h) / 2;
             return {
-                minX: Math.min(bounds.minX, x),
-                minY: Math.min(bounds.minY, y),
-                maxX: Math.max(bounds.maxX, x + w),
-                maxY: Math.max(bounds.maxY, y + h)
+                minX: Math.min(bounds.minX, left),
+                minY: Math.min(bounds.minY, top),
+                maxX: Math.max(bounds.maxX, left + w),
+                maxY: Math.max(bounds.maxY, top + h)
             };
         }, {
             minX: Infinity,
@@ -3378,6 +3403,7 @@ scheduleDeferredHeroEffects();
         : [];
     const editorSelection = canvas.querySelector('[data-play-editor-selection]');
     const editorRotateHandle = canvas.querySelector('[data-play-editor-rotate-handle]');
+    const editorScaleHandle = canvas.querySelector('[data-play-editor-scale-handle]');
 
     let layoutEditing = false;
     let selectedLayoutEl = null;
@@ -3413,7 +3439,12 @@ scheduleDeferredHeroEffects();
         const placement = selectedLayoutEl ? readPlacement(selectedLayoutEl) : null;
         Object.entries(editorInputs).forEach(([key, input]) => {
             input.disabled = !placement;
-            input.value = placement ? String(Math.round((placement[key] || 0) * 10) / 10) : '';
+            if (!placement) {
+                input.value = '';
+                return;
+            }
+            const rawValue = key === 'scale' ? placement.scale : (placement[key] || 0);
+            input.value = String(Math.round(Number(rawValue) * 10) / 10);
         });
         if (editorCurrent) {
             editorCurrent.textContent = getLayoutItemName(selectedLayoutEl);
@@ -3427,11 +3458,14 @@ scheduleDeferredHeroEffects();
         }
 
         const placement = readPlacement(selectedLayoutEl);
-        const width = placement.w || selectedLayoutEl.offsetWidth || 1;
-        const height = placement.h || selectedLayoutEl.offsetHeight || 1;
+        const baseWidth = placement.w || selectedLayoutEl.offsetWidth || 1;
+        const baseHeight = placement.h || selectedLayoutEl.offsetHeight || 1;
+        const scale = placement.scale || 1;
+        const width = baseWidth * scale;
+        const height = baseHeight * scale;
         editorSelection.hidden = false;
-        editorSelection.style.left = `${placement.x + panX}px`;
-        editorSelection.style.top = `${placement.y + panY}px`;
+        editorSelection.style.left = `${placement.x + panX + (baseWidth - width) / 2}px`;
+        editorSelection.style.top = `${placement.y + panY + (baseHeight - height) / 2}px`;
         editorSelection.style.width = `${width}px`;
         editorSelection.style.height = `${height}px`;
         editorSelection.style.transform = `rotate(${placement.rot || 0}deg)`;
@@ -3583,8 +3617,8 @@ scheduleDeferredHeroEffects();
         e.stopPropagation();
 
         const placement = readPlacement(selectedLayoutEl);
-        const width = placement.w || selectedLayoutEl.offsetWidth || 1;
-        const height = placement.h || selectedLayoutEl.offsetHeight || 1;
+        const width = (placement.w || selectedLayoutEl.offsetWidth || 1) * (placement.scale || 1);
+        const height = (placement.h || selectedLayoutEl.offsetHeight || 1) * (placement.scale || 1);
         const centerX = placement.x + panX + width / 2;
         const centerY = placement.y + panY + height / 2;
         const startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
@@ -3598,6 +3632,50 @@ scheduleDeferredHeroEffects();
             const delta = (angle - startAngle) * 180 / Math.PI;
             updateEditorPlacement(selectedLayoutEl, {
                 rot: startRotation + delta
+            });
+        };
+
+        const onEnd = (endEvent) => {
+            if (endEvent.pointerId !== pointerId) return;
+            window.removeEventListener('pointermove', onMove);
+            window.removeEventListener('pointerup', onEnd);
+            window.removeEventListener('pointercancel', onEnd);
+            commitEditorLayout();
+        };
+
+        window.addEventListener('pointermove', onMove, { passive: false });
+        window.addEventListener('pointerup', onEnd);
+        window.addEventListener('pointercancel', onEnd);
+    }
+
+    function beginEditorScaleDrag(e) {
+        if (!layoutEditing || !selectedLayoutEl) return;
+        if (e.button !== 0 && e.pointerType !== 'touch') return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const placement = readPlacement(selectedLayoutEl);
+        const baseWidth = placement.w || selectedLayoutEl.offsetWidth || 1;
+        const baseHeight = placement.h || selectedLayoutEl.offsetHeight || 1;
+        const startScale = placement.scale || 1;
+        const startWidth = baseWidth * startScale;
+        const startHeight = baseHeight * startScale;
+        const centerX = placement.x + panX + baseWidth / 2;
+        const centerY = placement.y + panY + baseHeight / 2;
+        const startDistance = Math.hypot((e.clientX - centerX), (e.clientY - centerY)) || 1;
+        const pointerId = e.pointerId;
+
+        const onMove = (moveEvent) => {
+            if (moveEvent.pointerId !== pointerId) return;
+            moveEvent.preventDefault();
+            const nextDistance = Math.hypot((moveEvent.clientX - centerX), (moveEvent.clientY - centerY)) || 1;
+            const ratio = nextDistance / startDistance;
+            const widthBasedScale = (startWidth * ratio) / Math.max(baseWidth, 1);
+            const heightBasedScale = (startHeight * ratio) / Math.max(baseHeight, 1);
+            const nextScale = Math.max(0.1, Math.min(6, (widthBasedScale + heightBasedScale) / 2));
+            updateEditorPlacement(selectedLayoutEl, {
+                scale: nextScale
             });
         };
 
@@ -3637,6 +3715,10 @@ scheduleDeferredHeroEffects();
                 syncEditorInputs();
                 return;
             }
+            if (key === 'scale') {
+                updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, value) }, { commit: true });
+                return;
+            }
             updateEditorPlacement(selectedLayoutEl, { [key]: value }, { commit: true });
         });
     });
@@ -3672,6 +3754,10 @@ scheduleDeferredHeroEffects();
                 updateEditorPlacement(selectedLayoutEl, { rot: placement.rot - 5 }, { commit: true });
             } else if (action === 'rotate-right') {
                 updateEditorPlacement(selectedLayoutEl, { rot: placement.rot + 5 }, { commit: true });
+            } else if (action === 'scale-down') {
+                updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, (placement.scale || 1) - 0.1) }, { commit: true });
+            } else if (action === 'scale-up') {
+                updateEditorPlacement(selectedLayoutEl, { scale: (placement.scale || 1) + 0.1 }, { commit: true });
             } else if (action === 'send-back') {
                 updateEditorPlacement(selectedLayoutEl, { z: minZ - 1 }, { commit: true });
             } else if (action === 'bring-front') {
@@ -3681,6 +3767,7 @@ scheduleDeferredHeroEffects();
     });
 
     editorRotateHandle?.addEventListener('pointerdown', beginEditorRotateDrag);
+    editorScaleHandle?.addEventListener('pointerdown', beginEditorScaleDrag);
 
     canvas.addEventListener('playcanvas:pan', updateEditorSelectionFrame);
     window.addEventListener('resize', updateEditorSelectionFrame);

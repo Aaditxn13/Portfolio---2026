@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AS | Designer Portfolio</title>
     <link rel="canonical" href="https://adityaaa.com/play.html">
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/favicon.png?v=blue-logo-1">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/favicon.png?v=blue-logo-1">
     <link rel="stylesheet" href="style.css?v=message-bubble-pill-1">
     <!-- Premium Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,6 +81,7 @@
                  finite, based on the outermost cards plus large padding. -->
             <div class="play-grid" data-play-grid></div>
 
+            <!--
             <div class="play-editor" data-play-editor aria-label="Play layout editor">
                 <button class="play-editor__toggle" type="button" data-play-editor-toggle aria-pressed="false">
                     Edit layout
@@ -107,24 +108,32 @@
                             <span>Layer</span>
                             <input type="number" step="1" data-play-editor-input="z" inputmode="numeric">
                         </label>
+                        <label class="play-editor__field">
+                            <span>Scale</span>
+                            <input type="number" step="0.1" min="0.1" data-play-editor-input="scale" inputmode="decimal">
+                        </label>
                     </div>
                     <div class="play-editor__actions" aria-label="Layout actions">
                         <button type="button" data-play-editor-action="rotate-left">Rotate -5</button>
                         <button type="button" data-play-editor-action="rotate-right">Rotate +5</button>
+                        <button type="button" data-play-editor-action="scale-down">Scale -0.1</button>
+                        <button type="button" data-play-editor-action="scale-up">Scale +0.1</button>
                         <button type="button" data-play-editor-action="send-back">Back</button>
                         <button type="button" data-play-editor-action="bring-front">Front</button>
                         <button type="button" data-play-editor-action="save">Save</button>
                         <button type="button" data-play-editor-action="copy">Copy JSON</button>
                         <button type="button" data-play-editor-action="reset">Reset</button>
                     </div>
-                    <p class="play-editor__hint">Drag an item to move it. Use the round handle to rotate. Arrow keys nudge the selection.</p>
+                    <p class="play-editor__hint">Drag an item to move it. Use the top handle to rotate and the corner handle to scale. Arrow keys nudge the selection.</p>
                 </div>
             </div>
 
             <div class="play-editor-selection" data-play-editor-selection hidden aria-hidden="true">
                 <span class="play-editor-selection__line"></span>
                 <button class="play-editor-selection__handle" type="button" data-play-editor-rotate-handle aria-label="Rotate selected item"></button>
+                <button class="play-editor-selection__scale-handle" type="button" data-play-editor-scale-handle aria-label="Scale selected item"></button>
             </div>
+            -->
 
             <!-- Layer 1: title overlay — viewport-pinned (inset: 0 fills
                  the canvas which itself fills the viewport). Sits ABOVE
@@ -148,118 +157,112 @@
                      Sizes are intentionally per-card so you can later make
                      specific cards small / big by editing data-w and data-h. -->
                 <div class="play-card"
-                     data-play-layout-id="zapp-add-money"
-                     data-x="816" data-y="1246" data-w="228" data-h="295" data-rot="-3"
-                     data-play-title="Add Balance Interaction for Zapp Account"
-                     data-play-description="A concept for making add-money feel more tangible, guided, and memorable inside the Zapp flow.">
-                    <div class="play-card__media">
-                        <video autoplay loop muted playsinline>
-                            <source src="https://aaditxn13.github.io/Portfolio---2026/asset/zapp-add-money.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-
-                <div class="play-card play-card--transparent"
-                     data-play-layout-id="sero"
-                     data-x="1904" data-y="1170" data-w="256" data-h="307" data-rot="4"
-                     data-play-title="Sero"
-                     data-play-description="A visual identity exploration focused on expressive form, color, and a distinctive digital presence.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_sero.png"></div>
-                </div>
-
-                <!-- Top-center card. data-z="2" so if you nudge it to overlap
-                     a sibling card it stays in front; in this layout it doesn't
-                     overlap anything but the value documents intent. -->
-                <div class="play-card"
-                     data-play-layout-id="flower-valley"
-                     data-x="1378" data-y="531" data-w="269" data-h="349" data-rot="-2" data-z="2"
-                     data-play-title="Flower Valley Memory"
-                     data-play-description="A postcard-like landscape study focused on softness, scale, and air.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-04.jpg"></div>
+                     data-play-layout-id="the-unicorn-times"
+                     data-x="1322" data-y="560" data-w="336" data-h="184" data-rot="-4" data-z="2"
+                     data-play-title="The Unicorn Times"
+                     data-play-description="Designing 3 editions for The Unicorn Times for PayZapp - an internal design newsletter.">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_tut.png"></div>
                 </div>
 
                 <div class="play-card"
-                     data-play-layout-id="sunset-gradient"
-                     data-x="1826" data-y="606" data-w="295" data-h="228" data-rot="5"
-                     data-play-title="Sunset Gradient Capture"
-                     data-play-description="A color and timing study built around dusk light and slow tonal transitions.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/gallery-beyond-pixels/gallery-web-06.jpg"></div>
+                     data-play-layout-id="now-and-me-frame-272"
+                     data-x="1848" data-y="760" data-w="352" data-h="204" data-rot="-8"
+                     data-play-title="Emotional Support Club"
+                     data-play-description="An illustration-led visual for Now&Me exploring emotional support, softness, and character.">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Frame272.png"></div>
                 </div>
 
-                <!-- Middle-left card. data-z="1" — sits behind any data-z="2" card
-                     it might overlap with after future repositioning. -->
                 <div class="play-card"
                      data-play-layout-id="turnip"
-                     data-x="818" data-y="904" data-w="269" data-h="343" data-rot="-4" data-z="1"
+                     data-x="842" data-y="938" data-w="292" data-h="378" data-rot="-4" data-z="1"
                      data-play-title="Turnip"
-                     data-play-description="A playful character illustration exploring expressive form, bold color, and personality.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Turnip.png"></div>
+                     data-play-description="Designing a new way of creator-fan interaction on Turnip"
+                     data-play-link="https://adityadesigns.super.site/all-work/introducing-a-new-way-of-creator-fan-interaction-on-turnip"
+                     data-play-link-label="Open Case Study">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Turnip.png"></div>
                 </div>
 
                 <div class="play-card"
                      data-play-layout-id="type-36-days"
-                     data-x="1387" data-y="1170" data-w="316" data-h="242" data-rot="2" data-z="1"
+                     data-x="1394" data-y="1118" data-w="352" data-h="235" data-rot="2" data-z="1"
                      data-play-title="36 Days of Type"
-                     data-play-description="A typography experiment exploring letterforms, composition, and visual rhythm.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_36DaysofType.png"></div>
-                </div>
-
-                <div class="play-card"
-                     data-play-layout-id="spin-the-wheel"
-                     data-x="1910" data-y="809" data-w="242" data-h="310" data-rot="-2" data-z="2"
-                     data-play-title="Spin the Wheel"
-                     data-play-description="A colorful interaction concept built around chance, motion, and playful anticipation.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_SpintheWheel.png"></div>
+                     data-play-description="A first time hands on experience to design type for the famous type design event.">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_36DaysofType.png"></div>
                 </div>
 
                 <div class="play-card play-card--stats"
                      data-play-layout-id="gradient-texture"
                      data-x="696" data-y="632" data-w="289" data-h="222" data-rot="6" data-z="1"
                      data-play-title="Gradient Texture"
-                     data-play-description="A gradient and texture experiment exploring expressive color, depth, and visual reach."
+                     data-play-description="Experimental Gradient Texture"
+                     data-play-link="https://www.figma.com/community/file/1110236118592081959"
+                     data-play-link-label="Open Figma Community"
                      data-play-heart="1.1k" data-play-user="37.3k">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_gradienttexture.jpg"></div>
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradienttexture.jpg"></div>
                     <div class="play-card__confetti" aria-hidden="true">
                         <img class="play-card__confetti-item play-card__confetti-item--heart"
-                             src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_gradinettexture_heart.png" alt="">
+                             src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_heart.png" alt="">
                         <img class="play-card__confetti-item play-card__confetti-item--user"
-                             src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_gradinettexture_user.png" alt="">
+                             src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_user.png" alt="">
                     </div>
                 </div>
 
                 <div class="play-card"
-                     data-play-layout-id="zakir"
-                     data-x="2132" data-y="1041" data-w="336" data-h="228" data-rot="5" data-z="1"
-                     data-play-title="Zakir"
-                     data-play-description="A portrait-led visual study balancing character, texture, and graphic composition.">
-                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Zakir.png"></div>
+                     data-play-layout-id="pixie"
+                     data-x="1176" data-y="1352" data-w="168" data-h="168" data-rot="-3" data-z="2"
+                     data-play-title="Pixie"
+                     data-play-description="Building my first Figma plugin to snap pixels to grid"
+                     data-play-link="https://www.figma.com/community/plugin/1516860325502939952"
+                     data-play-link-label="Open Figma Plugin">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_pixie.png"></div>
                 </div>
 
-                <!-- Stickers — individually draggable. Swap the <img src> to
-                     change the sticker artwork. Each needs a unique data-sticker-id
-                     so its position persists independently. -->
+                <div class="play-card"
+                     data-play-layout-id="sero"
+                     data-x="2288" data-y="632" data-w="164" data-h="164" data-rot="4" data-z="2"
+                     data-play-title="Sero"
+                     data-play-description="A visual identity exploration focused on expressive form, color, and a distinctive digital presence.">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_sero.png"></div>
+                </div>
+
+                <div class="play-card"
+                     data-play-layout-id="zakir"
+                     data-x="2132" data-y="1041" data-w="336" data-h="239" data-rot="5" data-z="1"
+                     data-play-title="Landing Page for Zakir"
+                     data-play-description="Designing a landing page for the lengendary comedian, with all his work and show details"
+                     data-play-link="https://medium.com/design-bootcamp/creating-a-landing-page-to-attract-more-fans-for-a-content-creator-6eba91eb8d68?sharedUserId=aadidesigns"
+                     data-play-link-label="Read on Medium">
+                    <div class="play-card__media" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Zakir.png"></div>
+                </div>
+
                 <div class="play-sticker"
                      data-play-sticker data-sticker-id="miracle-1"
-                     data-x="1500" data-y="540" data-rot="-8" data-w="220">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Miracle_sticker.png" alt="" draggable="false">
+                     data-x="1116" data-y="1504" data-rot="8" data-w="188">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Miracle_sticker.png" alt="" draggable="false">
                 </div>
 
                 <div class="play-sticker"
                      data-play-sticker data-sticker-id="iterate-1"
-                     data-x="940" data-y="1230" data-rot="10" data-w="230">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Iterate_sticker.png" alt="" draggable="false">
+                     data-x="1698" data-y="1324" data-rot="6" data-w="238">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Iterate_sticker.png" alt="" draggable="false">
                 </div>
 
                 <div class="play-sticker"
                      data-play-sticker data-sticker-id="bored-mac-1"
-                     data-x="2180" data-y="780" data-rot="-7" data-w="150">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Bored%20MAC_sticker.png" alt="" draggable="false">
+                     data-x="1488" data-y="1218" data-rot="-4" data-w="116">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Bored MAC_sticker.png" alt="" draggable="false">
                 </div>
 
                 <div class="play-sticker"
-                     data-play-sticker data-sticker-id="closed-for-today-1"
-                     data-x="1160" data-y="1570" data-rot="8" data-w="155">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/play-tab-assets/play_Closed%20for%20today_sticker.png" alt="" draggable="false">
+                     data-play-sticker data-sticker-id="star-swirl-1"
+                     data-x="1776" data-y="536" data-rot="-10" data-w="152">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_star_sticker.png" alt="" draggable="false">
+                </div>
+
+                <div class="play-sticker"
+                     data-play-sticker data-sticker-id="lemon-1"
+                     data-x="2328" data-y="846" data-rot="12" data-w="112">
+                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/lemon.png" alt="" draggable="false">
                 </div>
             </div>
 
@@ -278,6 +281,7 @@
                         <div class="play-detail__body-bubble" id="play-detail-description"
                             data-play-detail-description></div>
                         <div class="play-detail__stats" data-play-detail-stats hidden></div>
+                        <a class="play-detail__link" data-play-detail-link hidden target="_blank" rel="noreferrer noopener"></a>
                     </div>
                 </div>
             </div>

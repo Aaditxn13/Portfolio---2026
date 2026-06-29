@@ -251,9 +251,22 @@
         {
           "uid": "bgnjjijdq",
           "type": "image",
-          "layout": "fullbleed",
+          "layout": "2-col",
           "src": "",
-          "alt": ""
+          "alt": "",
+          "items": [
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bl24fu886"
+            },
+            {
+              "src": "",
+              "alt": "",
+              "uid": "b9bzsshxf"
+            }
+          ],
+          "mediaHeight": 550
         }
       ],
       "uid": "be27or06n"
@@ -295,8 +308,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782631963978,
-    "syncedAt": "2026-06-28T07:32:43.978Z",
+    "repoVersion": 1782753686227,
+    "syncedAt": "2026-06-29T17:21:26.227Z",
     "dirty": false
   }
 }

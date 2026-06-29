@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -1798,7 +1798,7 @@ body.night-mode .dappled-leaf {
         padding: 0;
         display: block;
         background: var(--hero-v2-panel);
-        font-size: 33px;
+        font-size: 37px;
         line-height: 1.05;
         letter-spacing: -0.04em;
         white-space: normal;
@@ -1894,7 +1894,7 @@ body.night-mode .dappled-leaf {
  */
 @media (max-width: 430px) {
     .hero-v2__headline {
-        font-size: clamp(24px, 8.2vw, 31px);
+        font-size: clamp(28px, 9.3vw, 35px);
         letter-spacing: -0.04em;
     }
 
@@ -3438,7 +3438,7 @@ body.night-mode .play-canvas {
 
 .play-editor__fields {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 8px;
     margin-bottom: 10px;
 }
@@ -3560,13 +3560,28 @@ body.night-mode .play-canvas {
     cursor: grabbing;
 }
 
+.play-editor-selection__scale-handle {
+    position: absolute;
+    right: -13px;
+    bottom: -13px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 2px solid #ff7b3c;
+    border-radius: 50%;
+    background: #fffdf8;
+    box-shadow: 0 8px 18px rgba(40, 28, 16, 0.18);
+    cursor: nwse-resize;
+    pointer-events: auto;
+}
+
 .play-canvas.is-editing-layout .play-card,
 .play-canvas.is-editing-layout [data-play-sticker] {
     cursor: grab;
 }
 
 .play-canvas.is-editing-layout .play-card.is-clickable:hover {
-    transform: rotate(var(--rot));
+    transform: rotate(var(--rot)) scale(var(--scale));
 }
 
 .play-canvas.is-editing-layout .play-card.is-layout-selected,
@@ -3617,6 +3632,10 @@ body.night-mode .play-editor-selection__handle {
     background: #1f1d19;
 }
 
+body.night-mode .play-editor-selection__scale-handle {
+    background: #1f1d19;
+}
+
 @media (max-width: 640px) {
     .play-editor {
         top: auto;
@@ -3636,7 +3655,7 @@ body.night-mode .play-editor-selection__handle {
     }
 
     .play-editor__fields {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 6px;
         margin-bottom: 8px;
     }
@@ -3742,14 +3761,13 @@ body.night-mode .play-grid {
     position: absolute;
     margin: 0;
     --rot: 0deg;
-    transform: rotate(var(--rot));
+    --scale: 1;
+    transform: rotate(var(--rot)) scale(var(--scale));
     transform-origin: center center;
     border-radius: 4px;
     overflow: hidden;
-    background: #fdfaf3;
-    box-shadow:
-        0 14px 32px rgba(40, 28, 16, 0.14),
-        0 4px 10px rgba(40, 28, 16, 0.08);
+    background: transparent;
+    box-shadow: none;
     pointer-events: auto;
 }
 
@@ -3762,10 +3780,8 @@ body.night-mode .play-grid {
 }
 
 .play-card.is-clickable:hover {
-    transform: rotate(var(--rot)) translateY(-6px) scale(1.015);
-    box-shadow:
-        0 22px 42px rgba(40, 28, 16, 0.18),
-        0 6px 16px rgba(40, 28, 16, 0.1);
+    transform: rotate(var(--rot)) scale(var(--scale)) translateY(-6px) scale(1.015);
+    box-shadow: none;
 }
 
 .play-card.is-clickable:focus-visible {
@@ -3775,6 +3791,7 @@ body.night-mode .play-grid {
 
 .play-card.is-source-hidden {
     opacity: 0;
+    transition: opacity 0.12s linear;
 }
 
 .play-card.play-card--transparent,
@@ -3791,8 +3808,10 @@ body.night-mode .play-card.play-card--transparent.is-clickable:hover {
 .play-card__media {
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3864,14 +3883,8 @@ body.night-mode .play-card.play-card--transparent.is-clickable:hover {
     transform: translate(34px, -16px) rotate(18deg) scale(0.92);
 }
 
-body.night-mode .play-card {
-    background: #f5efe2;
-}
-
 body.night-mode .play-card.is-clickable:hover {
-    box-shadow:
-        0 26px 48px rgba(0, 0, 0, 0.34),
-        0 8px 20px rgba(0, 0, 0, 0.22);
+    box-shadow: none;
 }
 
 /* ── Play card detail overlay ────────────────────────── */
@@ -3883,8 +3896,10 @@ body.night-mode .play-card.is-clickable:hover {
     visibility: hidden;
     pointer-events: none;
     transition:
-        opacity 0.24s ease,
-        visibility 0s linear 0.24s;
+        opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0.28s;
+    will-change: opacity;
+    backface-visibility: hidden;
 }
 
 .play-detail.is-active {
@@ -3892,6 +3907,12 @@ body.night-mode .play-card.is-clickable:hover {
     visibility: visible;
     pointer-events: auto;
     transition-delay: 0s;
+}
+
+.play-detail.is-closing {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
 }
 
 .play-detail__backdrop {
@@ -3905,6 +3926,14 @@ body.night-mode .play-card.is-clickable:hover {
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity;
+}
+
+.play-detail.is-active .play-detail__backdrop,
+.play-detail.is-closing .play-detail__backdrop {
+    opacity: 1;
 }
 
 .play-detail__stage {
@@ -3941,9 +3970,10 @@ body.night-mode .play-card.is-clickable:hover {
     opacity: 1;
     border-radius: inherit;
     overflow: hidden;
-    box-shadow:
-        0 32px 72px rgba(21, 16, 12, 0.18),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    box-shadow: 0 32px 72px rgba(21, 16, 12, 0.18);
+    transition: opacity 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity;
+    backface-visibility: hidden;
 }
 
 .play-detail.is-morphing .play-detail__media {
@@ -3976,9 +4006,18 @@ body.night-mode .play-card.is-clickable:hover {
 
 .play-detail.is-active .play-detail__title-pill,
 .play-detail.is-active .play-detail__body-bubble,
-.play-detail.is-active .play-detail__stats {
+.play-detail.is-active .play-detail__stats,
+.play-detail.is-active .play-detail__link {
     opacity: 1;
     transform: translateY(0);
+}
+
+.play-detail.is-closing .play-detail__title-pill,
+.play-detail.is-closing .play-detail__body-bubble,
+.play-detail.is-closing .play-detail__stats,
+.play-detail.is-closing .play-detail__link {
+    opacity: 0;
+    transform: translateY(12px);
 }
 
 .play-detail__title-pill {
@@ -4030,6 +4069,51 @@ body.night-mode .play-card.is-clickable:hover {
     display: none;
 }
 
+.play-detail__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(160, 89, 31, 0.28);
+    background: rgba(255, 253, 248, 0.92);
+    color: #2a221a;
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    box-shadow:
+        0 14px 30px rgba(18, 12, 8, 0.14),
+        0 4px 10px rgba(18, 12, 8, 0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.28s ease,
+        transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+    transition-delay: 0.3s;
+}
+
+.play-detail__link[hidden] {
+    display: none;
+}
+
+.play-detail.is-active .play-detail__link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.play-detail__link:hover {
+    background: #fff7ed;
+    box-shadow:
+        0 18px 34px rgba(18, 12, 8, 0.16),
+        0 6px 14px rgba(18, 12, 8, 0.09);
+}
+
 .play-detail__stat {
     display: flex;
     align-items: center;
@@ -4062,11 +4146,14 @@ body.night-mode .play-card.is-clickable:hover {
     z-index: 900;
     overflow: hidden;
     border-radius: 12px;
-    background: #f5f1e8;
+    background: transparent;
     box-shadow:
         0 26px 56px rgba(22, 16, 12, 0.24),
         0 10px 18px rgba(22, 16, 12, 0.14);
     pointer-events: none;
+    will-change: left, top, width, height, transform, opacity;
+    backface-visibility: hidden;
+    transform-origin: center center;
 }
 
 .play-detail-ghost--transparent {
@@ -4091,9 +4178,7 @@ body.night-mode .play-detail__media-shell {
 }
 
 body.night-mode .play-detail__media {
-    box-shadow:
-        0 30px 72px rgba(0, 0, 0, 0.34),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 72px rgba(0, 0, 0, 0.34);
 }
 
 body.night-mode .play-detail__title-pill,
@@ -4102,6 +4187,15 @@ body.night-mode .play-detail__body-bubble {
     box-shadow:
         0 22px 50px rgba(0, 0, 0, 0.28),
         0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .play-detail__link {
+    border-color: rgba(255, 209, 173, 0.16);
+    background: rgba(245, 239, 226, 0.94);
+    color: #1b1612;
+    box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.22),
+        0 6px 14px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Fixed bottom mascot ───────────────────────────────── */
@@ -4227,7 +4321,8 @@ body.night-mode .play-mascot__mouth {
 .play-sticker {
     position: absolute;
     --rot: 0deg;
-    transform: rotate(var(--rot));
+    --scale: 1;
+    transform: rotate(var(--rot)) scale(var(--scale));
     transform-origin: center center;
     cursor: grab;
     user-select: none;
@@ -4376,14 +4471,20 @@ body.night-mode .play-overlay__subtitle { color: rgba(240, 234, 219, 0.6); }
     position: relative;
 }
 
-.card-content[data-lazy-bg]:not([data-lazy-loaded]),
-.play-card__media[data-lazy-bg]:not([data-lazy-loaded]) {
+.card-content[data-lazy-bg]:not([data-lazy-loaded]) {
     background-color: #e8e6e1;
 }
 
-body.night-mode .card-content[data-lazy-bg]:not([data-lazy-loaded]),
-body.night-mode .play-card__media[data-lazy-bg]:not([data-lazy-loaded]) {
+.play-card__media[data-lazy-bg]:not([data-lazy-loaded]) {
+    background-color: transparent;
+}
+
+body.night-mode .card-content[data-lazy-bg]:not([data-lazy-loaded]) {
     background-color: #1c1c1c;
+}
+
+body.night-mode .play-card__media[data-lazy-bg]:not([data-lazy-loaded]) {
+    background-color: transparent;
 }
 
 img[data-src]:not(.footer-grass-scene__base) {
