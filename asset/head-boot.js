@@ -19,7 +19,7 @@
     // hand. Override either base by setting window.ASSET_BASE_URL or
     // window.VIDEO_BASE_URL before this script loads.
 
-    var ASSETS_PINNED_COMMIT = '24d40bbbdc0ce2d228e56d62f9fcdf03f396c502'; // AUTO-BUMPED
+    var ASSETS_PINNED_COMMIT = '36e1883bba1d8a871b3588f923e69ca21a63d0af'; // AUTO-BUMPED
     var GH_REPO = 'Aaditxn13/Portfolio---2026';
 
     if (!window.ASSET_BASE_URL) {
@@ -31,13 +31,29 @@
     }
     window.ASSET_VIDEO_EXTENSIONS = window.ASSET_VIDEO_EXTENSIONS || ['mp4', 'webm', 'mov', 'm4v'];
 
+    function isLocalDevHost() {
+        var hostname = window.location && window.location.hostname ? window.location.hostname : '';
+        var protocol = window.location && window.location.protocol ? window.location.protocol : '';
+        return protocol === 'http:' && (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1');
+    }
+
+    function extractRepoAssetPath(src) {
+        if (typeof src !== 'string' || !src) return '';
+        var match = /^https:\/\/cdn\.jsdelivr\.net\/gh\/[^/]+\/[^@]+@[^/]+\/(asset\/.+)$/i.exec(src);
+        if (match && match[1]) return match[1];
+        match = /^https:\/\/aaditxn13\.github\.io\/Portfolio---2026\/(asset\/.+)$/i.exec(src);
+        if (match && match[1]) return match[1];
+        return '';
+    }
+
     // Pick the right CDN for a given asset path based on its extension.
     // Exposed globally so resolvers in other scripts (site-prefetch.js,
     // case-study-editor.js, script.js) share the same logic.
     window.resolveAssetUrl = function (src) {
         if (typeof src !== 'string' || !src) return src;
-        var stripped = src.replace(/^\//, '');
+        var stripped = extractRepoAssetPath(src) || src.replace(/^\//, '');
         if (!/^asset\//.test(stripped)) return src;
+        if (isLocalDevHost()) return stripped;
         var queryIdx = stripped.indexOf('?');
         var pathOnly = queryIdx === -1 ? stripped : stripped.slice(0, queryIdx);
         var match = /\.([a-z0-9]+)$/i.exec(pathOnly);

@@ -225,16 +225,41 @@
           "mediaHeight": 550,
           "items": [
             {
-              "src": "",
-              "alt": "",
-              "uid": "bwo7mfjm0"
+              "src": "cs-asset:growth-experiments:1782834971535:bmmrxzy35",
+              "alt": "Holi PZ Campaign",
+              "uid": "bwo7mfjm0",
+              "mediaType": "video",
+              "mediaMimeType": "video/mp4",
+              "localAsset": {
+                "status": "local",
+                "field": "src",
+                "originalName": "Holi PZ Campaign.mp4",
+                "mimeType": "video/mp4",
+                "size": 39040706,
+                "resourceType": "video",
+                "ref": "cs-asset:growth-experiments:1782834971535:bmmrxzy35",
+                "createdAt": "2026-06-30T15:56:11.572Z"
+              }
             },
             {
-              "src": "",
-              "alt": "",
-              "uid": "bfdpjqu3e"
+              "src": "cs-asset:growth-experiments:1782834978676:btdbpeit8",
+              "alt": "Screen Recording Apr 26 2026",
+              "uid": "bfdpjqu3e",
+              "mediaType": "video",
+              "mediaMimeType": "video/mp4",
+              "localAsset": {
+                "status": "local",
+                "field": "src",
+                "originalName": "Screen Recording Apr 26 2026.mp4",
+                "mimeType": "video/mp4",
+                "size": 3026015,
+                "resourceType": "video",
+                "ref": "cs-asset:growth-experiments:1782834978676:btdbpeit8",
+                "createdAt": "2026-06-30T15:56:18.695Z"
+              }
             }
-          ]
+          ],
+          "spacing": "default"
         },
         {
           "type": "section-label",
@@ -471,13 +496,13 @@
         },
         {
           "type": "text",
-          "body": "Growth experiments sat in a useful space between product design and campaign design. They had to work like product surfaces, but feel timed, playful, and worth opening.",
+          "body": "Growth experiments sat in a useful space between product design and campaign design. They had to work like product surfaces, but feel timed, playful, and worth opening. The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.",
           "uid": "bz7359jf7"
         },
         {
+          "uid": "bmal0wfqh",
           "type": "text",
-          "body": "The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.",
-          "uid": "b1fzvwwga"
+          "body": "A special thanks to my team ( <a class=\"cs-inline-link\" data-pill-label=\"Checkout Prishita's Work\" data-pill-image=\"cs-asset:growth-experiments:1782831936123:bk0ekc2wy\" data-href=\"https://prishitajain.com/\" href=\"https://prishitajain.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Prishita</a>, Vibhore, Atharva, &amp; Utkarsh )&nbsp; taking these initiative to greater length and making sure all these campaigns delivered at its best.&nbsp;"
         },
         {
           "uid": "bpn13x7fr",
@@ -490,8 +515,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782631891196,
-    "syncedAt": "2026-06-28T07:31:31.196Z",
+    "repoVersion": 1782835018769,
+    "syncedAt": "2026-06-30T15:56:58.769Z",
     "dirty": false
   }
 }

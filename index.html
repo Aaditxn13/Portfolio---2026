@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="asset/head-boot.js?v=chrome-fix-1"></script>
+    <script src="asset/head-boot.js?v=chrome-fix-2"></script>
     <!-- Open the asset CDN sockets in parallel with HTML parse so the
          first image/font/audio request from jsdelivr/github.io has zero
          DNS+TCP+TLS cost. crossorigin is required because the font
@@ -15,24 +15,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AS | Designer Portfolio</title>
     <link rel="canonical" href="https://adityaaa.com/">
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/favicon.png?v=blue-logo-1">
-    <link rel="preload" href="style.css?v=chrome-fix-1" as="style">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/favicon.png?v=blue-logo-1">
+    <link rel="preload" href="style.css?v=message-bubble-pill-2" as="style">
     <link rel="preload" href="script.js?v=cdn-debug-1" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/lazy_dog.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/lazy_dog.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/fonts/ExposureTrial-10.otf" as="font" type="font/otf" crossorigin>
     <!-- Above-fold media: start fetching in parallel with CSS/JS so the
          hero stamp + arrow are ready by first paint. -->
-    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/hero-stamp.svg" fetchpriority="high">
-    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/hero-arrow.svg" fetchpriority="high">
-    <link rel="stylesheet" href="style.css?v=chrome-fix-1">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/hero-stamp.svg" fetchpriority="high">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/hero-arrow.svg" fetchpriority="high">
+    <link rel="stylesheet" href="style.css?v=message-bubble-pill-2">
     <!-- Homepage fonts only — full set loads on play / about / case studies -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&display=swap"
         rel="stylesheet"
         media="print"
         onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
 
 <body>
@@ -103,7 +104,7 @@
          `muted autoplay` is the only combo modern browsers allow without a
          gesture; asset/ambient-audio.js unmutes on the first user
          interaction so the loop is already running by then. -->
-    <audio id="ambient-leaves" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/leaves-rustling.mp3" loop muted playsinline preload="none" aria-hidden="true"></audio>
+    <audio id="ambient-leaves" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/leaves-rustling.mp3" loop muted playsinline preload="none" aria-hidden="true"></audio>
 
     <!-- Dappled-light shader strip — pinned to the page's top-right edge so
          it can extend above .hero-v2 (which uses overflow:hidden). It scrolls
@@ -166,11 +167,11 @@
                          @font-face at the top of style.css. -->
                     <div class="hero-v2__credit" aria-label="Designing at Zeta">
                         <span class="hero-v2__credit-text">Designing at Zeta</span>
-                        <img class="hero-v2__credit-arrow" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/hero-arrow.svg" alt="" aria-hidden="true" width="85" height="90" fetchpriority="high" decoding="async">
+                        <img class="hero-v2__credit-arrow" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/hero-arrow.svg" alt="" aria-hidden="true" width="85" height="90" fetchpriority="high" decoding="async">
                     </div>
                 </div>
 
-                <img class="hero-v2__stamp" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/hero-stamp.svg" alt="" aria-hidden="true" width="267" height="219" fetchpriority="high" decoding="async">
+                <img class="hero-v2__stamp" src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/hero-stamp.svg" alt="" aria-hidden="true" width="267" height="219" fetchpriority="high" decoding="async">
             </div>
         </section>
 
@@ -187,7 +188,7 @@
                         <div class="work-card card-1" data-parallax="0.05" data-title="Building Zapp Account"
                             data-desc="Rebranding an existing product and scaling it beyond"
                             data-link="/project-1.html" role="link" tabindex="0">
-                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg">
+                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/grassland.jpg">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -198,7 +199,7 @@
                         <div class="work-card card-2" data-parallax="-0.08" data-title="Growth Experiments on PayZapp"
                             data-desc="Interactive campaigns built around cultural moments to drive growth"
                             data-link="/project-2.html" role="link" tabindex="0">
-                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp">
+                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/water.webp">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -209,7 +210,7 @@
                         <div class="work-card card-3" data-parallax="0.1" data-title="Building the AI first work platform"
                             data-desc="">
                             <span class="work-card__status">Coming Soon</span>
-                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg">
+                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-3-night-meadow-background.jpg">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -220,7 +221,7 @@
                         <div class="work-card card-4" data-parallax="-0.03" data-title="Experience Cricket while paying"
                             data-desc="Designing a IPL cricket experience for PayZapp"
                             data-link="/project-4.html" role="link" tabindex="0">
-                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg">
+                            <div class="card-content" data-lazy-bg="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-4-green-background.jpg">
                             </div>
                             <div class="work-card__meta">
                                 <span class="work-card__marker" aria-hidden="true"></span>
@@ -249,10 +250,10 @@
                             </p>
                             <p class="beyond-note">feel free to connect for cool projects</p>
                             <div class="beyond-illustration" aria-hidden="true">
-                                <img class="beyond-illustration__camera" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
-                                <img class="beyond-illustration__film-roll" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
-                                <img class="beyond-illustration__flower" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
-                                <img class="beyond-illustration__notebook" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__camera" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__film-roll" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__flower" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
+                                <img class="beyond-illustration__notebook" data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1" alt="" decoding="async" fetchpriority="low">
                             </div>
                         </div>
                         <div class="museum-stage">
@@ -287,7 +288,7 @@
     <!-- Project Modal Overlay -->
 
     <script src="script.js?v=cdn-debug-1" defer></script>
-    <script src="asset/lazy-load.js?v=first-load-3" defer></script>
+    <script src="asset/lazy-load.js?v=first-load-4" defer></script>
     <script src="asset/work-shader.js?v=first-load-2" defer></script>
 
 </body>

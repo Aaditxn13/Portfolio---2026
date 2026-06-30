@@ -44,16 +44,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/case-studies/zapp-account/b5591rluy-image.png',
         'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp'
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/water.webp'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -242,7 +242,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/water.webp', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -290,7 +290,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -316,7 +316,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -382,6 +382,29 @@
 
     function applyLinkAccent(link) {
         link.dataset.linkAccent = String(linkAccentIndex(link));
+    }
+
+    function setInlineLinkAvatar(link, src) {
+        if (!link) return;
+        if (!src) {
+            link.classList.remove('has-inline-avatar');
+            link.style.removeProperty('--cs-inline-link-avatar');
+            return;
+        }
+        const safeSrc = String(src).replace(/"/g, '\\"');
+        link.classList.add('has-inline-avatar');
+        link.style.setProperty('--cs-inline-link-avatar', `url("${safeSrc}")`);
+    }
+
+    async function hydrateInlineLinkAvatar(link) {
+        if (!link) return;
+        const imageRef = link.getAttribute('data-pill-image');
+        if (!imageRef) {
+            setInlineLinkAvatar(link, '');
+            return;
+        }
+        const src = await resolveAssetSrc(imageRef);
+        setInlineLinkAvatar(link, src || '');
     }
 
     function uid() {
@@ -1646,17 +1669,23 @@
     function buildLinkEditorPopover() {
         if (linkEditorPopover) return linkEditorPopover;
 
+        function suppressEditorMouseSelection(ev) {
+            if (ev.target && ev.target.closest && ev.target.closest('.cs-link-editor__input')) return;
+            ev.preventDefault();
+            ev.stopPropagation();
+        }
+
         const pop = el('div', {
             class: 'cs-link-editor',
-            attrs: { contenteditable: 'false', role: 'dialog', 'aria-label': 'Link pill settings' }
+            attrs: { contenteditable: 'false', role: 'dialog', 'aria-label': 'Inline link settings' }
         });
 
-        const title = el('p', { class: 'cs-link-editor__title', text: 'Hover pill link' });
+        const title = el('p', { class: 'cs-link-editor__title', text: 'Inline link' });
         const hint = el('p', { class: 'cs-link-editor__hint', text: 'Click a linked word in the text to edit it, or select new text and use ⛓ in the toolbar.' });
 
         const labelField = el('input', {
             class: 'cs-link-editor__input',
-            attrs: { type: 'text', placeholder: 'Pill text (shown on hover)', 'aria-label': 'Pill text' }
+            attrs: { type: 'text', placeholder: 'Tooltip text (shown on hover)', 'aria-label': 'Tooltip text' }
         });
         const urlField = el('input', {
             class: 'cs-link-editor__input',
@@ -1665,11 +1694,11 @@
 
         const imageDrop = el('button', {
             class: 'cs-link-editor__dropzone',
-            attrs: { type: 'button', 'aria-label': 'Add pill image' }
+            attrs: { type: 'button', 'aria-label': 'Add inline avatar' }
         });
         const imagePreview = el('div', { class: 'cs-link-editor__image-preview', attrs: { 'aria-hidden': 'true' } });
         const imageCopy = el('div', { class: 'cs-link-editor__dropzone-copy' });
-        const imageTitle = el('span', { class: 'cs-link-editor__dropzone-title', text: 'Pill image' });
+        const imageTitle = el('span', { class: 'cs-link-editor__dropzone-title', text: 'Inline avatar' });
         const imageHint = el('span', { class: 'cs-link-editor__dropzone-hint', text: 'Click, drop, or paste an image' });
         imageCopy.appendChild(imageTitle);
         imageCopy.appendChild(imageHint);
@@ -1718,14 +1747,14 @@
                 setLinkEditorStatus('Please choose an image file');
                 return;
             }
-            setLinkEditorStatus('Uploading image…');
+            setLinkEditorStatus('Uploading avatar…');
             try {
                 const saved = await saveAssetFile(file);
                 linkEditorState.pillImage = saved.ref;
                 await updateLinkEditorPreview();
-                setLinkEditorStatus('Image added');
+                setLinkEditorStatus('Avatar added');
             } catch (e) {
-                setLinkEditorStatus('Image upload failed');
+                setLinkEditorStatus('Avatar upload failed');
             }
         }
 
@@ -1734,6 +1763,7 @@
             ev.stopPropagation();
             fileInput.click();
         });
+        imageDrop.addEventListener('mousedown', suppressEditorMouseSelection);
 
         fileInput.addEventListener('change', async () => {
             const file = fileInput.files && fileInput.files[0];
@@ -1769,21 +1799,24 @@
             if (!linkEditorState) return;
             linkEditorState.pillImage = '';
             updateLinkEditorPreview();
-            setLinkEditorStatus('Image cleared');
+            setLinkEditorStatus('Avatar cleared');
         });
+        clearImageBtn.addEventListener('mousedown', suppressEditorMouseSelection);
 
         removeBtn.addEventListener('click', (ev) => {
             ev.stopPropagation();
             removeInlineLink();
             closeLinkEditor();
         });
+        removeBtn.addEventListener('mousedown', suppressEditorMouseSelection);
 
         saveBtn.addEventListener('click', (ev) => {
             ev.stopPropagation();
             applyInlineLinkFromEditor();
         });
+        saveBtn.addEventListener('mousedown', suppressEditorMouseSelection);
 
-        pop.addEventListener('mousedown', (ev) => ev.stopPropagation());
+        pop.addEventListener('mousedown', suppressEditorMouseSelection);
         pop.addEventListener('click', (ev) => ev.stopPropagation());
 
         linkEditorPopover = pop;
@@ -1870,12 +1903,14 @@
         }
 
         buildLinkEditorPopover();
+        const sourceRange = !existingLink && range ? range.cloneRange() : null;
         linkEditorState = {
             existingLink: existingLink || null,
             editable: editable || (existingLink && existingLink.closest('[contenteditable="true"]')),
             pillLabel: existingLink?.getAttribute('data-pill-label') || selectedText,
             pillImage: existingLink?.getAttribute('data-pill-image') || '',
-            href: existingLink?.getAttribute('href') || existingLink?.getAttribute('data-href') || ''
+            href: existingLink?.getAttribute('href') || existingLink?.getAttribute('data-href') || '',
+            range: sourceRange
         };
 
         const { labelField, urlField, removeBtn } = linkEditorPopover._fields;
@@ -1916,7 +1951,7 @@
         const pillLabel = labelField.value.trim();
         const href = urlField.value.trim();
         if (!pillLabel) {
-            flashSaved('Pill text required');
+            flashSaved('Tooltip text required');
             return;
         }
 
@@ -1943,17 +1978,20 @@
             }
         } else {
             const selection = window.getSelection();
-            if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return;
-            const range = selection.getRangeAt(0);
+            const range = linkEditorState.range
+                || (selection && selection.rangeCount ? selection.getRangeAt(0) : null);
+            if (!range || range.collapsed) return;
             const wrapper = document.createElement(payload.href ? 'a' : 'span');
             wrapper.appendChild(range.extractContents());
             applyInlineLinkAttributes(wrapper, payload);
             range.insertNode(wrapper);
-            selection.removeAllRanges();
-            const after = document.createRange();
-            after.setStartAfter(wrapper);
-            after.collapse(true);
-            selection.addRange(after);
+            if (selection) {
+                selection.removeAllRanges();
+                const after = document.createRange();
+                after.setStartAfter(wrapper);
+                after.collapse(true);
+                selection.addRange(after);
+            }
         }
 
         if (linkEditorState.editable) {
@@ -2030,15 +2068,6 @@
         linkHoverPill._avatarWrap.classList.remove('has-image');
         linkHoverPill.dataset.linkAccent = link.dataset.linkAccent || String(linkAccentIndex(link));
 
-        const imageRef = link.getAttribute('data-pill-image');
-        if (imageRef) {
-            const src = await resolveAssetSrc(imageRef);
-            if (src) {
-                linkHoverPill._avatar.src = src;
-                linkHoverPill._avatarWrap.classList.add('has-image');
-            }
-        }
-
         const rect = link.getBoundingClientRect();
         linkHoverPill.style.left = `${rect.left + rect.width / 2}px`;
         linkHoverPill.style.top = `${rect.top - 14}px`;
@@ -2048,6 +2077,7 @@
     function wireInlineLinks(forceRewire) {
         document.querySelectorAll(`.${INLINE_LINK_CLASS}`).forEach((link) => {
             applyLinkAccent(link);
+            hydrateInlineLinkAvatar(link);
             if (forceRewire) delete link.dataset.csLinkWired;
             if (link.dataset.csLinkWired) return;
             link.dataset.csLinkWired = '1';
@@ -2070,7 +2100,7 @@
                     activeEditableNode = link.closest('[contenteditable="true"]');
                     requestOpenLinkEditor(link);
                 });
-                link.setAttribute('title', 'Click to edit hover pill');
+                link.setAttribute('title', 'Click to edit inline link');
             }
         });
     }

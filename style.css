@@ -2,9 +2,25 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exposure Trial';
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exposure Trial';
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
     font-display: swap;
 }
 
@@ -78,7 +94,7 @@
        Role-based scale. ONE source of truth. Pick the role that matches
        the *purpose* of the text, not the component it's in.
        Two families:
-         - SERIF (Libre Baskerville) → display & editorial moments
+         - SERIF (Exposure Trial) → display & editorial moments
                                        (hero titles, case-study H1s,
                                         footer display, page headlines)
          - SANS  (Bricolage Grotesque) → everything else
@@ -109,7 +125,7 @@
          navbar link               → t-nav
        ================================================================== */
     --font-sans: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
-    --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    --font-serif: 'Exposure Trial', Georgia, 'Times New Roman', serif;
 
     /* Weights — single source */
     --t-weight-regular:  400;
@@ -1161,7 +1177,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     border: 1px solid var(--hero-v2-pill-border);
     border-radius: 40px;
     background: transparent;
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: 28px;
     line-height: 26px;
@@ -1232,7 +1248,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     justify-content: center;
     gap: 8px;
     background: var(--hero-v2-panel);
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-serif);
     font-weight: 400;
     font-style: normal;
     font-size: 52px;
@@ -1798,7 +1814,7 @@ body.night-mode .dappled-leaf {
         padding: 0;
         display: block;
         background: var(--hero-v2-panel);
-        font-size: 37px;
+        font-size: 33px;
         line-height: 1.05;
         letter-spacing: -0.04em;
         white-space: normal;
@@ -1894,7 +1910,7 @@ body.night-mode .dappled-leaf {
  */
 @media (max-width: 430px) {
     .hero-v2__headline {
-        font-size: clamp(28px, 9.3vw, 35px);
+        font-size: clamp(24px, 9.3vw, 31px);
         letter-spacing: -0.04em;
     }
 
@@ -2920,6 +2936,8 @@ body.webgl-cards #work-wall .home-card-edit-image {
 #work-wall .work-card__meta {
     --project-pill-orange: #ff7438;
     --project-pill-shadow: rgba(255, 107, 0, 0.28);
+    --message-bubble-radius-sm: 18px;
+    --message-bubble-radius-lg: 64px;
     position: absolute;
     left: clamp(28px, 8%, 128px);
     right: clamp(24px, 3vw, 36px);
@@ -2983,15 +3001,20 @@ body.webgl-cards #work-wall .home-card-edit-image {
 
 #work-wall .work-card__title {
     grid-area: title;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34em;
     justify-self: start;
     max-width: 100%;
     padding: clamp(9px, 1vw, 13px) clamp(18px, 2vw, 28px);
-    border: 1px solid rgba(255, 255, 255, 0.52);
-    border-radius: 999px 999px 999px 14px;
+    border: 0;
+    border-radius:
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-sm);
     background: var(--project-pill-orange);
-    box-shadow:
-        0 0 0 7px rgba(255, 255, 255, 0.38),
-        0 14px 34px var(--project-pill-shadow);
+    box-shadow: 0 14px 34px var(--project-pill-shadow);
     color: #fff;
     font-family: var(--font-sans);
     font-size: clamp(1.08rem, 1.85vw, 2rem);
@@ -3009,16 +3032,30 @@ body.webgl-cards #work-wall .home-card-edit-image {
         box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+#work-wall .work-card[data-link] .work-card__title::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.38em;
+    height: 0.38em;
+    margin-left: 0.04em;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.92;
+}
+
 #work-wall .work-card__desc {
     grid-area: desc;
     max-width: min(430px, 100%);
     padding: clamp(12px, 1.3vw, 18px) clamp(18px, 2vw, 28px);
-    border: 1px solid rgba(255, 255, 255, 0.44);
-    border-radius: 18px 34px 34px 34px;
+    border: 0;
+    border-radius:
+        var(--message-bubble-radius-sm)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg);
     background: var(--project-pill-orange);
-    box-shadow:
-        0 0 0 7px rgba(255, 255, 255, 0.3),
-        0 14px 34px var(--project-pill-shadow);
+    box-shadow: 0 14px 34px var(--project-pill-shadow);
     color: #fff;
     font-family: var(--font-sans);
     font-size: clamp(0.96rem, 1.22vw, 1.18rem);
@@ -3076,19 +3113,19 @@ body.webgl-cards #work-wall .home-card-edit-image {
 #work-wall .work-card:hover .work-card__title,
 #work-wall .work-card:focus-visible .work-card__title,
 #work-wall .work-card.is-active .work-card__title {
-    border-radius: 40px 40px 40px 18px;
-    box-shadow:
-        0 0 0 8px rgba(255, 255, 255, 0.34),
-        0 16px 38px rgba(255, 107, 0, 0.32);
+    border-radius:
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-sm);
+    box-shadow: 0 16px 38px rgba(255, 107, 0, 0.32);
     transform: translateY(0) scale(1);
 }
 
 #work-wall .work-card:hover .work-card__desc,
 #work-wall .work-card:focus-visible .work-card__desc,
 #work-wall .work-card.is-active .work-card__desc {
-    box-shadow:
-        0 0 0 7px rgba(255, 255, 255, 0.26),
-        0 16px 38px rgba(255, 107, 0, 0.3);
+    box-shadow: 0 16px 38px rgba(255, 107, 0, 0.3);
     transform: translateY(0) scale(1);
 }
 
@@ -3987,6 +4024,10 @@ body.night-mode .play-card.is-clickable:hover {
 }
 
 .play-detail__copy {
+    --message-bubble-orange-start: #ff8648;
+    --message-bubble-orange-end: #ff743a;
+    --message-bubble-radius-sm: 18px;
+    --message-bubble-radius-lg: 64px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -4021,12 +4062,18 @@ body.night-mode .play-card.is-clickable:hover {
 }
 
 .play-detail__title-pill {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34em;
     max-width: min(100%, 540px);
     padding: 18px 28px 20px;
-    border-radius: 999px 999px 999px 14px;
-    background: linear-gradient(180deg, #ff8648 0%, #ff743a 100%);
-    border: 1px solid rgba(160, 89, 31, 0.28);
+    border-radius:
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-sm);
+    background: linear-gradient(180deg, var(--message-bubble-orange-start) 0%, var(--message-bubble-orange-end) 100%);
+    border: 0;
     color: #fffdf8;
     font-family: var(--font-sans);
     font-size: clamp(1.55rem, 2.1vw, 2.2rem);
@@ -4040,12 +4087,32 @@ body.night-mode .play-card.is-clickable:hover {
     transition-delay: 0.08s;
 }
 
+.play-detail__title-pill.has-link::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.38em;
+    height: 0.38em;
+    margin-left: 0.04em;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.92;
+}
+
+.play-detail__title-pill.has-link {
+    cursor: pointer;
+}
+
 .play-detail__body-bubble {
     max-width: min(100%, 560px);
     padding: 28px 30px 32px;
-    border-radius: 28px;
-    background: linear-gradient(180deg, #ff8648 0%, #ff743a 100%);
-    border: 1px solid rgba(160, 89, 31, 0.28);
+    border-radius:
+        var(--message-bubble-radius-sm)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg)
+        var(--message-bubble-radius-lg);
+    background: linear-gradient(180deg, var(--message-bubble-orange-start) 0%, var(--message-bubble-orange-end) 100%);
+    border: 0;
     color: #fffdf8;
     font-family: var(--font-sans);
     font-size: clamp(1rem, 1.08vw, 1.08rem);
@@ -4458,7 +4525,11 @@ body.night-mode .play-overlay__subtitle { color: rgba(240, 234, 219, 0.6); }
     }
 
     .play-detail__title-pill {
-        border-radius: 30px 30px 30px 12px;
+        border-radius:
+            var(--message-bubble-radius-lg)
+            var(--message-bubble-radius-lg)
+            var(--message-bubble-radius-lg)
+            var(--message-bubble-radius-sm);
     }
 }
 
@@ -5653,11 +5724,27 @@ body.night-mode::before {
 
 /* Inline hover-pill links inside case-study copy */
 .cs-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42em;
+    vertical-align: middle;
     font-weight: var(--t-weight-semibold);
     color: inherit;
     text-decoration: none;
     cursor: pointer;
     --cs-link-accent: #14b8a6;
+}
+
+.cs-inline-link.has-inline-avatar::before {
+    content: "";
+    width: 1.72em;
+    height: 1.72em;
+    flex: 0 0 1.72em;
+    border-radius: 999px;
+    background-image: var(--cs-inline-link-avatar);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Stable accent palette — hash of pill label / link text picks one */
@@ -5688,7 +5775,7 @@ html[data-cs-mode="edit"] .cs-inline-link {
     text-underline-offset: 3px;
     background: rgba(255, 116, 56, 0.08);
     border-radius: 4px;
-    padding: 0 2px;
+    padding: 0 4px 0 2px;
     box-shadow: inset 0 -1px 0 rgba(255, 116, 56, 0.25);
     transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
@@ -5708,6 +5795,11 @@ html[data-cs-link-editor-open="true"] .cs-inline-link:hover {
 
 html[data-cs-mode="view"] .cs-inline-link {
     transition: color 0.22s ease;
+}
+
+html[data-cs-mode="view"] .cs-inline-link.has-inline-avatar,
+html[data-cs-mode="edit"] .cs-inline-link.has-inline-avatar {
+    padding-left: 0;
 }
 
 html[data-cs-mode="view"] .cs-inline-link[data-href],
@@ -8273,17 +8365,24 @@ html[data-cs-mode="edit"] [contenteditable]:focus {
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 2px;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .cs-link-editor__btn {
     appearance: none;
     border: 0;
-    border-radius: 8px;
-    padding: 7px 12px;
+    border-radius: 10px;
+    min-height: 38px;
+    padding: 10px 16px;
     font: inherit;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
+    line-height: 1;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .cs-link-editor__btn--ghost {
@@ -8298,10 +8397,22 @@ html[data-cs-mode="edit"] [contenteditable]:focus {
 .cs-link-editor__btn--primary {
     background: #111827;
     color: #fff;
+    min-width: 86px;
+    box-shadow: 0 10px 20px rgba(17, 24, 39, 0.14);
 }
 
 .cs-link-editor__btn--primary:hover {
     background: #1f2937;
+    box-shadow: 0 12px 24px rgba(17, 24, 39, 0.18);
+}
+
+.cs-link-editor__btn--primary:active {
+    transform: translateY(1px);
+}
+
+.cs-link-editor__btn:focus-visible {
+    outline: 2px solid rgba(17, 24, 39, 0.18);
+    outline-offset: 2px;
 }
 
 body.night-mode .cs-link-pill {
@@ -8345,6 +8456,11 @@ body.night-mode .cs-link-editor__dropzone {
 body.night-mode .cs-link-editor__btn--primary {
     background: #f3f4f6;
     color: #111827;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+}
+
+body.night-mode .cs-link-editor__btn:focus-visible {
+    outline-color: rgba(243, 244, 246, 0.28);
 }
 
 @media (prefers-reduced-motion: reduce) {

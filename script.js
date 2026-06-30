@@ -521,12 +521,15 @@ if (headerMount) {
     const currentPage = headerMount.getAttribute('data-page') || '';
     const isActive = page => currentPage === page ? ' is-active' : '';
     const resumeUrl = 'https://drive.google.com/file/d/1e9EJH8wygKwAtqdljxzznRefkSE4_Ee4/view?usp=drive_link';
+    const logoSrc = typeof window.resolveAssetUrl === 'function'
+        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/Logo.svg')
+        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/Logo.svg';
 
     headerMount.innerHTML = `
         <header class="navbar">
             <div class="navbar__pill">
                 <a href="index.html" class="navbar__logo" aria-label="Go to homepage">
-                    <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/Logo.svg" alt="AS Logo" class="logo-img">
+                    <img src="${logoSrc}" alt="AS Logo" class="logo-img">
                 </a>
 
                 <nav class="nav-tray">
@@ -610,7 +613,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -620,13 +623,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -634,7 +637,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -644,7 +647,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -903,16 +906,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/grassland.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/water.webp',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/grassland.jpg',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/water.webp',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -2273,13 +2276,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2811,11 +2814,21 @@ scheduleDeferredHeroEffects();
         const link = card.dataset.playLink || '';
         const linkLabel = card.dataset.playLinkLabel || 'View More';
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@36e1883bba1d8a871b3588f923e69ca21a63d0af/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
+        detailTitle.classList.toggle('has-link', Boolean(link));
+        if (link) {
+            detailTitle.dataset.href = link;
+            detailTitle.setAttribute('role', 'link');
+            detailTitle.setAttribute('tabindex', '0');
+        } else {
+            delete detailTitle.dataset.href;
+            detailTitle.removeAttribute('role');
+            detailTitle.removeAttribute('tabindex');
+        }
         detailDescription.textContent = description;
         detailShell.style.setProperty('--detail-aspect', `${Math.max(width, 1)} / ${Math.max(height, 1)}`);
         detailMedia.replaceChildren(buildDetailMediaClone(card));
@@ -2855,6 +2868,10 @@ scheduleDeferredHeroEffects();
     function clearDetail() {
         detailMedia.replaceChildren();
         detailTitle.textContent = '';
+        detailTitle.classList.remove('has-link');
+        delete detailTitle.dataset.href;
+        detailTitle.removeAttribute('role');
+        detailTitle.removeAttribute('tabindex');
         detailDescription.textContent = '';
         detailStats?.replaceChildren();
         if (detailStats) detailStats.hidden = true;
@@ -3100,7 +3117,23 @@ scheduleDeferredHeroEffects();
         const target = e.target;
         if (!(target instanceof Element)) return;
         if (target.closest('[data-play-detail-link]')) return;
+        if (target.closest('[data-play-detail-title].has-link')) return;
         requestDetailClose(e, { preventDefault: false });
+    });
+
+    detailTitle?.addEventListener('click', (e) => {
+        const href = detailTitle.dataset.href;
+        if (!href) return;
+        e.preventDefault();
+        window.open(href, '_blank', 'noopener,noreferrer');
+    });
+
+    detailTitle?.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const href = detailTitle.dataset.href;
+        if (!href) return;
+        e.preventDefault();
+        window.open(href, '_blank', 'noopener,noreferrer');
     });
 
     window.addEventListener('keydown', (e) => {

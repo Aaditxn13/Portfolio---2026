@@ -695,7 +695,7 @@
         {
           "uid": "ba2mt5qup",
           "type": "text",
-          "body": "A big thanks to&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Ishant's work\" data-pill-image=\"cs-asset:zapp-account:1782587619171:bxrgjdpsm\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">@Ishant</a> on leading the direction of this project and guiding on my first big launch"
+          "body": "A big thanks to&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Ishant\" data-pill-image=\"cs-asset:zapp-account:1782831385970:bh0cy6z8j\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Ishant</a> on leading the direction of this project and guiding on my first big launch"
         },
         {
           "uid": "b7my9799f",
@@ -708,8 +708,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782631487148,
-    "syncedAt": "2026-06-28T07:24:47.148Z",
+    "repoVersion": 1782831396016,
+    "syncedAt": "2026-06-30T14:56:36.016Z",
     "dirty": false
   }
 }
