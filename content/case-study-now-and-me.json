@@ -152,9 +152,21 @@
           "body": "",
           "media": {
             "type": "image",
-            "src": "",
-            "alt": "",
-            "uid": "bozgw054m"
+            "src": "cs-asset:now-and-me:1782836119541:b9j5zj2ex",
+            "alt": "Screen Recording Jun 30 2026 (6)",
+            "uid": "bozgw054m",
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "Screen Recording Jun 30 2026 (6).mp4",
+              "mimeType": "video/mp4",
+              "size": 279401,
+              "resourceType": "video",
+              "ref": "cs-asset:now-and-me:1782836119541:b9j5zj2ex",
+              "createdAt": "2026-06-30T16:15:19.586Z"
+            }
           }
         },
         {
@@ -164,9 +176,21 @@
           "body": "Fours and sixes animations played randomly on every scan. A small cricket moment every time you paid, making users wait for such a small delight every time you pay",
           "media": {
             "type": "image",
-            "src": "",
-            "alt": "",
-            "uid": "bpotln6bx"
+            "src": "cs-asset:now-and-me:1782836177174:bchou9mjg",
+            "alt": "Screen Recording Jun 30 2026 (2)",
+            "uid": "bpotln6bx",
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "Screen Recording Jun 30 2026 (2).mp4",
+              "mimeType": "video/mp4",
+              "size": 942285,
+              "resourceType": "video",
+              "ref": "cs-asset:now-and-me:1782836177174:bchou9mjg",
+              "createdAt": "2026-06-30T16:16:17.187Z"
+            }
           },
           "reverse": true
         },
@@ -177,9 +201,21 @@
           "body": "The circular tick became a bouncing ball. Pure delight post payments. Along side that, an animated bottom sheet confirmed your runs after every payment. Made the gamification feel immediate.",
           "media": {
             "type": "image",
-            "src": "",
-            "alt": "",
-            "uid": "bblsqzged"
+            "src": "cs-asset:now-and-me:1782836244080:bbyjklejz",
+            "alt": "Screen Recording Jun 30 2026",
+            "uid": "bblsqzged",
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "Screen Recording Jun 30 2026.mp4",
+              "mimeType": "video/mp4",
+              "size": 716192,
+              "resourceType": "video",
+              "ref": "cs-asset:now-and-me:1782836244080:bbyjklejz",
+              "createdAt": "2026-06-30T16:17:24.102Z"
+            }
           },
           "reverse": false
         },
@@ -190,9 +226,21 @@
           "body": "Referrals earned the highest runs in the campaign. The section got a visual upgrade to match that weight.",
           "media": {
             "type": "image",
-            "src": "",
-            "alt": "",
-            "uid": "bdvf18ris"
+            "src": "cs-asset:now-and-me:1782836833268:b4p54299h",
+            "alt": "Screen Recording Jun 30 2026 (3)",
+            "uid": "bdvf18ris",
+            "mediaType": "video",
+            "mediaMimeType": "video/mp4",
+            "localAsset": {
+              "status": "local",
+              "field": "src",
+              "originalName": "Screen Recording Jun 30 2026 (3).mp4",
+              "mimeType": "video/mp4",
+              "size": 421951,
+              "resourceType": "video",
+              "ref": "cs-asset:now-and-me:1782836833268:b4p54299h",
+              "createdAt": "2026-06-30T16:27:13.305Z"
+            }
           },
           "reverse": true
         },
@@ -228,9 +276,22 @@
         {
           "uid": "bwl177cs9",
           "type": "image",
-          "layout": "fullbleed",
-          "src": "",
-          "alt": ""
+          "layout": "wide",
+          "src": "cs-asset:now-and-me:1782837662005:bnk73xc04",
+          "alt": "JDDD",
+          "mediaType": "image",
+          "mediaMimeType": "image/jpeg",
+          "localAsset": {
+            "status": "local",
+            "field": "src",
+            "originalName": "JDDD.jpg",
+            "mimeType": "image/jpeg",
+            "size": 114041,
+            "resourceType": "image",
+            "ref": "cs-asset:now-and-me:1782837662005:bnk73xc04",
+            "createdAt": "2026-06-30T16:41:02.030Z"
+          },
+          "items": null
         },
         {
           "uid": "bg7x82b5e",
@@ -294,7 +355,7 @@
         {
           "uid": "be3svpjfw",
           "type": "text",
-          "body": "This was a key visual design project I got to be a part of with an amazing team,&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Ishant's work\" data-pill-image=\"cs-asset:zapp-account:1782587619171:bxrgjdpsm\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">@Ishant</a>&nbsp;leading the motion design along with <strong>@Vibhore</strong> on leading the direction of this project.",
+          "body": "This was a key visual design project I got to be a part of with an amazing team,&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Ishant's work\" data-pill-image=\"cs-asset:zapp-account:1782587619171:bxrgjdpsm\" data-href=\"https://ishantp.com/\" href=\"https://ishantp.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Ishant</a>&nbsp;leading the motion design along with <strong>Vibhore</strong> on leading the direction of this project.",
           "spaceBefore": 0
         },
         {
@@ -308,8 +369,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782753686227,
-    "syncedAt": "2026-06-29T17:21:26.227Z",
+    "repoVersion": 1782837686360,
+    "syncedAt": "2026-06-30T16:41:26.360Z",
     "dirty": false
   }
 }
