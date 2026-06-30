@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c7092577cfee8eadb0ba2bd85d434090ec937964/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c7092577cfee8eadb0ba2bd85d434090ec937964/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@c7092577cfee8eadb0ba2bd85d434090ec937964/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -1040,6 +1040,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     color: #7D7772;
     font-size: var(--type-nav-size);
     font-weight: var(--type-nav-weight);
+    font-synthesis: none;
     line-height: var(--type-nav-leading);
     text-transform: capitalize;
     padding: 11px 10px;
@@ -1054,6 +1055,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
 
 .nav-item.is-active {
     color: #1A1A1A;
+    font-weight: var(--type-nav-weight);
 }
 
 /* Theme toggle — Figma 210:9618, circular chip housing sun/moon glyph */
