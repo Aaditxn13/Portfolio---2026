@@ -502,7 +502,7 @@
         {
           "uid": "bmal0wfqh",
           "type": "text",
-          "body": "A special thanks to my team ( <a class=\"cs-inline-link\" data-pill-label=\"Checkout Prishita's Work\" data-pill-image=\"cs-asset:growth-experiments:1782831936123:bk0ekc2wy\" data-href=\"https://prishitajain.com/\" href=\"https://prishitajain.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Prishita</a>, Vibhore, Atharva, &amp; Utkarsh )&nbsp; taking these initiative to greater length and making sure all these campaigns delivered at its best.&nbsp;"
+          "body": "A special thanks to my team&nbsp;&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Prishita's Work\" data-pill-image=\"cs-asset:growth-experiments:1782831936123:bk0ekc2wy\" data-href=\"https://prishitajain.com/\" href=\"https://prishitajain.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Prishita</a>, Vibhore, Atharva, &amp; Utkarsh taking these initiative to greater length and making sure all these campaigns delivered at its best.&nbsp;"
         },
         {
           "uid": "bpn13x7fr",
@@ -515,8 +515,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782835018769,
-    "syncedAt": "2026-06-30T15:56:58.769Z",
+    "repoVersion": 1782839941048,
+    "syncedAt": "2026-06-30T17:19:01.048Z",
     "dirty": false
   }
 }

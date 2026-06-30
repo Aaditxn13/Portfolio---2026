@@ -646,7 +646,7 @@
         },
         {
           "type": "text",
-          "body": "The product had more potential than what launched. During the process, we explored several directions — new features, deeper functionality, and ideas that could meaningfully grow the product. Some made it in, many didn't. Priorities shifted, timelines tightened, and v1 had to stay focused.",
+          "body": "The product had more potential than what launched. During the process, we explored several directions — new features, deeper functionality, and ideas that could meaningfully grow the product. Some made it in, many didn't. Priorities shifted, timelines tightened, and v1 had to stay focused. ",
           "uid": "blb56sblk"
         },
         {
@@ -667,7 +667,8 @@
             "resourceType": "image",
             "ref": "cs-asset:zapp-account:1782584950486:by1cc30p3",
             "createdAt": "2026-06-27T18:29:10.496Z"
-          }
+          },
+          "hideCaptions": true
         }
       ],
       "uid": "b88ku9dq0"
@@ -708,8 +709,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782831396016,
-    "syncedAt": "2026-06-30T14:56:36.016Z",
+    "repoVersion": 1782839401225,
+    "syncedAt": "2026-06-30T17:10:01.225Z",
     "dirty": false
   }
 }

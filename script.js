@@ -522,8 +522,8 @@ if (headerMount) {
     const isActive = page => currentPage === page ? ' is-active' : '';
     const resumeUrl = 'https://drive.google.com/file/d/1e9EJH8wygKwAtqdljxzznRefkSE4_Ee4/view?usp=drive_link';
     const logoSrc = typeof window.resolveAssetUrl === 'function'
-        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/Logo.svg')
-        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/Logo.svg';
+        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/Logo.svg')
+        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/Logo.svg';
 
     headerMount.innerHTML = `
         <header class="navbar">
@@ -613,7 +613,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -623,13 +623,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -637,7 +637,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -647,7 +647,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -893,7 +893,6 @@ btnWall.addEventListener('click', () => {
 const projectModal = document.getElementById('project-modal');
 const modalBackdrop = document.getElementById('modal-backdrop');
 const modalClose = document.getElementById('modal-close');
-const workCards = document.querySelectorAll('.work-card');
 const homeWorkCards = document.querySelectorAll('#work-wall .work-card');
 const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v4';
 const HOME_CARDS_CONFIG_PATH = 'content/home-project-cards.json';
@@ -906,16 +905,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/grassland.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/water.webp',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/grassland.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/water.webp',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/grassland.jpg',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/water.webp',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/grassland.jpg',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/water.webp',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -1421,7 +1420,7 @@ function setupHomeCardEditor() {
         toggle.textContent = active ? 'Done editing cards' : 'Edit project cards';
         if (active) {
             document.body.classList.remove('webgl-cards');
-            hideCursorTooltip(0);
+            hideCursorTooltipNow();
             cursorDot.classList.remove('cursor-dot--hover');
         } else {
             applyAllHomeCardOverlays();
@@ -1631,7 +1630,7 @@ function requestCursorPaint() {
         cursorRaf = 0;
         cursorDot.style.left = dotX + 'px';
         cursorDot.style.top = dotY + 'px';
-        if (cursorLabel.style.opacity !== '0') {
+        if (cursorLabel.style.opacity !== '0' && isCursorTooltipOpen()) {
             cursorLabel.style.left = labelX + 'px';
             cursorLabel.style.top = labelY + 'px';
         }
@@ -1644,6 +1643,7 @@ document.addEventListener('mousemove', (e) => {
     labelX = e.clientX;
     labelY = e.clientY;
     requestCursorPaint();
+    updateCursorTooltipHover(e.clientX, e.clientY);
 });
 
 document.querySelectorAll('a, button, [role="button"], input, textarea, select, .work-card').forEach(el => {
@@ -1660,10 +1660,18 @@ document.querySelectorAll('.hero-v2__tag').forEach(el => {
     });
 });
 
-let cursorTimeout;
-let cursorExpandTimeout;
-let cursorDescTimeout;
-let activeTooltipCard = null;
+const CURSOR_TOOLTIP_SHOW_DELAY = 300;
+const CURSOR_TOOLTIP_HIDE_DELAY = 100;
+let cursorTooltipShowTimer = null;
+let cursorTooltipHideTimer = null;
+let cursorDescTimeout = null;
+let cursorTooltipPendingCard = null;
+let cursorTooltipVisibleCard = null;
+const homeProjectCards = document.querySelectorAll('#work-wall .work-card');
+
+if (!homeProjectCards.length) {
+    cursorLabel.style.display = 'none';
+}
 
 function escapeHTML(value) {
     return String(value || '').replace(/[&<>"']/g, (char) => ({
@@ -1687,42 +1695,103 @@ function setCursorTooltipContent(card) {
     return true;
 }
 
-function collapseCursorTooltip() {
-    clearTimeout(cursorExpandTimeout);
+function isCursorTooltipOpen() {
+    return cursorLabel.classList.contains('is-expanded');
+}
+
+function getHomeProjectCardAtPoint(x, y) {
+    const hit = document.elementFromPoint(x, y);
+    return hit?.closest?.('#work-wall .work-card') || null;
+}
+
+function hideCursorTooltipNow() {
+    clearTimeout(cursorTooltipShowTimer);
+    clearTimeout(cursorTooltipHideTimer);
     clearTimeout(cursorDescTimeout);
-    cursorLabel.classList.remove('is-expanded', 'has-description');
-    cursorLabel.classList.add('is-collapsing');
+    cursorTooltipShowTimer = null;
+    cursorTooltipHideTimer = null;
+    cursorDescTimeout = null;
+    cursorTooltipPendingCard = null;
+    cursorTooltipVisibleCard = null;
+    cursorLabel.classList.remove('is-collapsing', 'is-expanded', 'has-description');
+    cursorLabel.style.opacity = '0';
 }
 
-function hideCursorTooltip(delay = 120) {
-    collapseCursorTooltip();
-    cursorTimeout = setTimeout(() => {
-        cursorLabel.classList.remove('is-collapsing', 'is-expanded', 'has-description');
+function scheduleCursorTooltipHide() {
+    clearTimeout(cursorTooltipHideTimer);
+    cursorTooltipHideTimer = setTimeout(hideCursorTooltipNow, CURSOR_TOOLTIP_HIDE_DELAY);
+}
+
+function revealCursorTooltip(card) {
+    if (!card || homeCardEditorActive) return;
+    if (!setCursorTooltipContent(card)) return;
+
+    cursorTooltipVisibleCard = card;
+    cursorTooltipPendingCard = null;
+    cursorLabel.style.opacity = '';
+    cursorLabel.classList.remove('is-collapsing');
+    cursorLabel.classList.add('is-expanded');
+
+    const link = card.getAttribute('data-link');
+    if (link) prefetchRouteOnIntent(link);
+
+    clearTimeout(cursorDescTimeout);
+    cursorDescTimeout = setTimeout(() => {
+        if (cursorTooltipVisibleCard !== card) return;
+        const hasDesc = Boolean(card.getAttribute('data-desc'));
+        if (hasDesc && cursorLabel.classList.contains('is-expanded')) {
+            cursorLabel.classList.add('has-description');
+        }
+    }, 720);
+}
+
+function updateCursorTooltipHover(clientX, clientY) {
+    if (!homeProjectCards.length || homeCardEditorActive) {
+        if (isCursorTooltipOpen() || cursorTooltipPendingCard) hideCursorTooltipNow();
+        return;
+    }
+
+    const card = getHomeProjectCardAtPoint(clientX, clientY);
+
+    if (!card) {
+        cursorTooltipPendingCard = null;
+        clearTimeout(cursorTooltipShowTimer);
+        cursorTooltipShowTimer = null;
+        if (isCursorTooltipOpen()) scheduleCursorTooltipHide();
+        return;
+    }
+
+    clearTimeout(cursorTooltipHideTimer);
+    cursorTooltipHideTimer = null;
+
+    if (cursorTooltipVisibleCard === card && isCursorTooltipOpen()) return;
+
+    if (cursorTooltipVisibleCard && cursorTooltipVisibleCard !== card && isCursorTooltipOpen()) {
+        cursorTooltipVisibleCard = null;
+        cursorLabel.classList.remove('is-expanded', 'has-description');
         cursorLabel.style.opacity = '0';
-        activeTooltipCard = null;
-    }, delay);
+        clearTimeout(cursorDescTimeout);
+        cursorDescTimeout = null;
+    }
+
+    if (cursorTooltipPendingCard !== card) {
+        cursorTooltipPendingCard = card;
+        clearTimeout(cursorTooltipShowTimer);
+        cursorTooltipShowTimer = setTimeout(() => {
+            cursorTooltipShowTimer = null;
+            const verifiedCard = getHomeProjectCardAtPoint(labelX, labelY);
+            if (verifiedCard !== card) return;
+            if (homeCardEditorActive) return;
+            revealCursorTooltip(card);
+        }, CURSOR_TOOLTIP_SHOW_DELAY);
+    }
 }
 
-function expandCursorTooltip(card) {
-    clearTimeout(cursorTimeout);
-    clearTimeout(cursorExpandTimeout);
-    const isSwitchingCards = activeTooltipCard && activeTooltipCard !== card;
-    activeTooltipCard = card;
-    collapseCursorTooltip();
-
-    cursorExpandTimeout = setTimeout(() => {
-        if (activeTooltipCard !== card || !setCursorTooltipContent(card)) return;
-        cursorLabel.style.opacity = '';
-        cursorLabel.classList.remove('is-collapsing');
-        cursorLabel.classList.add('is-expanded');
-        cursorDescTimeout = setTimeout(() => {
-            const stillOnCard = activeTooltipCard === card;
-            const hasDesc = Boolean(card.getAttribute('data-desc'));
-            if (stillOnCard && hasDesc && cursorLabel.classList.contains('is-expanded')) {
-                cursorLabel.classList.add('has-description');
-            }
-        }, 720);
-    }, isSwitchingCards ? 80 : 140);
+if (homeProjectCards.length) {
+    ['scroll', 'wheel', 'touchstart'].forEach((eventName) => {
+        window.addEventListener(eventName, hideCursorTooltipNow, { passive: true });
+    });
+    document.addEventListener('mouseleave', hideCursorTooltipNow);
 }
 
 async function initHomeCardEditor() {
@@ -1746,13 +1815,13 @@ onPortfolioReady(() => {
     scheduleIdleTask(() => initHomeCardEditor(), 1200);
 });
 
-workCards.forEach(card => {
+homeProjectCards.forEach(card => {
     const link = card.getAttribute('data-link');
 
     const navigateToCardLink = () => {
-        if (homeCardEditorActive && card.closest('#work-wall')) return;
+        if (homeCardEditorActive) return;
         if (!link) return;
-        cursorLabel.style.opacity = '0';
+        hideCursorTooltipNow();
         if (typeof cursorDot !== 'undefined' && cursorDot) {
             cursorDot.style.opacity = '0';
         }
@@ -1769,17 +1838,11 @@ workCards.forEach(card => {
 
     card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-            if (homeCardEditorActive && card.closest('#work-wall')) return;
+            if (homeCardEditorActive) return;
             e.preventDefault();
             navigateToCardLink();
         }
     });
-
-    card.addEventListener('mouseenter', () => {
-        expandCursorTooltip(card);
-        prefetchRouteOnIntent(link);
-    });
-    card.addEventListener('mouseleave', () => hideCursorTooltip());
 });
 
 /* ==========================================================================
@@ -2276,13 +2339,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2814,8 +2877,8 @@ scheduleDeferredHeroEffects();
         const link = card.dataset.playLink || '';
         const linkLabel = card.dataset.playLinkLabel || 'View More';
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;

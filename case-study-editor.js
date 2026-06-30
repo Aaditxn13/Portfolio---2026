@@ -44,16 +44,16 @@
     const ASSET_DB_VERSION = 1;
     const ASSET_REF_PREFIX = 'cs-asset:';
     const LOCAL_ASSET_OVERRIDES = {
-        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
-        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
-        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/bbwcmexhv-image.png',
-        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
-        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
+        'cs-asset:zapp-account:1781856232078:b6kfqytkq': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/b2n56t1hj-zapp-account-b2n56t1hj.png',
+        'cs-asset:zapp-account:1781856232145:b9y94ch6q': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/bro1bdd73-zapp-account-bro1bdd73.png',
+        'cs-asset:zapp-account:1781960639879:be21i6quu': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/bbwcmexhv-image.png',
+        'cs-asset:zapp-account:1781960650114:b7g1yobdm': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/bkw4g7p6d-image.png',
+        'cs-asset:zapp-account:1781856232150:bc8yjynts': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/busact944-zapp-account-busact944.png',
         'cs-asset:zapp-account:1781979790777:bshl8ycca': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/onboarding.mp4',
         'cs-asset:zapp-account:1781856244196:bl0lzy1g3': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/zapp-home.mp4',
-        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/case-studies/zapp-account/b5591rluy-image.png',
+        'cs-asset:zapp-account:1781857889963:b375vscv0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/case-studies/zapp-account/b5591rluy-image.png',
         'cs-asset:zapp-account:1782612000000:bbalancevd': 'https://aaditxn13.github.io/Portfolio---2026/asset/case-studies/zapp-account/balance.mp4',
-        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/water.webp'
+        'cs-asset:growth-experiments:1781886666080:bi5uwrly0': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/water.webp'
     };
     const ZAPP_LOCAL_MEDIA_PATCHES = [
         {
@@ -242,7 +242,7 @@
                 { key: 'team',     label: 'Team',     value: '5 Designers' },
                 { key: 'timeline', label: 'Timeline', value: 'Growth experiments' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/water.webp', alt: 'Growth Experiments hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/water.webp', alt: 'Growth Experiments hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -290,7 +290,7 @@
             title: 'Butterfly Meadow',
             subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
             meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -316,7 +316,7 @@
                 { key: 'role',     label: 'Role',     value: 'Product Designer' },
                 { key: 'team',     label: 'Team',     value: '' }
             ],
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b388a160cdd5658f946eedc85ad75635af417432/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
+            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87efc413db298c05162c54af18b80c33bd2f9a7d/asset/home-project-cards/project-4-green-background.jpg', alt: 'Now&Me hero' },
             sections: [
                 { id: 'overview', label: 'Overview', blocks: [
                     { type: 'section-label', label: 'Overview' },
@@ -357,8 +357,6 @@
     let richTextToolbar = null;
     let linkEditorPopover = null;
     let linkEditorBackdrop = null;
-    let linkHoverPill = null;
-    let linkHoverTimer = null;
     let activeEditableNode = null;
     let linkEditorState = null;
     let linkEditorCloseBlock = 0;
@@ -2022,58 +2020,6 @@
         flashSaved('Link removed');
     }
 
-    function buildLinkHoverPill() {
-        if (linkHoverPill) return linkHoverPill;
-        const pill = el('div', { class: 'cs-link-pill', attrs: { 'aria-hidden': 'true' } });
-        const avatarWrap = el('div', { class: 'cs-link-pill__avatar-wrap' });
-        const avatar = el('img', { class: 'cs-link-pill__avatar', attrs: { alt: '' } });
-        const label = el('span', { class: 'cs-link-pill__label' });
-        avatarWrap.appendChild(avatar);
-        pill.appendChild(avatarWrap);
-        pill.appendChild(label);
-        document.body.appendChild(pill);
-        linkHoverPill = pill;
-        linkHoverPill._avatar = avatar;
-        linkHoverPill._avatarWrap = avatarWrap;
-        linkHoverPill._label = label;
-        return pill;
-    }
-
-    function hideLinkHoverPill() {
-        if (linkHoverTimer) {
-            clearTimeout(linkHoverTimer);
-            linkHoverTimer = null;
-        }
-        if (linkHoverPill) linkHoverPill.classList.remove('is-visible');
-    }
-
-    function scheduleHideLinkHoverPill() {
-        if (linkHoverTimer) clearTimeout(linkHoverTimer);
-        linkHoverTimer = setTimeout(hideLinkHoverPill, 80);
-    }
-
-    async function showLinkHoverPill(link) {
-        if (mode === 'edit') return;
-        const pillLabel = link.getAttribute('data-pill-label') || link.textContent.trim();
-        if (!pillLabel) return;
-
-        buildLinkHoverPill();
-        if (linkHoverTimer) {
-            clearTimeout(linkHoverTimer);
-            linkHoverTimer = null;
-        }
-
-        linkHoverPill._label.textContent = pillLabel;
-        linkHoverPill._avatar.removeAttribute('src');
-        linkHoverPill._avatarWrap.classList.remove('has-image');
-        linkHoverPill.dataset.linkAccent = link.dataset.linkAccent || String(linkAccentIndex(link));
-
-        const rect = link.getBoundingClientRect();
-        linkHoverPill.style.left = `${rect.left + rect.width / 2}px`;
-        linkHoverPill.style.top = `${rect.top - 14}px`;
-        linkHoverPill.classList.add('is-visible');
-    }
-
     function wireInlineLinks(forceRewire) {
         document.querySelectorAll(`.${INLINE_LINK_CLASS}`).forEach((link) => {
             applyLinkAccent(link);
@@ -2082,12 +2028,7 @@
             if (link.dataset.csLinkWired) return;
             link.dataset.csLinkWired = '1';
 
-            if (mode === 'view') {
-                link.addEventListener('mouseenter', () => showLinkHoverPill(link));
-                link.addEventListener('mouseleave', scheduleHideLinkHoverPill);
-                link.addEventListener('focus', () => showLinkHoverPill(link));
-                link.addEventListener('blur', scheduleHideLinkHoverPill);
-            } else {
+            if (mode !== 'view') {
                 link.addEventListener('mousedown', (ev) => {
                     if (link.hasAttribute('href') && (ev.metaKey || ev.ctrlKey)) return;
                     ev.preventDefault();
@@ -3313,7 +3254,6 @@
 
     function renderAll() {
         document.documentElement.dataset.csMode = mode;
-        hideLinkHoverPill();
         closeLinkEditor();
         renderHeader();
         renderHero();
