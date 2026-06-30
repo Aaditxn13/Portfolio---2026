@@ -18,26 +18,26 @@
         'project-4.html': { json: 'content/case-study-now-and-me.json' },
         'play.html': {
             assets: [
-                'asset/play-tab-assets/play_tut.png',
-                'asset/play-tab-assets/play_Frame272.png',
-                'asset/play-tab-assets/play_Turnip.png',
-                'asset/play-tab-assets/play_36DaysofType.png',
-                'asset/play-tab-assets/play_gradienttexture.jpg',
-                'asset/play-tab-assets/play_Zakir.png',
-                'asset/play-tab-assets/play_pixie.png',
-                'asset/play-tab-assets/play_sero.png',
-                'asset/play-tab-assets/play_Miracle_sticker.png',
-                'asset/play-tab-assets/play_Iterate_sticker.png',
-                'asset/play-tab-assets/play_Bored MAC_sticker.png',
-                'asset/play-tab-assets/play_star_sticker.png',
-                'asset/play-tab-assets/lemon.png'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_tut.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Frame272.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Turnip.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_36DaysofType.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_gradienttexture.jpg',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Zakir.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_pixie.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_sero.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Miracle_sticker.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Iterate_sticker.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_Bored MAC_sticker.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/play_star_sticker.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/play-tab-assets/lemon.png'
             ]
         },
         'about.html': {
             assets: [
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/me.avif',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/company-icons/zeta.png',
-                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/about-more/travel.png'
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/me.avif',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/company-icons/zeta.png',
+                'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/about-more/travel.png'
             ]
         }
     };
@@ -47,16 +47,16 @@
         'case-study-editor.js?v=inline-links-4'
     ];
     const HOME_WORK_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/grassland.jpg',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/water.webp',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-3-night-meadow-background.jpg',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/home-project-cards/project-4-green-background.jpg'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/grassland.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/water.webp',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-3-night-meadow-background.jpg',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/home-project-cards/project-4-green-background.jpg'
     ];
     const HOME_BEYOND_MEDIA = [
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@b0e9e865d19f6d9115e5ebe598abcdb5a6e6491e/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-camera.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-film-roll.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-flower.png?v=beyond-illustrations-1',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@24d40bbbdc0ce2d228e56d62f9fcdf03f396c502/asset/beyond-pixels-icons/beyond-illustration-notebook.png?v=beyond-illustrations-1'
     ];
 
     const OTHER_PAGES = ['play.html', 'about.html'];

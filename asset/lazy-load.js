@@ -22,11 +22,12 @@
     function applyLazyBg(el) {
         const url = el.getAttribute('data-lazy-bg');
         if (!url || el.dataset.lazyLoaded === 'true') return;
-        el.style.backgroundImage = `url('${escapeCssUrl(url)}')`;
+        const resolved = resolveLazySrc(url);
+        el.style.backgroundImage = `url('${escapeCssUrl(resolved)}')`;
         el.dataset.lazyLoaded = 'true';
         el.dispatchEvent(new CustomEvent('lazy-bg-loaded', {
             bubbles: true,
-            detail: { url }
+            detail: { url: resolved }
         }));
     }
 
