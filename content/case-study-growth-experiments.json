@@ -369,19 +369,6 @@
           "type": "section-label",
           "label": "Impact",
           "uid": "bckioghdi"
-        },
-        {
-          "uid": "bfgeae0m0",
-          "type": "metrics",
-          "style": "standard",
-          "items": [
-            {
-              "uid": "bt8l07sjf",
-              "stat": "",
-              "label": "",
-              "note": ""
-            }
-          ]
         }
       ],
       "uid": "bfxhkelwz"
@@ -515,8 +502,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782839941048,
-    "syncedAt": "2026-06-30T17:19:01.048Z",
+    "repoVersion": 1782842657002,
+    "syncedAt": "2026-06-30T18:04:17.002Z",
     "dirty": false
   }
 }
