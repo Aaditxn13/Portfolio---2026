@@ -514,6 +514,53 @@ function bindThemeToggle() {
     });
 }
 
+function bindResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    if (!modal) return;
+
+    const triggers = Array.from(document.querySelectorAll('[data-resume-trigger]'));
+    const panel = modal.querySelector('.resume-modal__panel');
+    const closeControls = Array.from(modal.querySelectorAll('[data-resume-close]'));
+    let activeTrigger = null;
+
+    const setOpen = (open) => {
+        modal.classList.toggle('is-open', open);
+        modal.setAttribute('aria-hidden', open ? 'false' : 'true');
+        document.body.classList.toggle('resume-modal-open', open);
+
+        if (open) {
+            window.requestAnimationFrame(() => {
+                modal.querySelector('.resume-modal__close')?.focus();
+            });
+        } else if (activeTrigger) {
+            activeTrigger.focus();
+            activeTrigger = null;
+        }
+    };
+
+    triggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            activeTrigger = trigger;
+            setOpen(true);
+        });
+    });
+
+    closeControls.forEach((control) => {
+        control.addEventListener('click', () => setOpen(false));
+    });
+
+    panel?.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            setOpen(false);
+        }
+    });
+}
+
 // --- Shared Header ---
 const headerMount = document.querySelector('[data-site-header]');
 
@@ -523,8 +570,8 @@ if (headerMount) {
     const resumeUrl = 'asset/Aditya_Sadhukhan_Resume.pdf';
     const resumeDownloadName = 'Aditya_Sadhukhan_Resume.pdf';
     const logoSrc = typeof window.resolveAssetUrl === 'function'
-        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/Logo.svg')
-        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/Logo.svg';
+        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/Logo.svg')
+        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/Logo.svg';
 
     headerMount.innerHTML = `
         <header class="navbar">
@@ -537,7 +584,7 @@ if (headerMount) {
                     <a href="index.html#work" class="nav-item${isActive('home')}">work</a>
                     <a href="play.html" class="nav-item${isActive('play')}">play</a>
                     <a href="about.html" class="nav-item${isActive('about')}">about me</a>
-                    <a href="${resumeUrl}" class="nav-item nav-item--resume${isActive('resume')}" download="${resumeDownloadName}">resume</a>
+                    <a href="${resumeUrl}" class="nav-item nav-item--resume${isActive('resume')}" data-resume-trigger aria-haspopup="dialog">resume</a>
                     <button type="button" class="theme-toggle" id="theme-toggle" data-theme-toggle role="switch" aria-checked="false" aria-label="Switch to dark mode">
                         <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -581,13 +628,31 @@ if (headerMount) {
                 <a href="index.html" class="nav-item">home</a>
                 <a href="play.html" class="nav-item">play</a>
                 <a href="about.html" class="nav-item">about me</a>
-                <a href="${resumeUrl}" class="nav-item nav-item--resume" download="${resumeDownloadName}">resume</a>
+                <a href="${resumeUrl}" class="nav-item nav-item--resume" data-resume-trigger aria-haspopup="dialog">resume</a>
                 <a href="contact.html" class="nav-item">contact</a>
             </div>
         </header>
+        <div class="resume-modal" id="resume-modal" aria-hidden="true">
+            <div class="resume-modal__backdrop" data-resume-close></div>
+            <section class="resume-modal__panel" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+                <div class="resume-modal__bar">
+                    <h2 class="resume-modal__title" id="resume-modal-title">Resume</h2>
+                    <button type="button" class="resume-modal__close" data-resume-close aria-label="Close resume preview">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <iframe class="resume-modal__frame" src="${resumeUrl}" title="Aditya Sadhukhan resume preview"></iframe>
+                <div class="resume-modal__download-bar">
+                    <a href="${resumeUrl}" class="resume-modal__download" download="${resumeDownloadName}">Download PDF</a>
+                </div>
+            </section>
+        </div>
     `;
     bindThemeToggle();
     bindNavRoutePrefetch();
+    bindResumeModal();
 }
 
 const footerMounts = document.querySelectorAll('[data-site-footer]');
@@ -614,7 +679,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -624,13 +689,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -638,7 +703,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -648,7 +713,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -906,16 +971,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/grassland.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/water.webp',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/grassland.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/water.webp',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/grassland.jpg',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/water.webp',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/grassland.jpg',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/water.webp',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -2340,13 +2405,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2878,8 +2943,8 @@ scheduleDeferredHeroEffects();
         const link = card.dataset.playLink || '';
         const linkLabel = card.dataset.playLinkLabel || 'View More';
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e55c19e171f34639133cdcf172591853cc25d845/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
