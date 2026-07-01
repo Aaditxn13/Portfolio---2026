@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d109536619d7c134e13664c1306b4df11e9b805b/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d109536619d7c134e13664c1306b4df11e9b805b/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@d109536619d7c134e13664c1306b4df11e9b805b/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -1035,6 +1035,11 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
 }
 
 .nav-item {
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     font-family: var(--font-sans);
     color: #7D7772;
@@ -1046,11 +1051,46 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     padding: 11px 10px;
     white-space: nowrap;
     cursor: none;
+    border-radius: 999px;
     transition: color 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item:hover {
     color: #1A1A1A;
+}
+
+.nav-item--resume::before {
+    content: "";
+    position: absolute;
+    inset: 3px -9px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 25% 20%, rgba(255, 210, 128, 0.42), transparent 48%),
+        linear-gradient(110deg, rgba(216, 118, 54, 0.18), rgba(175, 78, 122, 0.2) 52%, rgba(88, 119, 179, 0.18));
+    box-shadow:
+        0 10px 28px rgba(175, 78, 122, 0.16),
+        0 2px 10px rgba(216, 118, 54, 0.12);
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+        opacity 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.nav-item--resume:hover,
+.nav-item.nav-item--resume:focus-visible {
+    color: transparent;
+    background: linear-gradient(105deg, #B85F2C 0%, #A74368 48%, #506EA6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-item--resume:hover::before,
+.nav-item--resume:focus-visible::before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .nav-item.is-active {
@@ -4796,6 +4836,24 @@ body.night-mode .control-btn img {
 
 body.night-mode .nav-item:hover {
     color: #f1f1f1;
+}
+
+body.night-mode .nav-item--resume::before {
+    background:
+        radial-gradient(circle at 25% 20%, rgba(255, 216, 142, 0.28), transparent 48%),
+        linear-gradient(110deg, rgba(230, 142, 83, 0.18), rgba(217, 105, 151, 0.22) 52%, rgba(116, 147, 214, 0.2));
+    box-shadow:
+        0 12px 30px rgba(217, 105, 151, 0.2),
+        0 2px 14px rgba(116, 147, 214, 0.12);
+}
+
+body.night-mode .nav-item.nav-item--resume:hover,
+body.night-mode .nav-item.nav-item--resume:focus-visible {
+    color: transparent;
+    background: linear-gradient(105deg, #F0A064 0%, #E16F9F 48%, #89A5EA 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 body.night-mode .hero-headline-img {
