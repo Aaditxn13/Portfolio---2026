@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@376fae850dc5ae7d0453a2ddb96c2097a6296bd6/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@376fae850dc5ae7d0453a2ddb96c2097a6296bd6/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@376fae850dc5ae7d0453a2ddb96c2097a6296bd6/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -1068,7 +1068,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     height: 56%;
     z-index: -1;
     border-radius: 50%;
-    background: linear-gradient(105deg, rgba(184, 95, 44, 0.28) 0%, rgba(167, 67, 104, 0.22) 48%, rgba(80, 110, 166, 0.2) 100%);
+    background: linear-gradient(92deg, #77E866 2.78%, #F2D357 26.42%, #FBBA65 43.84%, #FD88A5 62.95%, #ED6DDA 78.67%, #D55FFF 99.06%);
     filter: blur(10px);
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.82);
@@ -1080,7 +1080,7 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
 .nav-item.nav-item--resume:hover,
 .nav-item.nav-item--resume:focus-visible {
     color: transparent;
-    background: linear-gradient(105deg, #B85F2C 0%, #A74368 48%, #506EA6 100%);
+    background: linear-gradient(92deg, #77E866 2.78%, #F2D357 26.42%, #FBBA65 43.84%, #FD88A5 62.95%, #ED6DDA 78.67%, #D55FFF 99.06%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -4837,14 +4837,10 @@ body.night-mode .nav-item:hover {
     color: #f1f1f1;
 }
 
-body.night-mode .nav-item--resume::before {
-    background: linear-gradient(105deg, rgba(240, 160, 100, 0.24) 0%, rgba(225, 111, 159, 0.22) 48%, rgba(137, 165, 234, 0.2) 100%);
-}
-
 body.night-mode .nav-item.nav-item--resume:hover,
 body.night-mode .nav-item.nav-item--resume:focus-visible {
     color: transparent;
-    background: linear-gradient(105deg, #F0A064 0%, #E16F9F 48%, #89A5EA 100%);
+    background: linear-gradient(92deg, #77E866 2.78%, #F2D357 26.42%, #FBBA65 43.84%, #FD88A5 62.95%, #ED6DDA 78.67%, #D55FFF 99.06%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
