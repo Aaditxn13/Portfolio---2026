@@ -3,7 +3,7 @@
  *
  * Vanilla port of the dappled-light Three.js demo: paints a cream
  * (#EFEFEA) base with a soft, slowly swaying tree shadow projected from
- * https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/dappled-tree.png. Mounts on #hero-dappled-canvas inside
+ * https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/dappled-tree.png. Mounts on #hero-dappled-canvas inside
  * .hero-v2__frame; no-ops if THREE or the canvas isn't present.
  *
  * Reuses the THREE UMD global already loaded by index.html (no new
@@ -328,7 +328,7 @@
     // (the shader's alpha output evaluates to 0 against a null sampler).
     const loader = new THREE.TextureLoader();
     loader.load(
-        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/dappled-tree.png',
+        'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/dappled-tree.png',
         (tex) => {
             tex.wrapS = THREE.ClampToEdgeWrapping;
             tex.wrapT = THREE.ClampToEdgeWrapping;
@@ -341,7 +341,7 @@
         },
         undefined,
         (err) => {
-            console.warn('[dappled-light] failed to load https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@4789ef6cda4a79b0ddc3d75ef652507f37d2d56d/asset/dappled-tree.png', err);
+            console.warn('[dappled-light] failed to load https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@87b1de091b8a384184ec7c48f03de26e2e1079ef/asset/dappled-tree.png', err);
         }
     );
 
