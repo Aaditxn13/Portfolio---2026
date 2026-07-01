@@ -8133,11 +8133,8 @@ html[data-cs-mode="edit"] [contenteditable]:focus {
     line-height: 1;
 }
 
-/* Hover pill shown on linked text (view mode) — disabled; inline avatars only */
+/* Hover pill shown on linked text (view mode) */
 .cs-link-pill {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
     position: fixed;
     z-index: 1150;
     display: inline-flex;

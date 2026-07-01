@@ -489,7 +489,7 @@
         {
           "uid": "bmal0wfqh",
           "type": "text",
-          "body": "A special thanks to my team&nbsp;&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Prishita's Work\" data-pill-image=\"cs-asset:growth-experiments:1782831936123:bk0ekc2wy\" data-href=\"https://prishitajain.com/\" href=\"https://prishitajain.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Prishita</a>, Vibhore, Atharva, &amp; Utkarsh taking these initiative to greater length and making sure all these campaigns delivered at its best.&nbsp;"
+          "body": "A special thanks to my team&nbsp;&nbsp;<a class=\"cs-inline-link\" data-pill-label=\"Checkout Prishita's Work\" data-pill-image=\"cs-asset:growth-experiments:1782831936123:bk0ekc2wy\" data-href=\"https://prishitajain.com/\" href=\"https://prishitajain.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Prishita</a>, <span class=\"cs-inline-link\" data-pill-label=\"Checkout Vibhore's Work\">Vibhore</span>, Atharva, &amp; Utkarsh taking these initiative to greater length and making sure all these campaigns delivered at its best.&nbsp;"
         },
         {
           "uid": "bpn13x7fr",
@@ -502,8 +502,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782842657002,
-    "syncedAt": "2026-06-30T18:04:17.002Z",
+    "repoVersion": 1782883128988,
+    "syncedAt": "2026-07-01T05:18:48.988Z",
     "dirty": false
   }
 }

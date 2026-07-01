@@ -357,6 +357,8 @@
     let richTextToolbar = null;
     let linkEditorPopover = null;
     let linkEditorBackdrop = null;
+    let linkHoverPill = null;
+    let linkHoverHideTimer = 0;
     let activeEditableNode = null;
     let linkEditorState = null;
     let linkEditorCloseBlock = 0;
@@ -403,6 +405,69 @@
         }
         const src = await resolveAssetSrc(imageRef);
         setInlineLinkAvatar(link, src || '');
+    }
+
+    function ensureLinkHoverPill() {
+        if (linkHoverPill) return linkHoverPill;
+        const pill = el('div', {
+            class: 'cs-link-pill',
+            attrs: { 'aria-hidden': 'true' }
+        });
+        pill._label = el('span', { class: 'cs-link-pill__label' });
+        pill.appendChild(pill._label);
+        document.body.appendChild(pill);
+        linkHoverPill = pill;
+        return pill;
+    }
+
+    function hideLinkHoverPill() {
+        if (linkHoverHideTimer) {
+            window.clearTimeout(linkHoverHideTimer);
+            linkHoverHideTimer = 0;
+        }
+        if (!linkHoverPill) return;
+        linkHoverPill.classList.remove('is-visible');
+        linkHoverPill.setAttribute('aria-hidden', 'true');
+    }
+
+    function scheduleHideLinkHoverPill() {
+        if (linkHoverHideTimer) window.clearTimeout(linkHoverHideTimer);
+        linkHoverHideTimer = window.setTimeout(() => {
+            hideLinkHoverPill();
+        }, 80);
+    }
+
+    function showLinkHoverPill(link) {
+        if (!link || mode !== 'view') return;
+        if (linkHoverHideTimer) {
+            window.clearTimeout(linkHoverHideTimer);
+            linkHoverHideTimer = 0;
+        }
+        const pill = ensureLinkHoverPill();
+        const label = (
+            link.getAttribute('data-pill-label')
+            || link.textContent
+            || ''
+        ).trim();
+        if (!label) {
+            hideLinkHoverPill();
+            return;
+        }
+        pill._label.textContent = label;
+        pill.dataset.linkAccent = link.dataset.linkAccent || String(linkAccentIndex(link));
+        pill.classList.add('is-visible');
+        pill.setAttribute('aria-hidden', 'false');
+        const rect = link.getBoundingClientRect();
+        const pillRect = pill.getBoundingClientRect();
+        const viewportPadding = 16;
+        const halfWidth = pillRect.width / 2;
+        const left = Math.max(
+            viewportPadding + halfWidth,
+            Math.min(window.innerWidth - viewportPadding - halfWidth, rect.left + rect.width / 2)
+        );
+        const top = Math.max(viewportPadding, rect.top - 12);
+        pill.style.left = `${left}px`;
+        pill.style.top = `${top}px`;
     }
 
     function uid() {
@@ -2042,9 +2107,18 @@
                     requestOpenLinkEditor(link);
                 });
                 link.setAttribute('title', 'Click to edit inline link');
+            } else {
+                link.addEventListener('mouseenter', () => showLinkHoverPill(link));
+                link.addEventListener('mouseleave', scheduleHideLinkHoverPill);
+                link.addEventListener('focus', () => showLinkHoverPill(link));
+                link.addEventListener('blur', scheduleHideLinkHoverPill);
+                link.removeAttribute('title');
             }
         });
     }
+
+    window.addEventListener('scroll', hideLinkHoverPill, { passive: true });
+    window.addEventListener('resize', hideLinkHoverPill);
 
     /* ---------- Block renderers ---------- */
 
