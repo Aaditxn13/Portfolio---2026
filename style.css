@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@3e81478f6fe58b7671eff566dc8ee859a5eec127/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@07a5c45ea7b0da601124cccc7048a26d97ce4338/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -1059,24 +1059,6 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     color: #1A1A1A;
 }
 
-.nav-item--resume::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 52%;
-    width: calc(100% + 8px);
-    height: 56%;
-    z-index: -1;
-    border-radius: 50%;
-    background: linear-gradient(92deg, #77E866 2.78%, #F2D357 26.42%, #FBBA65 43.84%, #FD88A5 62.95%, #ED6DDA 78.67%, #D55FFF 99.06%);
-    filter: blur(10px);
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.82);
-    transition:
-        opacity 0.24s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.24s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .nav-item.nav-item--resume:hover,
 .nav-item.nav-item--resume:focus-visible {
     color: transparent;
@@ -1084,12 +1066,6 @@ body.portfolio-loader-active #portfolio-loader:not(.portfolio-loader--done) {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.nav-item--resume:hover::before,
-.nav-item--resume:focus-visible::before {
-    opacity: 0.58;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 .nav-item.is-active {
