@@ -19,7 +19,7 @@
     // hand. Override either base by setting window.ASSET_BASE_URL or
     // window.VIDEO_BASE_URL before this script loads.
 
-    var ASSETS_PINNED_COMMIT = 'fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286'; // AUTO-BUMPED
+    var ASSETS_PINNED_COMMIT = '8ca13287979be8bddbc5e16ceef6f0e7dae8d92f'; // AUTO-BUMPED
     var GH_REPO = 'Aaditxn13/Portfolio---2026';
 
     if (!window.ASSET_BASE_URL) {

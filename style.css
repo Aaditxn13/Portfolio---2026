@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@8ca13287979be8bddbc5e16ceef6f0e7dae8d92f/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@8ca13287979be8bddbc5e16ceef6f0e7dae8d92f/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@8ca13287979be8bddbc5e16ceef6f0e7dae8d92f/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -6157,8 +6157,10 @@ html[data-cs-mode="view"] .cs-link-pill__label {
 .cs-media-grid img,
 .cs-media-grid .placeholder-graphic {
     width: 100%;
+    aspect-ratio: 23 / 15;
     border-radius: 8px;
     display: block;
+    object-fit: cover;
 }
 
 .cs-editor-media {
@@ -6317,6 +6319,7 @@ html[data-cs-mode="view"] .cs-link-pill__label {
 
 .cs-feature-block__stage .cs-editor-media-slot,
 .cs-feature-block__stage .placeholder-graphic {
+    --cs-media-slot-radius: 0px;
     width: 100%;
     height: 100%;
     min-height: 472px;
@@ -9014,12 +9017,15 @@ body.night-mode .cs-inserter__trigger { color: #a8a8a8; border-color: rgba(255, 
 
 /* --- Media slots (drag/drop targets) --- */
 .cs-editor-media-slot {
+    --cs-media-slot-radius: 12px;
     position: relative;
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: var(--cs-media-slot-radius);
+    clip-path: inset(0 round var(--cs-media-slot-radius));
     overflow: hidden;
+    background-clip: padding-box;
     background: #f5f6f8;
     cursor: default;
 }
@@ -9039,13 +9045,14 @@ html[data-cs-mode="edit"] .cs-editor-media-slot {
 }
 
 .cs-editor-media-slot--video {
-    background: #171717;
+    background: transparent;
 }
 
 .cs-editor-media-slot--video > video {
     width: calc(100% + 6px);
     height: calc(100% + 9px);
     object-fit: cover;
+    background: transparent;
     transform: translate3d(-3px, -3px, 0) scale(1.05);
     transform-origin: center;
     pointer-events: none;
@@ -9700,14 +9707,17 @@ body.night-mode .cs-page-hero { background: #1a1d23; }
 }
 
 /* Fullbleed image escape — breaks out of the gutters edge-to-edge. */
-.cs-page .cs-block--image.cs-media-full {
+.cs-page .cs-block--image.cs-media-full,
+.cs-page .cs-block--video.cs-media-full {
     max-width: 100vw;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     border-radius: 0;
 }
-.cs-page .cs-block--image.cs-media-full .cs-editor-media-slot {
+.cs-page .cs-block--image.cs-media-full .cs-editor-media-slot,
+.cs-page .cs-block--video.cs-media-full .cs-editor-media-slot {
+    --cs-media-slot-radius: 0px;
     border-radius: 0;
 }
 
@@ -10052,7 +10062,8 @@ html[data-case-study-id="now-and-me"] .cs-media-grid--cols-3 {
 html[data-case-study-id="growth-experiments"] .cs-media-grid .placeholder-graphic,
 html[data-case-study-id="project-3"] .cs-media-grid .placeholder-graphic,
 html[data-case-study-id="now-and-me"] .cs-media-grid .placeholder-graphic {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 23 / 15;
     border: 0;
     border-radius: 20px;
     background: #c4c4c4;
@@ -10061,7 +10072,8 @@ html[data-case-study-id="now-and-me"] .cs-media-grid .placeholder-graphic {
 html[data-case-study-id="growth-experiments"] .cs-media-grid .cs-editor-media-slot,
 html[data-case-study-id="project-3"] .cs-media-grid .cs-editor-media-slot,
 html[data-case-study-id="now-and-me"] .cs-media-grid .cs-editor-media-slot {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 23 / 15;
     border-radius: 20px;
 }
 
@@ -10487,14 +10499,16 @@ html[data-case-study-id="zapp-account"] .cs-media-grid--cols-3 {
 }
 
 html[data-case-study-id="zapp-account"] .cs-media-grid .placeholder-graphic {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 23 / 15;
     border: 0;
     border-radius: 20px;
     background: #c4c4c4;
 }
 
 html[data-case-study-id="zapp-account"] .cs-media-grid .cs-editor-media-slot {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 23 / 15;
     border-radius: 20px;
 }
 
@@ -11187,7 +11201,8 @@ html[data-case-study-id="now-and-me"] body.night-mode .cs-body-layout--growth .c
 
     html[data-case-study-id="zapp-account"] .cs-media-grid .placeholder-graphic,
     html[data-case-study-id="zapp-account"] .cs-media-grid .cs-editor-media-slot {
-        min-height: 300px;
+        min-height: 0;
+        aspect-ratio: 23 / 15;
     }
 
     html[data-case-study-id="zapp-account"] .cs-section__caption {
