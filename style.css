@@ -2,7 +2,7 @@
    "Designing at Zeta" note in the hero). Self-hosted from /asset. */
 @font-face {
     font-family: 'Lazy Dog';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@98c6bdf2f069da5c190ca82a4cc124b8d4cb6da4/asset/lazy_dog.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/lazy_dog.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@98c6bdf2f069da5c190ca82a4cc124b8d4cb6da4/asset/fonts/ExposureTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/fonts/ExposureTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Exposure Trial';
-    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@98c6bdf2f069da5c190ca82a4cc124b8d4cb6da4/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@fbf0a0f8f9d16de8d3ef22dbc9cf83d6b2cec286/asset/fonts/ExposureItalicTrial-10.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -464,6 +464,21 @@ html {
     overscroll-behavior: none;
     cursor: auto
         /* reset base */
+}
+
+@media (max-width: 768px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    @supports (overflow: clip) {
+        html,
+        body {
+            overflow-x: clip;
+        }
+    }
 }
 
 /* Custom orange cursor dot */
@@ -1477,13 +1492,61 @@ body.resume-modal-open {
 .hero-v2__stamp {
     position: absolute;
     left: 985px;
-    top: 540px;
-    width: 267px;
-    height: auto;
+    top: 486px;
+    width: 244px;
+    aspect-ratio: 404 / 516;
     display: block;
+    z-index: 4;
     pointer-events: none;
-    transform: rotate(-6deg);
+    transform: rotate(14deg);
     transform-origin: center center;
+}
+
+.hero-v2__stamp-base,
+.hero-v2__stamp-photo {
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.hero-v2__stamp-base {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-v2__stamp-photo-frame {
+    position: absolute;
+    z-index: 2;
+    left: 13.4%;
+    top: 8.8%;
+    width: 73.2%;
+    height: 78.8%;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.hero-v2__filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.hero-v2__stamp-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: url("#hero-stamp-guilloche-filter");
+    transition: filter 220ms ease;
+}
+
+.hero-v2__stamp-photo-frame:hover .hero-v2__stamp-photo {
+    filter: none;
 }
 
 /* Dappled-light shader overlay --------------------------------------------- */
@@ -1986,10 +2049,9 @@ body.night-mode .dappled-leaf {
         position: absolute;
         left: calc(4.5px + var(--grid-unit) * 10.5);
         right: auto;
-        top: calc(4.5px + var(--grid-unit) * 27);
-        width: calc(var(--grid-unit) * 6.825);
-        height: auto;
-        transform: rotate(-12deg);
+        top: calc(4.5px + var(--grid-unit) * 24.8);
+        width: calc(var(--grid-unit) * 6.15);
+        transform: rotate(12deg);
         transform-origin: center center;
     }
 
