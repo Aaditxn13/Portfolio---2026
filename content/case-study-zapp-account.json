@@ -84,14 +84,50 @@
           "uid": "b2agz61e3"
         },
         {
+          "uid": "b7adh5qjp",
+          "type": "eyebrow-heading",
+          "eyebrow": "",
+          "headline": "A wallet that existed, but didn't give users a reason to care."
+        },
+        {
           "type": "text",
-          "body": "PayZapp has had a digital wallet for quite some time, but it hasn't effectively attracted new users. Despite having UPI functionality, many users remain unaware of it and aren't engaging with the product as we hoped. To address this, we need to clarify our user acquisition strategy and boost both active usage and new sign-ups. It's essential to define the value proposition we want to communicate to potential users.",
+          "body": "UPI was live, the product was functional, but it wasn't attracting new users or keeping existing ones engaged. There was no clear value proposition being communicated — users had no strong reason to choose it over what they already had. For a product backed by HDFC Bank, that gap needed to close.",
           "uid": "b6z9wlq5p"
         },
         {
           "type": "text",
-          "body": "To address this challenge, we should broaden our approach by refining our user acquisition strategy and boosting both active engagement and new registrations. Since this is an HDFC Bank product, it's important to highlight the core value they offer, as they are sponsoring this significant transformation to attract a wider audience.",
+          "body": "To address this challenge, we should broaden our approach by refining our ",
           "uid": "b0b1ndgm0"
+        },
+        {
+          "uid": "bhfqmz6w6",
+          "type": "image",
+          "layout": "3-col",
+          "src": "",
+          "alt": "",
+          "mediaHeight": 200,
+          "items": [
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bxc0avhh3"
+            },
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bcszpdw7q"
+            },
+            {
+              "src": "",
+              "alt": "",
+              "uid": "bmocjapn9"
+            }
+          ]
+        },
+        {
+          "uid": "bdgth0oww",
+          "type": "text",
+          "body": "Since this is an HDFC Bank product, it's important to highlight the core value they offer, as they are sponsoring this significant transformation to attract a wider audience."
         },
         {
           "uid": "b52va8nmz",
@@ -172,41 +208,11 @@
         },
         {
           "type": "text",
-          "body": "This set the starting point for the rebrand. Before designing anything new, I needed to understand what the data was actually saying who was using the product, where they were dropping off, and what they were ignoring.",
+          "body": "This set the starting point for the rebrand. Before designing anything new, I needed to understand what the data was actually saying who was using the product, where they were dropping off, and what they were ignoring. The numbers weren't good. Engagement was low, adoption was slow, and most users who came in once didn't return. The product had potential — it just wasn't reaching it.",
           "uid": "b7dg0m4rw"
         },
         {
           "uid": "br1qtmnzj",
-          "type": "spacer",
-          "size": "md"
-        },
-        {
-          "uid": "bmaczgt2y",
-          "type": "metrics",
-          "style": "standard",
-          "items": [
-            {
-              "uid": "bhk67hbs1",
-              "stat": "X%",
-              "label": "ABC",
-              "note": ""
-            },
-            {
-              "stat": "Z%",
-              "label": "ABC",
-              "note": "",
-              "uid": "bqovvttn4"
-            },
-            {
-              "stat": "Y%",
-              "label": "ABC",
-              "note": "",
-              "uid": "bpspeeoh0"
-            }
-          ]
-        },
-        {
-          "uid": "bcw3zuhct",
           "type": "spacer",
           "size": "md"
         },
@@ -221,6 +227,11 @@
           "size": "md",
           "src": "cs-asset:zapp-account:1781856232150:bc8yjynts",
           "mediaMimeType": "image/png"
+        },
+        {
+          "uid": "bpsr7iqfr",
+          "type": "spacer",
+          "size": "md"
         },
         {
           "type": "eyebrow-heading",
@@ -709,8 +720,8 @@
     }
   ],
   "__editor": {
-    "repoVersion": 1782839401225,
-    "syncedAt": "2026-06-30T17:10:01.225Z",
+    "repoVersion": 1783412931954,
+    "syncedAt": "2026-07-07T08:28:51.954Z",
     "dirty": false
   }
 }

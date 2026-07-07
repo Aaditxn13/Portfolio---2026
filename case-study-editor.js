@@ -21,7 +21,7 @@
 (() => {
     'use strict';
 
-    const ENABLE_CASE_STUDY_EDITOR = false;
+    const ENABLE_CASE_STUDY_EDITOR = true;
 
     const CASE_ID = document.documentElement.dataset.caseStudyId;
     if (!CASE_ID) return;

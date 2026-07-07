@@ -198,20 +198,20 @@
             //    origin doesn't read as a sharp bright dot. Falloff dropped
             //    from 3.2 → 1.6 (twice as wide) and weight from 0.55 → 0.28
             //    so it blends into the ambient field instead of punching it.
-            float glow  = exp(-dist * 1.6);
+            float glow  = exp(-dist * 0.95);
             // 2. Volumetric ray cone aimed in u_lightDir — softer, wider
             //    cone so the beam reads as ambient shafts instead of a tight
             //    spotlight. Power dropped from 12 → 3.5 (much broader cone)
             //    and dist falloff slowed (0.55 → 0.40) so it spreads further
             //    before fading. Weight trimmed too so it stays subtle.
-            float ray   = pow(alignment, 3.5) * exp(-dist * 0.40);
+            float ray   = pow(alignment, 2.6) * exp(-dist * 0.24);
 
             // 3. Atmospheric haze + 4. slow breath.
             float haze   = 0.93 + 0.07 * random(vUv * 480.0 + vec2(u_time * 0.6));
             ray         *= haze;
             float breath = 0.93 + 0.07 * sin(t * 0.4);
 
-            float lightField = clamp((glow * 0.28 + ray * 0.55) * breath, 0.0, 1.0);
+            float lightField = clamp((glow * 0.22 + ray * 0.48) * breath, 0.0, 1.0);
             // 5. Tree occlusion — silhouette effect against the bright field.
             lightField *= (1.0 - shadow * 0.94);
             // Edge feather so the moon doesn't hard-cut at canvas walls.
