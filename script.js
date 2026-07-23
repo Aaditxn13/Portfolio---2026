@@ -1070,6 +1070,7 @@ async function isHomeCardSyncServerAvailable() {
 }
 
 function readHomeCardEditorState() {
+    if (!isHomeCardLocalDev()) return { cards: {}, meta: {} };
     try {
         const keys = [
             HOME_CARD_EDITOR_KEY,
@@ -1106,6 +1107,7 @@ function readHomeCardEditorState() {
 }
 
 function saveHomeCardEditorState(state, meta = homeCardEditorMeta, options = {}) {
+    if (!isHomeCardLocalDev()) return false;
     try {
         const payload = {
             __editor: {
