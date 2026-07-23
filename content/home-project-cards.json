@@ -1,7 +1,7 @@
 {
   "__editor": {
-    "repoVersion": 1782389005435,
-    "syncedAt": "2026-06-25T12:03:25.435Z",
+    "repoVersion": 1784800000001,
+    "syncedAt": "2026-07-23T00:00:00.000Z",
     "dirty": false
   },
   "cards": {
@@ -22,11 +22,11 @@
       "rotate": 0
     },
     "card-3": {
-      "src": "asset/home-project-cards/card-3.png",
-      "backgroundSrc": "asset/home-project-cards/card-3.png",
+      "src": "asset/home-project-cards/card-3.png?v=neo-1",
+      "backgroundSrc": "asset/home-project-cards/card-3.png?v=neo-1",
       "x": 0,
       "y": 0,
-      "scale": 1,
+      "scale": 0.62,
       "rotate": 0
     },
     "card-4": {

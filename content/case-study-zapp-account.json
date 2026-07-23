@@ -118,7 +118,7 @@
                 "field": "src",
                 "originalName": "image.png",
                 "mimeType": "image/png",
-                "size": 174942,
+                "size": 183219,
                 "resourceType": "image",
                 "ref": "cs-asset:zapp-account:1783417967835:b7h2m09op",
                 "createdAt": "2026-07-07T09:52:47.843Z"
@@ -126,9 +126,21 @@
               "caption": "User Acquisition"
             },
             {
-              "src": "",
-              "alt": "",
+              "src": "cs-asset:zapp-account:1783417899505:b8ykv48zk",
+              "alt": "image",
               "uid": "b71czdnib",
+              "mediaType": "image",
+              "mediaMimeType": "image/png",
+              "localAsset": {
+                "status": "local",
+                "field": "src",
+                "originalName": "image.png",
+                "mimeType": "image/png",
+                "size": 174942,
+                "resourceType": "image",
+                "ref": "cs-asset:zapp-account:1783417899505:b8ykv48zk",
+                "createdAt": "2026-07-07T09:51:39.505Z"
+              },
               "caption": "New and Active User Engagement"
             }
           ]

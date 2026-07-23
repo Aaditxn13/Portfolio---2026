@@ -26,10 +26,10 @@
     const CASE_ID = document.documentElement.dataset.caseStudyId;
     if (!CASE_ID) return;
 
-    // Bumped Zapp to v8 for inline hover-pill links in case-study copy.
+    // Bumped Zapp to v9 for the second two-column case-study image.
     const CONTENT_VERSION = CASE_ID === 'growth-experiments'
         ? 'v5'
-        : (CASE_ID === 'zapp-account' ? 'v8' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
+        : (CASE_ID === 'zapp-account' ? 'v9' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
     const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'project-3', 'now-and-me']);
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
