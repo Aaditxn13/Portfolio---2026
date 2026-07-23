@@ -568,11 +568,11 @@ if (headerMount) {
     const currentPage = headerMount.getAttribute('data-page') || '';
     const isActive = page => currentPage === page ? ' is-active' : '';
     const resumeUrl = 'asset/Aditya_Sadhukhan_Resume.pdf';
-    const resumePreviewUrl = 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/Aditya_Sadhukhan_Resume-preview.png';
+    const resumePreviewUrl = 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/Aditya_Sadhukhan_Resume-preview.png';
     const resumeDownloadName = 'Aditya_Sadhukhan_Resume.pdf';
     const logoSrc = typeof window.resolveAssetUrl === 'function'
-        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/Logo.svg')
-        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/Logo.svg';
+        ? window.resolveAssetUrl('https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/Logo.svg')
+        : 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/Logo.svg';
 
     headerMount.innerHTML = `
         <header class="navbar">
@@ -683,7 +683,7 @@ footerMounts.forEach(mount => {
                               </defs>
                             </svg>
                         </div>
-                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
+                        <img data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/sticky-note.png" alt="Sticky Note" class="sticker-image" width="307" height="307" decoding="async" fetchpriority="low">
                     </div>
 
                     <h2 class="footer-cta-title" id="footer-heading">amaze amaze amaze?<br>let’s catchup soon</h2>
@@ -693,13 +693,13 @@ footerMounts.forEach(mount => {
                 <div class="footer-meta">
                     <div class="footer-meta-socials">
                         <a href="https://www.linkedin.com/in/adityasad/" class="footer-meta-social" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/social-linkedin.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/social-linkedin.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://www.instagram.com/aaadit.yaa/" class="footer-meta-social" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/social-instagram.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/social-instagram.svg" alt="" width="32" height="32">
                         </a>
                         <a href="https://x.com/aaadit_s" class="footer-meta-social" aria-label="X (opens in a new tab)" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/social-x.svg" alt="" width="32" height="32">
+                            <img src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/social-x.svg" alt="" width="32" height="32">
                         </a>
                     </div>
                 </div>
@@ -707,7 +707,7 @@ footerMounts.forEach(mount => {
                 <figure class="footer-grass-scene" aria-hidden="true" data-footer-grass-scene>
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--light"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/grass-footer.jpg"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/grass-footer.jpg"
                         alt=""
                         width="1440"
                         height="400"
@@ -717,7 +717,7 @@ footerMounts.forEach(mount => {
                     >
                     <img
                         class="footer-grass-scene__base footer-grass-scene__base--dark"
-                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/grass-footer-dark.png"
+                        data-src="https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/grass-footer-dark.png"
                         alt=""
                         width="1440"
                         height="400"
@@ -975,16 +975,16 @@ const HOME_CARD_FALLBACK_TRANSFORMS = {
     'card-4': { x: 0, y: -19.7265625, scale: 2.13, rotate: 0 }
 };
 const HOME_CARD_BACKGROUND_PATHS = new Set([
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/grassland.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/water.webp',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/project-4-green-background.jpg'
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/grassland.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/water.webp',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/project-4-green-background.jpg'
 ]);
 const HOME_CARD_SHADER_BACKGROUNDS = {
-    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/grassland.jpg',
-    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/water.webp',
-    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/project-3-night-meadow-background.jpg',
-    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/home-project-cards/project-4-green-background.jpg'
+    'card-1': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/grassland.jpg',
+    'card-2': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/water.webp',
+    'card-3': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/project-3-night-meadow-background.jpg',
+    'card-4': 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/home-project-cards/project-4-green-background.jpg'
 };
 let homeCardBundledDefaults = {};
 let homeCardEditorState = {};
@@ -2409,13 +2409,13 @@ function initBeyondPixelsGallery() {
     // One canonical image set. We render two consecutive copies so the fold
     // stage can wrap after one full set without a visible jump.
     const images = [
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-01.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-02.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-03.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-04.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-05.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-06.jpg",
-        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/gallery-beyond-pixels/gallery-web-07.jpg"
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-01.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-02.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-03.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-04.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-05.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-06.jpg",
+        "https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/gallery-beyond-pixels/gallery-web-07.jpg"
     ];
     const loopImages = [...images, ...images];
 
@@ -2947,8 +2947,8 @@ scheduleDeferredHeroEffects();
         const link = card.dataset.playLink || '';
         const linkLabel = card.dataset.playLinkLabel || 'View More';
         const stats = [
-            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
-            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@0bf95f1da1e8838d2d0bb3356bf71d2f7419ab2c/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
+            { value: card.dataset.playHeart, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/play-tab-assets/play_gradinettexture_heart.png', label: 'Likes' },
+            { value: card.dataset.playUser, icon: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@e4b94c355b16b161bfdfca14268118978b45e639/asset/play-tab-assets/play_gradinettexture_user.png', label: 'Users reached' }
         ].filter((stat) => stat.value);
 
         detailTitle.textContent = title;
@@ -3553,6 +3553,7 @@ scheduleDeferredHeroEffects();
     });
 
     // ── Layout editor (cards + stickers) ─────────────────────────────
+    const ENABLE_PLAY_LAYOUT_EDITOR = false;
     const editor = canvas.querySelector('[data-play-editor]');
     const editorToggle = editor?.querySelector('[data-play-editor-toggle]');
     const editorPanel = editor?.querySelector('[data-play-editor-panel]');
@@ -3570,6 +3571,9 @@ scheduleDeferredHeroEffects();
     const editorSelection = canvas.querySelector('[data-play-editor-selection]');
     const editorRotateHandle = canvas.querySelector('[data-play-editor-rotate-handle]');
     const editorScaleHandle = canvas.querySelector('[data-play-editor-scale-handle]');
+
+    if (editor) editor.hidden = !ENABLE_PLAY_LAYOUT_EDITOR;
+    if (editorSelection) editorSelection.hidden = true;
 
     let layoutEditing = false;
     let selectedLayoutEl = null;
@@ -3858,115 +3862,117 @@ scheduleDeferredHeroEffects();
         window.addEventListener('pointercancel', onEnd);
     }
 
-    layoutItems.forEach((item) => {
-        item.addEventListener('pointerdown', (e) => {
-            if (!layoutEditing) return;
-            beginEditorMoveDrag(item, e);
-        }, true);
-    });
-
-    editorToggle?.addEventListener('click', (e) => {
-        e.preventDefault();
-        setLayoutEditing(!layoutEditing);
-    });
-
-    Object.entries(editorInputs).forEach(([key, input]) => {
-        input.addEventListener('keydown', (e) => {
-            e.stopPropagation();
+    if (ENABLE_PLAY_LAYOUT_EDITOR) {
+        layoutItems.forEach((item) => {
+            item.addEventListener('pointerdown', (e) => {
+                if (!layoutEditing) return;
+                beginEditorMoveDrag(item, e);
+            }, true);
         });
-        input.addEventListener('change', () => {
-            if (!selectedLayoutEl) return;
-            const value = parseFloat(input.value);
-            if (Number.isNaN(value)) {
-                syncEditorInputs();
-                return;
-            }
-            if (key === 'scale') {
-                updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, value) }, { commit: true });
-                return;
-            }
-            updateEditorPlacement(selectedLayoutEl, { [key]: value }, { commit: true });
-        });
-    });
 
-    editorActions.forEach((button) => {
-        button.addEventListener('click', async (e) => {
+        editorToggle?.addEventListener('click', (e) => {
             e.preventDefault();
-            const action = button.dataset.playEditorAction;
+            setLayoutEditing(!layoutEditing);
+        });
 
-            if (action === 'save') {
-                commitEditorLayout();
+        Object.entries(editorInputs).forEach(([key, input]) => {
+            input.addEventListener('keydown', (e) => {
+                e.stopPropagation();
+            });
+            input.addEventListener('change', () => {
+                if (!selectedLayoutEl) return;
+                const value = parseFloat(input.value);
+                if (Number.isNaN(value)) {
+                    syncEditorInputs();
+                    return;
+                }
+                if (key === 'scale') {
+                    updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, value) }, { commit: true });
+                    return;
+                }
+                updateEditorPlacement(selectedLayoutEl, { [key]: value }, { commit: true });
+            });
+        });
+
+        editorActions.forEach((button) => {
+            button.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const action = button.dataset.playEditorAction;
+
+                if (action === 'save') {
+                    commitEditorLayout();
+                    return;
+                }
+                if (action === 'copy') {
+                    await copyEditorLayout();
+                    return;
+                }
+                if (action === 'reset') {
+                    resetEditorLayout();
+                    return;
+                }
+                if (!selectedLayoutEl) {
+                    markEditorSaved('Select an item');
+                    return;
+                }
+
+                const placement = readPlacement(selectedLayoutEl);
+                const zValues = layoutItems.map((el, index) => readPlacement(el, index + 1).z);
+                const minZ = Math.min(...zValues);
+                const maxZ = Math.max(...zValues);
+
+                if (action === 'rotate-left') {
+                    updateEditorPlacement(selectedLayoutEl, { rot: placement.rot - 5 }, { commit: true });
+                } else if (action === 'rotate-right') {
+                    updateEditorPlacement(selectedLayoutEl, { rot: placement.rot + 5 }, { commit: true });
+                } else if (action === 'scale-down') {
+                    updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, (placement.scale || 1) - 0.1) }, { commit: true });
+                } else if (action === 'scale-up') {
+                    updateEditorPlacement(selectedLayoutEl, { scale: (placement.scale || 1) + 0.1 }, { commit: true });
+                } else if (action === 'send-back') {
+                    updateEditorPlacement(selectedLayoutEl, { z: minZ - 1 }, { commit: true });
+                } else if (action === 'bring-front') {
+                    updateEditorPlacement(selectedLayoutEl, { z: maxZ + 1 }, { commit: true });
+                }
+            });
+        });
+
+        editorRotateHandle?.addEventListener('pointerdown', beginEditorRotateDrag);
+        editorScaleHandle?.addEventListener('pointerdown', beginEditorScaleDrag);
+
+        canvas.addEventListener('playcanvas:pan', updateEditorSelectionFrame);
+        window.addEventListener('resize', updateEditorSelectionFrame);
+        window.addEventListener('keydown', (e) => {
+            if (!layoutEditing) return;
+            const target = e.target;
+            if (target instanceof Element && target.closest('input, textarea, select')) return;
+
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                setLayoutEditing(false);
                 return;
             }
-            if (action === 'copy') {
-                await copyEditorLayout();
-                return;
-            }
-            if (action === 'reset') {
-                resetEditorLayout();
-                return;
-            }
-            if (!selectedLayoutEl) {
-                markEditorSaved('Select an item');
-                return;
-            }
+            if (!selectedLayoutEl) return;
 
             const placement = readPlacement(selectedLayoutEl);
-            const zValues = layoutItems.map((el, index) => readPlacement(el, index + 1).z);
-            const minZ = Math.min(...zValues);
-            const maxZ = Math.max(...zValues);
+            const step = e.shiftKey ? 10 : 1;
+            let nextPlacement = null;
 
-            if (action === 'rotate-left') {
-                updateEditorPlacement(selectedLayoutEl, { rot: placement.rot - 5 }, { commit: true });
-            } else if (action === 'rotate-right') {
-                updateEditorPlacement(selectedLayoutEl, { rot: placement.rot + 5 }, { commit: true });
-            } else if (action === 'scale-down') {
-                updateEditorPlacement(selectedLayoutEl, { scale: Math.max(0.1, (placement.scale || 1) - 0.1) }, { commit: true });
-            } else if (action === 'scale-up') {
-                updateEditorPlacement(selectedLayoutEl, { scale: (placement.scale || 1) + 0.1 }, { commit: true });
-            } else if (action === 'send-back') {
-                updateEditorPlacement(selectedLayoutEl, { z: minZ - 1 }, { commit: true });
-            } else if (action === 'bring-front') {
-                updateEditorPlacement(selectedLayoutEl, { z: maxZ + 1 }, { commit: true });
-            }
-        });
-    });
+            if (e.key === 'ArrowLeft') nextPlacement = { x: placement.x - step };
+            if (e.key === 'ArrowRight') nextPlacement = { x: placement.x + step };
+            if (e.key === 'ArrowUp') nextPlacement = { y: placement.y - step };
+            if (e.key === 'ArrowDown') nextPlacement = { y: placement.y + step };
+            if (e.key === '[') nextPlacement = { rot: placement.rot - step };
+            if (e.key === ']') nextPlacement = { rot: placement.rot + step };
+            if (e.key === 'PageDown') nextPlacement = { z: placement.z - 1 };
+            if (e.key === 'PageUp') nextPlacement = { z: placement.z + 1 };
 
-    editorRotateHandle?.addEventListener('pointerdown', beginEditorRotateDrag);
-    editorScaleHandle?.addEventListener('pointerdown', beginEditorScaleDrag);
-
-    canvas.addEventListener('playcanvas:pan', updateEditorSelectionFrame);
-    window.addEventListener('resize', updateEditorSelectionFrame);
-    window.addEventListener('keydown', (e) => {
-        if (!layoutEditing) return;
-        const target = e.target;
-        if (target instanceof Element && target.closest('input, textarea, select')) return;
-
-        if (e.key === 'Escape') {
+            if (!nextPlacement) return;
             e.preventDefault();
-            setLayoutEditing(false);
-            return;
-        }
-        if (!selectedLayoutEl) return;
+            updateEditorPlacement(selectedLayoutEl, nextPlacement, { commit: true });
+        });
 
-        const placement = readPlacement(selectedLayoutEl);
-        const step = e.shiftKey ? 10 : 1;
-        let nextPlacement = null;
-
-        if (e.key === 'ArrowLeft') nextPlacement = { x: placement.x - step };
-        if (e.key === 'ArrowRight') nextPlacement = { x: placement.x + step };
-        if (e.key === 'ArrowUp') nextPlacement = { y: placement.y - step };
-        if (e.key === 'ArrowDown') nextPlacement = { y: placement.y + step };
-        if (e.key === '[') nextPlacement = { rot: placement.rot - step };
-        if (e.key === ']') nextPlacement = { rot: placement.rot + step };
-        if (e.key === 'PageDown') nextPlacement = { z: placement.z - 1 };
-        if (e.key === 'PageUp') nextPlacement = { z: placement.z + 1 };
-
-        if (!nextPlacement) return;
-        e.preventDefault();
-        updateEditorPlacement(selectedLayoutEl, nextPlacement, { commit: true });
-    });
-
-    syncEditorInputs();
-    updateEditorSelectionFrame();
+        syncEditorInputs();
+        updateEditorSelectionFrame();
+    }
 })();
