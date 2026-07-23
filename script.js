@@ -965,7 +965,7 @@ const modalBackdrop = document.getElementById('modal-backdrop');
 const modalClose = document.getElementById('modal-close');
 const homeWorkCards = document.querySelectorAll('#work-wall .work-card');
 const HOME_CARD_EDITOR_KEY = 'portfolio-home-card-editor:v4';
-const HOME_CARDS_CONFIG_PATH = 'content/home-project-cards.json';
+const HOME_CARDS_CONFIG_PATH = 'content/home-project-cards.json?v=neo-2';
 const HOME_CARD_SYNC_SERVER_URL = `http://localhost:${window.CASE_STUDY_SYNC_PORT || 4567}`;
 const HOME_CARD_SYNC_DEBOUNCE_MS = 2000;
 const HOME_CARD_FALLBACK_TRANSFORMS = {

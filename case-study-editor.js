@@ -34,12 +34,12 @@
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
     const BUNDLED_CONTENT_PATHS = {
-        'zapp-account': 'content/case-study-zapp-account.json',
-        'growth-experiments': 'content/case-study-growth-experiments.json',
-        'now-and-me': 'content/case-study-now-and-me.json',
-        'project-3': 'content/case-study-project-3.json'
+        'zapp-account': 'content/case-study-zapp-account.json?v=prod-refresh-1',
+        'growth-experiments': 'content/case-study-growth-experiments.json?v=prod-refresh-1',
+        'now-and-me': 'content/case-study-now-and-me.json?v=prod-refresh-1',
+        'project-3': 'content/case-study-project-3.json?v=prod-refresh-1'
     };
-    const ASSET_MANIFEST_PATH = 'content/case-study-asset-manifest.json';
+    const ASSET_MANIFEST_PATH = 'content/case-study-asset-manifest.json?v=prod-refresh-1';
     const SYNC_SERVER_URL = `http://localhost:${window.CASE_STUDY_SYNC_PORT || 4567}`;
     const SYNC_DEBOUNCE_MS = 2000;
     const ASSET_DB_NAME = 'cs-editor-assets';
