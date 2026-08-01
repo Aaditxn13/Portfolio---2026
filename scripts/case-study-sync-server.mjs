@@ -18,8 +18,7 @@ const PORT = Number(process.env.CASE_STUDY_SYNC_PORT || 4567);
 const CASE_CONTENT_FILES = {
     'zapp-account': 'content/case-study-zapp-account.json',
     'growth-experiments': 'content/case-study-growth-experiments.json',
-    'now-and-me': 'content/case-study-now-and-me.json',
-    'project-3': 'content/case-study-project-3.json'
+    'now-and-me': 'content/case-study-now-and-me.json'
 };
 
 const MANIFEST_PATH = 'content/case-study-asset-manifest.json';

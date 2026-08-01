@@ -61,7 +61,7 @@ const MEDIA_EXTENSIONS = [
 
 const FILES_TO_PROCESS = [
     'index.html', 'about.html', 'play.html',
-    'project-1.html', 'project-2.html', 'project-3.html', 'project-4.html',
+    'project-1.html', 'project-2.html', 'project-4.html',
     'style.css',
     'script.js',
     'case-study-editor.js',

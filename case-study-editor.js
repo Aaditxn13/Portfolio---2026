@@ -29,15 +29,14 @@
     // Bumped Zapp to v9 for the second two-column case-study image.
     const CONTENT_VERSION = CASE_ID === 'growth-experiments'
         ? 'v5'
-        : (CASE_ID === 'zapp-account' ? 'v9' : (CASE_ID === 'now-and-me' ? 'v4' : (CASE_ID === 'project-3' ? 'v3' : 'v2')));
-    const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'project-3', 'now-and-me']);
+        : (CASE_ID === 'zapp-account' ? 'v9' : (CASE_ID === 'now-and-me' ? 'v4' : 'v2'));
+    const INDEXED_CASE_STUDIES = new Set(['zapp-account', 'growth-experiments', 'now-and-me']);
     const STORAGE_KEY = `cs-editor-draft:${CONTENT_VERSION}:${CASE_ID}`;
     const PUBLISHED_KEY = `cs-editor-published:${CONTENT_VERSION}:${CASE_ID}`;
     const BUNDLED_CONTENT_PATHS = {
         'zapp-account': 'content/case-study-zapp-account.json?v=prod-refresh-1',
         'growth-experiments': 'content/case-study-growth-experiments.json?v=prod-refresh-1',
-        'now-and-me': 'content/case-study-now-and-me.json?v=prod-refresh-1',
-        'project-3': 'content/case-study-project-3.json?v=prod-refresh-1'
+        'now-and-me': 'content/case-study-now-and-me.json?v=prod-refresh-1'
     };
     const ASSET_MANIFEST_PATH = 'content/case-study-asset-manifest.json?v=prod-refresh-1';
     const SYNC_SERVER_URL = `http://localhost:${window.CASE_STUDY_SYNC_PORT || 4567}`;
@@ -284,27 +283,6 @@
                     { type: 'section-label', label: 'Reflection' },
                     { type: 'text', body: 'Growth experiments sat in a useful space between product design and campaign design. They had to work like product surfaces, but feel timed, playful, and worth opening.' },
                     { type: 'text', body: 'The strongest version of these moments came when the campaign mechanic carried the product idea instead of sitting on top of it.' }
-                ] }
-            ]
-        },
-        'project-3': {
-            id: 'project-3',
-            title: 'Butterfly Meadow',
-            subtitle: 'Whimsical landscape with fluttering butterflies in a sun-drenched field.',
-            meta: defaultMeta(),
-            hero: { type: 'image', src: 'https://cdn.jsdelivr.net/gh/Aaditxn13/Portfolio---2026@070103a24eed226e60226dc6c6e9841e851bc65a/asset/home-project-cards/project-3-night-meadow-background.jpg', alt: 'Butterfly Meadow hero' },
-            sections: [
-                { id: 'overview', label: 'Overview', blocks: [
-                    { type: 'section-label', label: 'Overview' },
-                    { type: 'text', body: '' }
-                ] },
-                { id: 'process', label: 'Process', blocks: [
-                    { type: 'section-label', label: 'Process' },
-                    { type: 'text', body: '' }
-                ] },
-                { id: 'reflection', label: 'Reflection', indexLabel: 'Reflections', blocks: [
-                    { type: 'section-label', label: 'Reflection' },
-                    { type: 'text', body: '' }
                 ] }
             ]
         },

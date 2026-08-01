@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#f4f5ef">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Pulse">
+    <title>Portfolio Pulse | Aditya</title>
+    <link rel="manifest" href="analytics.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="asset/pwa/icon-192.png">
+    <link rel="apple-touch-icon" href="asset/pwa/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="analytics.css?v=analytics-pwa-2">
+</head>
+<body>
+    <div class="auth-screen" id="auth-screen">
+        <main class="auth-panel">
+            <a class="brand brand--auth" href="index.html" aria-label="Back to portfolio">
+                <span class="brand__mark">AS</span>
+                <span>Portfolio Pulse</span>
+            </a>
+            <button class="install-button install-button--auth" type="button" data-install-app hidden>Install app</button>
+            <div class="auth-panel__copy">
+                <p class="eyebrow">Private analytics</p>
+                <h1>See what’s finding its way through your work.</h1>
+                <p id="auth-description">Checking your dashboard access…</p>
+            </div>
+            <form class="login-form" id="login-form" hidden>
+                <label for="dashboard-password">Dashboard password</label>
+                <div class="login-form__row">
+                    <input id="dashboard-password" name="password" type="password" autocomplete="current-password" required>
+                    <button type="submit">Open dashboard</button>
+                </div>
+                <p class="form-message" id="login-message" role="alert"></p>
+            </form>
+            <div class="setup-note" id="setup-note" hidden>
+                <p>Set <code>ANALYTICS_PASSWORD</code> in Netlify under Project configuration → Environment variables, then redeploy the site.</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="dashboard" id="dashboard" hidden>
+        <header class="topbar">
+            <a class="brand" href="index.html" aria-label="Back to portfolio">
+                <span class="brand__mark">AS</span>
+                <span>Portfolio Pulse</span>
+            </a>
+            <div class="topbar__actions">
+                <label class="range-control">
+                    <span>Range</span>
+                    <select id="range-select">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                        <option value="365">Last year</option>
+                    </select>
+                </label>
+                <span class="connection-status" id="connection-status" aria-live="polite">
+                    <i aria-hidden="true"></i>
+                    <span>Live</span>
+                </span>
+                <button class="quiet-button" type="button" data-install-app hidden>Install</button>
+                <button class="quiet-button" id="refresh-button" type="button">Refresh</button>
+                <button class="quiet-button" id="logout-button" type="button">Log out</button>
+            </div>
+        </header>
+
+        <main class="dashboard__main">
+            <section class="dashboard-heading" aria-labelledby="dashboard-title">
+                <div>
+                    <p class="eyebrow">Your portfolio, in motion</p>
+                    <h1 id="dashboard-title">A clear view of every visit.</h1>
+                </div>
+                <p class="updated-label" id="updated-label">Loading the latest activity…</p>
+            </section>
+
+            <div class="error-banner" id="error-banner" role="alert" hidden>
+                <span id="error-message">Analytics could not be loaded.</span>
+                <button type="button" id="retry-button">Try again</button>
+            </div>
+
+            <section class="metric-strip" id="metric-strip" aria-label="Key metrics">
+                <article class="metric">
+                    <span class="metric__label">Visitors</span>
+                    <strong class="metric__value skeleton-text" data-metric="visitors">—</strong>
+                    <span class="metric__note">Unique browsers</span>
+                </article>
+                <article class="metric">
+                    <span class="metric__label">Page views</span>
+                    <strong class="metric__value skeleton-text" data-metric="pageViews">—</strong>
+                    <span class="metric__note">Across your portfolio</span>
+                </article>
+                <article class="metric metric--accent">
+                    <span class="metric__label">Resume downloads</span>
+                    <strong class="metric__value skeleton-text" data-metric="resumeDownloads">—</strong>
+                    <span class="metric__note" data-metric-note="downloadRate">— conversion</span>
+                </article>
+                <article class="metric">
+                    <span class="metric__label">Engaged sessions</span>
+                    <strong class="metric__value skeleton-text" data-metric="engagedSessions">—</strong>
+                    <span class="metric__note">Stayed at least 30 sec</span>
+                </article>
+            </section>
+
+            <section class="activity-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Traffic rhythm</p>
+                        <h2>Visits over time</h2>
+                    </div>
+                    <div class="chart-legend" aria-label="Chart legend">
+                        <span><i class="legend-dot legend-dot--views"></i>Views</span>
+                        <span><i class="legend-dot legend-dot--visitors"></i>Visitors</span>
+                    </div>
+                </div>
+                <div class="timeline-chart is-loading" id="timeline-chart" aria-label="Page views and visitors over time"></div>
+            </section>
+
+            <div class="insight-grid">
+                <section class="ranking-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Content</p>
+                            <h2>Most viewed pages</h2>
+                        </div>
+                    </div>
+                    <div class="ranking-list is-loading" id="pages-list"></div>
+                </section>
+                <section class="ranking-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Discovery</p>
+                            <h2>Where people came from</h2>
+                        </div>
+                    </div>
+                    <div class="ranking-list is-loading" id="referrers-list"></div>
+                </section>
+            </div>
+
+            <div class="insight-grid insight-grid--secondary">
+                <section class="ranking-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Reach</p>
+                            <h2>Countries</h2>
+                        </div>
+                    </div>
+                    <div class="ranking-list is-loading" id="countries-list"></div>
+                </section>
+                <section class="ranking-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Context</p>
+                            <h2>Devices</h2>
+                        </div>
+                    </div>
+                    <div class="device-breakdown is-loading" id="devices-list"></div>
+                </section>
+            </div>
+
+            <section class="visitors-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Visit log</p>
+                        <h2>Recent visitors</h2>
+                    </div>
+                    <p class="privacy-note">Anonymous IDs only. Raw IP addresses are never stored.</p>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Visitor</th>
+                                <th>Last seen</th>
+                                <th>Location</th>
+                                <th>Context</th>
+                                <th>Pages</th>
+                                <th>Resume</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visitors-body">
+                            <tr class="table-skeleton"><td colspan="6"><span></span></td></tr>
+                            <tr class="table-skeleton"><td colspan="6"><span></span></td></tr>
+                            <tr class="table-skeleton"><td colspan="6"><span></span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="empty-state" id="empty-state" hidden>
+                    <span class="empty-state__marker">00</span>
+                    <h3>No visits in this range yet.</h3>
+                    <p>Once someone opens your portfolio, their anonymous visit will appear here.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="analytics-dashboard.js?v=analytics-pwa-2" defer></script>
+</body>
+</html>

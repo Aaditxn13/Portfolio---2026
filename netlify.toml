@@ -6,6 +6,21 @@
 [build]
   publish = "."
   command = ""
+  functions = "netlify/functions"
+
+[dev]
+  publish = "."
+  port = 8888
+
+[[redirects]]
+  from = "/analytics"
+  to = "/analytics.html"
+  status = 200
+
+[[redirects]]
+  from = "/project-3.html"
+  to = "/project-4.html"
+  status = 301
 
 [[headers]]
   for = "/*.css"
@@ -16,3 +31,38 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/analytics.html"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/analytics"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/api/analytics*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/analytics-sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/analytics.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "application/manifest+json"
